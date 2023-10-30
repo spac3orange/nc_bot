@@ -1,0 +1,322 @@
+import sqlite3 as sq
+from data.config_aiogram import config_aiogram
+from data.logger import logger
+import datetime
+from typing import List, Dict, Union, Tuple
+
+
+@logger.catch()
+async def db_start() -> None:
+    """
+    Initializes the connection to the database and creates the tables if they do not exist.
+    """
+    global db, cur
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_groups(group_name TEXT, promts TEXT, triggers TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT)")
+    # cur.execute("CREATE TABLE IF NOT EXISTS monitor_account(phone TEXT)")
+    db.commit()
+    logger.info('connected to database')
+
+
+@logger.catch()
+async def db_add_tg_account(phone_number: str) -> None:
+    """
+    Adds a Telegram account to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("INSERT INTO telegram_accounts(phone) VALUES (?)", (phone_number,))
+        db.commit()
+        logger.info(f"Telegram account {phone_number} added to the database")
+    except Exception as e:
+        logger.error(f"Error adding Telegram account to the database: {e}")
+
+
+@logger.catch()
+async def db_add_tg_monitor_account(phone_number: str) -> None:
+    """
+    Adds a Telegram account to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("INSERT INTO telegram_monitor_account(phone) VALUES (?)", (phone_number,))
+        db.commit()
+        logger.info(f"Telegram account {phone_number} added to the database")
+    except Exception as e:
+        logger.error(f"Error adding Telegram account to the database: {e}")
+
+
+@logger.catch()
+async def db_remove_tg_account(phone_number: str) -> None:
+    """
+    Removes a Telegram account from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("DELETE FROM telegram_accounts WHERE phone=?", (phone_number,))
+        db.commit()
+        logger.info(f"Telegram account {phone_number} removed from the database")
+    except Exception as e:
+        logger.error(f"Error removing Telegram account from the database: {e}")
+
+
+@logger.catch()
+async def db_get_all_tg_accounts() -> List[str]:
+    """
+    Retrieves all Telegram accounts from the database.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    try:
+        cur.execute("SELECT phone FROM telegram_accounts")
+        rows = cur.fetchall()
+        phone_numbers = [row[0] for row in rows]
+        return phone_numbers
+    except Exception as e:
+        logger.error(f"Error retrieving Telegram accounts from the database: {e}")
+        return []
+
+
+@logger.catch()
+async def db_get_monitor_account() -> List[str]:
+    """
+    Retrieves all Telegram accounts from the database.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    try:
+        cur.execute("SELECT phone FROM telegram_monitor_account")
+        rows = cur.fetchall()
+        phone_numbers = [row[0] for row in rows]
+        return phone_numbers
+    except Exception as e:
+        logger.error(f"Error retrieving Telegram accounts from the database: {e}")
+        return []
+
+
+@logger.catch()
+async def db_add_telegram_group(group_link: str) -> None:
+    """
+    Adds a Telegram group to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("INSERT INTO telegram_groups(group_name) VALUES (?)", (group_link,))
+        db.commit()
+        logger.info(f"Telegram group {group_link} added to the database")
+    except Exception as e:
+        logger.error(f"Error adding Telegram group to the database: {e}")
+
+
+@logger.catch()
+async def db_remove_telegram_group(group_name: str) -> None:
+    """
+    Removes a Telegram group from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("DELETE FROM telegram_groups WHERE group_name=?", (group_name,))
+        db.commit()
+        logger.info(f"Telegram group {group_name} removed from the database")
+    except Exception as e:
+        logger.error(f"Error removing Telegram group from the database: {e}")
+
+
+@logger.catch()
+async def db_get_all_telegram_groups() -> List[str]:
+    """
+    Retrieves a list of all Telegram groups from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT group_name FROM telegram_groups")
+        groups = cur.fetchall()
+        group_list = [group[0] for group in groups]
+        logger.info("Retrieved all Telegram groups from the database")
+        return group_list
+    except Exception as e:
+        logger.error(f"Error retrieving Telegram groups from the database: {e}")
+        return []
+
+@logger.catch()
+async def db_get_promts_for_group(group_name: str) -> str:
+    """
+    Retrieves the promts for a specific Telegram group from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+        result = cur.fetchone()
+        if result:
+            promts = result[0]
+            logger.info(f"Retrieved promts for Telegram group {group_name} from the database")
+            return promts
+        else:
+            logger.info(f"No promts found for Telegram group {group_name} in the database")
+            return ""
+    except Exception as e:
+        logger.error(f"Error retrieving promts for Telegram group from the database: {e}")
+        return ""
+
+
+@logger.catch()
+async def db_add_promts_for_group(group_name: str, promts: str) -> bool:
+    """
+    Adds promts for a specific Telegram group to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("UPDATE telegram_groups SET promts=? WHERE group_name=?", (promts, group_name))
+        db.commit()
+        logger.info(f"Promts added for Telegram group {group_name} in the database")
+        return True
+    except Exception as e:
+        logger.error(f"Error adding promts for Telegram group to the database: {e}")
+        return False
+
+
+@logger.catch()
+async def db_add_trigger_for_group(group_name: str, triggers: List[str]) -> bool:
+    """
+    Adds triggers for a specific Telegram group to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT triggers FROM telegram_groups WHERE group_name=?", (group_name,))
+        result = cur.fetchone()
+        if result:
+            existing_triggers = result[0]
+            if existing_triggers:
+                existing_triggers = existing_triggers.strip()  # Удаляем пробелы в начале и конце строки
+                existing_triggers += "\n" + "\n".join(triggers)  # Добавляем новые триггеры с новой строки
+            else:
+                existing_triggers = "\n".join(triggers)  # Используем только новые триггеры
+            cur.execute("UPDATE telegram_groups SET triggers=? WHERE group_name=?", (existing_triggers, group_name))
+            db.commit()
+            logger.info(f"Triggers added for Telegram group {group_name} in the database")
+            return True
+        else:
+            logger.info(f"No triggers found for Telegram group {group_name} in the database")
+            return False
+    except Exception as e:
+        logger.error(f"Error adding triggers for Telegram group to the database: {e}")
+        return False
+
+@logger.catch()
+async def db_get_triggers_for_group(group_name: str) -> str:
+    """
+    Retrieves all triggers for a specific Telegram group from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT triggers FROM telegram_groups WHERE group_name=?", (group_name,))
+        result = cur.fetchone()
+        if result:
+            triggers = result[0]
+            logger.info(f"Retrieved triggers for Telegram group {group_name} from the database")
+            return triggers
+        else:
+            logger.info(f"No triggers found for Telegram group {group_name} in the database")
+            return ""
+    except Exception as e:
+        logger.error(f"Error retrieving triggers for Telegram group from the database: {e}")
+        return ""
+
+
+@logger.catch()
+async def db_remove_triggers_for_group(group_name: str, triggers: List[str]) -> bool:
+    """
+    Removes triggers for a specific Telegram group from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT triggers FROM telegram_groups WHERE group_name=?", (group_name,))
+        result = cur.fetchone()
+        if result:
+            existing_triggers = result[0].split("\n")  # Разделяем существующие триггеры по строкам
+            updated_triggers = [trigger for trigger in existing_triggers if trigger not in triggers]  # Удаляем указанные триггеры
+            updated_triggers_str = "\n".join(updated_triggers)  # Объединяем триггеры обратно в одну строку
+            cur.execute("UPDATE telegram_groups SET triggers=? WHERE group_name=?", (updated_triggers_str, group_name))
+            db.commit()
+            logger.info(f"Triggers removed for Telegram group {group_name} from the database")
+            return True
+        else:
+            logger.info(f"No triggers found for Telegram group {group_name} in the database")
+            return False
+    except Exception as e:
+        logger.error(f"Error removing triggers for Telegram group from the database: {e}")
+        return False
+
+
+@logger.catch()
+async def get_groups_and_triggers() -> Dict[str, str]:
+    """
+    Retrieves all groups and their triggers from the database.
+    Returns a dictionary where keys are group names and values are triggers as a comma-separated string.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    try:
+        cur.execute("SELECT group_name, triggers FROM telegram_groups")
+        rows = cur.fetchall()
+        groups_triggers_dict = {}
+        for row in rows:
+            print(row)
+            group_name, triggers = row
+            triggers_str = triggers.replace("\n", ", ")  # Заменяем переносы строк на запятые
+            groups_triggers_dict[group_name] = triggers_str
+        logger.info("Retrieved all groups and triggers from the database")
+        return groups_triggers_dict
+    except Exception as e:
+        logger.error(f"Error retrieving groups and triggers from the database: {e}")
+        return {}
+
+
+@logger.catch()
+async def db_add_gpt_account(api_key: str) -> None:
+    """
+    Adds a GPT account to the database.
+    """
+    global db, cur
+    try:
+        cur.execute("INSERT INTO gpt_accounts(api_key) VALUES (?)", (api_key,))
+        db.commit()
+        logger.info(f"GPT account with API key {api_key} added to the database")
+    except Exception as e:
+        logger.error(f"Error adding GPT account to the database: {e}")
+
+
+
+@logger.catch()
+async def db_remove_gpt_account(api_key: str) -> None:
+    """
+    Removes a GPT account from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("DELETE FROM gpt_accounts WHERE api_key=?", (api_key,))
+        db.commit()
+        logger.info(f"GPT account {api_key} removed from the database")
+    except Exception as e:
+        logger.error(f"Error removing GPT account from the database: {e}")
+
+
+@logger.catch()
+async def db_get_all_gpt_accounts() -> List[str]:
+    """
+    Returns a list of all API keys from the gpt_accounts table.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT api_key FROM gpt_accounts")
+        rows = cur.fetchall()
+        api_keys = [row[0] for row in rows]
+        logger.info("Retrieved all GPT account API keys from the database")
+        return api_keys
+    except Exception as e:
+        logger.error(f"Error retrieving GPT account API keys from the database: {e}")
+        return []

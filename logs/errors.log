@@ -1,0 +1,330 @@
+2023-10-23 12:47:25.878 | ERROR    | __main__:<module>:43 - HTTP Client says - ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [getaddrinfo failed]
+2023-10-23 19:18:57.615 | ERROR    | __main__:start_params:34 - An error has been caught in function 'start_params', process 'MainProcess' (17776), thread 'MainThread' (7740):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 49, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000002617A3AEF20>
+    │       └ <function run at 0x00000261753D16C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000002617B118040>
+           │      └ <function Runner.run at 0x0000026175439620>
+           └ <asyncio.runners.Runner object at 0x000002617A1A6910>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:43> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026175437100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000002617A1A6910>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000002617550AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026175438EA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026175386660>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+
+> File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 34, in start_params
+    await db_start()
+          └ <function db_start at 0x000002617B0E62A0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 15, in db_start
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_groups(group TEXT)")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x0000026178B4F6C0>
+
+sqlite3.OperationalError: near "group": syntax error
+2023-10-23 19:20:05.604 | ERROR    | __main__:start_params:34 - An error has been caught in function 'start_params', process 'MainProcess' (22692), thread 'MainThread' (24076):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 49, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000239ADAFECA0>
+    │       └ <function run at 0x00000239A8B216C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000239AE864040>
+           │      └ <function Runner.run at 0x00000239A8B89620>
+           └ <asyncio.runners.Runner object at 0x00000239AD8F6910>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:43> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000239A8B87100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000239AD8F6910>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000239A8C5AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000239A8B88EA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000239A8AD6660>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+
+> File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 34, in start_params
+    await db_start()
+          └ <function db_start at 0x00000239AE8362A0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 15, in db_start
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_groups(group TEXT)")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000239AC29F6C0>
+
+sqlite3.OperationalError: near "group": syntax error
+2023-10-23 19:25:26.709 | ERROR    | handlers.tg_accs.get_tg_accs:get_acc_info:40 - Telegram server says - Bad Request: message text is empty
+2023-10-24 18:22:34.351 | ERROR    | handlers.groups.triggers:group_triggers:26 - An error has been caught in function 'group_triggers', process 'MainProcess' (18016), thread 'MainThread' (20192):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 51, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001B0A00C2E80>
+    │       └ <function run at 0x000001B09B0E16C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001B0A0E045F0>
+           │      └ <function Runner.run at 0x000001B09B14D620>
+           └ <asyncio.runners.Runner object at 0x000001B09B15EFD0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:45> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001B09B147100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001B09B15EFD0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001B09B21AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001B09B14CEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001B09B096660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,)}
+                     │    │           │    └ Update(update_id=809805632, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001B09FF6F010>
+                     │    └ <function Dispatcher.feed_update at 0x000001B09FEB5440>
+                     └ <Dispatcher '0x1b0a0e26950'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001B09FE97E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001B0A0E60F90>
+                     └ <Dispatcher '0x1b0a0e26950'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │       └ Update(update_id=809805632, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001B0A0E61650>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │       └ Update(update_id=809805632, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001B0A0E616D0>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │       └ Update(update_id=809805632, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x000001B0A06451C0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │             └ Update(update_id=809805632, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x000001B0A0A500E0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1b0a0e26950'>>, Update(update_id=809805632, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001B09FEB4A40>
+                 └ <Dispatcher '0x1b0a0e26950'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001B0A0A53420>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001B09FE97E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001B0A0E5AFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001B09FEB4AE0>
+                 └ <Dispatcher '0x1b0a0e26950'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x000001B09FEB4A40>
+                     └ <Router '0x1b09ff6e390'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001B0A0A51B20>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001B09FE97E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001B0A0E4E510>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001B09FEB4AE0>
+                 └ <Router '0x1b09ff6e390'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001B09FE97F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001B0A0E4E510>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1b0a0e26950'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001B09FF6F010>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170347442476', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x000001B0A0A52A20>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function group_triggers at 0x000001B0A0E5C220>, CallbackQuery(id='1987767170347442476', from_user=User(id=...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\triggers.py", line 26, in group_triggers
+    triggers = await db_get_triggers_for_group() or 'Нет'
+                     └ <function db_get_triggers_for_group at 0x000001B0A0E089A0>
+
+TypeError: db_get_triggers_for_group() missing 1 required positional argument: 'group_name'
+2023-10-24 18:25:23.475 | ERROR    | database.db_action:db_add_trigger_for_group:159 - Error adding triggers for Telegram group to the database: 'NoneType' object has no attribute 'split'
+2023-10-25 13:18:49.360 | ERROR    | handlers.tg_accs.get_tg_accs:get_acc_info:40 - Telegram server says - Bad Request: message text is empty
+2023-10-25 14:13:33.626 | ERROR    | data.config_telethon_scheme:login_phone:32 - Authorization error
+2023-10-25 14:23:06.497 | ERROR    | data.config_telethon_scheme:join_group:102 - Error joining group: 'User' object has no attribute 'channel_id'
+2023-10-25 14:26:35.992 | ERROR    | data.config_telethon_scheme:join_group:102 - Error joining group: 'User' object has no attribute 'channel_id'
+2023-10-25 14:33:09.740 | ERROR    | data.config_telethon_scheme:join_group:102 - Error joining group: The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 14:34:44.263 | ERROR    | handlers.tg_accs.get_tg_accs:get_acc_info:43 - Telegram server says - Bad Request: message text is empty
+2023-10-25 15:01:11.310 | ERROR    | data.config_telethon_scheme:join_group:100 - Error joining group: The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:11:58.176 | ERROR    | data.config_telethon_scheme:join_group:103 - Error joining group: The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:14:59.619 | ERROR    | data.config_telethon_scheme:join_group:107 - Error joining group: The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:21:37.053 | ERROR    | handlers.tg_accs.join_groups:accs_join_groups:34 - catching classes that do not inherit from BaseException is not allowed
+2023-10-25 15:22:12.267 | ERROR    | handlers.tg_accs.join_groups:accs_join_groups:34 - catching classes that do not inherit from BaseException is not allowed
+2023-10-25 15:22:56.154 | ERROR    | handlers.tg_accs.join_groups:accs_join_groups:34 - catching classes that do not inherit from BaseException is not allowed
+2023-10-25 15:23:19.636 | ERROR    | data.config_telethon_scheme:join_group:107 - Error joining group: The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:25:22.612 | ERROR    | data.config_telethon_scheme:join_group:104 - The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:28:13.357 | ERROR    | data.config_telethon_scheme:join_group:104 - The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-25 15:28:23.724 | ERROR    | data.config_telethon_scheme:join_group:104 - The user has been deleted/deactivated (caused by GetDialogsRequest)
+2023-10-26 06:57:11.638 | ERROR    | database.db_action:get_groups_and_triggers:227 - Error retrieving groups and triggers from the database: name 'cur' is not defined
+2023-10-26 07:01:58.716 | ERROR    | database.db_action:get_groups_and_triggers:239 - Error retrieving groups and triggers from the database: name 'cur' is not defined
+2023-10-26 07:23:24.167 | ERROR    | database.db_action:get_groups_and_triggers:239 - Error retrieving groups and triggers from the database: name 'cur' is not defined
+2023-10-26 07:23:24.167 | ERROR    | database.db_action:db_get_all_telegram_groups:108 - Error retrieving Telegram groups from the database: name 'cur' is not defined
+2023-10-26 07:23:41.117 | ERROR    | database.db_action:get_groups_and_triggers:239 - Error retrieving groups and triggers from the database: name 'cur' is not defined
+2023-10-26 07:23:41.117 | ERROR    | database.db_action:db_get_all_telegram_groups:108 - Error retrieving Telegram groups from the database: name 'cur' is not defined
+2023-10-26 07:24:00.255 | ERROR    | __main__:<module>:56 - HTTP Client says - ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [getaddrinfo failed]
+2023-10-26 07:35:47.397 | ERROR    | database.db_action:db_get_all_tg_accounts:63 - Error retrieving Telegram accounts from the database: name 'cur' is not defined
+2023-10-26 07:35:47.425 | ERROR    | __main__:<module>:58 - Cannot choose from an empty sequence
+2023-10-26 07:37:11.328 | ERROR    | database.db_action:db_get_all_tg_accounts:63 - Error retrieving Telegram accounts from the database: name 'cur' is not defined
+2023-10-26 07:37:11.335 | ERROR    | __main__:<module>:58 - Cannot choose from an empty sequence
+2023-10-26 08:14:29.400 | ERROR    | database.db_action:db_get_all_tg_accounts:63 - Error retrieving Telegram accounts from the database: name 'cur' is not defined
+2023-10-26 08:14:29.474 | ERROR    | __main__:<module>:58 - Cannot choose from an empty sequence
+2023-10-26 08:15:00.333 | ERROR    | database.db_action:db_get_all_tg_accounts:63 - Error retrieving Telegram accounts from the database: name 'cur' is not defined
+2023-10-26 08:15:00.343 | ERROR    | __main__:<module>:58 - Cannot choose from an empty sequence
+2023-10-26 08:17:10.329 | ERROR    | database.db_action:get_groups_and_triggers:241 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-10-26 08:17:10.365 | ERROR    | __main__:<module>:58 - func must be a callable or a textual reference to one
+2023-10-26 08:19:49.427 | ERROR    | database.db_action:get_groups_and_triggers:242 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-10-26 08:19:49.440 | ERROR    | __main__:<module>:58 - func must be a callable or a textual reference to one
+2023-10-26 08:24:00.147 | ERROR    | database.db_action:get_groups_and_triggers:242 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-10-26 08:24:00.170 | ERROR    | __main__:<module>:58 - func must be a callable or a textual reference to one
+2023-10-26 08:28:28.242 | ERROR    | __main__:<module>:58 - func must be a callable or a textual reference to one
+2023-10-26 08:32:38.168 | ERROR    | __main__:<module>:58 - func must be a callable or a textual reference to one
+2023-10-26 09:12:14.317 | ERROR    | __main__:<module>:60 - a coroutine was expected, got None
+2023-10-26 10:04:56.952 | ERROR    | data.config_telethon_scheme:monitor_channels:145 - Error monitoring channels: can't compare offset-naive and offset-aware datetimes
+2023-10-26 10:05:56.642 | ERROR    | data.config_telethon_scheme:monitor_channels:145 - Error monitoring channels: can't compare offset-naive and offset-aware datetimes
+2023-10-26 10:13:57.704 | ERROR    | data.config_telethon_scheme:monitor_channels:147 - Error monitoring channels: can't compare offset-naive and offset-aware datetimes
+2023-10-26 10:21:01.933 | ERROR    | data.config_telethon_scheme:monitor_channels:147 - Error monitoring channels: can't compare offset-naive and offset-aware datetimes
+2023-10-26 10:22:31.989 | ERROR    | data.config_telethon_scheme:monitor_channels:145 - Error monitoring channels: can't compare offset-naive and offset-aware datetimes
+2023-10-26 15:12:39.825 | ERROR    | data.config_telethon_scheme:send_comments:198 - Error sending comments: You can't write in this chat (caused by SendMessageRequest)
+2023-10-26 15:13:48.578 | ERROR    | data.config_telethon_scheme:join_group:115 - Error joining group: 'Dialog' object has no attribute 'username'
+2023-10-26 15:17:53.000 | ERROR    | data.config_telethon_scheme:join_group:105 - 'Dialog' object has no attribute 'username'
+2023-10-26 15:19:24.447 | ERROR    | data.config_telethon_scheme:send_comments:202 - Error sending comments: Chat admin privileges are required to do that in the specified chat (for example, to send a message in a channel which is not yours), or invalid permissions used for the channel or group (caused by SendMessageRequest)
+2023-10-26 15:37:05.394 | ERROR    | data.config_telethon_scheme:send_comments:194 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 15:40:59.751 | ERROR    | data.config_telethon_scheme:send_comments:194 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 15:48:54.185 | ERROR    | data.config_telethon_scheme:send_comments:194 - Error sending comments: Invalid message type: <class 'telethon.tl.types.PeerChannel'>
+2023-10-26 15:59:57.175 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: 'Message' object has no attribute 'message_id'
+2023-10-26 16:01:44.587 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:06:56.826 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:21:38.361 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:28:49.684 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:29:36.083 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:30:56.475 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:31:10.753 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:33:28.986 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by SendMessageRequest)
+2023-10-26 16:38:36.003 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by GetDiscussionMessageRequest)
+2023-10-26 16:39:20.682 | ERROR    | data.config_telethon_scheme:send_comments:193 - Error sending comments: Invalid channel object. Make sure to pass the right types, for instance making sure that the request is designed for channels or otherwise look for a different one more suited (caused by GetDiscussionMessageRequest)
+2023-10-26 16:45:37.147 | ERROR    | data.config_telethon_scheme:join_group:105 - 'Dialog' object has no attribute 'username'
+2023-10-26 16:45:38.798 | ERROR    | data.config_telethon_scheme:join_group:105 - 'Dialog' object has no attribute 'username'
+2023-10-26 16:46:51.843 | ERROR    | database.db_action:get_groups_and_triggers:274 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-10-26 20:58:36.372 | ERROR    | data.config_telethon_scheme:send_comments:196 - Error sending comments: The message ID used in the peer was invalid (caused by GetDiscussionMessageRequest)
+2023-10-27 13:45:54.808 | ERROR    | handlers.monitoring:monitoring_start:15 - В таблице нет аккаунтов для мониторинга.
+2023-10-27 13:46:27.398 | ERROR    | handlers.monitoring:monitoring_start:15 - В таблице нет аккаунтов для мониторинга.
+2023-10-27 13:53:27.479 | ERROR    | handlers.get_history:get_history:21 - [Errno 2] No such file or directory: 'data/history.txt'
+2023-10-27 13:53:32.111 | ERROR    | handlers.monitoring:monitoring_start:15 - В таблице нет аккаунтов для мониторинга.
+2023-10-27 14:17:31.293 | ERROR    | data.config_telethon_scheme:send_comments:212 - Error sending comments: type object 'datetime.datetime' has no attribute 'datetime'
+2023-10-27 14:17:31.296 | ERROR    | data.config_telethon_scheme:monitor_channels:171 - Error monitoring channels: type object 'datetime.datetime' has no attribute 'datetime'
+2023-10-27 14:17:54.317 | ERROR    | data.config_telethon_scheme:send_comments:212 - Error sending comments: type object 'datetime.datetime' has no attribute 'datetime'
+2023-10-27 14:17:54.320 | ERROR    | data.config_telethon_scheme:monitor_channels:171 - Error monitoring channels: type object 'datetime.datetime' has no attribute 'datetime'
+2023-10-27 14:25:36.852 | ERROR    | data.config_telethon_scheme:send_comments:213 - Error sending comments: 'charmap' codec can't encode characters in position 0-3: character maps to <undefined>
+2023-10-27 14:25:36.855 | ERROR    | data.config_telethon_scheme:monitor_channels:171 - Error monitoring channels: 'charmap' codec can't encode characters in position 0-3: character maps to <undefined>
+2023-10-27 14:34:24.095 | ERROR    | data.config_telethon_scheme:send_comments:213 - Error sending comments: The message ID used in the peer was invalid (caused by GetDiscussionMessageRequest)
+2023-10-27 16:36:54.132 | ERROR    | data.config_telethon_scheme:send_comments:216 - Error sending comments: 'str' object has no attribute 'message'
+2023-10-27 16:36:54.136 | ERROR    | data.config_telethon_scheme:send_comments:216 - Error sending comments: 'str' object has no attribute 'message'
+2023-10-28 11:42:34.122 | ERROR    | handlers.get_history:get_history:22 - [Errno 2] No such file or directory: 'history.txt'
+2023-10-28 12:45:51.753 | ERROR    | handlers.get_history:get_history:24 - Telegram server says - Bad Request: message is too long
+2023-10-30 09:56:41.971 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-10-30 10:28:16.958 | ERROR    | data.config_telethon_scheme:join_group:109 - 'Dialog' object has no attribute 'username'
+2023-10-30 10:30:03.040 | ERROR    | data.config_telethon_scheme:join_group:109 - 'Dialog' object has no attribute 'username'
+2023-10-30 10:32:39.994 | ERROR    | data.config_telethon_scheme:join_group:109 - 'Dialog' object has no attribute 'username'
+2023-10-30 10:42:04.930 | ERROR    | data.config_telethon_scheme:join_group:124 - Error joining group: 'Dialog' object has no attribute 'username'
+2023-10-30 10:45:06.982 | ERROR    | data.config_telethon_scheme:join_group:125 - Error joining group: 'Dialog' object has no attribute 'username'
