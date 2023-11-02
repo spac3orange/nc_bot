@@ -2,9 +2,9 @@ import random
 from telethon import TelegramClient, errors
 from environs import Env
 from telethon.tl.functions.messages import SendMessageRequest
-from telethon.tl.types import InputPeerChannel, Channel
+from telethon.tl.types import InputPeerChannel, Channel, PeerChannel
 from data.logger import logger
-from database.db_action import db_get_all_tg_accounts, db_get_promts_for_group, db_get_all_gpt_accounts
+from database.db_action import db_get_all_tg_accounts, db_get_promts_for_group, db_get_all_gpt_accounts, db_get_users
 from telethon.tl.functions.channels import JoinChannelRequest
 from pprint import pprint
 import datetime
@@ -13,6 +13,7 @@ from datetime import timedelta, datetime
 import pytz
 from .chat_gpt import AuthOpenAI
 import re
+from data.config_aiogram import aiogram_bot
 
 
 async def remove_links(text):
@@ -47,9 +48,19 @@ class AuthTelethon:
             return False
 
 
-    async def login_process_code(self, code):
+    async def login_process_code(self, code=None, password=None):
         logger.info('Attempting to sign in...')
-        await self.client.sign_in(phone=self.phone, code=code)
+        if code:
+            if password:
+                print(1)
+                print(password)
+                await self.client.sign_in(phone=self.phone, code=code, password=password)
+            else:
+                print(2)
+                await self.client.sign_in(phone=self.phone, code=code)
+
+        else:
+            await self.client.sign_in(password=password)
 
         if await self.client.is_user_authorized():
             logger.info(f'Signed in in {self.phone}')
@@ -68,6 +79,41 @@ class AuthTelethon:
             logger.info('Message sent')
         except Exception as e:
             logger.error(f'Error {e}')
+
+
+    async def join_group(self, group_link):
+        try:
+            logger.info(f'Joining channel: {group_link}')
+            await self.client.connect()
+            dialogs = await self.client.get_dialogs()
+            groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
+            for dialog in groups_and_channels:
+                dialog = await self.client.get_entity(dialog)
+                dialog_id = dialog.id
+                print(dialog_id)
+                try:
+                    if dialog_id == group_link:
+                        self.client.disconnect()
+                        return 'already_in_group'
+                except Exception as e:
+                    logger.error(e)
+                    continue
+
+            entity = await self.client.get_entity(group_link)
+
+            await self.client(JoinChannelRequest(entity))
+            logger.info('Joined group successfully')
+            await self.client.disconnect()
+            return 'joined'
+
+        except errors.UserDeactivatedBanError as e:
+            logger.error(e)
+            return 'banned'
+        except Exception as e:
+            logger.error(f'Error joining group: {e}')
+            await self.client.disconnect()
+            return False
+
 
 class TelethonConnect:
     def __init__(self, session_name):
@@ -100,22 +146,20 @@ class TelethonConnect:
             await self.client.connect()
             dialogs = await self.client.get_dialogs()
             groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
-            # print(group_link.lstrip('@'))
             for dialog in groups_and_channels:
                 dialog = await self.client.get_entity(dialog)
-                dialog_username = f'https://t.me/{dialog.username}'
-                print(dialog_username)
-                print(group_link)
+                dialog_id = dialog.id
+                print(dialog_id)
                 try:
-                    if dialog_username == group_link:
+                    if dialog_id == group_link:
                         self.client.disconnect()
                         return 'already_in_group'
                 except Exception as e:
                     logger.error(e)
                     continue
 
-
             entity = await self.client.get_entity(group_link)
+
             await self.client(JoinChannelRequest(entity))
             logger.info('Joined group successfully')
             await self.client.disconnect()
@@ -209,6 +253,9 @@ class TelethonSendMessages:
                 if message:
                     await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     logger.info('Comment sent')
+                    users = await db_get_users()
+                    for u in users:
+                        await aiogram_bot.send_message(u[0], f'Комментарий в группу {channel_name} отправлен.')
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()

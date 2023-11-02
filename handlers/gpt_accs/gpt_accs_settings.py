@@ -11,7 +11,7 @@ router = Router()
 async def gpt_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('Настройки ChatGPT аккаунтов:\n\n'
-                                  'Иннформация: /help_gpt_accs', reply_markup=gpt_accs_btns())
+                                  'Информация: /help_gpt_accs', reply_markup=gpt_accs_btns())
 
 
 @router.callback_query(F.data == 'back_to_gpt')

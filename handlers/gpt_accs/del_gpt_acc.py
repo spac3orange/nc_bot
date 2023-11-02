@@ -22,7 +22,7 @@ async def del_gpt_acc(callback: CallbackQuery, state: FSMContext):
 @router.message(DelTgAccState.input_number)
 async def gpt_acc_deleted(message: Message, state: FSMContext):
     await db_remove_tg_account(message.text)
-    await message.delete()
+    #await message.delete()
     logger.info('gpt account deleted from db')
     await message.answer('Аккаунт удален из базы данных')
     await message.answer('Настройки ChatGPT аккаунтов:', reply_markup=gpt_accs_btns())

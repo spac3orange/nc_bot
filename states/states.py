@@ -3,6 +3,7 @@ from aiogram.fsm.state import StatesGroup, State
 
 class AddTgAccState(StatesGroup):
     input_number = State()
+    input_2fa = State()
     input_code = State()
 
 

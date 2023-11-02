@@ -19,6 +19,9 @@ async def gpt_acc_in_table(phone):
     return False
 
 
+async def check_gpt_key(api_key):
+    return api_key.startswith('sk-')
+
 @router.callback_query(F.data == 'gpt_accs_add')
 async def input_gpt_acc(callback: CallbackQuery, state: FSMContext):
     logger.info('awaiting api key for gpt account')
@@ -29,9 +32,14 @@ async def input_gpt_acc(callback: CallbackQuery, state: FSMContext):
 
 @router.message(AddGPTAccState.input_api)
 async def gpt_acc_added(message: Message, state: FSMContext):
-    await message.delete()
+    #await message.delete()
     api_key = message.text.strip()
-    await db_add_gpt_account(api_key)
-    await message.answer('API ключ добавлен в базу данных.')
-    await message.answer('Настройки ChatGPT аккаунтов:', reply_markup=gpt_accs_btns())
-
+    if await check_gpt_key(api_key):
+        await db_add_gpt_account(api_key)
+        await message.answer('API ключ добавлен в базу данных.')
+        await message.answer('Настройки ChatGPT аккаунтов:', reply_markup=gpt_accs_btns())
+    else:
+        await message.answer('Введен не корректный API ключ.\n'
+                             'Ключ должен начинаться с "-sk"\n'
+                             'Пожалуйста, попробуйте еще раз')
+    await state.clear()

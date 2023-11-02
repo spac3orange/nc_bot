@@ -34,10 +34,15 @@ async def get_info_gpt_accs(callback: CallbackQuery, state: FSMContext):
             send_req = await gpt_acc.check_work()
             keys_status[key] = send_req
         for key, value in keys_status.items():
-            keys_status_list.append(f'Ключ: {key}\nСтатус: {value}')
+            if value == 'Аккаунт доступен.':
+                value = 'Аккаунт доступен 🟢'
+            else:
+                value = 'Аккаунт не доступен 🔴'
+            keys_status_list.append(f'<b>Ключ:</b> {key}\n<b>Статус:</b> {value}')
 
-        keys_status_list = '\n'.join(keys_status_list)
-        await callback.message.answer(text=f'API ключи:\n\n{keys_status_list}', reply_markup=gpt_back())
+        keys_status_list = '\n\n'.join(keys_status_list)
+        await callback.message.answer(text=f'<b>API</b> ключи:\n\n{keys_status_list}', reply_markup=gpt_back(),
+                                      parse_mode='HTML')
     else:
         await callback.message.answer(text=f'Нет добавленных API ключей.')
         await callback.message.answer(text=f'Настройки телеграм аккаунтов:.', reply_markup=gpt_accs_btns())
