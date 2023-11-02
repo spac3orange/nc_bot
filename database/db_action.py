@@ -13,13 +13,80 @@ async def db_start() -> None:
     global db, cur
     db = sq.connect('database/user_base.db')
     cur = db.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS telegram_groups(group_name TEXT, promts TEXT, triggers TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS telegram_groups(group_name TEXT, group_id INTEGER, promts TEXT, "
+                "triggers TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT)")
     cur.execute("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT)")
-    # cur.execute("CREATE TABLE IF NOT EXISTS monitor_account(phone TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS users(user_id INTEGER, user_name TEXT)")
     db.commit()
     logger.info('connected to database')
+
+
+async def db_get_users() -> list:
+    """
+    Retrieves all information from the 'users' table and returns it as a list of tuples.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    cur.execute("SELECT * FROM users")
+    users = cur.fetchall()
+    db.close()
+    return users
+
+
+async def db_add_user(user_id: int, user_name: str) -> None:
+    """
+    Adds a new user to the 'users' table if the user_id doesn't already exist.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+    cur.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
+    existing_user = cur.fetchone()
+
+    if existing_user:
+        logger.warning(f"User with user_id {user_id} already exists in the table.")
+    else:
+        cur.execute("INSERT INTO users (user_id, user_name) VALUES (?, ?)", (user_id, user_name))
+        db.commit()
+        logger.info(f"User with user_id {user_id} added to the table.")
+
+    db.close()
+
+
+async def db_get_all_data() -> dict:
+    """
+    Retrieves all data from all tables and returns it as a dictionary.
+    """
+    db = sq.connect('database/user_base.db')
+    cur = db.cursor()
+
+    data = {}
+
+    # Retrieve data from telegram_groups table
+    cur.execute("SELECT * FROM telegram_groups")
+    groups_data = cur.fetchall()
+    data['telegram_groups'] = groups_data
+
+    # Retrieve data from telegram_accounts table
+    cur.execute("SELECT * FROM telegram_accounts")
+    accounts_data = cur.fetchall()
+    data['telegram_accounts'] = accounts_data
+
+    # Retrieve data from telegram_monitor_account table
+    cur.execute("SELECT * FROM telegram_monitor_account")
+    monitor_account_data = cur.fetchall()
+    data['telegram_monitor_account'] = monitor_account_data
+
+    # Retrieve data from gpt_accounts table
+    cur.execute("SELECT * FROM gpt_accounts")
+    gpt_accounts_data = cur.fetchall()
+    data['gpt_accounts'] = gpt_accounts_data
+
+    cur.close()
+    db.close()
+
+    return data
 
 
 @logger.catch()
@@ -99,18 +166,17 @@ async def db_get_monitor_account() -> List[str]:
 
 
 @logger.catch()
-async def db_add_telegram_group(group_link: str) -> None:
+async def db_add_telegram_group(group_link: str, group_id: int) -> None:
     """
-    Adds a Telegram group to the database.
+    Adds a Telegram group to the database with group_link and group_id.
     """
     global db, cur
     try:
-        cur.execute("INSERT INTO telegram_groups(group_name) VALUES (?)", (group_link,))
+        cur.execute("INSERT INTO telegram_groups(group_name, group_id) VALUES (?, ?)", (group_link, group_id))
         db.commit()
-        logger.info(f"Telegram group {group_link} added to the database")
+        logger.info(f"Telegram group {group_link} (ID: {group_id}) added to the database")
     except Exception as e:
         logger.error(f"Error adding Telegram group to the database: {e}")
-
 
 @logger.catch()
 async def db_remove_telegram_group(group_name: str) -> None:
@@ -141,6 +207,40 @@ async def db_get_all_telegram_groups() -> List[str]:
     except Exception as e:
         logger.error(f"Error retrieving Telegram groups from the database: {e}")
         return []
+
+@logger.catch()
+async def db_get_all_telegram_ids() -> List[str]:
+    """
+    Retrieves a list of all Telegram groups from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT group_id FROM telegram_groups")
+        groups = cur.fetchall()
+        group_list = [group[0] for group in groups]
+        logger.info("Retrieved all Telegram id's from the database")
+        return group_list
+    except Exception as e:
+        logger.error(f"Error retrieving Telegram id's from the database: {e}")
+        return []
+
+
+@logger.catch()
+async def db_get_all_telegram_grp_id() -> List[str]:
+    """
+    Retrieves a list of all Telegram groups from the database.
+    """
+    global db, cur
+    try:
+        cur.execute("SELECT group_id FROM telegram_groups")
+        groups = cur.fetchall()
+        group_list = [group[0] for group in groups]
+        logger.info("Retrieved all Telegram groups from the database")
+        return group_list
+    except Exception as e:
+        logger.error(f"Error retrieving Telegram groups from the database: {e}")
+        return []
+
 
 @logger.catch()
 async def db_get_promts_for_group(group_name: str) -> str:

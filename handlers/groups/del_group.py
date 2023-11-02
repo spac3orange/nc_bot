@@ -27,7 +27,7 @@ async def group_triggers(callback: CallbackQuery, state: FSMContext):
     group = callback.data.split('[[')[-1]
     await db_remove_telegram_group(group)
     await callback.message.answer('Канал удален из базы данных.')
-    await callback.message.answer('Настройки телеграм групп:', reply_markup=group_settings_btns())
+    await callback.message.answer('Настройки телеграм каналов:', reply_markup=group_settings_btns())
     logger.info(f'group {group} was deleted from database')
     
 
@@ -37,10 +37,10 @@ async def group_triggers(callback: CallbackQuery, state: FSMContext):
 #     if await group_in_table(group):
 #         await db_remove_telegram_group(group)
 #         await message.answer('Группы удалена из базы данных.')
-#         await message.answer('Настройки телеграм групп:', reply_markup=group_settings_btns())
+#         await message.answer('Настройки телеграм каналов:', reply_markup=group_settings_btns())
 #         logger.info(f'group {group} was deleted from database')
 #     else:
 #         await message.answer('Группа не найдена в базе данных.')
-#         await message.answer('Настройки телеграм групп:', reply_markup=group_settings_btns())
+#         await message.answer('Настройки телеграм каналов:', reply_markup=group_settings_btns())
 #         logger.error('group not found')
 #     await state.clear()

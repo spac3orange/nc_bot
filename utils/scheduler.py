@@ -55,4 +55,3 @@ class ChatMonitor:
 
     async def get_status(self):
         return self.monitoring_enabled
-

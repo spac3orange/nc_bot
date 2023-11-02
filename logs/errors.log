@@ -328,3 +328,1174 @@ TypeError: db_get_triggers_for_group() missing 1 required positional argument: '
 2023-10-30 10:32:39.994 | ERROR    | data.config_telethon_scheme:join_group:109 - 'Dialog' object has no attribute 'username'
 2023-10-30 10:42:04.930 | ERROR    | data.config_telethon_scheme:join_group:124 - Error joining group: 'Dialog' object has no attribute 'username'
 2023-10-30 10:45:06.982 | ERROR    | data.config_telethon_scheme:join_group:125 - Error joining group: 'Dialog' object has no attribute 'username'
+2023-11-01 15:34:14.316 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:64 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 15:53:43.590 | ERROR    | data.config_telethon_scheme:login_phone:46 - Authorization error
+2023-11-01 15:56:39.036 | ERROR    | data.config_telethon_scheme:login_phone:46 - Authorization error
+2023-11-01 15:58:43.227 | ERROR    | data.config_telethon_scheme:login_phone:46 - Authorization error
+2023-11-01 16:00:51.007 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:80 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 16:03:58.060 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:82 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 16:06:00.832 | ERROR    | data.config_telethon_scheme:login_phone:46 - Authorization error
+2023-11-01 16:07:18.305 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:82 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 16:28:56.134 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 16:34:52.539 | ERROR    | data.config_telethon_scheme:login_phone:46 - Authorization error
+2023-11-01 16:35:33.694 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:79 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-01 17:08:40.956 | ERROR    | data.config_telethon_scheme:join_group:136 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:14:59.012 | ERROR    | data.config_telethon_scheme:join_group:136 - Error joining group: 'int' object has no attribute 'lstrip'
+2023-11-01 17:16:01.763 | ERROR    | data.config_telethon_scheme:join_group:136 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:18:01.623 | ERROR    | data.config_telethon_scheme:join_group:136 - Error joining group: 'int' object is not subscriptable
+2023-11-01 17:21:31.491 | ERROR    | data.config_telethon_scheme:join_group:137 - Error joining group: 'int' object is not subscriptable
+2023-11-01 17:22:24.893 | ERROR    | data.config_telethon_scheme:join_group:137 - Error joining group: Could not find the input entity for PeerUser(user_id=1002009132328) (PeerUser). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:27:46.162 | ERROR    | data.config_telethon_scheme:join_group:137 - Error joining group: UserMethods.get_entity() missing 1 required positional argument: 'entity'
+2023-11-01 17:28:16.053 | ERROR    | data.config_telethon_scheme:join_group:137 - Error joining group: Could not find the input entity for PeerUser(user_id=2009132328) (PeerUser). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:33:19.169 | ERROR    | data.config_telethon_scheme:join_group:135 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:33:49.952 | ERROR    | data.config_telethon_scheme:join_group:135 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:34:50.848 | ERROR    | data.config_telethon_scheme:join_group:135 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:39:48.776 | ERROR    | data.config_telethon_scheme:join_group:135 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:40:57.393 | ERROR    | data.config_telethon_scheme:join_group:136 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 17:58:42.012 | ERROR    | data.config_telethon_scheme:join_group:138 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:00:35.231 | ERROR    | data.config_telethon_scheme:join_group:138 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:02:33.243 | ERROR    | data.config_telethon_scheme:join_group:142 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:05:10.193 | ERROR    | data.config_telethon_scheme:join_group:143 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:07:55.030 | ERROR    | data.config_telethon_scheme:join_group:144 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:10:50.230 | ERROR    | data.config_telethon_scheme:join_group:147 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:12:00.216 | ERROR    | data.config_telethon_scheme:join_group:147 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 18:51:05.394 | ERROR    | data.config_telethon_scheme:join_group:147 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2055622148) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-01 20:22:52.975 | ERROR    | data.config_telethon_scheme:join_group:147 - Error joining group: Could not find the input entity for PeerChannel(channel_id=2009132328) (PeerChannel). Please read https://docs.telethon.dev/en/stable/concepts/entities.html to find out more details.
+2023-11-02 02:13:46.164 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-02 02:24:37.587 | ERROR    | handlers.monitoring:monitoring_start:16 - В таблице нет аккаунтов для мониторинга.
+2023-11-02 02:26:53.525 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:108 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-02 02:26:55.167 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:118 - 'AuthTelethon' object has no attribute 'join_group'
+2023-11-02 02:30:30.240 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:108 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-02 02:30:32.283 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:118 - AuthTelethon.join_group() missing 1 required positional argument: 'group_link'
+2023-11-02 11:56:41.457 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:108 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-02 12:19:23.006 | ERROR    | database.db_action:get_groups_and_triggers:327 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-11-02 14:16:50.524 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-02 14:28:16.559 | ERROR    | handlers.groups.groups_settings:groups_settings:17 - An error has been caught in function 'groups_settings', process 'MainProcess' (9932), thread 'MainThread' (4280):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001EDB06FA160>
+    │       └ <function run at 0x000001EDB26596C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001EDB75FD9A0>
+           │      └ <function Runner.run at 0x000001EDB26CD620>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001EDB26CB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001EDB279AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001EDB26CCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001EDB2616660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,)}
+                     │    │           │    └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001EDB74E18D0>
+                     │    └ <function Dispatcher.feed_update at 0x000001EDB7439440>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858F2D0>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001EDB858F990>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001EDB858FA10>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x000001EDB855B240>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x000001EDB85827A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1edb858bc10'>>, Update(update_id=543873772, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001EDB7438A40>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A1F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858D2D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x000001EDB7438A40>
+                     └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A2520>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001EDB7413F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x000001EDB85A1EE0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x000001EDB8406F20>, CallbackQuery(id='1987767170458090535', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 17, in groups_settings
+    triggers = await db_get_triggers_for_group()
+                     └ <function db_get_triggers_for_group at 0x000001EDB765A660>
+
+TypeError: db_get_triggers_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:16.584 | ERROR    | handlers.groups.groups_settings:groups_settings:18 - An error has been caught in function 'groups_settings', process 'MainProcess' (9932), thread 'MainThread' (4280):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001EDB06FA160>
+    │       └ <function run at 0x000001EDB26596C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001EDB75FD9A0>
+           │      └ <function Runner.run at 0x000001EDB26CD620>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001EDB26CB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001EDB279AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001EDB26CCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001EDB2616660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,)}
+                     │    │           │    └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001EDB74E18D0>
+                     │    └ <function Dispatcher.feed_update at 0x000001EDB7439440>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858F2D0>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001EDB858F990>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001EDB858FA10>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x000001EDB855B240>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x000001EDB85827A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1edb858bc10'>>, Update(update_id=543873772, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001EDB7438A40>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A1F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858D2D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x000001EDB7438A40>
+                     └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A2520>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001EDB7413F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x000001EDB85A1EE0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x000001EDB8406F20>, CallbackQuery(id='1987767170458090535', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 18, in groups_settings
+    promts = await db_get_promts_for_group()
+                   └ <function db_get_promts_for_group at 0x000001EDB7659B20>
+
+TypeError: db_get_promts_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:16.601 | ERROR    | handlers.groups.groups_settings:groups_settings:17 - An error has been caught in function 'groups_settings', process 'MainProcess' (9932), thread 'MainThread' (4280):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001EDB06FA160>
+    │       └ <function run at 0x000001EDB26596C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001EDB75FD9A0>
+           │      └ <function Runner.run at 0x000001EDB26CD620>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001EDB26CB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001EDB279AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001EDB26CCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001EDB2616660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,)}
+                     │    │           │    └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001EDB74E18D0>
+                     │    └ <function Dispatcher.feed_update at 0x000001EDB7439440>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858F2D0>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001EDB858F990>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001EDB858FA10>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x000001EDB855B240>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x000001EDB85827A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1edb858bc10'>>, Update(update_id=543873772, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001EDB7438A40>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A1F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858D2D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x000001EDB7438A40>
+                     └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A2520>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001EDB7413F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x000001EDB85A1EE0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x000001EDB8406F20>, CallbackQuery(id='1987767170458090535', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 17, in groups_settings
+    triggers = await db_get_triggers_for_group()
+                     └ <function db_get_triggers_for_group at 0x000001EDB765A660>
+
+TypeError: db_get_triggers_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:16.619 | ERROR    | handlers.groups.groups_settings:groups_settings:18 - An error has been caught in function 'groups_settings', process 'MainProcess' (9932), thread 'MainThread' (4280):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000001EDB06FA160>
+    │       └ <function run at 0x000001EDB26596C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000001EDB75FD9A0>
+           │      └ <function Runner.run at 0x000001EDB26CD620>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000001EDB26CB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000001EDB74F8790>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000001EDB279AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000001EDB26CCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x000001EDB2616660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,)}
+                     │    │           │    └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x000001EDB74E18D0>
+                     │    └ <function Dispatcher.feed_update at 0x000001EDB7439440>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858F2D0>
+                     └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x000001EDB858F990>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x000001EDB858FA10>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x000001EDB855B240>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873772, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x000001EDB85827A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x1edb858bc10'>>, Update(update_id=543873772, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x000001EDB7438A40>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A1F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB858D2D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Dispatcher '0x1edb858bc10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x000001EDB7438A40>
+                     └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x000001EDB85A2520>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x000001EDB7413E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x000001EDB7438AE0>
+                 └ <Router '0x1edb74fba10'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x000001EDB7413F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x000001EDB840D150>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x1edb858bc10'>, 'bots': (<aiogram.client.bot.Bot object at 0x000001EDB74E18D0>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170458090535', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x000001EDB85A1EE0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x000001EDB8406F20>, CallbackQuery(id='1987767170458090535', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 18, in groups_settings
+    promts = await db_get_promts_for_group()
+                   └ <function db_get_promts_for_group at 0x000001EDB7659B20>
+
+TypeError: db_get_promts_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:32.642 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-02 14:28:35.384 | ERROR    | handlers.groups.groups_settings:groups_settings:17 - An error has been caught in function 'groups_settings', process 'MainProcess' (13304), thread 'MainThread' (15324):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x0000026C48C4A160>
+    │       └ <function run at 0x0000026C4AB496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x0000026C4FAAD9A0>
+           │      └ <function Runner.run at 0x0000026C4ABBD620>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026C4ABBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x0000026C4AC7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026C4ABBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026C4AB06660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,)}
+                     │    │           │    └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>
+                     │    └ <function Dispatcher.feed_update at 0x0000026C4F8E9440>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3F1D0>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x0000026C50A3F890>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x0000026C50A3F910>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x0000026C50A2E7A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x0000026C50A2F4C0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x26c50a3bad0'>>, Update(update_id=543873776, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A2E980>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3D1D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                     └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A51F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x0000026C4F8C3F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x0000026C50A52520>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x0000026C508B6F20>, CallbackQuery(id='1987767170046810495', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 17, in groups_settings
+    triggers = await db_get_triggers_for_group()
+                     └ <function db_get_triggers_for_group at 0x0000026C4FB0E660>
+
+TypeError: db_get_triggers_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:35.407 | ERROR    | handlers.groups.groups_settings:groups_settings:18 - An error has been caught in function 'groups_settings', process 'MainProcess' (13304), thread 'MainThread' (15324):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x0000026C48C4A160>
+    │       └ <function run at 0x0000026C4AB496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x0000026C4FAAD9A0>
+           │      └ <function Runner.run at 0x0000026C4ABBD620>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026C4ABBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x0000026C4AC7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026C4ABBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026C4AB06660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,)}
+                     │    │           │    └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>
+                     │    └ <function Dispatcher.feed_update at 0x0000026C4F8E9440>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3F1D0>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x0000026C50A3F890>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x0000026C50A3F910>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x0000026C50A2E7A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x0000026C50A2F4C0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x26c50a3bad0'>>, Update(update_id=543873776, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A2E980>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3D1D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                     └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A51F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x0000026C4F8C3F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x0000026C50A52520>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x0000026C508B6F20>, CallbackQuery(id='1987767170046810495', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 18, in groups_settings
+    promts = await db_get_promts_for_group()
+                   └ <function db_get_promts_for_group at 0x0000026C4FB0DB20>
+
+TypeError: db_get_promts_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:35.425 | ERROR    | handlers.groups.groups_settings:groups_settings:17 - An error has been caught in function 'groups_settings', process 'MainProcess' (13304), thread 'MainThread' (15324):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x0000026C48C4A160>
+    │       └ <function run at 0x0000026C4AB496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x0000026C4FAAD9A0>
+           │      └ <function Runner.run at 0x0000026C4ABBD620>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026C4ABBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x0000026C4AC7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026C4ABBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026C4AB06660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,)}
+                     │    │           │    └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>
+                     │    └ <function Dispatcher.feed_update at 0x0000026C4F8E9440>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3F1D0>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x0000026C50A3F890>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x0000026C50A3F910>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x0000026C50A2E7A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x0000026C50A2F4C0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x26c50a3bad0'>>, Update(update_id=543873776, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A2E980>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3D1D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                     └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A51F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x0000026C4F8C3F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x0000026C50A52520>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x0000026C508B6F20>, CallbackQuery(id='1987767170046810495', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 17, in groups_settings
+    triggers = await db_get_triggers_for_group()
+                     └ <function db_get_triggers_for_group at 0x0000026C4FB0E660>
+
+TypeError: db_get_triggers_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:28:35.443 | ERROR    | handlers.groups.groups_settings:groups_settings:18 - An error has been caught in function 'groups_settings', process 'MainProcess' (13304), thread 'MainThread' (15324):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x0000026C48C4A160>
+    │       └ <function run at 0x0000026C4AB496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x0000026C4FAAD9A0>
+           │      └ <function Runner.run at 0x0000026C4ABBD620>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x0000026C4ABBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x0000026C48C55ED0>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x0000026C4AC7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x0000026C4ABBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x0000026C4AB06660>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=True>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=True>)>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 308, in _process_update
+    response = await self.feed_update(bot, update, **kwargs)
+                     │    │           │    │         └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,)}
+                     │    │           │    └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                     │    │           └ <aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>
+                     │    └ <function Dispatcher.feed_update at 0x0000026C4F8E9440>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 157, in feed_update
+    response = await self.update.wrap_outer_middleware(
+                     │    │      └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                     │    └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3F1D0>
+                     └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\error.py", line 25, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.dispatcher.middlewares.user_context.UserContextMiddleware object at 0x0000026C50A3F890>, functools...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\middlewares\user_context.py", line 27, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ functools.partial(<aiogram.fsm.middleware.FSMContextMiddleware object at 0x0000026C50A3F910>, <function TelegramEventObserver...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\fsm\middleware.py", line 41, in __call__
+    return await handler(event, data)
+                 │       │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │       └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function TelegramEventObserver.trigger at 0x0000026C50A2E7A0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ Update(update_id=543873776, message=None, edited_message=None, channel_post=None, edited_channel_post=None, inline_query=None...
+                 └ <function CallableMixin.call at 0x0000026C50A2F4C0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<bound method Dispatcher._listen_update of <Dispatcher '0x26c50a3bad0'>>, Update(update_id=543873776, messa...
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\dispatcher.py", line 275, in _listen_update
+    return await self.propagate_event(update_type=update_type, event=event, **kwargs)
+                 │    │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │    │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │    │                           └ 'callback_query'
+                 │    └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A2E980>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C50A3D1D0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Dispatcher '0x26c50a3bad0'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 144, in _propagate_event
+    response = await router.propagate_event(update_type=update_type, event=event, **kwargs)
+                     │      │                           │                  │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │      │                           │                  └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │      │                           └ 'callback_query'
+                     │      └ <function Router.propagate_event at 0x0000026C4F8E8A40>
+                     └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 116, in propagate_event
+    return await observer.wrap_outer_middleware(_wrapped, event=event, data=kwargs)
+                 │        │                     │               │           └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │        │                     │               └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 │        │                     └ <function Router.propagate_event.<locals>._wrapped at 0x0000026C50A51F80>
+                 │        └ <function TelegramEventObserver.wrap_outer_middleware at 0x0000026C4F8C3E20>
+                 └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 111, in _wrapped
+    return await self._propagate_event(
+                 │    └ <function Router._propagate_event at 0x0000026C4F8E8AE0>
+                 └ <Router '0x26c4f9aed90'>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\router.py", line 136, in _propagate_event
+    response = await observer.trigger(event, **kwargs)
+                     │        │       │        └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                     │        │       └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                     │        └ <function TelegramEventObserver.trigger at 0x0000026C4F8C3F60>
+                     └ <aiogram.dispatcher.event.telegram.TelegramEventObserver object at 0x0000026C508BCFD0>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\telegram.py", line 120, in trigger
+    return await wrapped_inner(event, kwargs)
+                 │             │      └ {'dispatcher': <Dispatcher '0x26c50a3bad0'>, 'bots': (<aiogram.client.bot.Bot object at 0x0000026C4F9CCA50>,), 'bot': <aiogra...
+                 │             └ CallbackQuery(id='1987767170046810495', from_user=User(id=462813109, is_bot=False, first_name='Ivan', last_name=None, usernam...
+                 └ <function CallableMixin.call at 0x0000026C50A52520>
+  File "D:\Work Projects\Neuro_commenting_bot\venv\Lib\site-packages\aiogram\dispatcher\event\handler.py", line 42, in call
+    return await wrapped()
+                 └ functools.partial(<function groups_settings at 0x0000026C508B6F20>, CallbackQuery(id='1987767170046810495', from_user=User(id...
+
+> File "D:\Work Projects\Neuro_commenting_bot\handlers\groups\groups_settings.py", line 18, in groups_settings
+    promts = await db_get_promts_for_group()
+                   └ <function db_get_promts_for_group at 0x0000026C4FB0DB20>
+
+TypeError: db_get_promts_for_group() missing 1 required positional argument: 'group_name'
+2023-11-02 14:51:38.121 | ERROR    | handlers.groups.add_group:add_group:77 - Telegram server says - Bad Request: chat not found
+2023-11-02 14:55:54.961 | ERROR    | handlers.groups.add_group:add_group:90 - Telegram server says - Bad Request: chat not found
+2023-11-02 15:07:39.504 | ERROR    | data.config_telethon_scheme:send_comments:271 - Error sending comments: Bot.send_message() missing 1 required positional argument: 'text'
+2023-11-02 15:11:23.853 | ERROR    | data.config_telethon_scheme:send_comments:271 - Error sending comments: Bot.send_message() missing 1 required positional argument: 'chat_id'
+2023-11-02 15:24:20.521 | ERROR    | __main__:start_params:47 - An error has been caught in function 'start_params', process 'MainProcess' (3240), thread 'MainThread' (15964):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x000002048582A160>
+    │       └ <function run at 0x00000204877296C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x000002048C6AD9A0>
+           │      └ <function Runner.run at 0x000002048779D620>
+           └ <asyncio.runners.Runner object at 0x000002048C578690>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x000002048779B100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x000002048C578690>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x000002048785AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x000002048779CEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000204876E6660>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle Task.task_wakeup(<Future finished result=None>)>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle Task.task_wakeup(<Future finished result=None>)>
+
+> File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 47, in start_params
+    await db_start()
+          └ <function db_start at 0x000002048C6EF100>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 21, in db_start
+    cur.execute("CREATE TABLE IF NOT EXISTS users(user_id INTEGER, user_name TEXT)")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x000002048AE8EE40>
+
+sqlite3.OperationalError: database is locked
+2023-11-02 15:35:07.924 | ERROR    | data.config_telethon_scheme:send_comments:273 - Error sending comments: 2 validation errors for SendMessage
+chat_id.int
+  Input should be a valid integer [type=int_type, input_value=(462813109, 'Jisiehrk'), input_type=tuple]
+    For further information visit https://errors.pydantic.dev/2.3/v/int_type
+chat_id.str
+  Input should be a valid string [type=string_type, input_value=(462813109, 'Jisiehrk'), input_type=tuple]
+    For further information visit https://errors.pydantic.dev/2.3/v/string_type

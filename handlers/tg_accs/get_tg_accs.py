@@ -31,16 +31,17 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
             accs_info = await get_info(accounts)
 
             accounts_formatted = '\n\n'.join([
-                                              f'Тел: {phone}'
-                                              f'\nID: {id}'
-                                              f'\nИмя: {name}'
-                                              f'\nФамилия: {surname}'
-                                              f'\nНик: {username}'
-                                              f'\nОграничения: {restricted}'
+                                              f'<b>Тел:</b> {phone}'
+                                              f'\n<b>ID:</b> {id}'
+                                              f'\n<b>Имя:</b> {name}'
+                                              f'\n<b>Фамилия:</b> {surname}'
+                                              f'\n<b>Ник:</b> {username}'
+                                              f'\n<b>Ограничения:</b> {restricted}'
                                               for phone, id, name, surname, username, restricted in accs_info])
 
-            await callback.message.answer(text=f'Аккаунт для мониторинга:\n{monitor}\n\n'
-                                               f'Аккануты:\n{displayed_accounts}\n\nИнфо:\n{accounts_formatted}')
+            await callback.message.answer(text=f'<b>Аккаунт для мониторинга:</b>\n{monitor}\n\n'
+                                               f'<b>Аккануты:</b>\n{displayed_accounts}\n\n<b>Инфо:</b>\n'
+                                               f'{accounts_formatted}', parse_mode='HTML')
         else:
             await callback.message.answer('Нет подключенных аккаунтов.')
     except Exception as e:
