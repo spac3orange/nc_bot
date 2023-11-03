@@ -10,8 +10,8 @@ router = Router()
 @router.callback_query(F.data == 'monitoring_start')
 async def monitoring_start(callback: CallbackQuery):
     try:
-        await monitor.start_monitoring()
         await callback.message.answer('Мониторинг запущен.')
+        await monitor.start_monitoring()
     except Exception as e:
         logger.error(e)
         await callback.message.answer('Ошибка.\n'

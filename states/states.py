@@ -29,3 +29,6 @@ class Triggers(StatesGroup):
 
 class AddGPTAccState(StatesGroup):
     input_api = State()
+
+class DelGPTState(StatesGroup):
+    input_key = State()

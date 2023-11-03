@@ -1,3 +1,4 @@
+import asyncio
 import random
 from telethon import TelegramClient, errors
 from environs import Env
@@ -208,16 +209,18 @@ class TelethonConnect:
 
                                 approved_messages.append((channel, message))
                                 break
+            await self.client.disconnect()
             if approved_messages:
                 accounts = await db_get_all_tg_accounts()
-
+                tasks = []
                 for msg in approved_messages:
                     acc = random.choice(accounts)
                     channel, message = msg
                     session = TelethonSendMessages(acc)
-                    await session.send_comments(channel, message, acc)
+                    task = asyncio.create_task(session.send_comments(channel, message, acc))
+                    tasks.append(task)
+                await asyncio.gather(*tasks)
 
-            await self.client.disconnect()
 
 
         except Exception as e:
@@ -243,8 +246,13 @@ class TelethonSendMessages:
 
             promt = await db_get_promts_for_group(channel_name)
             gpt_api = random.choice(await db_get_all_gpt_accounts())
+            gpt_question = message_text + '.' + f'{promt}'
+            print(gpt_api)
+            pprint(gpt_question)
+
             gpt = AuthOpenAI(gpt_api)
-            comment = await gpt.process_question(promt, message_text)
+            comment = await gpt.process_question(gpt_question)
+
             if comment:
                 comment = comment.strip('"')
                 await self.client.connect()

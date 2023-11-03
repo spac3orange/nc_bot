@@ -4743,3 +4743,1727 @@ chat_id.str
 2023-11-02 15:42:02.316 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
 2023-11-02 15:43:02.319 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
 2023-11-02 15:44:02.308 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:45:02.312 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:46:02.330 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:46:40.855 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-02 15:47:02.327 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:48:02.326 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:49:02.322 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:50:02.316 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:51:02.315 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:52:02.328 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:53:02.328 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:54:02.321 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:55:02.312 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:56:02.327 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-02 15:56:25.637 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-02 17:19:55.221 | INFO     | __main__:start_params:41 - Bot started
+2023-11-02 17:19:55.753 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-02 17:20:11.354 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-02 17:20:11.936 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-02 17:21:02.637 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-02 17:21:04.623 | INFO     | __main__:start_params:41 - Bot started
+2023-11-02 17:21:05.121 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-02 17:21:08.246 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-02 17:21:08.814 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-02 17:21:38.571 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-02 18:55:58.123 | INFO     | __main__:start_params:41 - Bot started
+2023-11-02 18:55:58.735 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-02 18:56:05.971 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 10:46:45.354 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 10:46:45.836 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 10:46:46.443 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 10:46:47.016 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 10:46:54.132 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 10:46:54.137 | INFO     | utils.scheduler:start_monitoring:45 - Monitoring started
+2023-11-03 10:47:54.143 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:47:56.052 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 10:47:56.598 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 10:47:57.233 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 10:47:57.233 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 10:47:57.842 | ERROR    | data.chat_gpt:process_question:29 - Request failed 'choices'
+2023-11-03 10:47:57.843 | ERROR    | data.config_telethon_scheme:send_comments:273 - Error sending comments: Comment not found
+2023-11-03 10:47:57.847 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 10:47:57.847 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 10:47:58.294 | ERROR    | data.chat_gpt:process_question:29 - Request failed 'choices'
+2023-11-03 10:47:58.295 | ERROR    | data.config_telethon_scheme:send_comments:273 - Error sending comments: Comment not found
+2023-11-03 10:48:54.147 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:49:54.137 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:50:54.137 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:51:54.137 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:52:54.142 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:53:54.149 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:54:54.136 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:55:54.144 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:56:54.147 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:57:54.139 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:58:54.151 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 10:59:54.138 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 11:00:54.138 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 11:01:54.146 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 11:02:30.334 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:02:32.551 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:02:33.025 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:02:39.862 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:02:40.421 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:02:43.726 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:02:43.871 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:05:51.411 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:05:53.415 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:05:53.870 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:05:59.909 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:06:00.457 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:06:03.742 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:06:03.887 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:06:43.947 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:06:53.097 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:06:54.772 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:06:54.993 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:07:19.855 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:07:20.005 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:08:29.837 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:08:31.794 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:08:32.324 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:08:38.302 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:08:38.461 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:08:45.793 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:08:47.810 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:08:48.166 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:08:50.551 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:08:50.706 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:09:51.465 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:09:53.421 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:09:53.783 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:09:59.350 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:09:59.497 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:11:47.511 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:16:11.700 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:16:13.957 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:16:14.338 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:16:17.786 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:16:18.410 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:16:22.682 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:16:23.597 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 11:16:23.597 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 11:16:26.051 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:16:28.427 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 11:16:28.427 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 11:16:29.556 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:16:30.768 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 11:16:30.768 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 11:16:52.891 | INFO     | handlers.tg_accs.get_tg_accs:get_acc_info:24 - getting info about TG accounts
+2023-11-03 11:16:53.072 | INFO     | data.config_telethon_scheme:get_info:131 - Getting info about account data/telethon_sessions/+66 8 1481 9110.session...
+2023-11-03 11:19:59.339 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:20:02.738 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:20:04.255 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:20:04.405 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:20:46.963 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:20:48.669 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:20:50.637 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:20:50.786 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:23:08.037 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:23:09.145 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 11:23:09.145 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 11:23:10.359 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:23:11.341 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 11:23:11.341 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 11:23:12.541 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:23:14.093 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:23:17.293 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:23:23.812 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:23:25.653 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:23:28.917 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:23:29.063 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:25:11.028 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:25:13.032 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:25:13.489 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:25:19.113 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:25:19.320 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:27:16.791 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:27:16.976 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:29:14.579 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:29:14.743 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:30:40.019 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 11:30:42.791 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 11:30:44.347 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:30:44.490 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:34:08.299 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:34:08.460 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:34:58.287 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:35:00.305 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:35:00.763 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:35:07.697 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:35:07.851 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:40:32.999 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:40:34.952 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:40:35.391 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:40:42.754 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:40:42.892 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:42:00.068 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:42:02.135 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:42:02.492 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:42:07.129 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:42:07.278 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:42:15.101 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:42:39.015 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:42:39.514 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:42:42.644 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:42:43.086 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:43:12.425 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:43:14.403 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:43:14.770 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:43:19.207 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:43:19.921 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:43:24.368 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:43:24.512 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:44:06.311 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:44:08.400 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:44:08.831 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:44:15.422 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:44:15.574 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:45:51.482 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:45:53.465 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:45:53.853 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:46:01.158 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:46:01.385 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:47:21.827 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:47:23.836 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:47:24.290 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:47:26.818 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:47:27.372 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:47:30.654 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:47:30.800 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:56:20.950 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 11:58:54.498 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 11:58:55.075 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 11:58:57.315 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 11:58:58.005 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 11:59:00.895 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 11:59:01.055 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 11:59:13.294 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:17:23.749 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:17:24.216 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:17:26.282 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 12:17:26.684 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:18:34.852 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:18:36.881 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:18:37.287 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:18:44.189 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 12:18:44.333 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:19:54.393 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:19:56.335 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:19:56.686 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:20:05.980 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 12:20:06.201 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:22:06.908 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:22:08.883 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:22:09.309 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:22:14.485 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:25 - awaiting info about gpt accs
+2023-11-03 12:22:14.760 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:26:02.753 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:26:04.799 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:26:05.213 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:26:11.341 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 12:26:11.640 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:44:43.348 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:44:45.320 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:44:45.710 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:44:47.019 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 12:44:47.417 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:45:56.464 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 12:45:56.467 | INFO     | utils.scheduler:start_monitoring:45 - Monitoring started
+2023-11-03 12:46:22.575 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 12:46:23.189 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 12:46:35.839 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 12:46:35.990 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:46:56.493 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 12:46:58.465 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 12:46:59.026 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 12:46:59.675 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 12:46:59.676 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:47:42.096 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 12:47:42.673 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 12:47:42.673 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:48:31.757 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:48:33.518 | INFO     | database.db_action:db_remove_gpt_account:402 - GPT account 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 removed from the database
+2023-11-03 12:48:33.518 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 12:48:55.697 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 12:48:56.160 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:51:36.481 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 12:51:38.499 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 12:51:38.934 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 12:51:44.058 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 12:51:44.700 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 12:51:46.316 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 12:51:46.319 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 12:51:48.582 | INFO     | utils.scheduler:stop_monitoring:55 - Monitoring disabled
+2023-11-03 12:52:03.554 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 12:52:03.556 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 12:53:03.562 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 12:53:05.584 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 12:53:06.139 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 12:53:06.787 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 12:53:06.787 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:53:48.936 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 12:53:49.480 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 12:54:37.097 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 12:54:37.640 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 12:57:31.648 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 12:57:32.269 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 12:57:37.707 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 12:57:37.908 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:58:06.865 | ERROR    | data.chat_gpt:process_question:32 - Request failed 
+2023-11-03 12:58:06.865 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 12:58:06.870 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 12:58:06.870 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 12:58:46.196 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 12:59:03.567 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:00:03.571 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:01:03.572 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:02:03.567 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:03:03.566 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:03:22.586 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 13:03:24.594 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 13:03:25.153 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 13:03:29.623 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 13:03:30.286 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 13:03:31.264 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 13:03:31.269 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 13:04:31.268 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:04:33.300 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:04:33.872 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:04:34.602 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:04:34.602 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:05:16.434 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:05:17.009 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:05:17.009 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:05:59.974 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:06:31.277 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:07:31.283 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:08:31.286 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:09:31.279 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:10:31.268 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:11:31.271 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:12:31.275 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:13:31.283 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:14:31.272 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:14:32.363 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:14:32.956 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:14:33.696 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:14:33.696 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:14:34.550 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:14:34.550 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:14:34.554 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:14:34.554 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:14:35.242 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:14:35.242 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:15:00.980 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 13:15:00.980 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 13:15:00.980 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:15:00.980 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 13:15:00.980 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:15:00.981 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 13:15:00.981 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 13:15:02.993 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 13:15:04.238 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:15:31.277 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:16:31.269 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:17:31.274 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:18:31.282 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:19:31.279 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:20:31.279 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:20:33.675 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:20:34.247 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:20:35.009 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:20:35.009 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:21:19.454 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:21:19.996 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:21:19.996 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:21:20.577 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:21:20.577 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:21:31.276 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:22:31.275 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:23:31.273 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:24:31.281 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:25:10.731 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 13:25:11.331 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 13:25:17.333 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 13:25:17.488 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:25:31.276 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:26:27.706 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 13:26:29.677 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 13:26:30.051 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 13:26:37.976 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 13:26:38.267 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 13:26:39.374 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 13:26:39.379 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 13:27:39.385 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:27:41.495 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:27:42.068 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:27:42.744 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:27:42.744 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:27:43.403 | ERROR    | data.chat_gpt:process_question:37 - Request failed 'choices'
+2023-11-03 13:27:43.403 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:27:43.407 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:27:43.407 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:28:38.399 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:28:39.393 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:29:39.387 | INFO     | data.config_telethon_scheme:monitor_channels:178 - Monitoring channels for new posts...
+2023-11-03 13:29:40.479 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:29:41.050 | INFO     | data.config_telethon_scheme:monitor_channels:207 - Found post with triggers
+2023-11-03 13:29:41.680 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:29:41.680 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:30:21.499 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:30:22.275 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 13:30:22.275 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 13:31:05.144 | INFO     | data.config_telethon_scheme:send_comments:256 - Comment sent
+2023-11-03 13:31:20.301 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 13:58:10.139 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 13:58:10.573 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 13:58:17.276 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 13:58:47.519 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 13:58:47.938 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 13:58:52.976 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 13:58:53.686 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 13:58:56.299 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 13:58:56.306 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 13:59:56.318 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 13:59:58.243 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 13:59:58.814 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 13:59:59.475 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 13:59:59.475 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:00:44.724 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:00:45.930 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:00:45.930 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:01:41.529 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:01:42.096 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: An asyncio.Future, a coroutine or an awaitable is required
+2023-11-03 14:01:56.316 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:02:56.323 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:03:38.233 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:04:54.348 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:04:54.815 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:05:02.773 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:05:02.778 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:05:05.915 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:05:06.515 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:06:02.785 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:06:04.744 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:06:05.303 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:06:06.014 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:06:06.014 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:06:38.388 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:06:39.069 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:06:39.070 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:06:43.070 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:07:06.826 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:07:07.323 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:07:11.437 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:07:12.004 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:07:13.180 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:07:13.188 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:07:36.670 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:07:37.327 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:07:57.311 | INFO     | utils.scheduler:stop_monitoring:57 - Monitoring disabled
+2023-11-03 14:07:59.087 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:07:59.089 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:08:09.275 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:08:16.570 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:08:16.969 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:08:18.145 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:08:18.150 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:09:18.161 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:09:20.092 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:09:20.655 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:09:21.337 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:09:21.337 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:09:21.338 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:09:21.338 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:10:05.745 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:10:18.150 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:10:19.088 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:11:18.158 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:12:18.165 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:13:18.164 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:14:18.164 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:14:41.138 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:14:44.059 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:14:44.540 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:15:48.188 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:15:49.175 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:15:54.045 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:15:54.051 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:16:39.952 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:16:40.589 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:16:54.056 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:17:41.710 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:17:42.244 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:17:46.273 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:17:46.273 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:17:46.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:17:46.274 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:17:46.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:17:46.274 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:17:46.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:17:48.471 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:17:50.111 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:17:54.065 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:17:55.293 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:17:55.936 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:17:56.586 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:17:56.586 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:17:56.587 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:17:56.588 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:18:36.042 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:18:38.330 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:18:38.696 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:18:48.061 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 14:18:54.069 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:18:56.376 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:19:15.603 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:19:16.340 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:19:19.404 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:19:19.405 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:19:19.405 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:19:19.405 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:19:19.406 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:19:19.406 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:19:19.406 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:19:22.523 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:19:24.179 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:19:34.391 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:19:35.761 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:19:48.709 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @rndcas2 in the database
+2023-11-03 14:19:54.053 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:20:14.918 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:20:15.520 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:20:54.058 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:20:55.276 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:20:55.943 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:20:56.656 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:20:56.656 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:20:56.657 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:20:56.657 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:20:57.646 | ERROR    | data.chat_gpt:process_question:39 - Request failed 'choices'
+2023-11-03 14:20:57.647 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:21:54.058 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:21:59.687 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:22:54.062 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:23:10.353 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:45:34.040 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:45:34.535 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:45:38.600 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:45:39.270 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:45:41.420 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:45:41.426 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:46:41.443 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:46:43.417 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:46:44.018 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:46:44.689 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:46:44.689 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:46:44.691 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:46:44.691 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:46:45.533 | ERROR    | data.chat_gpt:process_question:37 - Request failed Ошибка запроса. Сервис недоступен.
+2023-11-03 14:46:45.534 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:46:45.555 | ERROR    | data.chat_gpt:process_question:37 - Request failed Ошибка запроса. Сервис недоступен.
+2023-11-03 14:46:45.556 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:46:47.671 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:46:47.673 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:46:47.673 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:46:47.673 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:46:47.674 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:46:47.674 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:46:47.674 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:46:59.211 | INFO     | database.db_action:db_get_all_telegram_grp_id:237 - Retrieved all Telegram groups from the database
+2023-11-03 14:46:59.215 | INFO     | database.db_action:db_add_telegram_group:176 - Telegram group @chnl3test (ID: -1002001532379) added to the database
+2023-11-03 14:46:59.551 | INFO     | data.config_telethon_scheme:join_group:146 - Joining channel: @chnl3test
+2023-11-03 14:47:03.763 | INFO     | data.config_telethon_scheme:join_group:165 - Joined group successfully
+2023-11-03 14:47:04.079 | INFO     | data.config_telethon_scheme:join_group:146 - Joining channel: @chnl3test
+2023-11-03 14:47:09.023 | INFO     | data.config_telethon_scheme:join_group:165 - Joined group successfully
+2023-11-03 14:47:09.331 | INFO     | handlers.groups.add_group:add_group:82 - Group @chnl3test added to database
+2023-11-03 14:47:41.438 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:48:41.439 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:49:41.446 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:50:41.430 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:51:10.969 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:51:14.097 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:51:14.676 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:51:30.391 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:51:31.317 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:51:33.658 | ERROR    | database.db_action:get_groups_and_triggers:374 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-11-03 14:51:33.665 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:52:17.084 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:52:17.085 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:52:17.085 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:52:17.085 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:52:17.085 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:52:17.085 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:52:17.086 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:52:17.086 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 14:52:17.086 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 14:52:23.711 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:52:25.374 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 14:52:33.664 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:52:47.590 | INFO     | database.db_action:db_add_trigger_for_group:299 - Triggers added for Telegram group @chnl3test in the database
+2023-11-03 14:52:51.716 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:52:53.480 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:52:59.541 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:53:01.333 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 14:53:05.332 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @chnl3test in the database
+2023-11-03 14:53:31.956 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:53:32.520 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:53:33.672 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:54:33.678 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:54:56.418 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:54:56.990 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:54:59.385 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:54:59.385 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:54:59.385 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 14:54:59.386 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 14:55:33.671 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:55:49.512 | INFO     | handlers.tg_accs.get_tg_accs:get_acc_info:24 - getting info about TG accounts
+2023-11-03 14:55:49.668 | INFO     | data.config_telethon_scheme:get_info:132 - Getting info about account data/telethon_sessions/+66 8 1481 9110.session...
+2023-11-03 14:56:33.668 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:56:49.091 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:56:49.091 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:56:49.092 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 14:56:49.093 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 14:57:13.514 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:57:15.043 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:57:33.671 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:57:46.632 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 14:57:51.995 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 14:57:52.398 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 14:57:54.061 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:57:54.935 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:57:56.586 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 14:57:56.592 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 14:58:54.150 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:58:54.150 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 14:58:54.151 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:58:54.151 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:58:54.151 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:58:54.151 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 14:58:54.151 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 14:58:54.152 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 14:58:54.152 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 14:58:55.957 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:58:56.597 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 14:58:57.588 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:58:58.591 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:58:59.188 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 14:59:00.562 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 14:59:00.563 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:59:00.563 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 14:59:00.563 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 14:59:02.857 | INFO     | database.db_action:db_add_trigger_for_group:299 - Triggers added for Telegram group @rndcas2 in the database
+2023-11-03 14:59:05.181 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 14:59:07.143 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 14:59:34.560 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 14:59:35.559 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 14:59:38.273 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:59:50.123 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 14:59:56.604 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:00:56.593 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:00:57.813 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:00:58.450 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:00:59.706 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:00:59.716 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:00:59.716 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:00:59.717 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:00:59.717 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:00:59.717 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:00:59.718 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:01:31.457 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:01:36.743 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:01:39.510 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:01:48.650 | ERROR    | handlers.get_history:get_history:25 - Telegram server says - Bad Request: message is too long
+2023-11-03 15:01:56.597 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:02:56.606 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:03:33.005 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:03:33.652 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:03:45.071 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:03:45.071 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:03:45.071 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:03:45.071 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:03:45.071 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:03:45.072 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:03:45.072 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:03:45.072 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:03:45.072 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:03:56.597 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:04:56.595 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:05:56.615 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:06:56.601 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:07:56.599 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:08:56.590 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:09:13.399 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:09:13.399 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:09:13.399 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:09:13.399 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:09:13.400 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:09:13.400 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:09:13.400 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:09:13.400 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:09:13.400 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:09:14.934 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:09:16.787 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:09:56.595 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:10:22.574 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 15:10:25.149 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:10:28.098 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:10:32.377 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @rndcas2 in the database
+2023-11-03 15:10:35.353 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:10:38.090 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:10:41.339 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @carsnosleep in the database
+2023-11-03 15:10:42.774 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:10:43.866 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:10:46.805 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @chnl3test in the database
+2023-11-03 15:10:56.605 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:10:58.241 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:10:59.475 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:10:59.475 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:11:26.602 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:11:27.692 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:11:41.538 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:11:56.600 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:11:57.778 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:11:59.667 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:11:59.672 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:11:59.672 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:11:59.673 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:11:59.673 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:12:47.161 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:12:56.600 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:13:56.602 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:14:56.603 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:14:57.708 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:14:58.268 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:14:59.519 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:14:59.524 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:14:59.526 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:14:59.526 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:14:59.526 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:14:59.526 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:14:59.526 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:15:27.873 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:15:31.653 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:15:34.532 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:15:56.603 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:16:22.029 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:16:22.030 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:16:23.580 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:16:24.576 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:16:56.591 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:16:59.869 | ERROR    | data.chat_gpt:process_question:37 - Request failed 
+2023-11-03 15:17:06.409 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 15:17:24.209 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:17:54.231 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:17:55.021 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:17:56.598 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:17:59.311 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:17:59.311 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:17:59.311 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:17:59.311 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:17:59.311 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:17:59.312 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:17:59.312 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:17:59.312 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:17:59.312 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:18:00.545 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:18:01.639 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:18:09.529 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:18:10.429 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:18:13.670 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @rndcas2 in the database
+2023-11-03 15:18:15.072 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:18:16.127 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:18:18.841 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @carsnosleep in the database
+2023-11-03 15:18:20.498 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:18:21.536 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:18:24.027 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @chnl3test in the database
+2023-11-03 15:18:56.595 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:18:57.698 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:18:58.268 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:18:59.715 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:18:59.722 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:18:59.722 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:18:59.722 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:18:59.722 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:18:59.723 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:18:59.723 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:19:34.500 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:19:38.511 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:19:56.606 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:20:56.604 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:21:56.600 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:22:55.989 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:22:56.547 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:22:56.595 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:22:59.763 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 15:23:04.452 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 15:23:08.862 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 15:23:21.332 | INFO     | database.db_action:db_add_gpt_account:387 - GPT account with API key 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 added to the database
+2023-11-03 15:23:23.387 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 15:23:23.533 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:23:56.601 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:23:59.858 | ERROR    | data.chat_gpt:process_question:37 - Request failed 
+2023-11-03 15:24:31.614 | INFO     | data.config_telethon_scheme:send_comments:259 - Comment sent
+2023-11-03 15:24:56.601 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:25:56.601 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:26:56.593 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:27:56.614 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:28:56.603 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:29:56.591 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:30:56.594 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:31:56.603 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:32:38.613 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:32:39.535 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:32:41.411 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:32:41.412 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:32:56.601 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:33:56.603 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:34:56.596 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:35:12.897 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:35:13.464 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:35:56.606 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:36:07.654 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 15:36:09.836 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 15:36:10.336 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 15:36:12.105 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:36:12.761 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:36:14.431 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:36:14.431 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:36:14.431 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:36:14.432 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:40:50.037 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 15:40:52.400 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 15:40:53.097 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 15:40:56.309 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:40:56.893 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:40:58.151 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 15:40:58.154 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 15:41:22.289 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:41:22.290 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:41:22.291 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:41:22.291 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:41:23.482 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:41:24.401 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:41:52.040 | INFO     | database.db_action:db_add_user:52 - User with user_id 116087474 added to the table.
+2023-11-03 15:41:52.766 | INFO     | handlers.start:process_start:23 - @zub_ov connected
+2023-11-03 15:41:58.167 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:42:00.054 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:42:00.603 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:42:01.770 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:42:01.778 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:42:01.779 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:42:01.779 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:42:01.780 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:42:01.780 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:42:01.780 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:42:45.500 | INFO     | data.config_telethon_scheme:send_comments:261 - Comment sent
+2023-11-03 15:42:55.668 | ERROR    | data.config_telethon_scheme:send_comments:279 - Error sending comments: database is locked
+2023-11-03 15:43:01.207 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:43:01.842 | INFO     | data.config_telethon_scheme:send_comments:261 - Comment sent
+2023-11-03 15:43:50.624 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 15:43:52.623 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 15:43:53.098 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 15:44:18.263 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:44:18.870 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:44:26.487 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:44:26.488 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:44:26.489 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:44:26.489 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:44:32.774 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:44:33.934 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:45:17.392 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 15:45:25.289 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:45:26.471 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:45:29.098 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @rndcas2 in the database
+2023-11-03 15:45:33.410 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:45:34.724 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:45:37.814 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @carsnosleep in the database
+2023-11-03 15:45:40.153 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:45:41.106 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:45:43.477 | INFO     | database.db_action:db_add_promts_for_group:274 - Promts added for Telegram group @chnl3test in the database
+2023-11-03 15:47:10.677 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:47:10.677 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:47:10.677 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:47:10.677 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:47:10.678 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:47:10.678 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:47:10.678 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:47:10.678 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:47:10.678 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:47:12.292 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:47:13.270 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:47:23.635 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:47:24.549 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:47:31.382 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 15:47:31.387 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 15:48:31.398 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:48:33.424 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:48:34.033 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:48:35.454 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:48:35.459 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:49:19.625 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:49:25.267 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:49:30.937 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:49:37.113 | INFO     | data.config_telethon_scheme:send_comments:262 - Comment sent
+2023-11-03 15:50:31.398 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:51:31.390 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:51:54.984 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 15:51:56.947 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 15:51:57.329 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 15:52:14.364 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:52:14.986 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:52:28.542 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 15:52:28.544 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 15:53:00.142 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:53:07.295 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 15:53:07.615 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 15:53:28.548 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:53:30.492 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:53:31.075 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:53:32.348 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 15:53:32.355 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 15:53:32.355 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:53:32.356 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 15:53:32.356 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:53:32.357 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 15:53:32.357 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 15:54:12.094 | INFO     | data.config_telethon_scheme:send_comments:262 - Comment sent
+2023-11-03 15:54:18.310 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:54:23.895 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:54:29.438 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:54:29.439 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:55:28.555 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:56:28.551 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:57:28.555 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:58:28.545 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 15:59:28.548 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:00:28.545 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:01:28.556 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:02:09.399 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:02:11.487 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:02:12.015 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:02:16.446 | WARNING  | database.db_action:db_add_user:51 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:02:17.141 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:02:18.566 | INFO     | database.db_action:get_groups_and_triggers:435 - Retrieved all groups and triggers from the database
+2023-11-03 16:02:18.570 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:03:18.588 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:03:20.531 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:03:21.094 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:03:22.275 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:03:22.281 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.281 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@randchnlss'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@randchnlss'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.306 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.306 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.320 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:03:22.321 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.321 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@rndcas2'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@rndcas2'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.336 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.336 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.351 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:03:22.352 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.352 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@chnl3test'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@chnl3test'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.366 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.366 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.381 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:04:18.581 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:04:22.071 | WARNING  | database.db_action:db_add_user:51 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:04:22.640 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:05:12.219 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:05:48.870 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:05:49.248 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:05:56.448 | WARNING  | database.db_action:db_add_user:50 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:05:57.032 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:05:58.402 | INFO     | database.db_action:get_groups_and_triggers:373 - Retrieved all groups and triggers from the database
+2023-11-03 16:05:58.406 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:06:58.411 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:07:00.266 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:07:00.837 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:07:02.002 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:07:02.009 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.009 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:29.480 | WARNING  | database.db_action:db_add_user:50 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:07:30.109 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:07:58.207 | ERROR    | database.db_action:db_get_all_telegram_groups:209 - Error retrieving Telegram groups from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:58.413 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:08:15.847 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:08:18.015 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:08:18.426 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:08:19.365 | WARNING  | database.db_action:db_add_user:50 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:08:19.976 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:08:21.661 | ERROR    | database.db_action:db_get_all_telegram_groups:209 - Error retrieving Telegram groups from the database: Cannot operate on a closed cursor.
+2023-11-03 16:09:18.723 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:09:20.734 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:09:21.216 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:09:22.258 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:09:22.819 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:09:24.292 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @carsnosleep from the database
+2023-11-03 16:09:24.293 | INFO     | database.db_action:db_get_triggers_for_group:319 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:09:24.294 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 16:09:36.499 | INFO     | database.db_action:get_groups_and_triggers:371 - Retrieved all groups and triggers from the database
+2023-11-03 16:09:36.503 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:10:04.942 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:10:05.525 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:10:36.506 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:10:38.574 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:10:39.251 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:10:40.657 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:10:40.661 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @randchnlss from the database
+2023-11-03 16:10:40.661 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 16:10:40.661 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @rndcas2 from the database
+2023-11-03 16:10:40.661 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 16:10:40.664 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved promts for Telegram group @chnl3test from the database
+2023-11-03 16:10:40.664 | INFO     | database.db_action:db_get_all_gpt_accounts:417 - Retrieved all GPT account API keys from the database
+2023-11-03 16:11:15.305 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:11:28.021 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: database is locked
+2023-11-03 16:11:28.024 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:11:33.575 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 16:11:36.504 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:12:36.503 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:13:36.503 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:13:59.686 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:14:01.746 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:14:02.424 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:14:10.188 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:14:10.189 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:14:10.189 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.189 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.190 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.190 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:15:18.868 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:15:20.891 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:15:21.269 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:15:23.046 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:15:23.612 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:15:25.255 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:15:25.256 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:15:25.256 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:15:25.256 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:15:25.256 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:15:25.256 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:15:25.257 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:15:25.257 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:15:25.257 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:15:30.812 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:15:31.146 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:15:31.990 | INFO     | database.db_action:get_groups_and_triggers:370 - Retrieved all groups and triggers from the database
+2023-11-03 16:15:31.995 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:16:32.001 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:16:33.934 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:16:34.564 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:16:35.814 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:16:35.814 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:16:35.814 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:16:35.822 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:16:35.822 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:16:35.822 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:16:35.822 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:17:13.465 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:17:21.454 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:17:26.920 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:17:32.000 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:18:31.996 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:19:29.372 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:19:29.374 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:19:29.374 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:19:29.374 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:19:29.374 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:19:29.375 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:19:29.375 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:19:29.375 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:19:29.375 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:19:30.724 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:19:31.884 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:19:31.995 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:20:06.694 | INFO     | database.db_action:db_add_promts_for_group:273 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 16:20:10.887 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:20:11.270 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:20:32.005 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:20:33.124 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:20:34.964 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:20:34.964 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:21:03.304 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:21:32.001 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:22:27.024 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:22:27.711 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:22:29.273 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:22:29.273 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:22:29.273 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:22:29.273 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:22:29.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:22:29.274 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:22:29.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:22:29.274 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:22:29.274 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:22:31.999 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:22:33.434 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:22:34.460 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:23:10.779 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:23:11.544 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:23:19.221 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:23:19.222 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:23:19.222 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:23:19.222 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:23:19.222 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:23:19.223 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:23:19.223 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:23:19.223 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:23:19.223 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:23:32.008 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:24:21.688 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:24:23.873 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:24:24.331 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:24:25.263 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:24:25.850 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:24:55.243 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:24:55.809 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:24:56.988 | INFO     | database.db_action:get_groups_and_triggers:370 - Retrieved all groups and triggers from the database
+2023-11-03 16:24:56.992 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:24:59.238 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:24:59.586 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:25:57.004 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:26:57.007 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:27:57.005 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:28:24.753 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:28:25.380 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:28:57.010 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:29:04.120 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:29:04.674 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:29:56.998 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:30:30.001 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:30:30.001 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:30:30.001 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:30:30.002 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:30:30.002 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:30:30.002 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:30:30.002 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:30:30.002 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:30:30.003 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:30:57.000 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:31:57.007 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:32:57.005 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:33:57.004 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:34:56.998 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:35:57.004 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:36:57.013 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:37:57.005 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:38:57.013 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:39:56.992 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:40:57.012 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:41:57.006 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:42:57.007 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:43:57.009 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:44:15.445 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:44:15.445 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:44:15.445 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:44:15.445 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:44:15.446 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:44:15.446 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:44:15.446 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:44:15.446 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:44:15.446 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:44:17.561 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:44:18.921 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:44:34.181 | INFO     | database.db_action:db_add_trigger_for_group:298 - Triggers added for Telegram group @carsnosleep in the database
+2023-11-03 16:44:36.805 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:44:38.093 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:44:48.257 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:44:48.665 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:44:56.993 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:45:33.655 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:45:34.207 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:45:40.880 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:45:40.880 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:45:40.880 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:45:40.880 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:45:40.881 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:45:40.881 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:45:40.881 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:45:40.881 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:45:40.881 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:45:42.834 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:45:43.652 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:45:57.006 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:46:06.042 | INFO     | database.db_action:db_add_promts_for_group:273 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 16:46:57.012 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:46:58.100 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:46:59.900 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:46:59.901 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:47:24.168 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:47:57.002 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:48:09.444 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:48:11.857 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:48:12.253 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:48:16.350 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:48:16.940 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:48:18.608 | INFO     | database.db_action:get_groups_and_triggers:370 - Retrieved all groups and triggers from the database
+2023-11-03 16:48:18.612 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:48:21.312 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:48:21.312 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:48:21.313 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:48:21.313 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:48:21.313 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:48:21.313 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:48:21.313 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:48:21.314 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:48:21.314 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:48:22.820 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:48:23.977 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:48:47.694 | INFO     | database.db_action:db_add_promts_for_group:273 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 16:49:05.931 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:49:06.543 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:49:18.623 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:49:20.561 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:49:22.405 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:49:22.407 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:49:47.713 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:50:18.611 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:50:20.855 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:50:20.856 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @randchnlss from the database
+2023-11-03 16:50:20.856 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:50:20.856 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @rndcas2 from the database
+2023-11-03 16:50:20.856 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 16:50:20.857 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @carsnosleep from the database
+2023-11-03 16:50:20.857 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:50:20.857 | INFO     | database.db_action:db_get_triggers_for_group:318 - Retrieved triggers for Telegram group @chnl3test from the database
+2023-11-03 16:50:20.857 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 16:50:22.249 | INFO     | database.db_action:db_get_all_telegram_groups:204 - Retrieved all Telegram groups from the database
+2023-11-03 16:50:23.462 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:51:02.943 | INFO     | database.db_action:db_add_promts_for_group:273 - Promts added for Telegram group @randchnlss in the database
+2023-11-03 16:51:18.624 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:51:30.739 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 16:51:32.723 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 16:51:33.125 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 16:51:35.946 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:51:36.508 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:51:37.425 | INFO     | database.db_action:get_groups_and_triggers:370 - Retrieved all groups and triggers from the database
+2023-11-03 16:51:37.427 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 16:52:37.427 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:52:39.323 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:52:41.087 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 16:52:41.088 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:53:13.759 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 16:53:14.439 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 16:53:37.432 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:54:37.438 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:54:40.053 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 16:54:40.642 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @carsnosleep from the database
+2023-11-03 16:54:40.643 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 16:55:18.953 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:55:37.445 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:56:37.435 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:57:37.442 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:57:41.848 | ERROR    | data.chat_gpt:process_question:36 - Request failed 
+2023-11-03 16:58:37.447 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 16:58:50.713 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 16:59:37.439 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:00:37.445 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:01:37.442 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:02:37.436 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:03:37.448 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:04:37.431 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:05:37.429 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:06:37.445 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:07:37.439 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:08:37.446 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:09:37.433 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:10:37.439 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:11:37.448 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:12:37.437 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:13:37.443 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:14:32.662 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 17:14:35.057 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 17:14:35.518 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 17:14:41.198 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 17:14:41.821 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 17:14:42.937 | INFO     | database.db_action:get_groups_and_triggers:370 - Retrieved all groups and triggers from the database
+2023-11-03 17:14:42.940 | INFO     | utils.scheduler:start_monitoring:46 - Monitoring started
+2023-11-03 17:15:03.039 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 17:15:03.621 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 17:15:42.942 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:15:44.986 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 17:15:45.552 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 17:15:46.782 | INFO     | data.config_telethon_scheme:monitor_channels:208 - Found post with triggers
+2023-11-03 17:15:46.788 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @randchnlss from the database
+2023-11-03 17:15:46.788 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 17:15:46.790 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @rndcas2 from the database
+2023-11-03 17:15:46.790 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 17:15:46.790 | INFO     | database.db_action:db_get_promts_for_group:255 - Retrieved prompts for Telegram group @chnl3test from the database
+2023-11-03 17:15:46.791 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 17:16:06.109 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 17:16:30.844 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 17:16:35.109 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
+2023-11-03 17:16:42.962 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
+2023-11-03 17:17:41.105 | WARNING  | __main__:<module>:65 - Bot stopped

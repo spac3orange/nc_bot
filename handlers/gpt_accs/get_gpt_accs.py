@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram.types import Message, CallbackQuery
 from data.logger import logger
 from aiogram import Router, F
@@ -29,16 +31,19 @@ async def get_info_gpt_accs(callback: CallbackQuery, state: FSMContext):
     keys_status = dict()
     keys_status_list = []
     if api_keys:
+        tasks = []
         for key in api_keys:
             gpt_acc = AuthOpenAI(key)
-            send_req = await gpt_acc.check_work()
-            keys_status[key] = send_req
-        for key, value in keys_status.items():
-            if value == 'Аккаунт доступен.':
-                value = 'Аккаунт доступен 🟢'
-            else:
-                value = 'Аккаунт не доступен 🔴'
-            keys_status_list.append(f'<b>Ключ:</b> {key}\n<b>Статус:</b> {value}')
+            task = asyncio.create_task(gpt_acc.check_work())
+            tasks.append(task)
+        result = await asyncio.gather(*tasks)
+        if result:
+            for key, value in zip(api_keys, result):
+                if value == 'Аккаунт доступен.':
+                    value = 'Аккаунт доступен 🟢'
+                else:
+                    value = 'Аккаунт не доступен 🔴'
+                keys_status_list.append(f'<b>Ключ:</b> {key}\n<b>Статус:</b> {value}')
 
         keys_status_list = '\n\n'.join(keys_status_list)
         await callback.message.answer(text=f'<b>API</b> ключи:\n\n{keys_status_list}', reply_markup=gpt_back(),

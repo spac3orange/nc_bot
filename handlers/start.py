@@ -9,7 +9,7 @@ from database.db_action import db_add_user
 router = Router()
 
 
-@router.message(CommandStart, IsAdmin(F))
+@router.message(CommandStart)
 async def process_start(message: Message):
     status = await monitor.get_status()
     uid = message.from_user.id

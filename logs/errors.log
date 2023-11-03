@@ -1499,3 +1499,472 @@ chat_id.int
 chat_id.str
   Input should be a valid string [type=string_type, input_value=(462813109, 'Jisiehrk'), input_type=tuple]
     For further information visit https://errors.pydantic.dev/2.3/v/string_type
+2023-11-02 15:46:40.855 | ERROR    | handlers.get_history:get_history:25 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-03 10:47:57.842 | ERROR    | data.chat_gpt:process_question:29 - Request failed 'choices'
+2023-11-03 10:47:57.843 | ERROR    | data.config_telethon_scheme:send_comments:273 - Error sending comments: Comment not found
+2023-11-03 10:47:58.294 | ERROR    | data.chat_gpt:process_question:29 - Request failed 'choices'
+2023-11-03 10:47:58.295 | ERROR    | data.config_telethon_scheme:send_comments:273 - Error sending comments: Comment not found
+2023-11-03 12:58:06.865 | ERROR    | data.chat_gpt:process_question:32 - Request failed 
+2023-11-03 12:58:06.865 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:14:34.550 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:14:34.550 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:14:35.242 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:14:35.242 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:21:20.577 | ERROR    | data.chat_gpt:process_question:32 - Request failed 'choices'
+2023-11-03 13:21:20.577 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 13:27:43.403 | ERROR    | data.chat_gpt:process_question:37 - Request failed 'choices'
+2023-11-03 13:27:43.403 | ERROR    | data.config_telethon_scheme:send_comments:274 - Error sending comments: Comment not found
+2023-11-03 14:01:42.096 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: An asyncio.Future, a coroutine or an awaitable is required
+2023-11-03 14:20:57.646 | ERROR    | data.chat_gpt:process_question:39 - Request failed 'choices'
+2023-11-03 14:20:57.647 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:46:45.533 | ERROR    | data.chat_gpt:process_question:37 - Request failed Ошибка запроса. Сервис недоступен.
+2023-11-03 14:46:45.534 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:46:45.555 | ERROR    | data.chat_gpt:process_question:37 - Request failed Ошибка запроса. Сервис недоступен.
+2023-11-03 14:46:45.556 | ERROR    | data.config_telethon_scheme:send_comments:277 - Error sending comments: Comment not found
+2023-11-03 14:51:33.658 | ERROR    | database.db_action:get_groups_and_triggers:374 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-11-03 15:01:48.650 | ERROR    | handlers.get_history:get_history:25 - Telegram server says - Bad Request: message is too long
+2023-11-03 15:16:59.869 | ERROR    | data.chat_gpt:process_question:37 - Request failed 
+2023-11-03 15:23:59.858 | ERROR    | data.chat_gpt:process_question:37 - Request failed 
+2023-11-03 15:42:55.668 | ERROR    | data.config_telethon_scheme:send_comments:279 - Error sending comments: database is locked
+2023-11-03 15:43:01.207 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:49:19.625 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:49:25.267 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:49:30.937 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:54:18.310 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 15:54:23.895 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 15:54:29.438 | ERROR    | data.config_telethon_scheme:send_comments:280 - Error sending comments: database is locked
+2023-11-03 16:03:22.281 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.281 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@randchnlss'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@randchnlss'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.306 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.306 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9BE80>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.320 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:03:22.321 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.321 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@rndcas2'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@rndcas2'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.336 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.336 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9A5C0>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.351 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:03:22.352 | ERROR    | database.db_action:db_get_promts_for_group:301 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.352 | ERROR    | data.config_telethon_scheme:send_comments:247 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 287, in db_get_promts_for_group
+    cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+    │   │                                                                 └ '@chnl3test'
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 247, in send_comments
+    promt = await db_get_promts_for_group(channel_name)
+                  │                       └ '@chnl3test'
+                  └ <function db_get_promts_for_group at 0x00000202E3DFDBC0>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 302, in db_get_promts_for_group
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.366 | ERROR    | database.db_action:db_get_all_gpt_accounts:493 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:03:22.366 | ERROR    | data.config_telethon_scheme:send_comments:248 - An error has been caught in function 'send_comments', process 'MainProcess' (3896), thread 'MainThread' (2736):
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 485, in db_get_all_gpt_accounts
+    cur.execute("SELECT api_key FROM gpt_accounts")
+    │   └ <method 'execute' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed cursor.
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "D:\Work Projects\Neuro_commenting_bot\bot.py", line 63, in <module>
+    asyncio.run(main())
+    │       │   └ <function main at 0x00000202DCF4A160>
+    │       └ <function run at 0x00000202DEE496C0>
+    └ <module 'asyncio' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\asyncio\\__init__.py'>
+
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 190, in run
+    return runner.run(main)
+           │      │   └ <coroutine object main at 0x00000202E4C6BBC0>
+           │      └ <function Runner.run at 0x00000202DEEBD620>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │     │                  └ <Task pending name='Task-1' coro=<main() running at D:\Work Projects\Neuro_commenting_bot\bot.py:57> wait_for=<_GatheringFutu...
+           │    │     └ <function BaseEventLoop.run_until_complete at 0x00000202DEEBB100>
+           │    └ <ProactorEventLoop running=True closed=False debug=False>
+           └ <asyncio.runners.Runner object at 0x00000202DCF56550>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 640, in run_until_complete
+    self.run_forever()
+    │    └ <function ProactorEventLoop.run_forever at 0x00000202DEF7AF20>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 607, in run_forever
+    self._run_once()
+    │    └ <function BaseEventLoop._run_once at 0x00000202DEEBCEA0>
+    └ <ProactorEventLoop running=True closed=False debug=False>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\base_events.py", line 1919, in _run_once
+    handle._run()
+    │      └ <function Handle._run at 0x00000202DEE06660>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+  File "C:\Users\som30\AppData\Local\Programs\Python\Python311\Lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+    │    │            │    │           │    └ <member '_args' of 'Handle' objects>
+    │    │            │    │           └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    │            │    └ <member '_callback' of 'Handle' objects>
+    │    │            └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+    │    └ <member '_context' of 'Handle' objects>
+    └ <Handle <TaskStepMethWrapper object at 0x00000202E4D9B670>()>
+
+> File "D:\Work Projects\Neuro_commenting_bot\data\config_telethon_scheme.py", line 248, in send_comments
+    gpt_api = random.choice(await db_get_all_gpt_accounts())
+              │      │            └ <function db_get_all_gpt_accounts at 0x00000202E3DFF9C0>
+              │      └ <bound method Random.choice of <random.Random object at 0x00000202DD4D15B0>>
+              └ <module 'random' from 'C:\\Users\\som30\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\random.py'>
+
+  File "D:\Work Projects\Neuro_commenting_bot\database\db_action.py", line 494, in db_get_all_gpt_accounts
+    cur.close()
+    │   └ <method 'close' of 'sqlite3.Cursor' objects>
+    └ <sqlite3.Cursor object at 0x00000202E4C48B40>
+
+sqlite3.ProgrammingError: Cannot operate on a closed database.
+2023-11-03 16:03:22.381 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:02.009 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.009 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_promts_for_group:263 - Error retrieving promts for Telegram group from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | database.db_action:db_get_all_gpt_accounts:422 - Error retrieving GPT account API keys from the database: Cannot operate on a closed cursor.
+2023-11-03 16:07:02.010 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: Cannot choose from an empty sequence
+2023-11-03 16:07:58.207 | ERROR    | database.db_action:db_get_all_telegram_groups:209 - Error retrieving Telegram groups from the database: Cannot operate on a closed cursor.
+2023-11-03 16:08:21.661 | ERROR    | database.db_action:db_get_all_telegram_groups:209 - Error retrieving Telegram groups from the database: Cannot operate on a closed cursor.
+2023-11-03 16:11:28.021 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: database is locked
+2023-11-03 16:11:33.575 | ERROR    | data.config_telethon_scheme:monitor_channels:227 - Error monitoring channels: database is locked
+2023-11-03 16:14:10.189 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
+2023-11-03 16:57:41.848 | ERROR    | data.chat_gpt:process_question:36 - Request failed 

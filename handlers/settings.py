@@ -11,10 +11,10 @@ router = Router()
 async def process_start(callback: CallbackQuery):
     #await callback.message.delete()
     all_data = await db_get_all_data()
-    telegram_channels = ' '.join([x[0] for x in all_data['telegram_groups']]) or 'Нет добавленных каналов'
-    telegram_accounts = len(all_data['telegram_accounts']) or 'Нет добавленных аккаунтов'
+    telegram_channels = ' '.join([x[0] for x in all_data['telegram_groups']] or 'Нет добавленных каналов')
+    telegram_accounts = len(all_data['telegram_accounts'] or 'Нет добавленных аккаунтов')
     gpt_accounts = len(all_data['gpt_accounts']) or 'Нет добавленных аккаунтов'
-    monitor = ''.join(all_data['telegram_monitor_account'][0]) or 'Не установлен'
+    monitor = ''.join('Установлен' if all_data['telegram_monitor_account'][0] else 'Не установлен')
     print(all_data)
     await callback.message.answer(text=f'<b>Монитор:</b> {monitor}\n'
                                        f'<b>Telegram аккаунты:</b> {telegram_accounts}\n'
@@ -32,7 +32,7 @@ async def back_to_settings(callback: CallbackQuery):
     telegram_channels = ' '.join([x[0] for x in all_data['telegram_groups']])
     telegram_accounts = len(all_data['telegram_accounts']) or 'Нет добавленных аккаунтов'
     gpt_accounts = len(all_data['gpt_accounts']) or 'Нет добавленных аккаунтов'
-    monitor = ''.join(all_data['telegram_monitor_account'][0]) or 'Не установлен'
+    monitor = ''.join('Установлен' if all_data['telegram_monitor_account'][0] else 'Не установлен')
     await callback.message.answer(text=f'<b>Монитор:</b> {monitor}\n'
                                        f'<b>Telegram аккаунты:</b> {telegram_accounts}\n'
                                        f'<b>Каналы:</b> {telegram_channels}\n'

@@ -17,7 +17,8 @@ async def monitor_chats():
 
     sess = TelethonConnect(monitor_account)
     scheduler.start()
-    scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, seconds=30, args=(groups_triggers,))
+    scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, seconds=30, args=(groups_triggers,),
+                      max_instances=10)
 
     while True:
         await asyncio.sleep(1)
@@ -39,10 +40,12 @@ class ChatMonitor:
         groups_triggers = await get_groups_and_triggers()
         sess = TelethonConnect(monitor_account)
 
-        self.scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, args=(groups_triggers,))
+        self.scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, args=(groups_triggers,), max_instances=10)
         self.scheduler.start()
         self.monitoring_enabled = True
         logger.info('Monitoring started')
+        while True:
+            await asyncio.sleep(1)
 
     async def stop_monitoring(self):
         if not self.monitoring_enabled:

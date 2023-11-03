@@ -106,16 +106,15 @@ async def db_add_tg_account(phone_number: str) -> None:
 @logger.catch()
 async def db_add_tg_monitor_account(phone_number: str) -> None:
     """
-    Adds a Telegram account to the database.
+    Adds or replaces a Telegram account in the database.
     """
     global db, cur
     try:
-        cur.execute("INSERT INTO telegram_monitor_account(phone) VALUES (?)", (phone_number,))
+        cur.execute("REPLACE INTO telegram_monitor_account(phone) VALUES (?)", (phone_number,))
         db.commit()
-        logger.info(f"Telegram account {phone_number} added to the database")
+        logger.info(f"Telegram account {phone_number} added or updated in the database")
     except Exception as e:
-        logger.error(f"Error adding Telegram account to the database: {e}")
-
+        logger.error(f"Error adding or updating Telegram account in the database: {e}")
 
 @logger.catch()
 async def db_remove_tg_account(phone_number: str) -> None:
@@ -242,26 +241,25 @@ async def db_get_all_telegram_grp_id() -> List[str]:
         return []
 
 
-@logger.catch()
 async def db_get_promts_for_group(group_name: str) -> str:
     """
-    Retrieves the promts for a specific Telegram group from the database.
+    Retrieves the prompts for a specific Telegram group from the database.
     """
-    global db, cur
     try:
-        cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
-        result = cur.fetchone()
-        if result:
-            promts = result[0]
-            logger.info(f"Retrieved promts for Telegram group {group_name} from the database")
-            return promts
-        else:
-            logger.info(f"No promts found for Telegram group {group_name} in the database")
-            return ""
+        with sq.connect('database/user_base.db') as db:
+            cur = db.cursor()
+            cur.execute("SELECT promts FROM telegram_groups WHERE group_name=?", (group_name,))
+            result = cur.fetchone()
+            if result:
+                prompts = result[0]
+                logger.info(f"Retrieved prompts for Telegram group {group_name} from the database")
+                return prompts
+            else:
+                logger.info(f"No prompts found for Telegram group {group_name} in the database")
+                return ""
     except Exception as e:
-        logger.error(f"Error retrieving promts for Telegram group from the database: {e}")
+        logger.error(f"Error retrieving prompts for Telegram group from the database: {e}")
         return ""
-
 
 @logger.catch()
 async def db_add_promts_for_group(group_name: str, promts: str) -> bool:
@@ -405,18 +403,18 @@ async def db_remove_gpt_account(api_key: str) -> None:
         logger.error(f"Error removing GPT account from the database: {e}")
 
 
-@logger.catch()
 async def db_get_all_gpt_accounts() -> List[str]:
     """
     Returns a list of all API keys from the gpt_accounts table.
     """
-    global db, cur
     try:
-        cur.execute("SELECT api_key FROM gpt_accounts")
-        rows = cur.fetchall()
-        api_keys = [row[0] for row in rows]
-        logger.info("Retrieved all GPT account API keys from the database")
-        return api_keys
+        with sq.connect('database/user_base.db') as db:
+            cur = db.cursor()
+            cur.execute("SELECT api_key FROM gpt_accounts")
+            rows = cur.fetchall()
+            api_keys = [row[0] for row in rows]
+            logger.info("Retrieved all GPT account API keys from the database")
+            return api_keys
     except Exception as e:
         logger.error(f"Error retrieving GPT account API keys from the database: {e}")
         return []
