@@ -6467,3 +6467,37 @@ sqlite3.ProgrammingError: Cannot operate on a closed database.
 2023-11-03 17:16:35.109 | INFO     | data.config_telethon_scheme:send_comments:263 - Comment sent
 2023-11-03 17:16:42.962 | INFO     | data.config_telethon_scheme:monitor_channels:179 - Monitoring channels for new posts...
 2023-11-03 17:17:41.105 | WARNING  | __main__:<module>:65 - Bot stopped
+2023-11-03 20:59:21.376 | INFO     | __main__:start_params:41 - Bot started
+2023-11-03 20:59:21.937 | INFO     | database.db_action:db_start:23 - connected to database
+2023-11-03 20:59:23.649 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 20:59:24.467 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 20:59:28.758 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 20:59:28.913 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:00:53.059 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:00:53.327 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:02:16.746 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:02:17.150 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:06:26.264 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:06:26.456 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:08:50.445 | WARNING  | database.db_action:db_add_user:48 - User with user_id 462813109 already exists in the table.
+2023-11-03 21:08:51.289 | INFO     | handlers.start:process_start:23 - @Jisiehrk connected
+2023-11-03 21:08:55.231 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:08:56.832 | INFO     | database.db_action:db_remove_gpt_account:401 - GPT account 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 removed from the database
+2023-11-03 21:08:56.832 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 21:08:58.588 | INFO     | database.db_action:db_remove_gpt_account:401 - GPT account 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 removed from the database
+2023-11-03 21:08:58.589 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 21:09:00.750 | INFO     | database.db_action:db_remove_gpt_account:401 - GPT account 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 removed from the database
+2023-11-03 21:09:00.750 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 21:09:03.254 | INFO     | database.db_action:db_remove_gpt_account:401 - GPT account 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 removed from the database
+2023-11-03 21:09:03.254 | INFO     | handlers.gpt_accs.del_gpt_acc:gpt_acc_deleted:27 - gpt account deleted from db
+2023-11-03 21:09:07.143 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:09:07.309 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:09:09.382 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 21:09:13.419 | INFO     | database.db_action:db_add_gpt_account:386 - GPT account with API key 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 added to the database
+2023-11-03 21:09:16.093 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:09:16.274 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:10:13.603 | INFO     | handlers.gpt_accs.add_gpt_acc:input_gpt_acc:27 - awaiting api key for gpt account
+2023-11-03 21:10:15.831 | INFO     | database.db_action:db_add_gpt_account:386 - GPT account with API key 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 added to the database
+2023-11-03 21:10:18.007 | INFO     | handlers.gpt_accs.get_gpt_accs:get_info_gpt_accs:27 - awaiting info about gpt accs
+2023-11-03 21:10:18.286 | INFO     | database.db_action:db_get_all_gpt_accounts:416 - Retrieved all GPT account API keys from the database
+2023-11-03 21:12:15.685 | WARNING  | __main__:<module>:65 - Bot stopped
