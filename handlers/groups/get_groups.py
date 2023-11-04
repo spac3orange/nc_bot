@@ -9,10 +9,11 @@ from aiogram.fsm.context import FSMContext
 from states.states import AddTgAccState
 from data.config_telethon_scheme import AuthTelethon
 from database.db_action import db_get_all_telegram_groups, db_get_all_telegram_ids
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'groups_info')
+@router.callback_query(F.data == 'groups_info', KnownUser())
 async def get_all_groups(callback: CallbackQuery):
     groups = await db_get_all_telegram_groups()
     group_ids = await db_get_all_telegram_ids()

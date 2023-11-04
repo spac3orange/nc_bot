@@ -10,6 +10,7 @@ from states.states import AddGroup
 from database.db_action import db_add_telegram_group, db_get_all_telegram_grp_id, db_get_all_tg_accounts, db_get_monitor_account
 from data.config_telethon_scheme import TelethonConnect
 from data.config_aiogram import aiogram_bot
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -57,7 +58,7 @@ async def all_accs_join_channel(message, group_link):
         return
 
 
-@router.callback_query(F.data == 'groups_add')
+@router.callback_query(F.data == 'groups_add', KnownUser())
 async def input_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите ссылку на канал в поддерживаемом формате:\n\n'

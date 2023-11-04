@@ -4,10 +4,11 @@ from aiogram.filters import Command, CommandStart
 from keyboards import start_btns
 from data.logger import logger
 from bot import monitor
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'monitoring_start')
+@router.callback_query(F.data == 'monitoring_start', KnownUser())
 async def monitoring_start(callback: CallbackQuery):
     try:
         await callback.message.answer('Мониторинг запущен.')
@@ -18,7 +19,7 @@ async def monitoring_start(callback: CallbackQuery):
                                       'Аккаунт для мониторинга не установлен.')
 
 
-@router.callback_query(F.data == 'monitoring_stop')
+@router.callback_query(F.data == 'monitoring_stop', KnownUser())
 async def monitoring_stop(callback: CallbackQuery):
     await callback.message.answer('Мониторинг остановлен.')
     await monitor.stop_monitoring()

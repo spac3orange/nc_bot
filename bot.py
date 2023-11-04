@@ -5,6 +5,7 @@ from data import config_aiogram, aiogram_bot
 from data.logger import logger
 from keyboards import set_commands_menu
 from handlers import start, settings, monitoring, help, get_history
+from handlers.users import users_handlers
 from handlers.tg_accs import *
 from handlers.gpt_accs import *
 from handlers.groups import *
@@ -32,6 +33,7 @@ async def start_params() -> None:
     dp.include_router(add_gpt_acc.router)
     dp.include_router(del_gpt_acc.router)
     dp.include_router(get_gpt_accs.router)
+    dp.include_router(users_handlers.router)
     dp.include_router(monitoring.router)
     dp.include_router(get_history.router)
     dp.include_router(help.router)

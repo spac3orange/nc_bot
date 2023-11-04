@@ -4,10 +4,11 @@ from aiogram import Router, F
 from keyboards import gpt_accs_btns
 from filters.is_admin import IsAdmin
 from aiogram.fsm.context import FSMContext
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'gpt_accs')
+@router.callback_query(F.data == 'gpt_accs', KnownUser())
 async def gpt_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('Настройки ChatGPT аккаунтов:\n\n'

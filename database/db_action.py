@@ -34,25 +34,31 @@ async def db_get_users() -> list:
     db.close()
     return users
 
+@logger.catch()
+async def db_delete_user(user_name: str) -> None:
+    """
+    Deletes a user from the 'users' table based on user_id.
+    """
+    with sq.connect('database/user_base.db') as db:
+        cur = db.cursor()
+        cur.execute("DELETE FROM users WHERE user_name = ?", (user_name,))
+        db.commit()
+        logger.info(f"User with user_name {user_name} deleted from the table.")
 
 async def db_add_user(user_id: int, user_name: str) -> None:
     """
     Adds a new user to the 'users' table if the user_id doesn't already exist.
     """
-    db = sq.connect('database/user_base.db')
-    cur = db.cursor()
-    cur.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
-    existing_user = cur.fetchone()
-
-    if existing_user:
-        logger.warning(f"User with user_id {user_id} already exists in the table.")
-    else:
-        cur.execute("INSERT INTO users (user_id, user_name) VALUES (?, ?)", (user_id, user_name))
-        db.commit()
-        logger.info(f"User with user_id {user_id} added to the table.")
-
-    db.close()
-
+    with sq.connect('database/user_base.db') as db:
+        cur = db.cursor()
+        cur.execute("SELECT user_id FROM users WHERE user_id = ?", (user_id,))
+        existing_user = cur.fetchone()
+        if existing_user:
+            logger.warning(f"User with user_id {user_id} already exists in the table.")
+        else:
+            cur.execute("INSERT INTO users (user_id, user_name) VALUES (?, ?)", (user_id, user_name))
+            db.commit()
+            logger.info(f"User with user_id {user_id} added to the table.")
 
 async def db_get_all_data() -> dict:
     """

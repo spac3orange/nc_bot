@@ -13,6 +13,7 @@ from data.config_telethon_scheme import AuthTelethon
 from database.db_action import db_add_tg_account, db_get_all_tg_accounts, db_get_all_telegram_groups
 from handlers.groups.add_group import all_accs_join_channel
 from telethon import errors
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -45,7 +46,7 @@ async def join_all_channels(session, message, phone):
     else:
         await message.answer('Нет добавленных каналов.')
 
-@router.callback_query(F.data == 'tg_accs_add')
+@router.callback_query(F.data == 'tg_accs_add', KnownUser())
 async def input_phone(callback: CallbackQuery, state: FSMContext):
     logger.info('awaiting phone to add telegram account')
     #await callback.message.delete()

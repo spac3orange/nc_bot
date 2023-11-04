@@ -11,10 +11,11 @@ from states.states import DelGroup
 from data.config_telethon_scheme import AuthTelethon
 from database.db_action import db_remove_telegram_group, db_get_all_telegram_groups
 from .add_group import group_in_table
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'groups_del')
+@router.callback_query(F.data == 'groups_del', KnownUser())
 async def del_input_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     groups = await db_get_all_telegram_groups()

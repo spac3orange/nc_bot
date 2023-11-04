@@ -4,10 +4,11 @@ from aiogram import Router, F
 from keyboards import settings_btns
 from filters.is_admin import IsAdmin
 from data.logger import logger
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'get_history')
+@router.callback_query(F.data == 'get_history', KnownUser())
 async def get_history(callback: CallbackQuery):
     history_path = 'history.txt'
     try:

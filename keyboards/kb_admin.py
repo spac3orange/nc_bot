@@ -17,10 +17,32 @@ def settings_btns():
     kb_builder.button(text='Аккаунты Tg', callback_data='tg_accs')
     kb_builder.button(text='Аккаунты Gpt', callback_data='gpt_accs')
     kb_builder.button(text='Каналы', callback_data='groups_settings')
+    kb_builder.button(text='Пользователи', callback_data='users_settings')
     kb_builder.button(text='◀️Назад', callback_data='back_to_main')
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
+def users_settings_btns():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Добавить', callback_data='users_add')
+    kb_builder.button(text='Удалить', callback_data='users_del')
+    kb_builder.button(text='◀️Назад', callback_data='back_to_settings')
+
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def users_names_btns(users):
+    kb_builder = InlineKeyboardBuilder()
+
+    for user_name in users:
+        kb_builder.button(text=user_name, callback_data=f'users_del_{user_name}')
+    kb_builder.button(text='◀️Назад', callback_data='back_to_users_settings')
+
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
+
+    return kb_builder.as_markup(resize_keyboard=True)
+
 
 
 def tg_accs_btns():

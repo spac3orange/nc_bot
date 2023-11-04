@@ -4,11 +4,12 @@ from aiogram import Router, F
 from keyboards import group_settings_btns
 from filters.is_admin import IsAdmin
 from aiogram.fsm.context import FSMContext
+from filters.known_user import KnownUser
 from database.db_action import db_get_all_telegram_groups, db_get_all_telegram_ids, db_get_triggers_for_group, db_get_promts_for_group
 router = Router()
 
 
-@router.callback_query(F.data == 'groups_settings')
+@router.callback_query(F.data == 'groups_settings', KnownUser())
 async def groups_settings(callback: CallbackQuery):
     #await callback.message.delete()
     groups = await db_get_all_telegram_groups()

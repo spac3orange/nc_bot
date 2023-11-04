@@ -10,10 +10,11 @@ from states.states import Triggers
 from database.db_action import (db_get_all_telegram_groups, db_add_trigger_for_group,
                                 db_get_triggers_for_group, db_remove_triggers_for_group)
 from data.config_aiogram import aiogram_bot
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'groups_triggers')
+@router.callback_query(F.data == 'groups_triggers', KnownUser())
 async def trigger_choose_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     groups = await db_get_all_telegram_groups()

@@ -9,6 +9,7 @@ from aiogram.fsm.context import FSMContext
 from states.states import AddGPTAccState
 from data.config_telethon_scheme import AuthTelethon
 from database.db_action import db_add_tg_account, db_get_all_tg_accounts, db_add_gpt_account
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -22,7 +23,8 @@ async def gpt_acc_in_table(phone):
 async def check_gpt_key(api_key):
     return api_key.startswith('sk-')
 
-@router.callback_query(F.data == 'gpt_accs_add')
+
+@router.callback_query(F.data == 'gpt_accs_add', KnownUser())
 async def input_gpt_acc(callback: CallbackQuery, state: FSMContext):
     logger.info('awaiting api key for gpt account')
     #await callback.message.delete()

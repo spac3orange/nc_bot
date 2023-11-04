@@ -5,6 +5,7 @@ from aiogram.filters import Command, StateFilter
 from aiogram.fsm.state import default_state, State, StatesGroup
 from keyboards import tg_accs_btns, generate_accs_keyboard
 from filters.is_admin import IsAdmin
+from filters.known_user import KnownUser
 from aiogram.fsm.context import FSMContext
 from states.states import AddTgAccState
 from data.config_telethon_scheme import AuthTelethon
@@ -19,7 +20,7 @@ async def acc_in_table(phone):
     return False
 
 
-@router.callback_query(F.data == 'tg_accs_monitor')
+@router.callback_query(F.data == 'tg_accs_monitor', KnownUser())
 async def input_monitor(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     logger.info('awaiting acc to set monitor')

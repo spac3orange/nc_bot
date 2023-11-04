@@ -10,6 +10,7 @@ from states.states import EditPromts
 from database.db_action import (db_add_telegram_group, db_get_all_telegram_groups, db_get_promts_for_group,
                                 db_add_promts_for_group)
 from data.config_aiogram import aiogram_bot
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -32,7 +33,7 @@ async def group_promts(callback: CallbackQuery, state: FSMContext):
                                   parse_mode='HTML')
 
 
-@router.callback_query(F.data == 'group_edit_promt')
+@router.callback_query(F.data == 'group_edit_promt', KnownUser())
 async def set_promt(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await state.update_data(message_id=callback.message.message_id)

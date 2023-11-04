@@ -8,10 +8,11 @@ from data.logger import logger
 from aiogram.fsm.context import FSMContext
 from states.states import DelTgAccState
 from database.db_action import db_remove_tg_account, db_get_all_gpt_accounts, db_remove_gpt_account
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'gpt_accs_del')
+@router.callback_query(F.data == 'gpt_accs_del', KnownUser())
 async def del_gpt_acc(callback: CallbackQuery, state: FSMContext):
     api_keys = await db_get_all_gpt_accounts()
     #await callback.message.delete()

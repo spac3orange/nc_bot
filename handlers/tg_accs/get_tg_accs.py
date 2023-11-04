@@ -5,6 +5,7 @@ from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect
 from database.db_action import db_get_all_tg_accounts, db_get_monitor_account
 from typing import List, Tuple
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -19,7 +20,7 @@ async def get_info(accounts: list) -> List[Tuple[str]]:
     return accs_info
 
 
-@router.callback_query(F.data == 'tg_accs_status')
+@router.callback_query(F.data == 'tg_accs_status', KnownUser())
 async def get_acc_info(callback: CallbackQuery, state: FSMContext):
     logger.info('getting info about TG accounts')
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...')

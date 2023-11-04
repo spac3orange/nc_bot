@@ -12,6 +12,7 @@ from states.states import AddGPTAccState
 from data.config_telethon_scheme import AuthTelethon
 from database.db_action import db_add_tg_account, db_get_all_tg_accounts, db_add_gpt_account, db_get_all_gpt_accounts
 from data.chat_gpt import AuthOpenAI
+from filters.known_user import KnownUser
 router = Router()
 
 
@@ -22,7 +23,7 @@ async def gpt_acc_in_table(phone):
     return False
 
 
-@router.callback_query(F.data == 'gpt_accs_info')
+@router.callback_query(F.data == 'gpt_accs_info', KnownUser())
 async def get_info_gpt_accs(callback: CallbackQuery, state: FSMContext):
     logger.info('awaiting info about gpt accs')
     #await callback.message.delete()

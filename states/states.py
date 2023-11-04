@@ -32,3 +32,9 @@ class AddGPTAccState(StatesGroup):
 
 class DelGPTState(StatesGroup):
     input_key = State()
+
+class UsersAddState(StatesGroup):
+    input_creds = State()
+
+class UsersDelState(StatesGroup):
+    input_id = State()

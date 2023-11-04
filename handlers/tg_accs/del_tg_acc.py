@@ -6,12 +6,13 @@ from aiogram.fsm.state import default_state, State, StatesGroup
 from keyboards import tg_accs_btns, tg_back, generate_accs_keyboard
 from data.logger import logger
 from aiogram.fsm.context import FSMContext
+from filters.known_user import KnownUser
 from states.states import DelTgAccState
 from database.db_action import db_remove_tg_account, db_get_all_tg_accounts
 router = Router()
 
 
-@router.callback_query(F.data == 'tg_accs_del')
+@router.callback_query(F.data == 'tg_accs_del', KnownUser())
 async def del_input_phone(callback: CallbackQuery, state: FSMContext):
     logger.info('awaiting phone to delete telegram account')
     #await callback.message.delete()

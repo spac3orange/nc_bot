@@ -4,10 +4,11 @@ from aiogram import Router, F
 from keyboards import settings_btns
 from filters.is_admin import IsAdmin
 from database.db_action import db_get_all_data
+from filters.known_user import KnownUser
 router = Router()
 
 
-@router.callback_query(F.data == 'settings')
+@router.callback_query(F.data == 'settings', KnownUser())
 async def process_start(callback: CallbackQuery):
     #await callback.message.delete()
     all_data = await db_get_all_data()
