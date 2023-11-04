@@ -11,6 +11,9 @@ class AuthOpenAI:
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
+        self.username = 'sp6i015wn0'
+        self.password = 'mVmuv81ifB8DNpvc1m'
+        self.proxy = f"http://{self.username}:{self.password}@cz.smartproxy.com:26000"
 
     @retry(stop=stop_after_attempt(3))
     async def process_question(self, question):
@@ -22,15 +25,17 @@ class AuthOpenAI:
                  'content': query}
             ]
         }
+
+
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(url=self.request_url, headers=self.request_header, json=data,
-                                        ssl=False) as response:
+                                        ssl=False, proxy=self.proxy) as response:
 
                     try:
-                        resp = await asyncio.wait_for(response.json(), timeout=50)
+                        resp = await asyncio.wait_for(response.json(), timeout=30)
                     except asyncio.TimeoutError:
-                        raise Exception('Результат не получен за 50 секунд')
+                        raise Exception('Результат не получен за 30 секунд')
 
             if resp:
                 if resp.get('error') and resp['error']['code'] == 503:
@@ -43,38 +48,43 @@ class AuthOpenAI:
 
     async def check_work(self):
         print(self.api_key)
-        query = 'Тестовое сообщение'
+        query = 'Привет! Как дела?'
         data = {
             'model': 'gpt-3.5-turbo-16k',
             'messages': [
                 {'role': 'user', 'content': query}
             ]
         }
-
         retries = 3
         retry_timeout = aiohttp.ClientTimeout(total=20)
 
+
         @retry(stop=stop_after_attempt(retries), wait=wait_fixed(retry_timeout.total))
         async def send_request():
-            async with aiohttp.ClientSession(timeout=retry_timeout) as session:
-                async with session.post(url=self.request_url, headers=self.request_header, json=data,
-                                        ssl=False) as response:
-                    resp = await response.json()
-                    if resp:
-                        pprint(resp)
-                        if resp['choices'][0]['message']['content']:
-                            return 'Аккаунт доступен.'
+            try:
+                async with aiohttp.ClientSession(timeout=retry_timeout, trust_env=True) as session:
+                    async with session.post(url=self.request_url, headers=self.request_header, json=data,
+                                            proxy=self.proxy, ssl=False) as response:
+                        if response:
+                            print(response.status)
+                            resp = await response.json()
+                            if resp:
+                                pprint(resp)
+                                if resp['choices'][0]['message']['content']:
+                                    return 'Аккаунт доступен.'
+                                else:
+                                    raise Exception('Аккаунт не доступен.')
+                            else:
+                                raise Exception('Ошибка получения ответа.')
                         else:
-                            raise Exception('Аккаунт не доступен.')
-                    else:
-                        raise Exception('Ошибка получения ответа.')
+                            logger.error('no response')
+            except Exception as e:
+                logger.error(e)
+                raise Exception(f"Request failed {e}")
 
         try:
             res = await send_request()
-            if res == 'Аккаунт доступен.':
-                return res
-            else:
-                return 'Аккаунт не доступен.'
+            return res
         except Exception as e:
             print(f"Request failed {e}")
             return 'Аккаунт не доступен.'
