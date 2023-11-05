@@ -362,19 +362,19 @@ async def get_groups_and_triggers() -> Dict[str, str]:
     Retrieves all groups and their triggers from the database.
     Returns a dictionary where keys are group names and values are triggers as a comma-separated string.
     """
-    db = sq.connect('database/user_base.db')
-    cur = db.cursor()
     try:
-        cur.execute("SELECT group_name, triggers FROM telegram_groups")
-        rows = cur.fetchall()
-        groups_triggers_dict = {}
-        for row in rows:
-            print(row)
-            group_name, triggers = row
-            triggers_str = triggers.replace("\n", ", ")  # Заменяем переносы строк на запятые
-            groups_triggers_dict[group_name] = triggers_str
-        logger.info("Retrieved all groups and triggers from the database")
-        return groups_triggers_dict
+        with sq.connect('database/user_base.db') as db:
+            cur = db.cursor()
+            cur.execute("SELECT group_name, triggers FROM telegram_groups")
+            rows = cur.fetchall()
+            groups_triggers_dict = {}
+            for row in rows:
+                print(row)
+                group_name, triggers = row
+                triggers_str = triggers.replace("\n", ", ")  # Заменяем переносы строк на запятые
+                groups_triggers_dict[group_name] = triggers_str
+            logger.info("Retrieved all groups and triggers from the database")
+            return groups_triggers_dict
     except Exception as e:
         logger.error(f"Error retrieving groups and triggers from the database: {e}")
         return {}
