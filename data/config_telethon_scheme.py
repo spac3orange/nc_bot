@@ -243,6 +243,7 @@ class TelethonSendMessages:
 
     async def send_comments(self, channel_name, message, acc):
         try:
+            await asyncio.sleep(0, 15)
             message_text = await remove_links(message.message.lower())
 
             promt = await db_get_promts_for_group(channel_name)
