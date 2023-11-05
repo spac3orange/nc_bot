@@ -14,6 +14,7 @@ class ChatMonitor:
     def __init__(self):
         self.scheduler = AsyncIOScheduler()
         self.monitoring_enabled = False
+        self.telethon_connect = None
 
     async def start_monitoring(self):
         if self.monitoring_enabled:
@@ -22,14 +23,19 @@ class ChatMonitor:
         accounts = await db_get_monitor_account()
         if not accounts:
             raise Exception('В таблице нет аккаунтов для мониторинга.')
-        monitor_account = random.choice(accounts)
-        groups_triggers = await get_groups_and_triggers()
-        sess = TelethonConnect(monitor_account)
 
-        self.scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, args=(groups_triggers,), max_instances=10)
+        if self.telethon_connect is None:
+            monitor_account = random.choice(accounts)
+            self.telethon_connect = TelethonConnect(monitor_account)
+
+        groups_triggers = await get_groups_and_triggers()
+
+        self.scheduler.add_job(self.telethon_connect.monitor_channels, 'interval', minutes=1, args=(groups_triggers,),
+                               max_instances=10)
         self.scheduler.start()
         self.monitoring_enabled = True
         logger.info('Monitoring started')
+
         while True:
             await asyncio.sleep(1)
 
