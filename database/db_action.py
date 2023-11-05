@@ -202,13 +202,14 @@ async def db_get_all_telegram_groups() -> List[str]:
     """
     Retrieves a list of all Telegram groups from the database.
     """
-    global db, cur
     try:
-        cur.execute("SELECT group_name FROM telegram_groups")
-        groups = cur.fetchall()
-        group_list = [group[0] for group in groups]
-        logger.info("Retrieved all Telegram groups from the database")
-        return group_list
+        with sq.connect('database/user_base.db') as db:
+            cur = db.cursor()
+            cur.execute("SELECT group_name FROM telegram_groups")
+            groups = cur.fetchall()
+            group_list = [group[0] for group in groups]
+            logger.info("Retrieved all Telegram groups from the database")
+            return group_list
     except Exception as e:
         logger.error(f"Error retrieving Telegram groups from the database: {e}")
         return []

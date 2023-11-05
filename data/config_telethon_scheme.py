@@ -90,10 +90,11 @@ class AuthTelethon:
             groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
             for dialog in groups_and_channels:
                 dialog = await self.client.get_entity(dialog)
-                dialog_id = dialog.id
-                print(dialog_id)
+                dialog_username = dialog.username
+                print(f'dialog_username: {dialog_username}')
+                print(f'dialog_link: {group_link}')
                 try:
-                    if dialog_id == group_link:
+                    if dialog_username == group_link:
                         self.client.disconnect()
                         return 'already_in_group'
                 except Exception as e:
@@ -149,10 +150,10 @@ class TelethonConnect:
             groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
             for dialog in groups_and_channels:
                 dialog = await self.client.get_entity(dialog)
-                dialog_id = dialog.id
-                print(dialog_id)
+                dialog_username = dialog.username
+                print(dialog_username)
                 try:
-                    if dialog_id == group_link:
+                    if dialog_username == group_link:
                         self.client.disconnect()
                         return 'already_in_group'
                 except Exception as e:
