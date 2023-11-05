@@ -10,20 +10,6 @@ scheduler = AsyncIOScheduler()
 monitoring_enabled = False
 
 
-async def monitor_chats():
-    monitor_account = random.choice(await db_get_monitor_account())
-    groups_triggers = await get_groups_and_triggers()
-    print(groups_triggers)
-
-    sess = TelethonConnect(monitor_account)
-    scheduler.start()
-    scheduler.add_job(sess.monitor_channels, 'interval', minutes=1, seconds=30, args=(groups_triggers,),
-                      max_instances=10)
-
-    while True:
-        await asyncio.sleep(1)
-
-
 class ChatMonitor:
     def __init__(self):
         self.scheduler = AsyncIOScheduler()

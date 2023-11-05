@@ -158,17 +158,16 @@ async def db_get_monitor_account() -> List[str]:
     """
     Retrieves all Telegram accounts from the database.
     """
-    db = sq.connect('database/user_base.db')
-    cur = db.cursor()
     try:
-        cur.execute("SELECT phone FROM telegram_monitor_account")
-        rows = cur.fetchall()
-        phone_numbers = [row[0] for row in rows]
-        return phone_numbers
+        with sq.connect('database/user_base.db') as db:
+            cur = db.cursor()
+            cur.execute("SELECT phone FROM telegram_monitor_account")
+            rows = cur.fetchall()
+            phone_numbers = [row[0] for row in rows]
+            return phone_numbers
     except Exception as e:
         logger.error(f"Error retrieving Telegram accounts from the database: {e}")
         return []
-
 
 @logger.catch()
 async def db_add_telegram_group(group_link: str, group_id: int) -> None:
