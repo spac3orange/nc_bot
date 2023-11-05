@@ -273,6 +273,7 @@ class TelethonSendMessages:
                     timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                     file.write(f'\n|{timestamp}:'
                                f'\nАккаунт: {acc}'
+                               f'\nКанал: @{channel_name}'
                                f'\nКомментарий: \n{comment}\n\n')
             else:
                 raise Exception('Comment not found')
@@ -286,4 +287,5 @@ class TelethonSendMessages:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 file.write(f'\n|{timestamp}'
                            f'\nАккаунт: {acc}'
+                           f'\nКанал: @{channel_name}'
                            f'\nОшибка: \n{e}\n\n')

@@ -16,7 +16,7 @@ async def process_users_settings(callback: CallbackQuery):
     users = await db_get_users()
     users_list = []
     for uid, name in users:
-        users_list.append(f'\n<b>Ник</b>: {name}\n<b>ID: {uid}</b>')
+        users_list.append(f'\n<b>Ник</b>: @{name}\n<b>ID: {uid}</b>')
     pprint(users_list)
     users_list_str = '\n'.join(users_list)
     pprint(users_list_str)
