@@ -12,6 +12,7 @@ class Database:
         self.password = self.env.str('DB_PASSWORD')
         self.host = self.env.str('DB_HOST')
         self.db_name = self.env.str('DB_NAME')
+        self.db_port = self.env.str('DB_PORT')
         self.pool = None
         self.lock = asyncio.Lock()
 
@@ -21,7 +22,8 @@ class Database:
                 user=self.user,
                 password=self.password,
                 host=self.host,
-                database=self.db_name
+                database=self.db_name,
+                port=self.db_port,
             )
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while creating connection pool", error)
