@@ -3,9 +3,9 @@ import random
 from telethon import TelegramClient, errors
 from environs import Env
 from telethon.tl.functions.messages import SendMessageRequest
-from telethon.tl.types import InputPeerChannel, Channel, PeerChannel
+from telethon.tl.types import InputPeerChannel
 from data.logger import logger
-from database.db_action import db_get_all_tg_accounts, db_get_promts_for_group, db_get_all_gpt_accounts, db_get_users
+from database import db
 from telethon.tl.functions.channels import JoinChannelRequest
 from pprint import pprint
 import datetime
@@ -15,6 +15,24 @@ import pytz
 from .chat_gpt import AuthOpenAI
 import re
 from data.config_aiogram import aiogram_bot
+from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
+from telethon.tl.functions.photos import UploadProfilePhotoRequest
+from telethon.tl.types import InputPhoto
+
+
+async def monitor_settings(session):
+    active_users = await db.get_monitoring_user_ids()
+    print('active_users\n', active_users)
+    if active_users:
+        monitoring_list = []
+        for u in active_users:
+            user_settings = await db.get_user_groups_and_triggers(u)
+            print('user_settings', user_settings)
+            monitoring_list.append(user_settings)
+        print('outp request\n', monitoring_list)
+        await session.monitor_channels(monitoring_list)
+    else:
+        logger.warning('No users to monitor')
 
 
 async def remove_links(text):
@@ -25,7 +43,7 @@ async def remove_links(text):
 
 
 class AuthTelethon:
-    def __init__(self, phone):
+    def __init__(self, phone: str):
         self.phone = phone
         env = Env()
         env.read_env()
@@ -116,6 +134,55 @@ class AuthTelethon:
             await self.client.disconnect()
             return False
 
+    async def change_first_name(self, first_name: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(first_name=first_name))
+            logger.info(f'Changed first name to {first_name}')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing first name: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_last_name(self, last_name: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(last_name=last_name))
+            logger.info(f'Changed last name to {last_name}')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing last name: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_bio(self, bio: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(about=bio))
+            logger.info('Changed bio')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing bio: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_profile_photo(self, photo_path: str):
+        try:
+            # Загружаем фото профиля
+            await self.client.connect()
+            photo = InputPhoto(await self.client.upload_file(photo_path))
+            await self.client(UploadProfilePhotoRequest(photo))
+            logger.info('Changed profile photo')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing profile photo: {e}')
+            await self.client.disconnect()
+            return False
 
 class TelethonConnect:
     def __init__(self, session_name):
@@ -152,9 +219,11 @@ class TelethonConnect:
                 dialog = await self.client.get_entity(dialog)
                 dialog_username = dialog.username
                 print(dialog_username)
+                print(group_link[1:])
                 try:
-                    if dialog_username == group_link:
+                    if dialog_username == group_link[1:]:
                         self.client.disconnect()
+                        print('already_in_group')
                         return 'already_in_group'
                 except Exception as e:
                     logger.error(e)
@@ -175,57 +244,108 @@ class TelethonConnect:
             await self.client.disconnect()
             return False
 
-    async def monitor_channels(self, channel_keywords: dict):
+    async def monitor_channels(self, channel_keywords: dict = None):
         try:
-            logger.info('Monitoring channels for new posts...')
-            await self.client.connect()
-            approved_messages = []
-            for channel, keywords in channel_keywords.items():
-                entity = await self.client.get_entity(channel)
-                input_entity = InputPeerChannel(entity.id, entity.access_hash)
-                utc_now = datetime.now(pytz.utc)
-                offset_date = utc_now - timedelta(minutes=1)
+            if channel_keywords:
+                logger.info('Monitoring channels for new posts...')
+                await self.client.connect()
+                approved_messages = []
+                for item in channel_keywords:
+                    for user_id, channels in item.items():
+                        for (channel_name, channel_id), keywords in channels.items():
+                            entity = await self.client.get_entity(channel_name)
+                            input_entity = InputPeerChannel(entity.id, entity.access_hash)
+                            utc_now = datetime.now(pytz.utc)
+                            offset_date = utc_now - timedelta(minutes=1)
 
-                messages = await self.client(GetHistoryRequest(
-                    peer=input_entity,
-                    limit=10,
-                    offset_date=None,
-                    offset_id=0,
-                    max_id=0,
-                    min_id=0,
-                    add_offset=0,
-                    hash=0
-                ))
+                            messages = await self.client(GetHistoryRequest(
+                                peer=input_entity,
+                                limit=10,
+                                offset_date=None,
+                                offset_id=0,
+                                max_id=0,
+                                min_id=0,
+                                add_offset=0,
+                                hash=0
+                            ))
 
-                for message in messages.messages:
-                    if message.message and message.date > offset_date:
-                        for keyword in keywords.split(','):
-                            if keyword.strip() in message.message:
-                                #pprint({
-                                #   'channel': channel,
-                                #   'message_id': message.id,
-                                #    'text': message.message
-                                #})
-                                logger.info('Found post with triggers')
+                            if keywords == 'Нет':
+                                for message in messages.messages:
+                                    if message.message and message.date > offset_date:
+                                        logger.info('Found post without triggers')
+                                        approved_messages.append((user_id, channel_name, message))
 
-                                approved_messages.append((channel, message))
-                                break
-            await self.client.disconnect()
-            if approved_messages:
-                accounts = await db_get_all_tg_accounts()
-                tasks = []
-                for msg in approved_messages:
-                    acc = random.choice(accounts)
-                    channel, message = msg
-                    session = TelethonSendMessages(acc)
-                    task = asyncio.create_task(session.send_comments(channel, message, acc))
-                    tasks.append(task)
-                await asyncio.gather(*tasks)
+                            else:
+                                for message in messages.messages:
+                                    if message.message and message.date > offset_date:
+                                        for keyword in keywords.split(','):
+                                            if keyword.strip() in message.message:
+                                                #pprint({
+                                                #   'channel': channel,
+                                                #   'message_id': message.id,
+                                                #    'text': message.message
+                                                #})
+                                                logger.info('Found post with triggers')
 
+                                                approved_messages.append((user_id, channel_name, message))
+
+                await self.client.disconnect()
+                if approved_messages:
+                    accounts = await db.db_get_all_tg_accounts()
+                    gpt_accs = await db.db_get_all_gpt_accounts()
+                    all_promts = await db.db_get_all_promts()
+                    all_users_with_notif = await db.get_users_with_notifications()
+                    all_basic_users = await db.get_user_ids_by_sub_type('Базовый')
+                    # for m in approved_messages:
+                    #     user_id = m[0]
+                    #     try:
+                        
+                    tasks = []
+                    for msg in approved_messages:
+                        user_id, channel, message = msg
+                        if user_id in all_basic_users:
+                            acc = random.choice(accounts)
+                            session = TelethonSendMessages(acc)
+                        else:
+                            acc = random.choice(await db.get_user_accounts(user_id))
+                            session = TelethonSendMessages(acc)
+                        acc_in_group = await session.join_group(channel)
+
+                        if acc_in_group == 'already_in_group':
+                            pass
+                            print(f'{acc} already in group {channel}')
+                        elif acc_in_group == 'joined':
+                            print(f'{acc} joined group {channel}')
+                        elif acc_in_group == 'banned':
+                            print(f'{acc} banned')
+                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
+                            continue
+
+                        message_text = message.message
+                        promt = all_promts.get(channel)
+                        if promt == 'Нет':
+                            promt = 'Напиши короткий комментарий от первого лица размером в одно предложение'
+                        gpt_api = random.choice(gpt_accs)
+                        gpt = AuthOpenAI(gpt_api)
+                        gpt_question = message_text + '.' + f'{promt}'
+                        comment = await gpt.process_question(gpt_question)
+                        notif = None
+                        if user_id in all_users_with_notif:
+                            notif = True
+                        if comment:
+                            task = asyncio.create_task(session.send_comments(user_id, channel, message,
+                                                                             acc, comment, notif))
+                            tasks.append(task)
+                        else:
+                            print('Комментарий не сгенерирован')
+                    await asyncio.gather(*tasks)
+            else:
+                logger.warning('No channels to monitor')
 
 
         except Exception as e:
             logger.error(f'Error monitoring channels: {e}')
+            print(e)
             await self.client.disconnect()
 
 
@@ -241,20 +361,10 @@ class TelethonSendMessages:
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
 
-    async def send_comments(self, channel_name, message, acc):
+    async def send_comments(self, user_id, channel_name, message, acc, comment, notif):
+        print('incoming request:\n', user_id, channel_name, message, acc)
         try:
-            await asyncio.sleep(0, 15)
-            message_text = await remove_links(message.message.lower())
-
-            promt = await db_get_promts_for_group(channel_name)
-            gpt_api = random.choice(await db_get_all_gpt_accounts())
-            gpt_question = message_text + '.' + f'{promt}'
-            print(gpt_api)
-            pprint(gpt_question)
-
-            gpt = AuthOpenAI(gpt_api)
-            comment = await gpt.process_question(gpt_question)
-
+            await asyncio.sleep(random.randint(1, 20))
             if comment:
                 comment = comment.strip('"')
                 await self.client.connect()
@@ -263,31 +373,68 @@ class TelethonSendMessages:
                 if message:
                     await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     logger.info('Comment sent')
-                    users = await db_get_users()
-                    for u in users:
-                        await aiogram_bot.send_message(u[0], f'Комментарий в группу {channel_name} отправлен.')
+                    print(user_id, f'Комментарий в группу {channel_name} отправлен.')
+                if notif:
+                    await aiogram_bot.send_message(user_id, f'Комментарий в группу {channel_name} отправлен.')
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
 
                 # Запись отправленного комментария в файл
-                with open('history.txt', 'a', encoding='utf-8') as file:
+                with open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
                     timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                     file.write(f'\n|{timestamp}:'
                                f'\nАккаунт: {acc}'
-                               f'\nКанал: @{channel_name}'
+                               f'\nКанал: {channel_name}'
                                f'\nКомментарий: \n{comment}\n\n')
             else:
                 raise Exception('Comment not found')
 
         except Exception as e:
             logger.error(f'Error sending comments: {e}')
+            print(e)
             await self.client.disconnect()
 
             # Запись ошибки в файл
-            with open('history.txt', 'a', encoding='utf-8') as file:
+            with open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 file.write(f'\n|{timestamp}'
                            f'\nАккаунт: {acc}'
-                           f'\nКанал: @{channel_name}'
+                           f'\nКанал: {channel_name}'
                            f'\nОшибка: \n{e}\n\n')
+
+    async def join_group(self, group_link):
+        try:
+            logger.info(f'Joining channel: {group_link}')
+            await self.client.connect()
+            dialogs = await self.client.get_dialogs()
+            groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
+            for dialog in groups_and_channels:
+                dialog = await self.client.get_entity(dialog)
+                dialog_username = dialog.username
+                print(dialog_username)
+                print(group_link[1:])
+                try:
+                    if dialog_username == group_link[1:]:
+                        self.client.disconnect()
+                        print('already_in_group')
+                        return 'already_in_group'
+                except Exception as e:
+                    logger.error(e)
+                    continue
+
+            entity = await self.client.get_entity(group_link)
+
+            await self.client(JoinChannelRequest(entity))
+            logger.info('Joined group successfully')
+            await self.client.disconnect()
+            return 'joined'
+
+        except errors.UserDeactivatedBanError as e:
+            logger.error(e)
+            return 'banned'
+        except Exception as e:
+            logger.error(f'Error joining group: {e}')
+            await self.client.disconnect()
+            return False
+

@@ -3,45 +3,41 @@ from aiogram import Router, F
 from aiogram.filters import Command, CommandStart
 from keyboards import kb_admin
 from data.logger import logger
-from bot import monitor
 from filters.known_user import KnownUser
-from filters.is_admin import IsAdmin
+from database import db
 router = Router()
 router.message.filter(
-    IsAdmin(F)
+    KnownUser()
 )
 
 
 
 
-@router.callback_query(F.data == 'monitor_settings')
-async def monitor_settings(callback: CallbackQuery):
-    await callback.message.answer('<b>Глобальные настройки мониторинга</b>',
-                                  reply_markup=kb_admin.monitoring_settings(),
-                                  parse_mode='HTML')
 
-
-@router.callback_query(F.data == 'monitoring_start', KnownUser())
+@router.callback_query(F.data == 'monitoring_start_users', KnownUser())
 async def monitoring_start(callback: CallbackQuery):
     try:
+        uid = callback.from_user.id
+        await db.toggle_monitoring_status(uid, True)
         await callback.message.answer('Мониторинг запущен.')
-        await monitor.start_monitoring()
     except Exception as e:
         logger.error(e)
         await callback.message.answer('Ошибка.\n'
                                       'Аккаунт для мониторинга не установлен.')
 
 
-@router.callback_query(F.data == 'monitoring_stop', KnownUser())
+@router.callback_query(F.data == 'monitoring_stop_users', KnownUser())
 async def monitoring_stop(callback: CallbackQuery):
+    uid = callback.from_user.id
+    await db.toggle_monitoring_status(uid, False)
     await callback.message.answer('Мониторинг остановлен.')
-    await monitor.stop_monitoring()
 
 
-@router.message(Command(commands='monitor_status'))
+@router.message(Command(commands='monitoring_status'))
 async def get_monitor_status(message: Message):
-    status = await monitor.get_status()
-    if status:
+    uid = message.from_user.id
+    user_monitoring_status = await db.get_monitoring_status(uid)
+    if user_monitoring_status:
         await message.answer(f'Мониторинг работает.')
     else:
         await message.answer(f'Мониторинг не работает.')

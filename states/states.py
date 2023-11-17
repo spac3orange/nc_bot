@@ -38,3 +38,12 @@ class UsersAddState(StatesGroup):
 
 class UsersDelState(StatesGroup):
     input_id = State()
+
+class PromoteUser(StatesGroup):
+    input_promote = State()
+
+class TranferAcc(StatesGroup):
+    input_acc = State()
+
+class EditAccInfo(StatesGroup):
+    change_name = State()

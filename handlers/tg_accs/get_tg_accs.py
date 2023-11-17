@@ -1,9 +1,9 @@
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect
-from database.db_action import db_get_all_tg_accounts, db_get_monitor_account
+from database import db
 from typing import List, Tuple
 from filters.known_user import KnownUser
 router = Router()
@@ -25,12 +25,20 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
     logger.info('getting info about TG accounts')
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...')
     try:
-        accounts = await db_get_all_tg_accounts()
+        accounts = await db.db_get_all_tg_accounts()
         displayed_accounts = '\n'.join(accounts)
-        monitor = ''.join(await db_get_monitor_account())
+        monitor = ''.join(await db.db_get_monitor_account())
         if accounts:
             accs_info = await get_info(accounts)
-
+            monitor_info = await get_info([monitor])
+            monitor_formatted = '\n\n'.join([
+                                                f'<b>Тел:</b> {phone}'
+                                                f'\n<b>ID:</b> {id}'
+                                                f'\n<b>Имя:</b> {name}'
+                                                f'\n<b>Фамилия:</b> {surname}'
+                                                f'\n<b>Ник:</b> {username}'
+                                                f'\n<b>Ограничения:</b> {restricted}'
+                                                for phone, id, name, surname, username, restricted in monitor_info])
             accounts_formatted = '\n\n'.join([
                                               f'<b>Тел:</b> {phone}'
                                               f'\n<b>ID:</b> {id}'
@@ -40,7 +48,8 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
                                               f'\n<b>Ограничения:</b> {restricted}'
                                               for phone, id, name, surname, username, restricted in accs_info])
 
-            await callback.message.answer(text=f'<b>Аккаунт для мониторинга:</b>\n{monitor}\n\n'
+            await callback.message.answer(text=f'<b>Аккаунт для мониторинга:</b>\n{monitor}\n\n<b>Инфо:</b>\n'
+                                               f'{monitor_formatted}\n\n'
                                                f'<b>Аккануты:</b>\n{displayed_accounts}\n\n<b>Инфо:</b>\n'
                                                f'{accounts_formatted}', parse_mode='HTML')
         else:

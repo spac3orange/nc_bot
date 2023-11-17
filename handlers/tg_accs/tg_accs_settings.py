@@ -1,22 +1,33 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
-from keyboards import tg_accs_btns
+from keyboards import kb_admin
 from filters.is_admin import IsAdmin
 from filters.known_user import KnownUser
 from aiogram.fsm.context import FSMContext
+from database import db
 router = Router()
+router.message.filter(
+    IsAdmin(F)
+)
 
 
 @router.callback_query(F.data == 'tg_accs', KnownUser())
 async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
-    await callback.message.answer('Настройки телеграм аккаунтов:\n\n'
-                                  'Информация: /help_tg_accs', reply_markup=tg_accs_btns())
+    accounts_free = await db.db_get_all_tg_accounts()
+    accounts_paid = await db.get_all_paid_accounts()
+    await callback.message.answer('<b>Настройки телеграм аккаунтов:</b>\n\n'
+                                  f'<b>Аккаунты пользователей с подпиской:</b> {len(accounts_paid)}\n\n'
+                                  f'<b>Доступно бесплатных аккаунтов:</b> {len(accounts_free)}\n\n'
+                                  'Информация: /help_tg_accs', reply_markup=kb_admin.tg_accs_btns(), parse_mode='HTML')
 
 
 @router.callback_query(F.data == 'back_to_accs')
 async def back_to_accs(callback: CallbackQuery, state: FSMContext):
-    #await callback.message.delete()
-    await callback.message.answer('Настройки телеграм аккаунтов:', reply_markup=tg_accs_btns())
-    await state.clear()
+    accounts_free = await db.db_get_all_tg_accounts()
+    accounts_paid = await db.get_all_paid_accounts()
+    await callback.message.answer('<b>Настройки телеграм аккаунтов:</b>\n\n'
+                                  f'<b>Аккаунты пользователей с подпиской:</b> {len(accounts_paid)}\n\n'
+                                  f'<b>Доступно бесплатных аккаунтов:</b> {len(accounts_free)}\n\n'
+                                  'Информация: /help_tg_accs', reply_markup=kb_admin.tg_accs_btns(), parse_mode='HTML')

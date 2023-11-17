@@ -1968,3 +1968,252 @@ sqlite3.ProgrammingError: Cannot operate on a closed database.
 2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
 2023-11-03 16:14:10.190 | ERROR    | database.db_action:db_get_promts_for_group:261 - Error retrieving prompts for Telegram group from the database: no such column: prompts
 2023-11-03 16:57:41.848 | ERROR    | data.chat_gpt:process_question:36 - Request failed 
+2023-11-04 14:21:35.288 | ERROR    | data.chat_gpt:send_request:79 - 407, message='Proxy Authentication Required', url=URL('http://sp60:mVDNpvc1m@cz.smartproxy.com:26000')
+2023-11-04 14:21:35.290 | ERROR    | data.chat_gpt:send_request:79 - 407, message='Proxy Authentication Required', url=URL('http://sp60:mVDNpvc1m@cz.smartproxy.com:26000')
+2023-11-04 14:24:28.256 | ERROR    | data.chat_gpt:send_request:79 - 'choices'
+2023-11-04 14:24:49.280 | ERROR    | data.chat_gpt:send_request:79 - 'choices'
+2023-11-04 14:25:10.328 | ERROR    | data.chat_gpt:send_request:79 - 'choices'
+2023-11-04 14:28:29.868 | ERROR    | data.chat_gpt:send_request:79 - 
+2023-11-04 14:36:25.426 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.460 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.460 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.461 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.461 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.462 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.462 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.463 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: RetryError[<Future at 0x1afb53e7b50 state=finished raised TypeError>]
+2023-11-04 14:36:25.463 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.463 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: RetryError[<Future at 0x1afb53d8510 state=finished raised TypeError>]
+2023-11-04 14:36:25.463 | ERROR    | data.chat_gpt:process_question:52 - Request failed Passing coroutines is forbidden, use tasks explicitly.
+2023-11-04 14:36:25.463 | ERROR    | data.config_telethon_scheme:send_comments:281 - Error sending comments: RetryError[<Future at 0x1afb53d9490 state=finished raised TypeError>]
+2023-11-05 13:21:37.826 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: Comment not found
+2023-11-05 13:22:38.222 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:22:38.246 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:22:59.056 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:22:59.132 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:27:23.415 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: Comment not found
+2023-11-05 13:27:23.506 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: Comment not found
+2023-11-05 13:27:23.536 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: Comment not found
+2023-11-05 13:51:40.300 | ERROR    | database.db_action:get_groups_and_triggers:379 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-11-05 13:51:50.170 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:51:50.313 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:52:11.337 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:52:11.839 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:52:32.293 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:52:32.902 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-05 13:54:13.513 | ERROR    | database.db_action:get_groups_and_triggers:379 - Error retrieving groups and triggers from the database: 'NoneType' object has no attribute 'replace'
+2023-11-05 13:57:32.885 | ERROR    | data.chat_gpt:send_request:82 - Server disconnected
+2023-11-05 14:02:10.553 | ERROR    | data.config_telethon_scheme:monitor_channels:228 - Error monitoring channels: database is locked
+2023-11-05 14:02:31.178 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: The key is not registered in the system (caused by ResolveUsernameRequest)
+2023-11-05 14:45:40.088 | ERROR    | data.config_telethon_scheme:send_comments:283 - Error sending comments: database is locked
+2023-11-05 14:45:45.646 | ERROR    | data.config_telethon_scheme:monitor_channels:228 - Error monitoring channels: database is locked
+2023-11-13 19:47:40.038 | ERROR    | data.chat_gpt:send_request:82 - 
+2023-11-14 00:03:01.108 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 00:03:01.109 | ERROR    | database.db_action:db_get_all_telegram_groups:277 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 00:04:17.242 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 00:04:17.242 | ERROR    | database.db_action:db_get_all_telegram_groups:277 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 00:22:34.038 | ERROR    | database.db_action:get_user_info:544 - Error while retrieving user info
+2023-11-14 00:24:07.042 | ERROR    | database.db_action:get_user_info:544 - Error while retrieving user info
+2023-11-14 00:25:13.797 | ERROR    | handlers.get_history:get_history:26 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-14 00:25:46.172 | ERROR    | handlers.users.users_handlers:user_add_to_db:55 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:25:50.532 | ERROR    | handlers.users.users_handlers:user_add_to_db:55 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:33:25.502 | ERROR    | handlers.users.users_handlers:user_add_to_db:55 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:33:28.161 | ERROR    | handlers.users.users_handlers:user_add_to_db:55 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:33:32.186 | ERROR    | handlers.users.users_handlers:user_add_to_db:55 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:35:17.895 | ERROR    | handlers.users.users_handlers:user_add_to_db:71 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:53:55.453 | ERROR    | handlers.users.users_handlers:user_add_to_db:71 - not enough values to unpack (expected 2, got 1)
+2023-11-14 00:54:00.431 | ERROR    | handlers.get_history:get_history:26 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-14 01:12:10.527 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:12:10.528 | ERROR    | database.db_action:get_groups_and_triggers:471 - Error retrieving groups and triggers from the database: 'NoneType' object is not iterable
+2023-11-14 01:23:56.923 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:23:56.923 | ERROR    | database.db_action:db_get_all_telegram_groups:299 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:24:00.385 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:24:00.385 | ERROR    | database.db_action:db_get_all_telegram_groups:299 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:24:00.799 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:24:00.800 | ERROR    | database.db_action:db_get_all_telegram_ids:316 - Error retrieving Telegram id's from the database: 'NoneType' object is not iterable
+2023-11-14 01:34:17.990 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:34:17.991 | ERROR    | database.db_action:get_groups_and_triggers:472 - Error retrieving channels and triggers from the database: 'NoneType' object is not iterable
+2023-11-14 01:37:01.989 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:37:01.989 | ERROR    | database.db_action:get_groups_and_triggers:472 - Error retrieving channels and triggers from the database: 'NoneType' object is not iterable
+2023-11-14 01:38:22.900 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:38:22.900 | ERROR    | database.db_action:get_groups_and_triggers:472 - Error retrieving channels and triggers from the database: 'NoneType' object is not iterable
+2023-11-14 01:38:22.905 | ERROR    | handlers.monitoring:monitoring_start:17 - В таблице нет групп для мониторинга.
+2023-11-14 01:40:13.802 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:40:13.802 | ERROR    | database.db_action:db_get_all_telegram_groups:300 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:40:34.037 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:40:34.037 | ERROR    | database.db_action:db_get_all_telegram_grp_id:334 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:17.090 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:17.090 | ERROR    | database.db_action:db_get_all_telegram_groups:300 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:17.400 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:17.401 | ERROR    | database.db_action:db_get_all_telegram_ids:317 - Error retrieving Telegram id's from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:25.142 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:25.144 | ERROR    | database.db_action:db_get_all_telegram_grp_id:334 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:46.077 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:46.078 | ERROR    | database.db_action:db_get_all_telegram_groups:300 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:46.494 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:46.494 | ERROR    | database.db_action:db_get_all_telegram_ids:317 - Error retrieving Telegram id's from the database: 'NoneType' object is not iterable
+2023-11-14 01:43:52.896 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:43:52.896 | ERROR    | database.db_action:db_get_all_telegram_grp_id:334 - Error retrieving Telegram groups from the database: 'NoneType' object is not iterable
+2023-11-14 01:48:10.810 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 01:48:10.811 | ERROR    | database.db_action:db_get_all_telegram_grp_id:334 - Error retrieving Telegram channels from the database: 'NoneType' object is not iterable
+2023-11-14 01:56:19.110 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-14 01:56:40.049 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-14 01:57:00.955 | ERROR    | data.chat_gpt:send_request:82 - 'choices'
+2023-11-14 18:33:48.164 | ERROR    | handlers.get_history:get_history:26 - [Errno 2] No such file or directory: 'history.txt'
+2023-11-14 19:34:12.032 | ERROR    | database.db_action:fetch_all:50 - Error while fetching all
+2023-11-14 19:34:12.033 | ERROR    | database.db_action:get_groups_and_triggers:472 - Error retrieving channels and triggers from the database: 'NoneType' object is not iterable
+2023-11-14 19:34:12.038 | ERROR    | handlers.monitoring:monitoring_start:26 - В таблице нет каналов для мониторинга.
+2023-11-14 22:49:07.569 | ERROR    | database.db_action:get_user_groups_and_triggers:494 - Error retrieving channels and triggers from the database for user_id: 462813109: 'NoneType' object has no attribute 'replace'
+2023-11-14 22:49:08.960 | ERROR    | data.config_telethon_scheme:monitor_channels:246 - Error monitoring channels: 'list' object has no attribute 'items'
+2023-11-14 22:54:25.436 | ERROR    | data.config_telethon_scheme:monitor_channels:247 - Error monitoring channels: 'list' object has no attribute 'items'
+2023-11-14 23:17:37.675 | ERROR    | data.config_telethon_scheme:monitor_channels:257 - Error monitoring channels: 'list' object has no attribute 'items'
+2023-11-14 23:17:56.854 | ERROR    | data.config_telethon_scheme:monitor_channels:257 - Error monitoring channels: 'list' object has no attribute 'items'
+2023-11-15 00:08:24.278 | ERROR    | data.config_telethon_scheme:send_comments:317 - Error sending comments: database is locked
+2023-11-15 00:08:29.818 | ERROR    | data.config_telethon_scheme:monitor_channels:258 - Error monitoring channels: database is locked
+2023-11-15 00:30:05.509 | ERROR    | data.config_telethon_scheme:send_comments:317 - Error sending comments: database is locked
+2023-11-15 00:30:11.037 | ERROR    | data.config_telethon_scheme:monitor_channels:258 - Error monitoring channels: database is locked
+2023-11-15 00:37:35.446 | ERROR    | database.db_action:fetch_all:55 - Error while fetching all
+2023-11-15 00:37:35.448 | ERROR    | database.db_action:db_get_all_gpt_accounts:544 - Error retrieving GPT account API keys from the database: 'NoneType' object is not iterable
+2023-11-15 00:37:35.448 | ERROR    | database.db_action:fetch_all:55 - Error while fetching all
+2023-11-15 00:37:35.448 | ERROR    | database.db_action:db_get_all_gpt_accounts:544 - Error retrieving GPT account API keys from the database: 'NoneType' object is not iterable
+2023-11-15 00:37:35.449 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Cannot choose from an empty sequence
+2023-11-15 00:37:35.450 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Cannot choose from an empty sequence
+2023-11-15 00:50:27.757 | ERROR    | database.db_action:fetch_all:64 - Error while fetching all
+2023-11-15 00:50:27.757 | ERROR    | database.db_action:db_get_all_gpt_accounts:553 - Error retrieving GPT account API keys from the database: 'NoneType' object is not iterable
+2023-11-15 00:50:27.758 | ERROR    | database.db_action:fetch_all:64 - Error while fetching all
+2023-11-15 00:50:27.758 | ERROR    | database.db_action:db_get_all_gpt_accounts:553 - Error retrieving GPT account API keys from the database: 'NoneType' object is not iterable
+2023-11-15 00:50:27.758 | ERROR    | database.db_action:fetch_all:64 - Error while fetching all
+2023-11-15 00:50:27.758 | ERROR    | database.db_action:db_get_all_gpt_accounts:553 - Error retrieving GPT account API keys from the database: 'NoneType' object is not iterable
+2023-11-15 00:50:27.759 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Cannot choose from an empty sequence
+2023-11-15 00:50:27.759 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Cannot choose from an empty sequence
+2023-11-15 00:50:27.763 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Cannot choose from an empty sequence
+2023-11-15 01:02:43.379 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: Comment not found
+2023-11-15 01:05:50.642 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: database is locked
+2023-11-15 01:05:56.190 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 01:06:01.733 | ERROR    | data.config_telethon_scheme:send_comments:316 - Error sending comments: database is locked
+2023-11-15 01:15:08.611 | ERROR    | data.config_telethon_scheme:handle_error:325 - Error sending comments: database is locked
+2023-11-15 01:15:19.657 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 01:15:25.182 | ERROR    | data.config_telethon_scheme:handle_error:325 - Error sending comments: database is locked
+2023-11-15 01:15:41.764 | ERROR    | data.config_telethon_scheme:handle_error:325 - Error sending comments: database is locked
+2023-11-15 01:28:52.636 | ERROR    | data.config_telethon_scheme:handle_error:325 - Error sending comments: database is locked
+2023-11-15 01:29:03.683 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 01:29:09.197 | ERROR    | data.config_telethon_scheme:handle_error:325 - Error sending comments: database is locked
+2023-11-15 01:43:45.728 | ERROR    | data.config_telethon_scheme:handle_error:328 - Error sending comments: Failed to parse message
+2023-11-15 01:43:58.569 | ERROR    | data.config_telethon_scheme:handle_error:328 - Error sending comments: database is locked
+2023-11-15 01:44:04.095 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 01:44:04.380 | ERROR    | data.config_telethon_scheme:handle_error:328 - Error sending comments: Failed to parse message
+2023-11-15 01:44:05.423 | ERROR    | data.config_telethon_scheme:handle_error:328 - Error sending comments: Failed to parse message
+2023-11-15 01:44:06.019 | ERROR    | data.config_telethon_scheme:handle_error:328 - Error sending comments: Failed to parse message
+2023-11-15 02:13:33.219 | ERROR    | data.config_telethon_scheme:send_comments:320 - Error sending comments: Comment not found
+2023-11-15 02:13:38.751 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 02:13:44.568 | ERROR    | data.config_telethon_scheme:send_comments:320 - Error sending comments: database is locked
+2023-11-15 02:13:55.876 | ERROR    | data.config_telethon_scheme:send_comments:320 - Error sending comments: database is locked
+2023-11-15 02:19:56.248 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: '_asyncio.Task' object has no attribute 'strip'
+2023-11-15 02:19:56.890 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: '_asyncio.Task' object has no attribute 'strip'
+2023-11-15 02:20:01.814 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: '_asyncio.Task' object has no attribute 'strip'
+2023-11-15 02:23:53.052 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: database is locked
+2023-11-15 02:23:58.589 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 02:23:58.594 | ERROR    | data.chat_gpt:process_question:46 - Request failed Server disconnected
+2023-11-15 02:28:50.600 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: database is locked
+2023-11-15 02:28:56.124 | ERROR    | data.config_telethon_scheme:monitor_channels:256 - Error monitoring channels: database is locked
+2023-11-15 02:29:01.602 | ERROR    | data.config_telethon_scheme:send_comments:322 - Error sending comments: database is locked
+2023-11-15 19:45:15.107 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-15 19:53:28.060 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-15 19:53:28.060 | ERROR    | database.db_action:get_monitoring_user_ids:130 - Error retrieving user_ids with monitoring_status True from the database: 'NoneType' object is not iterable
+2023-11-15 19:54:28.065 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-15 19:54:28.065 | ERROR    | database.db_action:get_monitoring_user_ids:130 - Error retrieving user_ids with monitoring_status True from the database: 'NoneType' object is not iterable
+2023-11-15 19:55:28.058 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-15 19:55:28.058 | ERROR    | database.db_action:get_monitoring_user_ids:130 - Error retrieving user_ids with monitoring_status True from the database: 'NoneType' object is not iterable
+2023-11-15 19:56:28.062 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-15 19:56:28.063 | ERROR    | database.db_action:get_monitoring_user_ids:130 - Error retrieving user_ids with monitoring_status True from the database: 'NoneType' object is not iterable
+2023-11-15 19:58:25.596 | ERROR    | data.chat_gpt:process_question:46 - Request failed Server disconnected
+2023-11-15 19:58:56.418 | ERROR    | data.config_telethon_scheme:send_comments:314 - Error sending comments: database is locked
+2023-11-15 19:59:01.944 | ERROR    | data.config_telethon_scheme:monitor_channels:268 - Error monitoring channels: database is locked
+2023-11-15 22:06:46.556 | ERROR    | __main__:<module>:75 - func must be a callable or a textual reference to one
+2023-11-15 22:51:35.799 | ERROR    | __main__:<module>:81 - HTTP Client says - ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [The semaphore timeout period has expired]
+2023-11-15 22:52:07.830 | ERROR    | __main__:<module>:81 - HTTP Client says - ClientConnectorError: Cannot connect to host api.telegram.org:443 ssl:default [The semaphore timeout period has expired]
+2023-11-16 03:00:33.286 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-16 03:00:33.287 | ERROR    | database.db_action:get_user_accounts:692 - Error retrieving phone numbers from table accounts_462813109: 'NoneType' object is not iterable
+2023-11-16 03:00:33.287 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-16 03:00:33.288 | ERROR    | database.db_action:db_get_all_telegram_channels:342 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 03:00:56.951 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-16 03:00:56.951 | ERROR    | database.db_action:get_user_accounts:692 - Error retrieving phone numbers from table accounts_462813109: 'NoneType' object is not iterable
+2023-11-16 03:00:56.951 | ERROR    | database.db_action:fetch_all:52 - Error while fetching all
+2023-11-16 03:00:56.952 | ERROR    | database.db_action:db_get_all_telegram_channels:342 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 03:09:22.809 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_462813109.txt'
+2023-11-16 03:11:47.699 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_462813109.txt'
+2023-11-16 04:00:58.636 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_462813109.txt'
+2023-11-16 05:04:08.591 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_462813109.txt'
+2023-11-16 17:47:35.353 | ERROR    | database.db_action:move_accounts:787 - Error moving accounts to accounts_462813109: 'NoneType' object is not iterable
+2023-11-16 17:48:23.549 | ERROR    | database.db_action:move_accounts:787 - Error moving accounts to accounts_462813109: 'NoneType' object is not iterable
+2023-11-16 18:25:29.352 | ERROR    | database.db_action:move_accounts:788 - Error moving accounts to accounts_462813109: 'NoneType' object is not iterable
+2023-11-16 19:01:00.014 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:01:00.014 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:01:02.336 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:01:02.336 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:01:11.185 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:01:11.185 | ERROR    | database.db_action:db_get_all_telegram_grp_id:384 - Error retrieving Telegram channels from the database: 'NoneType' object is not iterable
+2023-11-16 19:01:37.903 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:01:37.903 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:01:37.903 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:01:37.903 | ERROR    | database.db_action:db_get_all_telegram_ids:368 - Error retrieving Telegram channel_ids from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:16.734 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:16.734 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:18.754 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:18.754 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:21.123 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:21.123 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:21.124 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:21.124 | ERROR    | database.db_action:db_get_all_telegram_ids:368 - Error retrieving Telegram channel_ids from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:33.249 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:33.249 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:37.086 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:37.086 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:49.391 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:49.393 | ERROR    | database.db_action:db_get_all_telegram_grp_id:384 - Error retrieving Telegram channels from the database: 'NoneType' object is not iterable
+2023-11-16 19:02:57.027 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:57.028 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:57.028 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:57.028 | ERROR    | database.db_action:db_get_all_telegram_ids:368 - Error retrieving Telegram channel_ids from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:02:58.618 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:02:58.618 | ERROR    | database.db_action:db_get_all_telegram_channels:352 - Error retrieving Telegram channels from the database for user_id: 462813109: 'NoneType' object is not iterable
+2023-11-16 19:04:13.548 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_462813109.txt'
+2023-11-16 19:44:44.367 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:44:44.367 | ERROR    | database.db_action:get_all_paid_accounts:703 - Error while retrieving phone records from tables
+2023-11-16 19:52:33.667 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:52:33.668 | ERROR    | database.db_action:get_all_paid_accounts:703 - Error while retrieving phone records from tables
+2023-11-16 19:53:30.093 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 19:53:30.093 | ERROR    | database.db_action:get_all_paid_accounts:703 - Error while retrieving phone records from tables
+2023-11-16 21:24:07.227 | ERROR    | handlers.users.users_handlers:user_add_to_db:96 - not enough values to unpack (expected 2, got 1)
+2023-11-16 21:26:16.511 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-16 21:28:56.852 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-16 21:32:46.488 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-16 21:33:44.470 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-16 21:38:09.990 | ERROR    | handlers.tg_accs.add_tg_acc:add_tg_acc:81 - Two-steps verification is enabled and a password is required (caused by SignInRequest)
+2023-11-16 21:43:15.716 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-16 21:43:15.716 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_1320351561: 'NoneType' object is not iterable
+2023-11-16 21:43:44.322 | ERROR    | handlers.get_history:get_history:27 - [Errno 2] No such file or directory: 'history/history_1320351561.txt'
+2023-11-16 21:47:15.519 | ERROR    | handlers.groups.add_group:add_group:89 - Telegram server says - Bad Request: chat not found
+2023-11-16 21:47:17.934 | ERROR    | handlers.groups.add_group:add_group:89 - Telegram server says - Bad Request: chat not found
+2023-11-16 21:47:26.052 | ERROR    | handlers.groups.add_group:add_group:89 - Telegram server says - Bad Request: chat not found
+2023-11-16 21:48:39.086 | ERROR    | data.chat_gpt:process_question:46 - Request failed Server disconnected
+2023-11-16 21:52:37.590 | ERROR    | data.config_telethon_scheme:join_group:383 - Error joining group: RPCError -503: Timedout (caused by GetStateRequest)
+2023-11-17 00:44:34.498 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 00:44:34.498 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 00:46:13.192 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 00:46:13.192 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 00:58:38.502 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 00:58:38.502 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:05:13.223 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 01:05:13.224 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:23:09.739 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 01:23:09.740 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:24:26.382 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 01:24:26.382 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:24:29.178 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 01:24:29.178 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:24:33.747 | ERROR    | database.db_action:fetch_all:61 - Error while fetching all
+2023-11-17 01:24:33.747 | ERROR    | database.db_action:get_user_accounts:718 - Error retrieving phone numbers from table accounts_6505935002: 'NoneType' object is not iterable
+2023-11-17 01:24:57.202 | ERROR    | handlers.get_history:get_history:30 - [Errno 2] No such file or directory: 'history/history_6505935002.txt'
+2023-11-17 02:35:20.873 | ERROR    | data.config_telethon_scheme:send_comments:391 - Error sending comments: database is locked
+2023-11-17 02:35:35.276 | ERROR    | data.config_telethon_scheme:monitor_channels:343 - Error monitoring channels: database is locked

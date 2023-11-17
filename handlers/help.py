@@ -1,7 +1,7 @@
 from aiogram.types import Message, CallbackQuery
 from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
-from keyboards import settings_btns
+from keyboards import kb_admin
 from filters.is_admin import IsAdmin
 router = Router()
 
@@ -23,6 +23,14 @@ async def help_tg(message: Message):
                          'содержащие триггеры.\n\n'
                          'Информация - получить информацию о всех внесенных в базу данных аккаунтах.')
 
+@router.message(Command(commands='help_accs'))
+async def help_tg(message: Message):
+    await message.answer('Здесь можно изменить инофрмацию аккаунта, такую как:\n'
+                         '<b>Имя</b>, <b>Фамилия</b>, <b>Bio, Username</b>\n\n',
+                         parse_mode='HTML')
+
+
+
 
 @router.message(Command(commands='help_gpt_accs'))
 async def help_gpt(message: Message):
@@ -35,7 +43,13 @@ async def help_gpt(message: Message):
 async def help_channels(message: Message):
     await message.answer('Добавить - добавить канал для мониторинга в базу данных.\n\n'
                          'Удалить - удалить канал из базы данных.\n\n'
-                         'Триггеры - установить, удалить или изменить триггеры для канала.\n\n'
-                         'Промты - установить, удалить или изменить промт, отправляемый ChatGPT для канала.\n\n'
                          'Список каналов - получить список внесенных в базу данных каналов.')
 
+@router.message(Command(commands='help_promts'))
+async def help_promts_triggers(message: Message):
+    await message.answer('Триггеры - установить, удалить или изменить триггеры для канала.\n\n'
+                         'Промты - установить, удалить или изменить промт, отправляемый ChatGPT для канала.\n\n')
+
+@router.message(Command(commands='information'))
+async def information(message: Message):
+    await message.answer('Информация о боте:\n\n')

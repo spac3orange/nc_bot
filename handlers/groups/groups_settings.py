@@ -1,37 +1,37 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
+from aiogram.types import CallbackQuery
 from aiogram import Router, F
-from keyboards import group_settings_btns
-from filters.is_admin import IsAdmin
+from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
 from filters.known_user import KnownUser
-from database.db_action import db_get_all_telegram_groups, db_get_all_telegram_ids, db_get_triggers_for_group, db_get_promts_for_group
+from database import db
 router = Router()
+router.message.filter(
+    KnownUser()
+)
 
 
 @router.callback_query(F.data == 'groups_settings', KnownUser())
 async def groups_settings(callback: CallbackQuery):
     #await callback.message.delete()
-    groups = await db_get_all_telegram_groups()
-    grp_dict = {}
-    for grp in groups:
-        triggers = await db_get_triggers_for_group(grp)
-        promts = await db_get_promts_for_group(grp)
-        grp_dict[grp] = ['🟢' if triggers else '🔴', '🟢' if promts else '🔴']
+    uid = callback.from_user.id
+    groups = '\n'.join(await db.db_get_all_telegram_channels(uid))
 
-    string = ''
-    for k, v in grp_dict.items():
-        string += '\n' + k + f'\n<b>Триггеры:</b> {v[0]} <b>Промт:</b> {v[1]}'
-
-    await callback.message.answer('Настройки телеграм каналов:\n'
-                                  f'{string}\n\n'
+    await callback.message.answer('<b>Настройки телеграм каналов:</b>\n\n'
+                                  f'Ваши каналы:\n'
+                                  f'{groups}\n\n'
                                   'Информация: /help_channels',
-                                  reply_markup=group_settings_btns(),
+                                  reply_markup=kb_admin.group_settings_btns(),
                                   parse_mode='HTML')
 
 
 @router.callback_query(F.data == 'back_to_groups')
 async def back_groups_settings(callback: CallbackQuery, state: FSMContext):
-    #await callback.message.delete()
-    await callback.message.answer('Настройки телеграм каналов:', reply_markup=group_settings_btns())
-    await state.clear()
+    # await callback.message.delete()
+    uid = callback.from_user.id
+    groups = '\n'.join(await db.db_get_all_telegram_channels(uid))
+    await callback.message.answer('<b>Настройки телеграм каналов:</b>\n\n'
+                                  'Ваши каналы:\n'
+                                  f'{groups}\n\n'
+                                  'Информация: /help_channels',
+                                  reply_markup=kb_admin.group_settings_btns(),
+                                  parse_mode='HTML')

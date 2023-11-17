@@ -1,15 +1,13 @@
 from aiogram.filters import BaseFilter
-from data import config_aiogram
 from aiogram.types import Message
-from database.db_action import db_get_users
-import asyncio
+from database import db
 from data.logger import logger
 
 
 class KnownUser(BaseFilter):
 
     async def get_known_users(self):
-        return await db_get_users()
+        return await db.db_get_users()
 
     async def __call__(self, message: Message) -> bool:
         known_users = await self.get_known_users()

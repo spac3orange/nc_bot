@@ -32,24 +32,17 @@ class Database:
 
     async def execute_query(self, query, *args):
         try:
-            async with self.pool.acquire() as conn:
-                await conn.execute(query, *args)
+            async with self.lock:
+                async with self.pool.acquire() as conn:
+                    await conn.execute(query, *args)
         except (Exception, asyncpg.PostgresError) as error:
             print("Error while executing query", error)
-
-    async def execute_query_return(self, query, *args):
-        try:
-            async with self.pool.acquire() as conn:
-                result = await conn.fetch(query, *args)
-                return result
-        except (Exception, asyncpg.PostgresError) as error:
-            print("Error while executing query", error)
-            return []
 
     async def fetch_row(self, query, *args):
         try:
-            async with self.pool.acquire() as conn:
-                return await conn.fetchrow(query, *args)
+            async with self.lock:
+                async with self.pool.acquire() as conn:
+                    return await conn.fetchrow(query, *args)
         except (Exception, asyncpg.PostgresError) as error:
             print("Error while fetching row", error)
 
@@ -66,10 +59,10 @@ class Database:
         """
         try:
             
-            await self.create_pool()
+
             await self.execute_query(
-                "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
-                "channel_id BIGINT PRIMARY KEY, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет')")
+                "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT PRIMARY KEY, channel_name TEXT,"
+                "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет')")
 
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
@@ -77,8 +70,7 @@ class Database:
 
             # tables updated on start
             await self.execute_query("CREATE TABLE IF NOT EXISTS users(user_id BIGINT PRIMARY KEY,"
-                                     "user_name TEXT, monitoring_status BOOLEAN DEFAULT FALSE,"
-                                     "notifications BOOLEAN DEFAULT TRUE)")
+                                     "user_name TEXT, monitoring_status BOOLEAN DEFAULT FALSE)")
 
             await self.execute_query("""
                             CREATE TABLE IF NOT EXISTS subscriptions (
@@ -87,12 +79,9 @@ class Database:
                                 sub_end_date TEXT DEFAULT 'Нет',
                                 sub_type TEXT DEFAULT 'Базовый',
                                 sub_status BOOLEAN DEFAULT FALSE,
-                                balance INTEGER DEFAULT 0,
-                                comments_sent INTEGER DEFAULT 0
+                                balance INTEGER DEFAULT 0
                             )
                         """)
-            await self.execute_query("CREATE TABLE IF NOT EXISTS users_today(user_id BIGINT PRIMARY KEY,"
-                                     "user_name TEXT)")
 
             logger.info('connected to database')
 
@@ -129,51 +118,12 @@ class Database:
             logger.error("Error while retrieving users from DB", error)
             return []
 
-    async def db_get_users_today(self) -> list:
-        """
-        Retrieves all information from the 'users' table and returns it as a list of tuples.
-        """
-        try:
-            query = "SELECT * FROM users_today"
-            users = await self.fetch_all(query)
-            return users
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error("Error while retrieving users from DB", error)
-            return []
-
-    async def db_add_user_today(self, user_id: int, user_name: str) -> None:
-        """
-        Adds a new user to the 'users' table if the user_id doesn't already exist.
-        """
-        try:
-            query = "SELECT user_id FROM users_today WHERE user_id = $1"
-            existing_user = await self.fetch_row(query, user_id)
-
-            if existing_user:
-                logger.warning(f"User with user_id {user_id} already exists in the table users_today.")
-            else:
-                query = "INSERT INTO users_today (user_id, user_name) VALUES ($1, $2)"
-                await self.execute_query(query, user_id, user_name)
-                logger.info(f"User with user_id {user_id} added to the table users_today.")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error while adding user with user_id {user_id} to the table users_today.", error)
-
-    async def clear_users_today(self) -> None:
-        """
-        Clears the 'users_today' table by deleting all records.
-        """
-        try:
-            query = "DELETE FROM users_today"
-            await self.execute_query(query)
-            logger.info("Cleared 'users_today' table")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error("Error while clearing 'users_today' table", error)
-
     async def get_monitoring_user_ids(self) -> List[int]:
         """
         Retrieves a list of all user_ids from the table where monitoring_status is True.
         """
         try:
+            
             query = "SELECT user_id FROM users WHERE monitoring_status = TRUE"
             rows = await self.fetch_all(query)
             user_ids = [row[0] for row in rows]
@@ -182,23 +132,27 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving user_ids with monitoring_status True from the database: {error}")
             return []
+        
 
     async def db_delete_user(self, user_name: str) -> None:
         """
         Deletes a user from the 'users' table based on user_name.
         """
         try:
+            
             query = "DELETE FROM users WHERE user_name = $1"
             await self.execute_query(query, user_name)
             logger.info(f"User with user_name {user_name} deleted from the table.")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error while deleting user with user_name {user_name} from the table.", error)
+        
 
     async def db_add_user(self, user_id: int, user_name: str) -> None:
         """
         Adds a new user to the 'users' table if the user_id doesn't already exist.
         """
         try:
+            
             query = "SELECT user_id FROM users WHERE user_id = $1"
             existing_user = await self.fetch_row(query, user_id)
 
@@ -210,6 +164,7 @@ class Database:
                 logger.info(f"User with user_id {user_id} added to the table.")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error while adding user with user_id {user_id} to the table.", error)
+        
 
     async def db_get_all_data(self) -> dict:
         """
@@ -367,14 +322,14 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving Telegram channel_ids from the database for user_id: {user_id}: {error}")
             return []
-
+        
 
     async def db_get_all_telegram_grp_id(self) -> List[str]:
         """
         Retrieves a list of all Telegram groups from the database.
         """
         try:
-
+            
             query = "SELECT channel_id FROM telegram_channels"
             groups = await self.fetch_all(query)
             group_list = [group[0] for group in groups]
@@ -383,7 +338,7 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving Telegram channels from the database: {error}")
             return []
-
+        
 
     async def db_get_promts_for_group(self, group_name: str) -> str:
         """
@@ -403,21 +358,7 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving prompts for Telegram channel from the database: {error}")
             return ""
-
-    async def db_get_all_promts(self) -> Dict[str, str]:
-        """
-        Retrieves the prompts for all Telegram groups from the database.
-        """
-        try:
-            query = "SELECT channel_name, promts FROM telegram_channels"
-            results = await self.fetch_all(query)
-            prompts_dict = {result[0]: result[1] for result in results}
-            logger.info("Retrieved prompts for all Telegram channels from the database")
-            return prompts_dict
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error retrieving prompts for Telegram channels from the database: {error}")
-            return {}
-
+        
 
     async def db_add_promts_for_group(self, group_name: str, promts: str) -> bool:
         """
@@ -450,7 +391,7 @@ class Database:
                     existing_triggers += "\n" + "\n".join(triggers)  # Добавляем новые триггеры с новой строки
                 else:
                     existing_triggers = "\n".join(triggers)  # Используем только новые триггеры
-                query = "UPDATE telegram_channels SET triggers = $1 WHERE channel_name = $2"
+                query = "UPDATE telegram_channels SET triggers = $1 WHERE group_name = $2"
                 await self.execute_query(query, existing_triggers, group_name)
                 logger.info(f"Triggers added for Telegram group {group_name} in the database")
                 return True
@@ -578,6 +519,7 @@ class Database:
 
     async def get_user_info(self, uid):
         try:
+            await db.create_pool()
             user_info = {}
 
             # Получение информации из таблицы users
@@ -594,7 +536,6 @@ class Database:
                 user_info["sub_type"] = subscription_row["sub_type"]
                 user_info["sub_status"] = subscription_row["sub_status"]
                 user_info["balance"] = subscription_row["balance"]
-                user_info["comments_sent"] = subscription_row["comments_sent"]
 
             return user_info
 
@@ -634,184 +575,8 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving monitoring_status for user_id: {user_id}: {error}")
             return False
+        
 
-    async def create_user_settings_table(self, user_id: int) -> None:
-        """
-        Creates a new table in the database with the name "settings_{user_id}" and the specified columns.
-        """
-        try:
-            table_name = f"settings_{user_id}"
-            query = f"""
-                CREATE TABLE IF NOT EXISTS {table_name} (
-                    user_id BIGINT PRIMARY KEY,
-                    channel_name TEXT,
-                    channel_id BIGINT,
-                    promts TEXT DEFAULT 'Нет',
-                    triggers TEXT DEFAULT 'Нет',
-                    comments_sent INTEGER DEFAULT 0,
-                    monitoring_status BOOLEAN DEFAULT FALSE
-                )
-            """
-            await self.execute_query(query)
-            logger.info(f"Created table {table_name} in the database")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error while creating table {table_name}: {error}")
-
-    async def update_comments_sent(self, user_id: int, comments: int) -> None:
-        """
-        Updates the 'comments_sent' column in the 'subscriptions' table for a specific user.
-        """
-        try:
-            query = "UPDATE subscriptions SET comments_sent = comments_sent + $1 WHERE user_id = $2"
-            await self.execute_query(query, comments, user_id)
-            logger.info(f"Updated 'comments_sent' for user_id {user_id} in the subscriptions table")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error updating 'comments_sent' for user_id {user_id} in the subscriptions table: {error}")
-
-    # ___________________________________________________
-    # user_accs_table
-    async def create_user_accounts_table(self, user_id: int) -> None:
-        """
-        Creates a new table in the database with the name "settings_{user_id}" and the specified columns.
-        """
-        try:
-            table_name = f"accounts_{user_id}"
-            query = f"""
-                CREATE TABLE IF NOT EXISTS {table_name} (
-                    phone TEXT PRIMARY KEY
-                )
-            """
-            await self.execute_query(query)
-            logger.info(f"Created table {table_name} in the database")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error while creating table {table_name}: {error}")
-
-    async def get_all_paid_accounts(self) -> List[str]:
-        """
-        Retrieves all phone records from tables starting with "accounts_" and returns a list of records.
-        """
-        try:
-            query = "SELECT table_name FROM information_schema.tables WHERE table_name LIKE 'accounts_%'"
-            table_names = await self.fetch_all(query)
-            phone_records = []
-            for table_name in table_names:
-                query = f"SELECT phone FROM {table_name['table_name']}"
-                records = await self.fetch_all(query)
-                phone_records.extend([record['phone'] for record in records])
-            return phone_records
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error("Error while retrieving phone records from tables", error)
-            return []
-
-    async def get_user_accounts(self, user_id: int) -> List[str]:
-        """
-        Retrieves all phone numbers from the specified user's accounts table.
-        """
-        try:
-            table_name = f"accounts_{user_id}"
-            query = f"SELECT phone FROM {table_name}"
-            rows = await self.fetch_all(query)
-            phone_numbers = [row[0] for row in rows]
-            logger.info(f"Retrieved phone numbers from table {table_name}")
-            return phone_numbers
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error retrieving phone numbers from table {table_name}: {error}")
-            return []
-
-    # ------------------------------------------------------
-    # subscriptions table
-    async def get_user_ids_by_sub_type(self, sub_type: str) -> List[int]:
-        """
-        Retrieves a list of user_ids from the subscriptions table with the specified sub_type.
-        """
-        try:
-            query = "SELECT user_id FROM subscriptions WHERE sub_type = $1"
-            rows = await self.fetch_all(query, sub_type)
-            user_ids = [row[0] for row in rows]
-            logger.info(f"Retrieved user_ids with sub_type {sub_type} from the subscriptions table")
-            return user_ids
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error retrieving user_ids with sub_type {sub_type} from the subscriptions table: {error}")
-            return []
-
-    async def update_subscription_type(self, user_id: int, new_sub_type: str) -> None:
-        try:
-            query = "UPDATE subscriptions SET sub_type = $1 WHERE user_id = $2"
-            await self.execute_query(query, new_sub_type, user_id)
-            logger.info(f"Updated subscription type for user_id {user_id} to {new_sub_type}")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error updating subscription type for user_id {user_id}: {error}")
-
-    # ------------------------------------------------------
-    # users table
-    async def get_user_id_by_username(self, username: str) -> int:
-        try:
-            query = "SELECT user_id FROM users WHERE user_name = $1"
-            row = await self.fetch_row(query, username)
-            if row:
-                user_id = row[0]
-                logger.info(f"Retrieved user_id {user_id} for username {username}")
-                return user_id
-            else:
-                logger.warning(f"No user found with username {username}")
-                return None
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error retrieving user_id for username {username} from the database: {error}")
-            return None
-    async def get_user_notifications_status(self, user_id: int) -> str:
-        try:
-            query = "SELECT notifications FROM users WHERE user_id = $1"
-            row = await self.fetch_row(query, user_id)
-            if row:
-                notifications = row[0]
-                return notifications
-            else:
-                logger.warning(f"User with user_id {user_id} not found in the users table.")
-                return ""
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error while retrieving user notifications for user_id {user_id}: {error}")
-            return ""
-
-    async def toggle_user_notifications(self, user_id: int, notifications: bool) -> None:
-        try:
-            query = "UPDATE users SET notifications = $1 WHERE user_id = $2"
-            await self.execute_query(query, notifications, user_id)
-            logger.info(f"Notifications toggled to {notifications} for user_id {user_id}")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error while toggling notifications for user_id {user_id}: {error}")
-
-    async def get_users_with_notifications(self) -> List[int]:
-        try:
-            query = "SELECT user_id FROM users WHERE notifications = TRUE"
-            rows = await self.fetch_all(query)
-            user_ids = [row[0] for row in rows]
-            logger.info("Retrieved user_ids with notifications=True from the database")
-            return user_ids
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error("Error retrieving user_ids with notifications=True from the database:", error)
-            return []
-
-    # ------------------------------------------------------
-    # accounts
-    async def move_accounts(self, user_id: int, num_accounts: int) -> None:
-        try:
-            # Получить список аккаунтов для перемещения
-            query_select = "SELECT phone FROM telegram_accounts LIMIT $1"
-            print(query_select)
-            accounts_to_move = await self.execute_query_return(query_select, num_accounts)
-
-            # Переместить аккаунты в таблицу accounts_{user_id}
-            query_insert = f"INSERT INTO accounts_{user_id} (phone) VALUES ($1)"
-            for account in accounts_to_move:
-                await self.execute_query(query_insert, account["phone"])
-
-            # Удалить перемещенные аккаунты из таблицы telegram_accounts
-            query_delete = "DELETE FROM telegram_accounts WHERE phone IN (SELECT phone FROM telegram_accounts LIMIT $1)"
-            await self.execute_query(query_delete, num_accounts)
-
-            logger.info(f"Moved {num_accounts} accounts to accounts_{user_id}")
-        except (Exception, asyncpg.PostgresError) as error:
-            logger.error(f"Error moving accounts to accounts_{user_id}: {error}")
 
 
 

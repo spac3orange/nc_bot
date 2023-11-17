@@ -1,22 +1,18 @@
-from aiogram.types import Message, CallbackQuery
-from data.logger import logger
+from aiogram.types import CallbackQuery
 from aiogram import Router, F
-from aiogram.filters import Command, StateFilter
-from aiogram.fsm.state import default_state, State, StatesGroup
-from keyboards import tg_accs_btns
-from filters.is_admin import IsAdmin
-from aiogram.fsm.context import FSMContext
-from states.states import AddTgAccState
-from data.config_telethon_scheme import AuthTelethon
-from database.db_action import db_get_all_telegram_groups, db_get_all_telegram_ids
+from database import db
 from filters.known_user import KnownUser
 router = Router()
+router.message.filter(
+    KnownUser()
+)
 
 
 @router.callback_query(F.data == 'groups_info', KnownUser())
 async def get_all_groups(callback: CallbackQuery):
-    groups = await db_get_all_telegram_groups()
-    group_ids = await db_get_all_telegram_ids()
+    uid = callback.from_user.id
+    groups = await db.db_get_all_telegram_channels(uid)
+    group_ids = await db.db_get_all_telegram_ids(uid)
     data = []
     for g, i in zip(groups, group_ids):
         data.append(g)

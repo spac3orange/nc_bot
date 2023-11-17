@@ -1,28 +1,34 @@
 import asyncio
 from aiogram import Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from data import config_aiogram, aiogram_bot
+from data import aiogram_bot
 from data.logger import logger
 from keyboards import set_commands_menu
-from handlers import start, settings, monitoring, help, get_history
-from handlers.users import users_handlers
+from handlers import (start, settings, monitoring, help, get_history,
+                      pro_settings_menu, lk, monitoring_users, notifications)
+from handlers.users import users_handlers, promote_user, transfer_acc
 from handlers.tg_accs import *
 from handlers.gpt_accs import *
 from handlers.groups import *
-from database.db_action import db_start
-from utils import scheduler
+from handlers.admin import admin_panel
+from database import db
+from utils.scheduler import monitor, format_users_today
 
 
-monitor = scheduler.ChatMonitor()
 
 async def start_params() -> None:
     dp = Dispatcher(storage=MemoryStorage())
     dp.include_router(tg_accs_settings.router)
+    dp.include_router(user_tg_accs_settings.router)
+    dp.include_router(promote_user.router)
+    dp.include_router(transfer_acc.router)
+    dp.include_router(notifications.router)
     dp.include_router(add_tg_acc.router)
     dp.include_router(del_tg_acc.router)
     dp.include_router(get_tg_accs.router)
     dp.include_router(tg_accs_monitor.router)
     dp.include_router(groups_settings.router)
+    dp.include_router(pro_settings_menu.router)
     dp.include_router(add_group.router)
     dp.include_router(del_group.router)
     dp.include_router(get_groups.router)
@@ -34,9 +40,13 @@ async def start_params() -> None:
     dp.include_router(del_gpt_acc.router)
     dp.include_router(get_gpt_accs.router)
     dp.include_router(users_handlers.router)
+    dp.include_router(lk.router)
+    dp.include_router(admin_panel.router)
+    dp.include_router(monitoring_users.router)
     dp.include_router(monitoring.router)
     dp.include_router(get_history.router)
     dp.include_router(help.router)
+
     dp.include_router(settings.router)
     dp.include_router(start.router)
 
@@ -46,7 +56,7 @@ async def start_params() -> None:
     await set_commands_menu(aiogram_bot)
 
     # инициализирем БД
-    await db_start()
+    await db.db_start()
 
     # Пропускаем накопившиеся апдейты и запускаем polling
     await aiogram_bot.delete_webhook(drop_pending_updates=True)
@@ -56,7 +66,8 @@ async def start_params() -> None:
 async def main():
     task1 = asyncio.create_task(start_params())
     task2 = asyncio.create_task(monitor.stop_monitoring())
-    await asyncio.gather(task1, task2)
+    task3 = asyncio.create_task(format_users_today.start_scheduler())
+    await asyncio.gather(task1, task2, task3)
 
 
 if __name__ == '__main__':
@@ -67,3 +78,4 @@ if __name__ == '__main__':
         logger.warning('Bot stopped')
     except Exception as e:
         logger.error(e)
+

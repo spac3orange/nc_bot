@@ -1,1 +1,1 @@
-from . import db_action
+from .db_action import db
