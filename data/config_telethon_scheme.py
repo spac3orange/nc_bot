@@ -333,6 +333,7 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
+                            await db.update_comments_sent(user_id, 1)
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                              acc, comment, notif))
                             tasks.append(task)
