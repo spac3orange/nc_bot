@@ -16,14 +16,14 @@ async def process_start(callback: CallbackQuery):
     channels = len(await db.db_get_all_telegram_channels(uid)) or '0'
     if BasicSub():
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> 1\n'
-                                           f'<b>Внесено каналов:</b> {channels}\n',
+                                           f'<b>Внесено каналов:</b> {channels}\n'
+                                           f'<b>Доступно Telegram аккаунтов:</b> 1\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')
     else:
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> {accounts}\n'
-                                           f'<b>Внесено каналов:</b> {channels}\n',
+                                           f'<b>Внесено каналов:</b> {channels}\n'
+                                           f'<b>Доступно Telegram аккаунтов:</b> {accounts}\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')
 
@@ -36,13 +36,13 @@ async def back_to_settings(callback: CallbackQuery):
     channels = len(await db.db_get_all_telegram_channels(uid)) or '0'
     if BasicSub():
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> 1\n'
-                                           f'<b>Внесено каналов:</b> {channels}\n',
+                                           f'<b>Внесено каналов:</b> {channels}\n'
+                                           f'<b>Доступно Telegram аккаунтов:</b> 1\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')
     else:
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> {accounts}\n'
-                                           f'<b>Внесено каналов:</b> {channels}\n',
+                                           f'<b>Внесено каналов:</b> {channels}\n'
+                                           f'<b>Доступно Telegram аккаунтов:</b> {accounts}\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')

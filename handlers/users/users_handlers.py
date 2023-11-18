@@ -37,15 +37,7 @@ async def process_users_settings(callback: CallbackQuery):
         user = []
         user_data = await db.get_user_info(uid)
         accounts = len(await db.get_user_accounts(uid)) or '1'
-        users_list.append(f'\n<b>Ник</b>: @{name}\n'
-                          f'<b>ID:</b> {uid}'
-                          f'<b>Баланс:</b> {user_data["balance"]}\n'
-                          f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
-                          f'<b>Начало подписки:</b> {user_data["sub_start_date"]}\n'
-                          f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
-                          f'<b>Аккаунтов:</b> {accounts}\n'
-                          f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'
-                          f'<b>Мониторинг:</b> {"🟢" if mon else "🔴"}')
+        channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'
                           f'<b>ID:</b> {uid}\n'
                           f'<b>Баланс:</b> {user_data["balance"]}\n'
@@ -54,8 +46,9 @@ async def process_users_settings(callback: CallbackQuery):
                           f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
                           f'<b>Аккаунтов:</b> {accounts}\n'
                           f'<b>Приглашенных пользователей:</b> 0\n'
-                          f'<b>Бонусные дни подписки:</b> 0\n\n'
-                          f'<b>Отправлено комментариев:</b> {user_data["comments_sent"]}\n\n'
+                          f'<b>Бонусные дни подписки:</b> 0\n'
+                          f'<b>Отправлено комментариев:</b> {user_data["comments_sent"]}\n'
+                          f'<b>Каналы:</b> {channels}\n'
                           f'<b>Мониторинг:</b> {"🟢" if mon else "🔴"}')
         user = '\n'.join(user)
         await callback.message.answer(text=user, parse_mode='HTML')
@@ -74,25 +67,18 @@ async def back_to_users_settings(callback: CallbackQuery):
         user = []
         user_data = await db.get_user_info(uid)
         accounts = len(await db.get_user_accounts(uid)) or '1'
-        users_list.append(f'\n<b>Ник</b>: @{name}\n'
-                          f'<b>ID:</b> {uid}'
-                          f'<b>Баланс:</b> {user_data["balance"]}\n'
-                          f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
-                          f'<b>Начало подписки:</b> {user_data["sub_start_date"]}\n'
-                          f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
-                          f'<b>Аккаунтов:</b> {accounts}\n'
-                          f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'
-                          f'<b>Мониторинг:</b> {"🟢" if mon else "🔴"}')
+        channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'
                     f'<b>ID:</b> {uid}\n'
                     f'<b>Баланс:</b> {user_data["balance"]}\n'
                     f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
                     f'<b>Начало подписки:</b> {user_data["sub_start_date"]}\n'
                     f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
-                    f'<b>Приглашенных пользователей:</b> 0\n'
-                    f'<b>Бонусные дни подписки:</b> 0\n\n'
                     f'<b>Аккаунтов:</b> {accounts}\n'
-                    f'<b>Отправлено комментариев:</b> {user_data["comments_sent"]}\n\n'
+                    f'<b>Приглашенных пользователей:</b> 0\n'
+                    f'<b>Бонусные дни подписки:</b> 0\n'
+                    f'<b>Отправлено комментариев:</b> {user_data["comments_sent"]}\n'
+                    f'<b>Каналы:</b> {channels}\n'
                     f'<b>Мониторинг:</b> {"🟢" if mon else "🔴"}')
         user = '\n'.join(user)
         await callback.message.answer(text=user, parse_mode='HTML')

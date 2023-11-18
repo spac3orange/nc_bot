@@ -25,6 +25,10 @@ async def get_channel_id(link: str) -> int:
     chat = await aiogram_bot.get_chat(link)
     return chat.id
 
+async def normalize_channel_link(link: str) -> str:
+    if link.startswith('https://t.me/'):
+        return '@' + link.split('https://t.me/')[1]
+    return link
 
 async def all_accs_join_channel(message, group_link):
     accounts = await db.db_get_all_tg_accounts()
@@ -64,7 +68,8 @@ async def all_accs_join_channel(message, group_link):
 async def input_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите ссылку на канал в поддерживаемом формате:\n\n'
-                                  'Формат:\n@channel_name', reply_markup=kb_admin.groups_back())
+                                  'Пример:\n@channel_name\nhttps://t.me/channel_name',
+                                  reply_markup=kb_admin.groups_back())
     await state.set_state(AddGroup.input_group)
     print(await state.get_state())
 
@@ -73,7 +78,7 @@ async def input_group(callback: CallbackQuery, state: FSMContext):
 async def add_group(message: Message, state: FSMContext):
     try:
         uid = message.from_user.id
-        group_name = message.text
+        group_name = await normalize_channel_link(message.text)
         group_id = await get_channel_id(group_name)
         print(group_id)
         if not await group_in_table(group_id):

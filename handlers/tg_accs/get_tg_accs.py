@@ -37,16 +37,19 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
                                                 f'\n<b>Имя:</b> {name}'
                                                 f'\n<b>Фамилия:</b> {surname}'
                                                 f'\n<b>Ник:</b> {username}'
+                                                f'\n<b>Био:</b> {about}'
                                                 f'\n<b>Ограничения:</b> {restricted}'
-                                                for phone, id, name, surname, username, restricted in monitor_info])
+                                                for phone, id, name, surname, username, restricted, \
+                                                        about in monitor_info])
             accounts_formatted = '\n\n'.join([
                                               f'<b>Тел:</b> {phone}'
                                               f'\n<b>ID:</b> {id}'
                                               f'\n<b>Имя:</b> {name}'
                                               f'\n<b>Фамилия:</b> {surname}'
                                               f'\n<b>Ник:</b> {username}'
+                                              f'\n<b>Био:</b> {about}'
                                               f'\n<b>Ограничения:</b> {restricted}'
-                                              for phone, id, name, surname, username, restricted in accs_info])
+                                              for phone, id, name, surname, username, restricted, about in accs_info])
 
             await callback.message.answer(text=f'<b>Аккаунт для мониторинга:</b>\n{monitor}\n\n<b>Инфо:</b>\n'
                                                f'{monitor_formatted}\n\n'

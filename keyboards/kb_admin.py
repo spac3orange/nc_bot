@@ -114,6 +114,7 @@ def tg_accs_btns():
 def users_tg_accs_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Выбрать аккаунт', callback_data='choose_acc_user')
+    kb_builder.button(text='Мои аккаунты', callback_data='users_accs_get_info')
     kb_builder.button(text='◀️Назад', callback_data='back_to_settings')
 
     kb_builder.adjust(2)

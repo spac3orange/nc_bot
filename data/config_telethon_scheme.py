@@ -18,6 +18,8 @@ from data.config_aiogram import aiogram_bot
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputPhoto
+from telethon.tl.functions.users import GetFullUserRequest
+from telethon.tl.types import InputUserSelf
 
 
 async def monitor_settings(session):
@@ -200,13 +202,18 @@ class TelethonConnect:
         logger.info(f'Getting info about account {self.session_name}...')
         await self.client.connect()
         me = await self.client.get_me()
+
+        full_me = await self.client(GetFullUserRequest(me.username))
+        about = full_me.full_user.about or 'Не установлено'
+        print(about)
         print(f'Тел: {me.phone}\n'
               f'ID: {me.id}\n'
               f'Ник: {me.username}\n'
+              f'Биография: {about}\n'
               f'Ограничения: {me.restricted}\n'
               f'Причина ограничений: {me.restriction_reason}\n')
         await self.client.disconnect()
-        return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted
+        return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about
         # full = await self.client(GetFullUserRequest('username'))
 
     async def join_group(self, group_link):
@@ -376,7 +383,7 @@ class TelethonSendMessages:
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в группу {channel_name} отправлен.')
                 if notif:
-                    await aiogram_bot.send_message(user_id, f'Комментарий в группу {channel_name} отправлен.')
+                    await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()

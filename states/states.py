@@ -47,3 +47,5 @@ class TranferAcc(StatesGroup):
 
 class EditAccInfo(StatesGroup):
     change_name = State()
+    change_surname = State()
+    change_bio = State()

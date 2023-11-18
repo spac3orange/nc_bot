@@ -27,6 +27,7 @@ class Database:
             )
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while creating connection pool", error)
+            print(error)
 
     async def close_pool(self):
         if self.pool:
