@@ -280,3 +280,10 @@ def edit_acc_info(account):
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
+def process_license():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Продолжить👍', callback_data='start_accept_license')
+
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)

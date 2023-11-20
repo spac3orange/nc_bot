@@ -14,9 +14,7 @@ class KnownUser(BaseFilter):
         known_users_list = [x[0] for x in known_users]
 
         valid_user = message.from_user.id in known_users_list
-        logger.warning(f'{message.from_user.username} connected\n'
-                       f'ID: {message.from_user.id}\n'
-                       f'User {message.from_user.username} is KnownUser: {valid_user}')
+
         return valid_user
 
 

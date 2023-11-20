@@ -18,6 +18,8 @@ async def set_commands_menu(bot):
                    description='Контакты Администратора'),
         BotCommand(command='/information',
                    description='Информация о боте'),
+        BotCommand(command='/user_license',
+                   description='Пользовательское соглашение'),
     ]
 
     await bot.set_my_commands(main_menu_commands)

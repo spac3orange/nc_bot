@@ -7,11 +7,13 @@ from filters.known_user import KnownUser
 from database import db
 from aiogram.fsm.context import FSMContext
 from data import logger
-
+from utils import user_license
 router = Router()
 router.message.filter(
     KnownUser()
 )
+
+license_applied = dict()
 
 @router.message(Command(commands='cancel'))
 async def process_cancel_command_state(message: Message, state: FSMContext):
@@ -34,30 +36,65 @@ async def get_monitor_status(message: Message):
     await message.answer(f'Администратор: @Jisiehrk\n')
     logger.info(f'User @{message.from_user.username} get contacts.')
 
+
 @router.message(CommandStart)
-async def process_start(message: Message):
-    uid, uname = message.from_user.id, message.from_user.username
+async def process_license(message: Message):
+    uid = message.from_user.id
+    if not license_applied.get(uid):
+        await message.answer(text=user_license.license_text, reply_markup=kb_admin.process_license(), parse_mode='HTML')
+    else:
+        uid, uname = message.from_user.id, message.from_user.username
+        license_applied[uid] = True
+
+        await db.db_add_user(uid, uname)
+        if not IsAdmin(F):
+            await db.db_add_user_today(uid, uname)
+        await db.add_user_to_subscriptions(uid)
+
+        logger.info(f'User @{message.from_user.username} connected. '
+                    f'User id: {message.from_user.id}')
+
+        user_monitoring_status = await db.get_monitoring_status(uid)
+
+        if IsAdmin(F):
+            await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
+            await message.answer('Добро пожаловать!\n\n'
+                                 f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                                 reply_markup=kb_admin.start_btns_admin(),
+                                 parse_mode='HTML')
+        else:
+            await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
+            await message.answer('Добро пожаловать!\n\n'
+                                 f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                                 reply_markup=kb_admin.start_btns(),
+                                 parse_mode='HTML')
+
+
+
+@router.callback_query(F.data == 'start_accept_license')
+async def process_start(callback: CallbackQuery):
+    uid, uname = callback.from_user.id, callback.from_user.username
+    license_applied[uid] = True
+
     await db.db_add_user(uid, uname)
     if not IsAdmin(F):
         await db.db_add_user_today(uid, uname)
     await db.add_user_to_subscriptions(uid)
 
-    logger.info(f'User @{message.from_user.username} connected. '
-                        f'User id: {message.from_user.id}')
+    logger.info(f'User @{callback.from_user.username} connected. '
+                        f'User id: {callback.from_user.id}')
 
-    # status = await monitor.get_status()
-    # uid = message.from_user.id
     user_monitoring_status = await db.get_monitoring_status(uid)
 
     if IsAdmin(F):
-        await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-        await message.answer('Добро пожаловать!\n\n'
+        await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
+        await callback.message.answer('Добро пожаловать!\n\n'
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
-        await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-        await message.answer('Добро пожаловать!\n\n'
+        await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
+        await callback.message.answer('Добро пожаловать!\n\n'
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
