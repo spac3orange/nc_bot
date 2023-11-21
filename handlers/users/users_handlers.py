@@ -36,7 +36,7 @@ async def process_users_settings(callback: CallbackQuery):
     for uid, name, mon, notif in users:
         user = []
         user_data = await db.get_user_info(uid)
-        accounts = len(await db.get_user_accounts(uid)) or '1'
+        accounts = len(await db.get_user_accounts(uid)) or '0'
         channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'
                           f'<b>ID:</b> {uid}\n'
