@@ -57,14 +57,12 @@ async def process_license(message: Message):
         user_monitoring_status = await db.get_monitoring_status(uid)
 
         if IsAdmin(F):
-            await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-            await message.answer('Добро пожаловать!\n\n'
+            await message.answer(
                                  f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                                  reply_markup=kb_admin.start_btns_admin(),
                                  parse_mode='HTML')
         else:
-            await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-            await message.answer('Добро пожаловать!\n\n'
+            await message.answer(
                                  f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                                  reply_markup=kb_admin.start_btns(),
                                  parse_mode='HTML')
@@ -106,14 +104,12 @@ async def back_to_main(callback: CallbackQuery):
     user_monitoring_status = await db.get_monitoring_status(uid)
 
     if IsAdmin(F):
-        await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-        await callback.message.answer('Добро пожаловать!\n\n'
+        await callback.message.answer(
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
-        await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
-        await callback.message.answer('Добро пожаловать!\n\n'
+        await callback.message.answer(
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')

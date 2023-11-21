@@ -43,8 +43,9 @@ async def choose_acc_user(callback: CallbackQuery, state: FSMContext):
     uid = callback.from_user.id
     operation = 'change_info'
     accounts = await db.get_user_accounts(uid)
-    await callback.message.answer('Выберите аккаунт:', reply_markup=kb_admin.generate_accs_keyboard_users(accounts,
-                                                                                                     operation))
+    await callback.message.answer('<b>Выберите аккаунт:</b>',
+                                  reply_markup=kb_admin.generate_accs_keyboard_users(accounts, operation),
+                                  parse_mode='HTML')
 
 @router.callback_query(F.data.startswith('account_change_info_'))
 async def change_info_menu(callback: CallbackQuery, state: FSMContext):
@@ -53,6 +54,32 @@ async def change_info_menu(callback: CallbackQuery, state: FSMContext):
     print(account)
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
+
+
+# username
+@router.callback_query(F.data.startswith('acc_edit_username_'))
+async def acc_change_username(callback: CallbackQuery, state: FSMContext):
+    account = callback.data.split('_')[-1]
+    await callback.message.answer('Введите новый ник:')
+    await state.set_state(EditAccInfo.change_username)
+    await state.update_data(account=account)
+
+@router.message(EditAccInfo.change_username)
+async def name_changed(message: Message, state: FSMContext):
+    account = (await state.get_data())['account']
+    session = AuthTelethon(account)
+    res = await session.change_username(message.text)
+    if res:
+        await message.answer('Никнейм изменен')
+        await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
+                              'Здесь можно настроить инфо аккаунта, такое как:\n'
+                              '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                              'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
+                              parse_mode='HTML')
+    else:
+        await message.answer('Произошла ошибка, попробуйте позже')
+    await state.clear()
+
 
 # name
 @router.callback_query(F.data.startswith('acc_edit_name_'))
@@ -145,7 +172,7 @@ async def user_accs_get_info(callback: CallbackQuery):
                 f'\n<b>ID:</b> {id}'
                 f'\n<b>Имя:</b> {name}'
                 f'\n<b>Фамилия:</b> {surname}'
-                f'\n<b>Ник:</b> {username}'
+                f'\n<b>Ник:</b> @{username}'
                 f'\n<b>Био:</b> {about}'
                 f'\n<b>Ограничения:</b> {restricted}'
                 for phone, id, name, surname, username, restricted, about in accs_info])

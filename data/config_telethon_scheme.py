@@ -160,6 +160,18 @@ class AuthTelethon:
             await self.client.disconnect()
             return False
 
+    async def change_username(self, username: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateUsernameRequest(username))
+            logger.info(f'Changed username to {username}')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing username: {e}')
+            await self.client.disconnect()
+            return False
+
     async def change_bio(self, bio: str):
         try:
             await self.client.connect()

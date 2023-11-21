@@ -49,3 +49,4 @@ class EditAccInfo(StatesGroup):
     change_name = State()
     change_surname = State()
     change_bio = State()
+    change_username = State()

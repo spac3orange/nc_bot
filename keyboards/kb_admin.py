@@ -274,6 +274,7 @@ def edit_acc_info(account):
     print('acc_edit_name_' + account)
     kb_builder.button(text='Имя', callback_data=f'acc_edit_name_{account}')
     kb_builder.button(text='Фамилия', callback_data=f'acc_edit_surname_{account}')
+    kb_builder.button(text='Username', callback_data=f'acc_edit_username_{account}')
     kb_builder.button(text='Bio', callback_data=f'acc_edit_bio_{account}')
     kb_builder.button(text='Аватар', callback_data=f'acc_edit_avatar_{account}')
     kb_builder.button(text='◀️Назад', callback_data=f'user_tg_accs_settings')
