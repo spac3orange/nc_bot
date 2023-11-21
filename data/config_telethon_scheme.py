@@ -343,7 +343,8 @@ class TelethonConnect:
                         message_text = message.message
                         promt = all_promts.get(channel)
                         if promt == 'Нет':
-                            promt = 'Напиши короткий комментарий от первого лица размером в одно предложение'
+                            promt = 'Напиши короткий комментарий от первого лица размером в одно предложение. Веди ' \
+                                    'себя как реальный человек, не используй шаблонных фраз и будь позитивной.'
                         gpt_api = random.choice(gpt_accs)
                         gpt = AuthOpenAI(gpt_api)
                         gpt_question = message_text + '.' + f'{promt}'
