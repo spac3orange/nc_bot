@@ -42,9 +42,9 @@ async def promote_user(callback: CallbackQuery, state: FSMContext):
                                   reply_markup=kb_admin.generate_users_promote(users_list, operation))
 
 
-@router.callback_query(F.data.startswith('users_promote_'))
+@router.callback_query(F.data.startswith('users_promote__'))
 async def name_for_promote(callback: CallbackQuery, state: FSMContext):
-    user_name = callback.data.split('_')[-1]
+    user_name = callback.data.split('__')[-1]
     user_id = await db.get_user_id_by_username(user_name)
     user_info = await db.get_user_info(user_id)
     user_status = user_info['sub_type']

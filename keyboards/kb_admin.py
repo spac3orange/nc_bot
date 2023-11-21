@@ -262,7 +262,7 @@ def generate_users_promote(users, operation):
     kb_builder = InlineKeyboardBuilder()
 
     for user_name in users:
-        kb_builder.button(text=user_name, callback_data=f'users_{operation}_{user_name}')
+        kb_builder.button(text=user_name, callback_data=f'users_{operation}__{user_name}')
     kb_builder.button(text='◀️Назад', callback_data='users_settings')
 
     kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
