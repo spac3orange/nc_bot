@@ -689,23 +689,22 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error while creating table {table_name}: {error}")
 
-    async def get_all_paid_accounts(self) -> List[str]:
+    async def get_all_paid_accounts(self) -> Dict[str, List[str]]:
         """
-        Retrieves all phone records from tables starting with "accounts_" and returns a list of records.
+        Retrieves all phone records from tables starting with "accounts_" and returns a dictionary of records.
         """
         try:
             query = "SELECT table_name FROM information_schema.tables WHERE table_name LIKE 'accounts_%'"
             table_names = await self.fetch_all(query)
-            phone_records = []
+            phone_records = {}
             for table_name in table_names:
                 query = f"SELECT phone FROM {table_name['table_name']}"
                 records = await self.fetch_all(query)
-                phone_records.extend([record['phone'] for record in records])
+                phone_records[table_name['table_name']] = [record['phone'] for record in records]
             return phone_records
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while retrieving phone records from tables", error)
-            return []
-
+            return {}
     async def get_user_accounts(self, user_id: int) -> List[str]:
         """
         Retrieves all phone numbers from the specified user's accounts table.
@@ -761,6 +760,22 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving user_id for username {username} from the database: {error}")
             return None
+
+    async def get_username_by_user_id(self, user_id: int) -> str:
+        try:
+            query = "SELECT user_name FROM users WHERE user_id = $1"
+            row = await self.fetch_row(query, user_id)
+            if row:
+                username = row[0]
+                logger.info(f"Retrieved username {username} for user_id {user_id}")
+                return username
+            else:
+                logger.warning(f"No username found for user_id {user_id}")
+                return None
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving username for user_id {user_id} from the database: {error}")
+            return None
+
     async def get_user_notifications_status(self, user_id: int) -> str:
         try:
             query = "SELECT notifications FROM users WHERE user_id = $1"
@@ -815,6 +830,20 @@ class Database:
             logger.info(f"Moved {num_accounts} accounts to accounts_{user_id}")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error moving accounts to accounts_{user_id}: {error}")
+
+    async def return_accounts(self, user_id):
+        try:
+            accounts = await self.fetch_all(f"SELECT phone FROM accounts_{user_id}")
+            if accounts:
+                for account in accounts:
+                    phone = account['phone']
+                    await self.execute_query("INSERT INTO telegram_accounts (phone) VALUES ($1)", phone)
+                await self.execute_query(f"DROP TABLE IF EXISTS accounts_{user_id}")
+                logger.info(f"All accounts from accounts_{user_id} table transferred to telegram_accounts table")
+            else:
+                logger.warning(f"No accounts found in accounts_{user_id} table")
+        except Exception as e:
+            logger.error(f"Error transferring accounts: {e}")
 
 
 

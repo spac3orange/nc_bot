@@ -59,8 +59,10 @@ async def name_for_promote(callback: CallbackQuery, state: FSMContext):
                                   f'5. Admin', parse_mode='HTML')
     await state.set_state(PromoteUser.input_promote)
 
+
 @router.message(PromoteUser.input_promote)
 async def apply_promote(message: Message, state: FSMContext):
+    state_data = await state.get_data()
     if message.text == '1':
         user_status = 'Базовый'
     elif message.text == '2':
@@ -77,8 +79,15 @@ async def apply_promote(message: Message, state: FSMContext):
                              'Отмена /cancel')
 
     if user_status:
-        state_data = await state.get_data()
-        await db.update_subscription_type(state_data['user_id'], user_status)
-        await message.answer(f'Пользователь {state_data["user_name"]} успешно повышен до уровня: <b>{user_status}</b>',
-                             reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')
+        if user_status == 'Базовый':
+            await db.return_accounts(state_data['user_id'])
+            await db.update_subscription_type(state_data['user_id'], user_status)
+            await message.answer(
+                f'Пользователь {state_data["user_name"]} успешно повышен до уровня: <b>{user_status}</b>',
+                reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')
+        else:
+            await db.create_user_accounts_table(state_data['user_id'])
+            await db.update_subscription_type(state_data['user_id'], user_status)
+            await message.answer(f'Пользователь {state_data["user_name"]} успешно повышен до уровня: <b>{user_status}</b>',
+                                 reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')
         await state.clear()

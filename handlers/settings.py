@@ -10,11 +10,13 @@ router.message.filter(
 )
 
 @router.callback_query(F.data == 'settings')
-async def process_start(callback: CallbackQuery):
+async def process_settings(callback: CallbackQuery):
     uid = callback.from_user.id
     accounts = len(await db.get_user_accounts(uid)) or '0'
     channels = len(await db.db_get_all_telegram_channels(uid)) or '0'
-    if BasicSub():
+    basic_members = await db.get_user_ids_by_sub_type('Базовый')
+    if callback.from_user.id in basic_members:
+        print('basic_sub')
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
                                            f'<b>Внесено каналов:</b> {channels}\n'
                                            f'<b>Доступно Telegram аккаунтов:</b> 1\n',
@@ -34,7 +36,8 @@ async def back_to_settings(callback: CallbackQuery):
     uid = callback.from_user.id
     accounts = len(await db.get_user_accounts(uid)) or '0'
     channels = len(await db.db_get_all_telegram_channels(uid)) or '0'
-    if BasicSub():
+    basic_members = await db.get_user_ids_by_sub_type('Базовый')
+    if callback.from_user.id in basic_members:
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
                                            f'<b>Внесено каналов:</b> {channels}\n'
                                            f'<b>Доступно Telegram аккаунтов:</b> 1\n',

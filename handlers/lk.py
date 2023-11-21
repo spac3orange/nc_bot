@@ -21,7 +21,6 @@ async def process_admin_panel(callback: CallbackQuery):
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
     ref_link = f'https://t.me/neuro_comm_bot?start=ref{uid}'
-    await db.create_user_accounts_table(uid)
     accounts = len(await db.get_user_accounts(uid)) or '1'
     pprint(user_data)
     if user_data:
@@ -46,3 +45,11 @@ async def process_admin_panel(callback: CallbackQuery):
                                       reply_markup=kb_admin.lk_btns(),
                                       parse_mode='HTML')
 
+
+@router.callback_query(F.data == 'subscribe')
+async def process_subscribe(callback: CallbackQuery):
+    await callback.message.answer('В разработке.')
+
+@router.callback_query(F.data == 'add_balance')
+async def process_add_balance(callback: CallbackQuery):
+    await callback.message.answer('В разработке.')

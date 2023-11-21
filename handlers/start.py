@@ -8,6 +8,7 @@ from database import db
 from aiogram.fsm.context import FSMContext
 from data import logger
 from utils import user_license
+from data import config_aiogram
 router = Router()
 router.message.filter(
     KnownUser()
@@ -17,7 +18,7 @@ license_applied = dict()
 
 @router.message(Command(commands='cancel'))
 async def process_cancel_command_state(message: Message, state: FSMContext):
-    if IsAdmin(F):
+    if str(message.from_user.id) in config_aiogram.admin_id:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
                              f'Мониторинг <b>{"выключен 🔴"}</b>',
@@ -56,7 +57,7 @@ async def process_license(message: Message):
 
         user_monitoring_status = await db.get_monitoring_status(uid)
 
-        if IsAdmin(F):
+        if str(message.from_user.id) in config_aiogram.admin_id:
             await message.answer(
                                  f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                                  reply_markup=kb_admin.start_btns_admin(),
@@ -84,7 +85,7 @@ async def process_start(callback: CallbackQuery):
 
     user_monitoring_status = await db.get_monitoring_status(uid)
 
-    if IsAdmin(F):
+    if str(callback.from_user.id) in config_aiogram.admin_id:
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
@@ -103,7 +104,7 @@ async def back_to_main(callback: CallbackQuery):
     uid = callback.from_user.id
     user_monitoring_status = await db.get_monitoring_status(uid)
 
-    if IsAdmin(F):
+    if str(callback.from_user.id) in config_aiogram.admin_id:
         await callback.message.answer(
                              f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),

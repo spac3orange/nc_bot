@@ -11,7 +11,7 @@ from handlers.users import users_handlers, promote_user, transfer_acc
 from handlers.tg_accs import *
 from handlers.gpt_accs import *
 from handlers.groups import *
-from handlers.admin import admin_panel
+from handlers.admin import admin_panel, shop, stats
 from database import db
 from utils.scheduler import monitor, format_users_today
 
@@ -43,6 +43,8 @@ async def start_params() -> None:
     dp.include_router(users_handlers.router)
     dp.include_router(lk.router)
     dp.include_router(admin_panel.router)
+    dp.include_router(shop.router)
+    dp.include_router(stats.router)
     dp.include_router(monitoring_users.router)
     dp.include_router(monitoring.router)
     dp.include_router(get_history.router)

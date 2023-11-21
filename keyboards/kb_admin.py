@@ -80,7 +80,7 @@ def users_settings_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Добавить', callback_data='users_add')
     kb_builder.button(text='Удалить', callback_data='users_del')
-    kb_builder.button(text='Повысить статус', callback_data='promote_user')
+    kb_builder.button(text='Изменить статус', callback_data='promote_user')
     kb_builder.button(text='Передать аккаунты', callback_data='transfer_acc')
     kb_builder.button(text='◀️Назад', callback_data='admin_panel')
 
