@@ -26,6 +26,8 @@ async def get_channel_id(link: str) -> int:
     return chat.id
 
 async def normalize_channel_link(link: str) -> str:
+    if link.startswith('https://t.me/+'):
+        return link
     if link.startswith('https://t.me/'):
         return '@' + link.split('https://t.me/')[1]
     return link
@@ -79,7 +81,10 @@ async def add_group(message: Message, state: FSMContext):
     try:
         uid = message.from_user.id
         group_name = await normalize_channel_link(message.text)
-        group_id = await get_channel_id(group_name)
+        if group_name.startswith('https://t.me/+'):
+            group_id = 999999999
+        else:
+            group_id = await get_channel_id(group_name)
         print(group_id)
         if not await group_in_table(group_id):
             await db.db_add_telegram_group(uid, group_name, group_id)

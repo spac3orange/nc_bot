@@ -52,7 +52,7 @@ async def name_for_promote(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(f'Выбран пользователь <b>{user_name}</b>\n'
                                   f'Уровень подписки: <b>{user_status}</b>\n\n'
                                   f'Введите новый уровень подписки для пользователя:\n\n'
-                                  f'1. Базовый\n'
+                                  f'1. DEMO\n'
                                   f'2. Серебряный\n'
                                   f'3. Золотой\n'
                                   f'4. VIP\n'
@@ -64,7 +64,7 @@ async def name_for_promote(callback: CallbackQuery, state: FSMContext):
 async def apply_promote(message: Message, state: FSMContext):
     state_data = await state.get_data()
     if message.text == '1':
-        user_status = 'Базовый'
+        user_status = 'DEMO'
     elif message.text == '2':
         user_status = 'Серебряный'
     elif message.text == '3':
@@ -79,7 +79,7 @@ async def apply_promote(message: Message, state: FSMContext):
                              'Отмена /cancel')
 
     if user_status:
-        if user_status == 'Базовый':
+        if user_status == 'DEMO':
             await db.return_accounts(state_data['user_id'])
             await db.update_subscription_type(state_data['user_id'], user_status)
             await message.answer(

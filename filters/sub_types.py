@@ -16,5 +16,5 @@ class BasicSub(BaseFilter):
         return message.from_user.id in self.basic_members
 
     async def get_basic_members(self):
-        members = await db.get_user_ids_by_sub_type('Базовый')
+        members = await db.get_user_ids_by_sub_type('DEMO')
         return members

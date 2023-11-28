@@ -7,7 +7,6 @@ from telethon.tl.types import InputPeerChannel
 from data.logger import logger
 from database import db
 from telethon.tl.functions.channels import JoinChannelRequest
-from pprint import pprint
 import datetime
 from telethon.tl.functions.messages import GetHistoryRequest
 from datetime import timedelta, datetime
@@ -19,10 +18,12 @@ from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRe
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputPhoto
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import InputUserSelf
 
 
 async def monitor_settings(session):
+    if await check_send_comments_running():
+        logger.warning('Schedule will be skipped because send_comments is running')
+        return
     active_users = await db.get_monitoring_user_ids()
     print('active_users\n', active_users)
     if active_users:
@@ -35,6 +36,14 @@ async def monitor_settings(session):
         await session.monitor_channels(monitoring_list)
     else:
         logger.warning('No users to monitor')
+
+async def check_send_comments_running():
+    tasks = asyncio.all_tasks()
+    for task in tasks:
+        print(task.get_coro().__qualname__)
+        if task.get_coro().__qualname__ == 'TelethonSendMessages.send_comments':
+            return True
+    return False
 
 
 async def remove_links(text):
@@ -272,7 +281,10 @@ class TelethonConnect:
                 for item in channel_keywords:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
-                            entity = await self.client.get_entity(channel_name)
+                            try:
+                                entity = await self.client.get_entity(channel_name)
+                            except Exception as e:
+                                continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
                             offset_date = utc_now - timedelta(minutes=1)
@@ -314,17 +326,19 @@ class TelethonConnect:
                     gpt_accs = await db.db_get_all_gpt_accounts()
                     all_promts = await db.db_get_all_promts()
                     all_users_with_notif = await db.get_users_with_notifications()
-                    all_basic_users = await db.get_user_ids_by_sub_type('Базовый')
+                    all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
                     # for m in approved_messages:
                     #     user_id = m[0]
                     #     try:
                         
                     tasks = []
                     for msg in approved_messages:
+                        basic = False
                         user_id, channel, message = msg
                         if user_id in all_basic_users:
                             acc = random.choice(accounts)
                             session = TelethonSendMessages(acc)
+                            basic = True
                         else:
                             acc = random.choice(await db.get_user_accounts(user_id))
                             session = TelethonSendMessages(acc)
@@ -353,13 +367,19 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
+                            if basic:
+                                await db.increment_comments('telegram_accounts', acc)
+                            else:
+                                await db.increment_comments(f'accounts_{user_id}', acc)
+
                             await db.update_comments_sent(user_id, 1)
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                              acc, comment, notif))
                             tasks.append(task)
+
                         else:
                             print('Комментарий не сгенерирован')
-                    await asyncio.gather(*tasks)
+
             else:
                 logger.warning('No channels to monitor')
 
@@ -385,7 +405,7 @@ class TelethonSendMessages:
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif):
         print('incoming request:\n', user_id, channel_name, message, acc)
         try:
-            await asyncio.sleep(random.randint(1, 20))
+            await asyncio.sleep(random.randint(0, 40))
             if comment:
                 comment = comment.strip('"')
                 await self.client.connect()

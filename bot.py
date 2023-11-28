@@ -12,6 +12,7 @@ from handlers.tg_accs import *
 from handlers.gpt_accs import *
 from handlers.groups import *
 from handlers.admin import admin_panel, shop, stats
+from handlers.payment import add_balance, ukassa
 from database import db
 from utils.scheduler import monitor, format_users_today
 
@@ -42,6 +43,8 @@ async def start_params() -> None:
     dp.include_router(get_gpt_accs.router)
     dp.include_router(users_handlers.router)
     dp.include_router(lk.router)
+    dp.include_router(add_balance.router)
+    dp.include_router(ukassa.router)
     dp.include_router(admin_panel.router)
     dp.include_router(shop.router)
     dp.include_router(stats.router)

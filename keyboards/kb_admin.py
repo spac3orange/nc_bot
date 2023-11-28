@@ -69,7 +69,8 @@ def pro_settings_btns():
 
 def lk_btns():
     kb_builder = InlineKeyboardBuilder()
-    kb_builder.button(text='Продлить подписку', callback_data='subscribe')
+    kb_builder.button(text='Купить подписку', callback_data='subscribe')
+    kb_builder.button(text='Продлить подписку', callback_data='subscribe_prolong')
     kb_builder.button(text='Пополнить баланс', callback_data='add_balance')
     kb_builder.button(text='◀️Назад', callback_data='back_to_main')
 
@@ -285,6 +286,33 @@ def edit_acc_info(account):
 def process_license():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Продолжить👍', callback_data='start_accept_license')
+
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def choose_payment_type():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='ЮКасса', callback_data=f'payment_ukassa')
+    kb_builder.button(text='◀️Назад', callback_data=f'lk')
+
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+
+def choose_sub_plan():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='1 день', callback_data=f'sub_plan_1')
+    kb_builder.button(text='7 дней', callback_data=f'sub_plan_7')
+    kb_builder.button(text='30 дней', callback_data=f'sub_plan_30')
+    kb_builder.button(text='◀️Назад', callback_data=f'lk')
+
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def approve_sub_plan(plan):
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Подтвердить', callback_data=f'approve_sub_plan_{plan}')
+    kb_builder.button(text='◀️Назад', callback_data=f'lk')
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)

@@ -50,3 +50,9 @@ class EditAccInfo(StatesGroup):
     change_surname = State()
     change_bio = State()
     change_username = State()
+
+class UkassaPayment(StatesGroup):
+    input_sum = State()
+
+class AddSubscription(StatesGroup):
+    sub_plan = State()

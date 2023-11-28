@@ -24,7 +24,9 @@ class Database:
                 host=self.host,
                 database=self.db_name,
                 port=self.db_port,
+                max_size=50,
             )
+
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while creating connection pool", error)
             print(error)
@@ -34,20 +36,22 @@ class Database:
             await self.pool.close()
 
     async def execute_query(self, query, *args):
-        try:
-            async with self.pool.acquire() as conn:
-                await conn.execute(query, *args)
-        except (Exception, asyncpg.PostgresError) as error:
-            print("Error while executing query", error)
+        async with self.lock:
+            try:
+                async with self.pool.acquire() as conn:
+                    await conn.execute(query, *args)
+            except (Exception, asyncpg.PostgresError) as error:
+                print("Error while executing query", error)
 
     async def execute_query_return(self, query, *args):
-        try:
-            async with self.pool.acquire() as conn:
-                result = await conn.fetch(query, *args)
-                return result
-        except (Exception, asyncpg.PostgresError) as error:
-            print("Error while executing query", error)
-            return []
+        async with self.lock:
+            try:
+                async with self.pool.acquire() as conn:
+                    result = await conn.fetch(query, *args)
+                    return result
+            except (Exception, asyncpg.PostgresError) as error:
+                print("Error while executing query", error)
+                return []
 
     async def fetch_row(self, query, *args):
         try:
@@ -74,7 +78,7 @@ class Database:
                 "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
                 "channel_id BIGINT PRIMARY KEY, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет')")
 
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY)")
+            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT PRIMARY KEY)")
 
@@ -88,7 +92,7 @@ class Database:
                                 user_id BIGINT PRIMARY KEY,
                                 sub_start_date TEXT DEFAULT 'Нет',
                                 sub_end_date TEXT DEFAULT 'Нет',
-                                sub_type TEXT DEFAULT 'Базовый',
+                                sub_type TEXT DEFAULT 'DEMO',
                                 sub_status BOOLEAN DEFAULT FALSE,
                                 balance INTEGER DEFAULT 0,
                                 comments_sent INTEGER DEFAULT 0
@@ -681,7 +685,8 @@ class Database:
             table_name = f"accounts_{user_id}"
             query = f"""
                 CREATE TABLE IF NOT EXISTS {table_name} (
-                    phone TEXT PRIMARY KEY
+                    phone TEXT PRIMARY KEY,
+                    comments INTEGER DEFAULT 0
                 )
             """
             await self.execute_query(query)
@@ -845,6 +850,47 @@ class Database:
         except Exception as e:
             logger.error(f"Error transferring accounts: {e}")
 
+    # ------------------------------------------------------
+    # retrieve all info about accounts from all tables
+    async def db_get_all_tg_accounts_with_comments(self, free_accs=True) -> dict:
+        """
+        Retrieves all Telegram accounts from the database, including tables starting with "accounts_".
+        Returns a dictionary where the keys are table names and the values are dictionaries with "phone" and "comments" values.
+        """
+        try:
+            result = {}
+
+            # Retrieve information from the "telegram_accounts" table
+            if free_accs:
+                query = "SELECT phone, comments FROM telegram_accounts"
+                rows = await self.fetch_all(query)
+                accounts = [{"phone": row[0], "comments": row[1]} for row in rows]
+                result["telegram_accounts"] = accounts
+
+            # Retrieve information from tables starting with "accounts_"
+            query = "SELECT table_name FROM information_schema.tables WHERE table_name LIKE 'accounts_%'"
+            rows = await self.fetch_all(query)
+            table_names = [row[0] for row in rows]
+            if table_names:
+                for table_name in table_names:
+                    query = f"SELECT phone, comments FROM {table_name}"
+                    rows = await self.fetch_all(query)
+                    if not rows:  # Skip the table if it's empty
+                        continue
+                    accounts = [{"phone": row[0], "comments": row[1]} for row in rows]
+                    result[table_name] = accounts
+
+            return result
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving Telegram accounts with comments from the database: {error}")
+            return {}
+
+    async def increment_comments(self, table_name: str, phone: str) -> None:
+        try:
+            query = f"UPDATE {table_name} SET comments = comments + 1 WHERE phone = $1"
+            await self.execute_query(query, phone)
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error incrementing comments for phone {phone} in table {table_name}: {error}")
 
 
 db = Database()
