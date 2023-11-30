@@ -8,7 +8,6 @@ from database.db_action import db
 from filters.known_user import KnownUser
 router = Router()
 router.message.filter(
-    KnownUser()
 )
 
 

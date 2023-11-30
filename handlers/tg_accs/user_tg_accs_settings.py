@@ -14,7 +14,6 @@ from data.config_telethon_scheme import TelethonConnect
 from data import logger
 router = Router()
 router.message.filter(
-    KnownUser()
 )
 
 

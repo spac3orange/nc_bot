@@ -6,7 +6,6 @@ from filters.known_user import KnownUser
 from filters.sub_types import BasicSub
 router = Router()
 router.message.filter(
-    KnownUser()
 )
 
 @router.callback_query(F.data == 'settings')

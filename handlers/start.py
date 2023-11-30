@@ -11,7 +11,6 @@ from utils import user_license
 from data import config_aiogram
 router = Router()
 router.message.filter(
-    KnownUser()
 )
 
 license_applied = dict()
