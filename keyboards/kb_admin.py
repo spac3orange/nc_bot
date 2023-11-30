@@ -293,6 +293,7 @@ def process_license():
 def choose_payment_type():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='ЮКасса', callback_data=f'payment_ukassa')
+    kb_builder.button(text='Cryptomus', callback_data=f'payment_cryptomus')
     kb_builder.button(text='◀️Назад', callback_data=f'lk')
 
     kb_builder.adjust(2)

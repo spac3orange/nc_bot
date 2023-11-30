@@ -21,7 +21,7 @@ async def process_admin_panel(callback: CallbackQuery):
     uid = callback.from_user.id
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
-    ref_link = f'https://t.me/neuro_comm_bot?start=ref{uid}'
+    ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
     accounts = '10' if user_data['sub_status'] else '1'
     pprint(user_data)
     if user_data:
@@ -89,7 +89,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
                                           parse_mode='HTML')
             await payment_action.update_subscription_info(callback.from_user.id, int(plan))
             await db.create_user_accounts_table(uid)
-            ref_link = f'https://t.me/neuro_comm_bot?start=ref{uid}'
+            ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
             print(user_data['sub_type'])
             accounts = '10' if user_data['sub_status'] else '1'
             pprint(user_data)

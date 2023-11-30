@@ -12,6 +12,10 @@ router = Router()
 async def process_add_balance(callback: CallbackQuery):
     await callback.message.answer('Выберите способ пополнения счета:', reply_markup=kb_admin.choose_payment_type())
 
+@router.callback_query(F.data == 'payment_cryptomus')
+async def process_payment_cryptomus(callback: CallbackQuery):
+    await callback.message.answer('В разработке')
+
 @router.callback_query(F.data == 'payment_ukassa')
 async def process_payment_ukassa(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Введите сумму пополнения:'
