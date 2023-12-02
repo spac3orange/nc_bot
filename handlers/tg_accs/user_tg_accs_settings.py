@@ -1,4 +1,4 @@
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, ContentType
 from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
 from keyboards import kb_admin
@@ -6,12 +6,13 @@ from filters.is_admin import IsAdmin
 from filters.known_user import KnownUser
 from filters.sub_types import BasicSub
 from aiogram.fsm.context import FSMContext
-from states.states import EditAccInfo
+from states.states import EditAccInfo, UserSendPhoto
 from data.config_telethon_scheme import AuthTelethon
 from database import db
 from typing import List, Tuple
 from data.config_telethon_scheme import TelethonConnect
-from data import logger
+from data import logger, aiogram_bot
+import random
 router = Router()
 router.message.filter(
 )
@@ -187,8 +188,44 @@ async def user_accs_get_info(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('acc_edit_avatar_'))
 async def acc_edit_avatar(callback: CallbackQuery, state: FSMContext):
-    await callback.message.answer('Функция временно не доступна.')
-    await state.clear()
+    await state.set_state(UserSendPhoto.input_photo)
+    account = callback.data.split('_')[-1]
+    await state.update_data(account=account)
+    print(account)
+    await callback.message.answer('Отправьте фото для установки аватара'
+                                  '\nРазмер фото должен быть менее 20 мегабайт.')
+
+@router.message(F.content_type == ContentType.PHOTO, UserSendPhoto.input_photo)
+async def process_photo(message: Message, state: FSMContext):
+    uid = message.from_user.id
+    state_data = await state.get_data()
+    print(state_data)
+    account = state_data['account']
+    session = AuthTelethon(account)
+    try:
+        randint = random.randint(1000, 9999)
+        photo_name = f'{uid}_{randint}_avatar.jpg'
+        file_info = await aiogram_bot.get_file(message.photo[-1].file_id)
+        downloaded_file = await aiogram_bot.download_file(file_info.file_path)
+        with open(photo_name, 'wb') as photo:
+            photo.write(downloaded_file.read())
+        res = await session.change_profile_photo(photo_name)
+        if res:
+            await message.answer('Аватар изменен')
+            await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
+                                  'Здесь можно настроить инфо аккаунта, такое как:\n'
+                                  '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                                  'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
+                                  parse_mode='HTML')
+        else:
+            await message.answer('Произошла ошибка, попробуйте позже')
+        await state.clear()
+    except Exception as e:
+        logger.error(e)
+        await message.answer('Произошла ошибка, попробуйте позже')
+        await state.clear()
+
+
 
 
 @router.callback_query(F.data == 'back_to_users_accs')

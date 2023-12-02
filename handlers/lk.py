@@ -23,6 +23,9 @@ async def process_admin_panel(callback: CallbackQuery):
     user_data = await db.get_user_info(uid)
     ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
     accounts = '10' if user_data['sub_status'] else '1'
+    sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
+    sub_end = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
+    print(sub_start)
     pprint(user_data)
     if user_data:
         await callback.message.answer(f'<b>ID:</b> {uid}\n'
@@ -30,8 +33,8 @@ async def process_admin_panel(callback: CallbackQuery):
                                       
                                       f'<b>Баланс:</b> {user_data["balance"]} рублей\n'
                                       f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
-                                      f'<b>Начало подписки:</b> {user_data["sub_start_date"]}\n'
-                                      f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
+                                      f'<b>Начало подписки:</b> {sub_start}\n'
+                                      f'<b>Подписка истекает:</b> {sub_end}\n'
                                       f'<b>Доступно аккаунтов:</b> {accounts}\n\n'
                                       f'<b>Статистика:\n</b>'
                                       f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'

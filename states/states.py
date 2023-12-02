@@ -56,3 +56,6 @@ class UkassaPayment(StatesGroup):
 
 class AddSubscription(StatesGroup):
     sub_plan = State()
+
+class UserSendPhoto(StatesGroup):
+    input_photo = State()

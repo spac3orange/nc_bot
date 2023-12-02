@@ -14,7 +14,7 @@ from handlers.groups import *
 from handlers.admin import admin_panel, shop, stats
 from handlers.payment import add_balance, ukassa
 from database import db
-from utils.scheduler import monitor, format_users_today
+from utils.scheduler import monitor, interval_operations
 
 
 
@@ -73,7 +73,7 @@ async def start_params() -> None:
 async def main():
     task1 = asyncio.create_task(start_params())
     task2 = asyncio.create_task(monitor.stop_monitoring())
-    task3 = asyncio.create_task(format_users_today.start_scheduler())
+    task3 = asyncio.create_task(interval_operations.start_scheduler())
     await asyncio.gather(task1, task2, task3)
 
 

@@ -14,6 +14,8 @@ router.message.filter(
     IsAdmin(F)
 )
 
+
+
 @router.message(Command(commands='cancel'))
 async def process_cancel_command_state(message: Message, state: FSMContext):
     if IsAdmin(F):

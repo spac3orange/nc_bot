@@ -47,7 +47,7 @@ async def process_license(message: Message):
         license_applied[uid] = True
 
         await db.db_add_user(uid, uname)
-        if not IsAdmin(F):
+        if uid not in config_aiogram.admin_id:
             await db.db_add_user_today(uid, uname)
         await db.add_user_to_subscriptions(uid)
 
@@ -75,7 +75,7 @@ async def process_start(callback: CallbackQuery):
     license_applied[uid] = True
 
     await db.db_add_user(uid, uname)
-    if not IsAdmin(F):
+    if uid not in config_aiogram.admin_id:
         await db.db_add_user_today(uid, uname)
     await db.add_user_to_subscriptions(uid)
 

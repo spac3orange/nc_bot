@@ -18,11 +18,17 @@ from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRe
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputPhoto
 from telethon.tl.functions.users import GetFullUserRequest
+import mimetypes
 
 
 async def monitor_settings(session):
+    current_time = datetime.now().time()
+    if current_time.hour == 0 and current_time.minute in [9, 10, 11]:
+        logger.warning('Schedule skipped because it is cleanup time')
+        return
+
     if await check_send_comments_running():
-        logger.warning('Schedule will be skipped because send_comments is running')
+        logger.warning('Schedule skipped because send_comments is running')
         return
     active_users = await db.get_monitoring_user_ids()
     print('active_users\n', active_users)
@@ -195,12 +201,11 @@ class AuthTelethon:
 
     async def change_profile_photo(self, photo_path: str):
         try:
-            # Загружаем фото профиля
             await self.client.connect()
-            photo = InputPhoto(await self.client.upload_file(photo_path))
-            await self.client(UploadProfilePhotoRequest(photo))
+            await self.client(UploadProfilePhotoRequest(
+                file=await self.client.upload_file(photo_path)
+            ))
             logger.info('Changed profile photo')
-            await self.client.disconnect()
             return True
         except Exception as e:
             logger.error(f'Error changing profile photo: {e}')
@@ -322,7 +327,6 @@ class TelethonConnect:
 
                 await self.client.disconnect()
                 if approved_messages:
-                    accounts = await db.db_get_all_tg_accounts()
                     gpt_accs = await db.db_get_all_gpt_accounts()
                     all_promts = await db.db_get_all_promts()
                     all_users_with_notif = await db.get_users_with_notifications()
@@ -336,12 +340,30 @@ class TelethonConnect:
                         basic = False
                         user_id, channel, message = msg
                         if user_id in all_basic_users:
-                            acc = random.choice(accounts)
-                            session = TelethonSendMessages(acc)
-                            basic = True
+                            if await db.get_comments_sent(user_id) < 1:
+                                acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
+                            else:
+                                try:
+                                    await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
+                                                                            '\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
+                                                                   parse_mode='HTML')
+                                    continue
+                                except Exception as e:
+                                    logger.error(e)
+                                    continue
+                            if acc:
+                                session = TelethonSendMessages(acc)
+                                basic = True
+                            else:
+                                logger.error('No accounts with comments less than 7')
+                                continue
                         else:
-                            acc = random.choice(await db.get_user_accounts(user_id))
-                            session = TelethonSendMessages(acc)
+                            acc = random.choice(await db.get_phones_with_comments_today_less_than_7(f'accounts_{user_id}', 7))
+                            if acc:
+                                session = TelethonSendMessages(acc)
+                            else:
+                                logger.error(f'No accounts with comments less than 7 for user {user_id}')
+                                continue
                         acc_in_group = await session.join_group(channel)
 
                         if acc_in_group == 'already_in_group':
@@ -358,7 +380,7 @@ class TelethonConnect:
                         promt = all_promts.get(channel)
                         if promt == 'Нет':
                             promt = 'Напиши короткий комментарий от первого лица размером в одно предложение. Веди ' \
-                                    'себя как реальный человек, не используй шаблонных фраз и будь позитивной.'
+                                    'себя как реальный человек, не используй шаблонных фраз и будь на позитиве.'
                         gpt_api = random.choice(gpt_accs)
                         gpt = AuthOpenAI(gpt_api)
                         gpt_question = message_text + '.' + f'{promt}'
@@ -373,9 +395,8 @@ class TelethonConnect:
                                 await db.increment_comments(f'accounts_{user_id}', acc)
 
                             await db.update_comments_sent(user_id, 1)
-                            task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                             acc, comment, notif))
-                            tasks.append(task)
+                            asyncio.create_task(session.send_comments(user_id, channel, message,
+                                                                      acc, comment, notif))
 
                         else:
                             print('Комментарий не сгенерирован')

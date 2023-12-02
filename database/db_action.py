@@ -36,22 +36,20 @@ class Database:
             await self.pool.close()
 
     async def execute_query(self, query, *args):
-        async with self.lock:
-            try:
-                async with self.pool.acquire() as conn:
-                    await conn.execute(query, *args)
-            except (Exception, asyncpg.PostgresError) as error:
-                print("Error while executing query", error)
+        try:
+            async with self.pool.acquire() as conn:
+                await conn.execute(query, *args)
+        except (Exception, asyncpg.PostgresError) as error:
+            print("Error while executing query", error)
 
     async def execute_query_return(self, query, *args):
-        async with self.lock:
-            try:
-                async with self.pool.acquire() as conn:
-                    result = await conn.fetch(query, *args)
-                    return result
-            except (Exception, asyncpg.PostgresError) as error:
-                print("Error while executing query", error)
-                return []
+        try:
+            async with self.pool.acquire() as conn:
+                result = await conn.fetch(query, *args)
+                return result
+        except (Exception, asyncpg.PostgresError) as error:
+            print("Error while executing query", error)
+            return []
 
     async def fetch_row(self, query, *args):
         try:
@@ -78,7 +76,7 @@ class Database:
                 "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
                 "channel_id BIGINT PRIMARY KEY, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет')")
 
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0)")
+            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT PRIMARY KEY)")
 
@@ -675,6 +673,19 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error updating 'comments_sent' for user_id {user_id} in the subscriptions table: {error}")
 
+    async def get_comments_sent(self, user_id: int) -> int:
+        """
+        Retrieves the value of 'comments_sent' column from the 'subscriptions' table for a specific user.
+        """
+        try:
+            query = "SELECT comments_sent FROM subscriptions WHERE user_id = $1"
+            result = await self.pool.fetchval(query, user_id)
+            logger.info(f"Retrieved 'comments_sent' for user_id {user_id} from the subscriptions table")
+            return result
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving 'comments_sent' for user_id {user_id} from the subscriptions table: {error}")
+            return 0
+
     # ___________________________________________________
     # user_accs_table
     async def create_user_accounts_table(self, user_id: int) -> None:
@@ -686,7 +697,8 @@ class Database:
             query = f"""
                 CREATE TABLE IF NOT EXISTS {table_name} (
                     phone TEXT PRIMARY KEY,
-                    comments INTEGER DEFAULT 0
+                    comments INTEGER DEFAULT 0,
+                    comments_today INTEGER DEFAULT 0
                 )
             """
             await self.execute_query(query)
@@ -743,8 +755,19 @@ class Database:
 
     async def update_subscription_type(self, user_id: int, new_sub_type: str) -> None:
         try:
-            query = "UPDATE subscriptions SET sub_type = $1 WHERE user_id = $2"
-            await self.execute_query(query, new_sub_type, user_id)
+            if new_sub_type == "DEMO":
+                query = """
+                    UPDATE subscriptions 
+                    SET sub_type = $1, 
+                        sub_start_date = NULL, 
+                        sub_end_date = NULL, 
+                        sub_status = FALSE
+                    WHERE user_id = $2
+                """
+                await self.pool.execute(query, new_sub_type, user_id)
+            else:
+                query = "UPDATE subscriptions SET sub_type = $1 WHERE user_id = $2"
+                await self.pool.execute(query, new_sub_type, user_id)
             logger.info(f"Updated subscription type for user_id {user_id} to {new_sub_type}")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error updating subscription type for user_id {user_id}: {error}")
@@ -887,10 +910,44 @@ class Database:
 
     async def increment_comments(self, table_name: str, phone: str) -> None:
         try:
-            query = f"UPDATE {table_name} SET comments = comments + 1 WHERE phone = $1"
+            query = f"UPDATE {table_name} SET comments = comments + 1, comments_today = comments_today + 1 WHERE phone = $1"
             await self.execute_query(query, phone)
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error incrementing comments for phone {phone} in table {table_name}: {error}")
+
+    async def get_phones_with_comments_today_less_than(self, table_name: str, max_comments: int) -> List[str]:
+        try:
+            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1"
+            rows = await self.execute_query_return(query, max_comments)
+            phones = [row[0] for row in rows]
+            return phones
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving phones with comments_today less than {max_comments} from table {table_name}: {error}")
+            return []
+
+    async def reset_comments_today(self) -> None:
+        try:
+            # Reset comments_today in telegram_accounts table
+            await self.execute_query("UPDATE telegram_accounts SET comments_today = 0")
+
+            # Get all table names starting with 'accounts_'
+            query = "SELECT table_name FROM information_schema.tables WHERE table_name LIKE 'accounts_%'"
+            rows = await self.execute_query_return(query)
+
+            if rows:
+                table_names = [row[0] for row in rows]
+
+                # Reset comments_today in each accounts_ table
+                for table_name in table_names:
+                    count_query = f"SELECT COUNT(*) FROM {table_name}"
+                    count = await self.execute_query_return(count_query)
+
+                    if count and count[0][0] > 0:
+                        await self.execute_query(f"UPDATE {table_name} SET comments_today = 0")
+
+            logger.info("Reset comments_today in telegram_accounts and accounts_ tables")
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error resetting comments_today: {error}")
 
 
 db = Database()

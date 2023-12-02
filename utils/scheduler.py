@@ -70,15 +70,17 @@ class ChatMonitor:
         return self.monitoring_enabled
 
 
-class UsersToday:
+class IntervalOperations:
     def __init__(self):
         self.scheduler = AsyncIOScheduler()
 
     async def start_scheduler(self):
         self.scheduler.add_job(db.clear_users_today, 'cron', hour=0, minute=0)
+        self.scheduler.add_job(db.reset_comments_today, 'cron', hour=0, minute=10)
         self.scheduler.start()
         logger.info('users_today scheduler started')
+        logger.info('comments_today scheduler started')
 
 
-format_users_today = UsersToday()
+interval_operations = IntervalOperations()
 monitor = ChatMonitor()
