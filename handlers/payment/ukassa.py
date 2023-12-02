@@ -37,7 +37,7 @@ async def buy_ukassa(message: Message, bot: aiogram_bot, state: FSMContext):
 @router.message(UkassaPayment.input_sum)
 async def process_inv_sum(message: Message):
     await message.answer('Неверная сумма пополнения!'
-                         '\nМинимальная сумма пополнения - <b>1000р</b>'
+                         '\nМинимальная сумма пополнения - <b>300 рублей</b>'
                          '\nОтменить /cancel', parse_mode='HTML')
 
 @router.pre_checkout_query(lambda query: True)

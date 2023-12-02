@@ -19,6 +19,6 @@ async def process_payment_cryptomus(callback: CallbackQuery):
 @router.callback_query(F.data == 'payment_ukassa')
 async def process_payment_ukassa(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Введите сумму пополнения:'
-                                  '\nМинимальная сумма - <b>300р</b>', parse_mode='HTML')
+                                  '\nМинимальная сумма - <b>300р</b> рублей', parse_mode='HTML')
     await state.set_state(UkassaPayment.input_sum)
 
