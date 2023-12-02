@@ -11,7 +11,7 @@ router = Router()
 
 #prices = {'1_month': 250*100, '3_month': 450*100, '6_month': 750*100, '12_month': 1140*100}
 
-@router.message(UkassaPayment.input_sum, lambda message: message.text.isdigit() and int(message.text) >= 1000)
+@router.message(UkassaPayment.input_sum, lambda message: message.text.isdigit() and int(message.text) >= 300)
 async def buy_ukassa(message: Message, bot: aiogram_bot, state: FSMContext):
     payment_sum = message.text
     price = LabeledPrice(label=f'Пополнение баланса {payment_sum}р', amount=int(payment_sum)*100)
