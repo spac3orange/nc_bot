@@ -181,36 +181,41 @@ class TelethonConnect:
             await self.client.connect()
             approved_messages = []
             for channel, keywords in channel_keywords.items():
-                entity = await self.client.get_entity(channel)
-                input_entity = InputPeerChannel(entity.id, entity.access_hash)
-                utc_now = datetime.now(pytz.utc)
-                offset_date = utc_now - timedelta(minutes=1)
+                try:
+                    entity = await self.client.get_entity(channel)
+                    input_entity = InputPeerChannel(entity.id, entity.access_hash)
+                    utc_now = datetime.now(pytz.utc)
+                    offset_date = utc_now - timedelta(minutes=1)
 
-                messages = await self.client(GetHistoryRequest(
-                    peer=input_entity,
-                    limit=10,
-                    offset_date=None,
-                    offset_id=0,
-                    max_id=0,
-                    min_id=0,
-                    add_offset=0,
-                    hash=0
-                ))
+                    messages = await self.client(GetHistoryRequest(
+                        peer=input_entity,
+                        limit=10,
+                        offset_date=None,
+                        offset_id=0,
+                        max_id=0,
+                        min_id=0,
+                        add_offset=0,
+                        hash=0
+                    ))
 
-                for message in messages.messages:
-                    if message.message and message.date > offset_date:
-                        for keyword in keywords.split(','):
-                            if keyword.strip() in message.message:
-                                #pprint({
-                                #   'channel': channel,
-                                #   'message_id': message.id,
-                                #    'text': message.message
-                                #})
-                                logger.info('Found post with triggers')
+                    for message in messages.messages:
+                        if message.message and message.date > offset_date:
+                            for keyword in keywords.split(','):
+                                if keyword.strip() in message.message:
+                                    #pprint({
+                                    #   'channel': channel,
+                                    #   'message_id': message.id,
+                                    #    'text': message.message
+                                    #})
+                                    logger.info('Found post with triggers')
 
-                                approved_messages.append((channel, message))
-                                break
-            await self.client.disconnect()
+                                    approved_messages.append((channel, message))
+                                    break
+                except Exception as e:
+                    logger.error(e)
+                    continue
+                await self.client.disconnect()
+
             if approved_messages:
                 accounts = await db_get_all_tg_accounts()
                 tasks = []
