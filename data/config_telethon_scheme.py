@@ -214,6 +214,7 @@ class TelethonConnect:
                 except Exception as e:
                     logger.error(e)
                     logger.error(channel)
+                    print(e)
                     continue
                 await self.client.disconnect()
 
