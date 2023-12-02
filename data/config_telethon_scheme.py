@@ -176,11 +176,11 @@ class TelethonConnect:
             return False
 
     async def monitor_channels(self, channel_keywords: dict):
-        try:
-            logger.info('Monitoring channels for new posts...')
-            await self.client.connect()
-            approved_messages = []
-            for channel, keywords in channel_keywords.items():
+        logger.info('Monitoring channels for new posts...')
+        await self.client.connect()
+        approved_messages = []
+        for channel, keywords in channel_keywords.items():
+            try:
                 entity = await self.client.get_entity(channel)
                 input_entity = InputPeerChannel(entity.id, entity.access_hash)
                 utc_now = datetime.now(pytz.utc)
@@ -210,23 +210,26 @@ class TelethonConnect:
 
                                 approved_messages.append((channel, message))
                                 break
-            await self.client.disconnect()
-            if approved_messages:
-                accounts = await db_get_all_tg_accounts()
-                tasks = []
-                for msg in approved_messages:
-                    acc = random.choice(accounts)
-                    channel, message = msg
-                    session = TelethonSendMessages(acc)
-                    task = asyncio.create_task(session.send_comments(channel, message, acc))
-                    tasks.append(task)
-                await asyncio.gather(*tasks)
+            except Exception as e:
+                logger.error(f'{channel}: {e}')
+                print(e)
+                continue
+        await self.client.disconnect()
+        if approved_messages:
+            accounts = await db_get_all_tg_accounts()
+            tasks = []
+            for msg in approved_messages:
+                acc = random.choice(accounts)
+                channel, message = msg
+                session = TelethonSendMessages(acc)
+                task = asyncio.create_task(session.send_comments(channel, message, acc))
+                tasks.append(task)
+            await asyncio.gather(*tasks)
 
 
 
-        except Exception as e:
-            logger.error(f'Error monitoring channels: {e}')
-            await self.client.disconnect()
+
+
 
 
 class TelethonSendMessages:
