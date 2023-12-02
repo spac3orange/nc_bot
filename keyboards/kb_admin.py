@@ -7,6 +7,7 @@ def start_btns():
     kb_builder.button(text='Остановить', callback_data='monitoring_stop')
     kb_builder.button(text='История', callback_data='get_history')
     kb_builder.button(text='Настройки', callback_data='settings')
+    kb_builder.button(text='Админ Панель', callback_data='help')
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
