@@ -203,7 +203,7 @@ def generate_accs_keyboard(accs, operation):
         kb_builder.button(text=acc, callback_data=f'account_{operation}_{acc}')
 
     kb_builder.button(text='◀️Назад', callback_data='back_to_accs')
-    kb_builder.adjust(len(accs) // 2 + 1)  # Расположение кнопок в несколько столбцов
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
 
     return kb_builder.as_markup(resize_keyboard=True)
 
@@ -215,7 +215,7 @@ def generate_accs_keyboard_users(accs, operation):
         kb_builder.button(text=acc, callback_data=f'account_{operation}_{acc}')
 
     kb_builder.button(text='◀️Назад', callback_data='back_to_users_accs')
-    kb_builder.adjust(len(accs) // 2 + 1)  # Расположение кнопок в несколько столбцов
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
 
     return kb_builder.as_markup(resize_keyboard=True)
 
