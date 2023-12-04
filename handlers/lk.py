@@ -22,9 +22,22 @@ async def process_admin_panel(callback: CallbackQuery):
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
     ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
-    accounts = '10' if user_data['sub_status'] else '1'
+    accounts = ''
+    commentaries = ''
+    if user_data['sub_type'] == 'DEMO':
+        accounts = '1 (демо-период)'
+        commentaries = '1'
+    elif user_data['sub_type'] == 'Подписка на 1 день':
+        accounts = '1'
+        commentaries = '7'
+    elif user_data['sub_type'] == 'Подписка на 7 дней':
+        accounts = '3'
+        commentaries = '147'
+    elif user_data['sub_type'] == 'Подписка на 30 дней':
+        accounts = '5'
+        commentaries = '1050'
     sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
-    sub_end = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
+    sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_start_date']
     print(sub_start)
     pprint(user_data)
     if user_data:
@@ -35,7 +48,8 @@ async def process_admin_panel(callback: CallbackQuery):
                                       f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
                                       f'<b>Начало подписки:</b> {sub_start}\n'
                                       f'<b>Подписка истекает:</b> {sub_end}\n'
-                                      f'<b>Доступно аккаунтов:</b> {accounts}\n\n'
+                                      f'<b>Доступно аккаунтов:</b> {accounts}\n'
+                                      f'<b>Лимит комментариев:</b> {commentaries}\n\n'
                                       f'<b>Статистика:\n</b>'
                                       f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'
                                       f'<b>Реферальная программа:</b>\n'
@@ -103,27 +117,6 @@ async def process_approve_sub_plan(callback: CallbackQuery):
                 await db.create_user_accounts_table(uid)
                 await db.move_accounts(uid, accounts)
 
-                user_data = await db.get_user_info(uid)
-                ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
-                print(user_data['sub_type'])
-                accounts = '10' if user_data['sub_status'] else '1'
-                pprint(user_data)
-                await callback.message.answer(f'<b>ID:</b> {uid}\n'
-                                              f'<b>Username:</b> @{uname}\n\n'
-        
-                                              f'<b>Баланс:</b> {user_data["balance"]} рублей\n'
-                                              f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
-                                              f'<b>Начало подписки:</b> {user_data["sub_start_date"]}\n'
-                                              f'<b>Подписка истекает:</b> {user_data["sub_end_date"]}\n'
-                                              f'<b>Доступно аккаунтов:</b> {accounts}\n\n'
-                                              f'<b>Статистика:\n</b>'
-                                              f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'
-                                              f'<b>Реферальная программа:</b>\n'
-                                              f'Приглашенных пользователей: 0\n'
-                                              f'Бонусные дни подписки: 0\n\n'
-                                              f'<b>Реферальная ссылка:</b> \n{ref_link}\n\n',
-                                              reply_markup=kb_admin.lk_btns(),
-                                              parse_mode='HTML')
             else:
                 await callback.message.answer('К сожалению, аккаунтов на данный момент нет в наличии.\n'
                                               'Пожалуйста, попробуйте позже.',

@@ -9,7 +9,8 @@ async def check_subscription_expiry():
     UPDATE subscriptions 
     SET sub_start_date = CASE WHEN TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 THEN NULL ELSE sub_start_date END, 
         sub_end_date = CASE WHEN TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 THEN NULL ELSE sub_end_date END, 
-        sub_status = CASE WHEN TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 THEN FALSE ELSE sub_status END 
+        sub_status = CASE WHEN TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 THEN FALSE ELSE sub_status END,
+        sub_type = CASE WHEN TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 THEN 'DEMO' ELSE sub_type END
     WHERE TO_TIMESTAMP(sub_end_date, 'DD/MM/YYYY HH24:MI:SS') < $1 
     RETURNING user_id
     """
