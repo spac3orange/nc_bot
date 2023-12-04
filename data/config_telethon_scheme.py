@@ -345,7 +345,7 @@ class TelethonConnect:
                             else:
                                 try:
                                     await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
-                                                                            '\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
+                                                                            '\n\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
                                                                    parse_mode='HTML')
                                     continue
                                 except Exception as e:
