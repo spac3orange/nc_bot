@@ -53,16 +53,19 @@ async def process_admin_panel(callback: CallbackQuery):
 @router.callback_query(F.data == 'subscribe')
 async def process_subscribe(callback: CallbackQuery):
     await callback.message.answer('<b>Пожалуйста, выберите тариф:</b>'
-                                  '\n\n<b>Подписка на 1 день</b>'
-                                  '\n<b>Цена:</b> 300 рублей'
-                                  '\n<b>Аккаунты:</b> 10 шт.'
-                                  '\n<b>Комментарии:</b> 70 шт.'
+                                  '\n\n<b>Подписка на 1 день - 300р</b>'
+                                  '\n<b>Аккаунты:</b> 1 шт.'
+                                  '\n<b>Комментарии:</b> 7 шт. на срок подписки'
+                                  '\n<b>Стоимость одного комментария:</b> 42.86 р.'
                                   '\n\n<b>Подписка на 7 дней - 1500р</b>'
-                                  '\n<b>Аккаунты:</b> 10 шт.'
-                                  '\n<b>Комментарии:</b> 700 шт.'
+                                  '\n<b>Аккаунты:</b> 3 шт. на срок подписки'
+                                  '\n<b>Комментарии:</b> 147 шт. на срок подписки'
+                                  '\n<b>Стоимость одного комментария:</b> 10.20 р.'
                                   '\n\n<b>Подписка на 30 дней - 5000р</b>'
-                                  '\n<b>Аккаунты:</b> 10 шт.'
-                                  '\n<b>Комментарии:</b> 3000 шт.', parse_mode='HTML', reply_markup=kb_admin.choose_sub_plan())
+                                  '\n<b>Аккаунты:</b> 5 шт.'
+                                  '\n<b>Комментарии:</b> 1050 шт.'
+                                  '\n<b>Стоимость одного комментария:</b> 4.76 р.',
+                                  parse_mode='HTML', reply_markup=kb_admin.choose_sub_plan())
 
 @router.callback_query(F.data.startswith('sub_plan_'))
 async def process_sub_plan(callback: CallbackQuery, state: FSMContext):

@@ -73,7 +73,7 @@ async def start_params() -> None:
 async def main():
     task1 = asyncio.create_task(start_params())
     task2 = asyncio.create_task(monitor.stop_monitoring())
-    task3 = asyncio.create_task(interval_operations.start_scheduler())
+    task3 = asyncio.create_task(interval_operations.start_scheduled_tasks())
     await asyncio.gather(task1, task2, task3)
 
 

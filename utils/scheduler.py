@@ -4,6 +4,7 @@ from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect, monitor_settings
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from database import db
+from .check_subscription import check_users_subscription
 
 scheduler = AsyncIOScheduler()
 
@@ -74,12 +75,14 @@ class IntervalOperations:
     def __init__(self):
         self.scheduler = AsyncIOScheduler()
 
-    async def start_scheduler(self):
+    async def start_scheduled_tasks(self):
         self.scheduler.add_job(db.clear_users_today, 'cron', hour=0, minute=0)
         self.scheduler.add_job(db.reset_comments_today, 'cron', hour=0, minute=10)
+        self.scheduler.add_job(check_users_subscription, 'interval', minutes=1)
         self.scheduler.start()
         logger.info('users_today scheduler started')
         logger.info('comments_today scheduler started')
+        logger.info('check_users_subscription scheduler started')
 
 
 interval_operations = IntervalOperations()

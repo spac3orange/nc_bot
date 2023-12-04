@@ -74,7 +74,7 @@ class Database:
             await self.create_pool()
             await self.execute_query(
                 "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
-                "channel_id BIGINT PRIMARY KEY, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет')")
+                "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет', PRIMARY KEY (user_id, channel_id))")
 
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
@@ -88,8 +88,8 @@ class Database:
             await self.execute_query("""
                             CREATE TABLE IF NOT EXISTS subscriptions (
                                 user_id BIGINT PRIMARY KEY,
-                                sub_start_date TEXT DEFAULT 'Нет',
-                                sub_end_date TEXT DEFAULT 'Нет',
+                                sub_start_date TEXT,
+                                sub_end_date TEXT,
                                 sub_type TEXT DEFAULT 'DEMO',
                                 sub_status BOOLEAN DEFAULT FALSE,
                                 balance INTEGER DEFAULT 0,

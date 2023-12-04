@@ -20,13 +20,13 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
     if str(message.from_user.id) in config_aiogram.admin_id:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'Статус: <b>{" Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'Статус:<b>{" Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
     await state.clear()
@@ -58,12 +58,12 @@ async def process_license(message: Message):
 
         if str(message.from_user.id) in config_aiogram.admin_id:
             await message.answer(
-                                 f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                                 f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                                  reply_markup=kb_admin.start_btns_admin(),
                                  parse_mode='HTML')
         else:
             await message.answer(
-                                 f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                                 f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                                  reply_markup=kb_admin.start_btns(),
                                  parse_mode='HTML')
 
@@ -87,13 +87,13 @@ async def process_start(callback: CallbackQuery):
     if str(callback.from_user.id) in config_aiogram.admin_id:
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
 
@@ -105,11 +105,11 @@ async def back_to_main(callback: CallbackQuery):
 
     if str(callback.from_user.id) in config_aiogram.admin_id:
         await callback.message.answer(
-                             f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await callback.message.answer(
-                             f'Мониторинг <b>{"работает 🟢" if user_monitoring_status else "выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')

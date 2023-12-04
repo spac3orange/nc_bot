@@ -18,13 +18,13 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
     if IsAdmin(F):
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'<b>{"Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'<b>{"Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
     await state.clear()
@@ -36,6 +36,7 @@ async def process_users_settings(callback: CallbackQuery):
     for uid, name, mon, notif in users:
         user = []
         user_data = await db.get_user_info(uid)
+        print(user_data)
         accounts = len(await db.get_user_accounts(uid)) or '0'
         channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'

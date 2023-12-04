@@ -18,13 +18,13 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
     if IsAdmin(F):
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'<b>{"Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Мониторинг <b>{"выключен 🔴"}</b>',
+                             f'<b>{"Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
     await state.clear()

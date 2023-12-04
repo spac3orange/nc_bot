@@ -51,7 +51,7 @@ def settings_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Каналы', callback_data='groups_settings')
     kb_builder.button(text='Telegram аккаунты', callback_data='user_tg_accs_settings')
-    kb_builder.button(text='Pro Настойки', callback_data='pro_settings')
+    kb_builder.button(text='Pro Настройки', callback_data='pro_settings')
     kb_builder.button(text='Уведомления', callback_data='notifications_settings')
     kb_builder.button(text='◀️Назад', callback_data='back_to_main')
 
@@ -285,7 +285,7 @@ def edit_acc_info(account):
 
 def process_license():
     kb_builder = InlineKeyboardBuilder()
-    kb_builder.button(text='Продолжить👍', callback_data='start_accept_license')
+    kb_builder.button(text='Соглашение принято👍', callback_data='start_accept_license')
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
