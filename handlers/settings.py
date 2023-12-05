@@ -18,7 +18,7 @@ async def process_settings(callback: CallbackQuery):
         print('basic_sub')
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
                                            f'<b>Внесено каналов:</b> {channels}\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> 1 (демо-период)\n',
+                                           f'<b>Доступно Telegram аккаунтов:</b> 1 (демо)\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')
     else:
@@ -39,7 +39,7 @@ async def back_to_settings(callback: CallbackQuery):
     if callback.from_user.id in basic_members:
         await callback.message.answer(text=f'<b>Настройки:</b>\n\n'
                                            f'<b>Внесено каналов:</b> {channels}\n'
-                                           f'<b>Доступно Telegram аккаунтов:</b> 1 (демо-период)\n',
+                                           f'<b>Доступно Telegram аккаунтов:</b> 1 (демо)\n',
                                       reply_markup=kb_admin.settings_btns(),
                                       parse_mode='HTML')
     else:

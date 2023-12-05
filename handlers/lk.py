@@ -25,7 +25,7 @@ async def process_admin_panel(callback: CallbackQuery):
     accounts = ''
     commentaries = ''
     if user_data['sub_type'] == 'DEMO':
-        accounts = '1 (демо-период)'
+        accounts = '1 (демо)'
         commentaries = '1'
     elif user_data['sub_type'] == 'Подписка на 1 день':
         accounts = '1'
@@ -64,16 +64,17 @@ async def process_admin_panel(callback: CallbackQuery):
                                       parse_mode='HTML')
 
 
+
 @router.callback_query(F.data == 'subscribe')
 async def process_subscribe(callback: CallbackQuery):
     await callback.message.answer('<b>Пожалуйста, выберите тариф:</b>'
                                   '\n\n<b>Подписка на 1 день - 300р</b>'
                                   '\n<b>Аккаунты:</b> 1 шт.'
-                                  '\n<b>Комментарии:</b> 7 шт. на срок подписки'
+                                  '\n<b>Комментарии:</b> 7 шт.'
                                   '\n<b>Стоимость одного комментария:</b> 42.86 р.'
                                   '\n\n<b>Подписка на 7 дней - 1500р</b>'
-                                  '\n<b>Аккаунты:</b> 3 шт. на срок подписки'
-                                  '\n<b>Комментарии:</b> 147 шт. на срок подписки'
+                                  '\n<b>Аккаунты:</b> 3 шт.'
+                                  '\n<b>Комментарии:</b> 147 шт.'
                                   '\n<b>Стоимость одного комментария:</b> 10.20 р.'
                                   '\n\n<b>Подписка на 30 дней - 5000р</b>'
                                   '\n<b>Аккаунты:</b> 5 шт.'
@@ -122,8 +123,9 @@ async def process_approve_sub_plan(callback: CallbackQuery):
                                               'Пожалуйста, попробуйте позже.',
                                               parse_mode='HTML')
         else:
-            await callback.answer('Недостаточно средств.'
-                                  '\nПожалуйста, пополните баланс')
+            await callback.message.answer('<b>Недостаточно средств для оплаты тарифа.</b>'
+                                          '\n\nДля пополнения баланса, введите команду /add_balance',
+                                          parse_mode='HTML')
 
     else:
         await callback.message.answer('Произошла ошибка, попробуйте позже',

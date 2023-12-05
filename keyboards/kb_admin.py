@@ -70,7 +70,6 @@ def pro_settings_btns():
 def lk_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Купить подписку', callback_data='subscribe')
-    kb_builder.button(text='Продлить подписку', callback_data='subscribe_prolong')
     kb_builder.button(text='Пополнить баланс', callback_data='add_balance')
     kb_builder.button(text='◀️Назад', callback_data='back_to_main')
 

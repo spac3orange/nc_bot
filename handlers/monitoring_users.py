@@ -18,7 +18,7 @@ async def monitoring_start(callback: CallbackQuery):
     try:
         uid = callback.from_user.id
         await db.toggle_monitoring_status(uid, True)
-        await callback.message.answer('Мониторинг запущен.')
+        await callback.message.answer('Статус: <b>Работает🟢</b>', parse_mode='HTML')
     except Exception as e:
         logger.error(e)
         await callback.message.answer('Ошибка.\n'
@@ -29,7 +29,7 @@ async def monitoring_start(callback: CallbackQuery):
 async def monitoring_stop(callback: CallbackQuery):
     uid = callback.from_user.id
     await db.toggle_monitoring_status(uid, False)
-    await callback.message.answer('Мониторинг остановлен.')
+    await callback.message.answer('Статус: <b>Выключен🔴</b>', parse_mode='HTML')
 
 
 @router.message(Command(commands='monitoring_status'))
@@ -37,8 +37,8 @@ async def get_monitor_status(message: Message):
     uid = message.from_user.id
     user_monitoring_status = await db.get_monitoring_status(uid)
     if user_monitoring_status:
-        await message.answer(f'Мониторинг работает.')
+        await message.answer(f'Статус: <b>Работает🟢</b>', parse_mode='HTML')
     else:
-        await message.answer(f'Мониторинг не работает.')
+        await message.answer('Статус: <b>Выключен🔴</b>', parse_mode='HTML')
 
 

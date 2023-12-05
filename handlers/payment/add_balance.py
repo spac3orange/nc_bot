@@ -8,6 +8,11 @@ from database import db
 from states.states import UkassaPayment
 router = Router()
 
+
+@router.message(Command(commands='add_balance'))
+async def process_add_balance(message: Message):
+    await message.answer('Выберите способ пополнения счета:', reply_markup=kb_admin.choose_payment_type())
+
 @router.callback_query(F.data == 'add_balance')
 async def process_add_balance(callback: CallbackQuery):
     await callback.message.answer('Выберите способ пополнения счета:', reply_markup=kb_admin.choose_payment_type())
