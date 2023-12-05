@@ -99,20 +99,26 @@ async def process_approve_sub_plan(callback: CallbackQuery):
     if plan == '1':
         sub_price = 300
         accounts = 1
+        comments = 7
     elif plan == '7':
         sub_price = 1500
         accounts = 3
+        comments = 147
     elif plan == '30':
         sub_price = 5000
         accounts = 5
+        comments = 1050
     if user_data:
         if user_data['balance'] >= sub_price:
             accs_available = await db.db_get_all_tg_accounts(True)
             if len(accs_available) >= accounts:
                 days = 'день' if plan == '1' else 'дней'
                 await callback.message.answer('Спасибо за покупку!\n'
-                                              f'<b>Подписка активирована на {plan} {days}</b>',
-                                              parse_mode='HTML')
+                                              f'\n<b>Подписка активирована на {plan} {days}</b>'
+                                              f'\n<b>Аккаунты:</b> {accounts} шт.'
+                                              f'\n<b>Комментарии:</b> {comments} шт.'
+                                              f'\n\nДля расширенной настройки аккаунтов, триггеров сообщений и промтов ChatGPT,'
+                                              f'перейдите в раздел <b>Настройки</b> /settings', parse_mode='HTML')
 
                 await payment_action.update_subscription_info(callback.from_user.id, int(plan))
                 await db.create_user_accounts_table(uid)

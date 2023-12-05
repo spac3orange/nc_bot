@@ -15,16 +15,19 @@ router.message.filter(
 
 @router.message(Command(commands='cancel'))
 async def process_cancel_command_state(message: Message, state: FSMContext):
+    uid = message.from_user.id
+    user_monitoring_status = await db.get_monitoring_status(uid)
+    status = 'Работает 🟢' if user_monitoring_status else 'Выключен 🔴'
     if IsAdmin(F):
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'<b>{"Выключен 🔴"}</b>',
+                             f'<b>{status}</b>',
                              reply_markup=kb_admin.start_btns_admin(),
                              parse_mode='HTML')
     else:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'<b>{"Выключен 🔴"}</b>',
+                             f'<b>{status}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
     await state.clear()
