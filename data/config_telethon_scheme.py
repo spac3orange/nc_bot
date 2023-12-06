@@ -308,8 +308,9 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        logger.info('Found post without triggers')
-                                        approved_messages.append((user_id, channel_name, message))
+                                        if len(message.message) > 300:
+                                            logger.info('Found post without triggers')
+                                            approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
@@ -435,7 +436,7 @@ class TelethonSendMessages:
                 if message:
                     await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     logger.info('Comment sent')
-                    print(user_id, f'Комментарий в группу {channel_name} отправлен.')
+                    print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
                     await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 else:
