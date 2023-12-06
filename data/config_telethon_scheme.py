@@ -199,17 +199,18 @@ class TelethonConnect:
 
                 for message in messages.messages:
                     if message.message and message.date > offset_date:
-                        for keyword in keywords.split(','):
-                            if keyword.strip() in message.message:
-                                #pprint({
-                                #   'channel': channel,
-                                #   'message_id': message.id,
-                                #    'text': message.message
-                                #})
-                                logger.info('Found post with triggers')
+                        if len(message.message) > 300:
+                            for keyword in keywords.split(','):
+                                if keyword.strip() in message.message:
+                                    #pprint({
+                                    #   'channel': channel,
+                                    #   'message_id': message.id,
+                                    #    'text': message.message
+                                    #})
+                                    logger.info('Found post with triggers')
 
-                                approved_messages.append((channel, message))
-                                break
+                                    approved_messages.append((channel, message))
+                                    break
             except Exception as e:
                 logger.error(f'{channel}: {e}')
                 print(e)
