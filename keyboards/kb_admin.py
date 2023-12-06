@@ -178,7 +178,7 @@ def generate_group_keyboard(groups, operation):
     kb_builder.button(text='◀️Назад', callback_data='back_to_groups')
 
 
-    kb_builder.adjust(len(groups) // 2 + 1)  # Расположение кнопок в несколько столбцов
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
 
     return kb_builder.as_markup(resize_keyboard=True)
 
@@ -190,7 +190,7 @@ def generate_group_keyboard_tp(groups, operation):
     kb_builder.button(text='◀️Назад', callback_data='pro_settings')
 
 
-    kb_builder.adjust(len(groups) // 2 + 1)  # Расположение кнопок в несколько столбцов
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
 
     return kb_builder.as_markup(resize_keyboard=True)
 
