@@ -11,9 +11,9 @@ class AuthOpenAI:
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
-        self.username = 'sp6i015wn0'
-        self.password = 'mVmuv81ifB8DNpvc1m'
-        self.proxy = f"http://{self.username}:{self.password}@cz.smartproxy.com:26000"
+        self.username = 'ANIaoxgd6wTTnitf'
+        self.password = 'wifi;cz;;;'
+        self.proxy = f"http://{self.username}:{self.password}@proxy.soax.com:9000"
 
     @retry(stop=stop_after_attempt(3))
     async def process_question(self, question):
