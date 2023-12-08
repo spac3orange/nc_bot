@@ -15,7 +15,7 @@ router = Router()
 async def buy_ukassa(message: Message, bot: aiogram_bot, state: FSMContext):
     payment_sum = message.text
     price = LabeledPrice(label=f'Пополнение баланса {payment_sum}р', amount=int(payment_sum)*100)
-    photo = 'https://i.postimg.cc/W3xqDy2V/Comment-Bot.png'
+    photo = 'https://cdn1.picturebb.com/1/2023/12/08/jN3gd.png'
     await bot.send_invoice(chat_id=message.from_user.id,
                            title='Пополнение баланса',
                            description='Пополнение баланса MagicComment24_bot',
