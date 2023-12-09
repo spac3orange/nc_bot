@@ -23,7 +23,9 @@ async def get_history(callback: CallbackQuery):
             history = history[-10:] if len(history) >= 10 else history
             history = '\n'.join(history)
         if history:
-            await callback.message.answer(text=history)
+            for i in history:
+                if len(i) > 1 and i != '\n' and i != ' ' and i != '':
+                    await callback.message.answer(i, parse_mode='HTML')
         else:
             await callback.message.answer('История не найдена.')
     except Exception as e:
