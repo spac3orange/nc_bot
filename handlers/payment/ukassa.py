@@ -27,7 +27,7 @@ async def buy_ukassa(message: Message, bot: aiogram_bot, state: FSMContext):
                            photo_size=416,
                            is_flexible=False,
                            prices=[price],
-                           start_parameter='one-month-subscription',
+                           start_parameter='balance top up',
                            payload='some-invoice-payload')
     await state.clear()
 
