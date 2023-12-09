@@ -22,7 +22,7 @@ async def buy_ukassa(message: Message, bot: aiogram_bot, state: FSMContext):
                            provider_token=payment_config.ukassa_token,
                            currency='rub',
                            photo_url=photo,
-                           photo_width=460,
+                           photo_width=480,
                            photo_height=260,
                            photo_size=416,
                            is_flexible=False,
