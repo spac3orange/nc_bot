@@ -16,7 +16,7 @@ router.message.filter(
 
 
 @router.callback_query(F.data == 'lk')
-async def process_admin_panel(callback: CallbackQuery):
+async def process_lk(callback: CallbackQuery):
 
     uid = callback.from_user.id
     uname = callback.from_user.username
@@ -37,7 +37,7 @@ async def process_admin_panel(callback: CallbackQuery):
         accounts = '5'
         commentaries = '1050'
     sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
-    sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_start_date']
+    sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_end_date']
     print(sub_start)
     pprint(user_data)
     if user_data:

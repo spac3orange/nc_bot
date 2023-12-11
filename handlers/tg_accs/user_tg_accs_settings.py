@@ -34,7 +34,7 @@ async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                                   'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
 
@@ -60,7 +60,7 @@ async def change_info_menu(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith('acc_edit_username_'))
 async def acc_change_username(callback: CallbackQuery, state: FSMContext):
     account = callback.data.split('_')[-1]
-    await callback.message.answer('Введите новый ник:')
+    await callback.message.answer('Введите новый Username:')
     await state.set_state(EditAccInfo.change_username)
     await state.update_data(account=account)
 
@@ -73,7 +73,7 @@ async def name_changed(message: Message, state: FSMContext):
         await message.answer('Никнейм изменен')
         await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                               'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                               'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                               parse_mode='HTML')
     else:
@@ -98,7 +98,7 @@ async def name_changed(message: Message, state: FSMContext):
         await message.answer('Имя изменено')
         await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                               'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                               'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                               parse_mode='HTML')
     else:
@@ -124,7 +124,7 @@ async def name_changed(message: Message, state: FSMContext):
         await message.answer('Фамилия изменена')
         await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                               'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                               'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                               parse_mode='HTML')
     else:
@@ -150,7 +150,7 @@ async def name_changed(message: Message, state: FSMContext):
         await message.answer('Био изменено')
         await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                              'Здесь можно настроить инфо аккаунта, такое как:\n'
-                             '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                             '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                              'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                              parse_mode='HTML')
     else:
@@ -214,7 +214,7 @@ async def process_photo(message: Message, state: FSMContext):
             await message.answer('Аватар изменен')
             await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар</b>\n\n'
+                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
                                   'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
         else:

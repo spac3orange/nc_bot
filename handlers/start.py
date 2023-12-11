@@ -41,7 +41,8 @@ async def get_monitor_status(message: Message):
 
 
 @router.message(CommandStart)
-async def process_license(message: Message):
+async def process_license(message: Message, state: FSMContext):
+    await state.clear()
     uid = message.from_user.id
     if not license_applied.get(uid):
         await message.answer(text=user_license.license_text, reply_markup=kb_admin.process_license(), parse_mode='HTML')

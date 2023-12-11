@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram.types import Message, CallbackQuery, PreCheckoutQuery, LabeledPrice
 from aiogram.filters import CommandStart, Command
 from aiogram import Router, F
@@ -6,7 +8,7 @@ from keyboards import kb_admin
 from data import aiogram_bot, payment_config
 from aiogram.types.message import ContentType
 from states.states import UkassaPayment
-from database import payment_action
+from database import payment_action, db
 router = Router()
 
 #prices = {'1_month': 250*100, '3_month': 450*100, '6_month': 750*100, '12_month': 1140*100}
@@ -52,6 +54,47 @@ async def successful_payment(message: Message, state: FSMContext):
                              f'\nВаш баланс пополнен на <b>{amount}</b> рублей', parse_mode='HTML')
         await payment_action.update_balance(uid, amount)
 
+        await asyncio.sleep(1)
+        user_data = await db.get_user_info(uid)
+        ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
+        accounts = ''
+        commentaries = ''
+        if user_data['sub_type'] == 'DEMO':
+            accounts = '1 (демо)'
+            commentaries = '1'
+        elif user_data['sub_type'] == 'Подписка на 1 день':
+            accounts = '1'
+            commentaries = '7'
+        elif user_data['sub_type'] == 'Подписка на 7 дней':
+            accounts = '3'
+            commentaries = '147'
+        elif user_data['sub_type'] == 'Подписка на 30 дней':
+            accounts = '5'
+            commentaries = '1050'
+        sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
+        sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_start_date']
+        if user_data:
+            await message.answer(f'<b>ID:</b> {uid}\n'
+                                          f'<b>Username:</b> @{uname}\n\n'
+
+                                          f'<b>Баланс:</b> {user_data["balance"]} рублей\n'
+                                          f'<b>Уровень подписки:</b> {user_data["sub_type"]}\n'
+                                          f'<b>Начало подписки:</b> {sub_start}\n'
+                                          f'<b>Подписка истекает:</b> {sub_end}\n'
+                                          f'<b>Доступно аккаунтов:</b> {accounts}\n'
+                                          f'<b>Лимит комментариев:</b> {commentaries}\n\n'
+                                          f'<b>Статистика:\n</b>'
+                                          f'Отправлено комментариев: {user_data["comments_sent"]}\n\n'
+                                          f'<b>Реферальная программа:</b>\n'
+                                          f'Приглашенных пользователей: 0\n'
+                                          f'Бонусные дни подписки: 0\n\n'
+                                          f'<b>Реферальная ссылка:</b> \n{ref_link}\n\n',
+                                          reply_markup=kb_admin.lk_btns(),
+                                          parse_mode='HTML')
+        else:
+            await message.answer('Произошла ошибка, попробуйте позже',
+                                          reply_markup=kb_admin.lk_btns(),
+                                          parse_mode='HTML')
 
 
 
