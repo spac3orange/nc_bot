@@ -69,13 +69,13 @@ async def name_changed(message: Message, state: FSMContext):
     account = (await state.get_data())['account']
     session = AuthTelethon(account)
     res = await session.change_username(message.text)
-    if res:
-        await message.answer('Никнейм изменен')
-        await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
-                              'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                              'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
-                              parse_mode='HTML')
+    if res == 'username_taken':
+        await message.answer('Username занят, попробуйте еще раз')
+        return
+    elif res == 'done':
+        await message.answer('Username изменен 👍')
+        await message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                             parse_mode='HTML')
     else:
         await message.answer('Произошла ошибка, попробуйте позже')
     await state.clear()
@@ -95,12 +95,9 @@ async def name_changed(message: Message, state: FSMContext):
     session = AuthTelethon(account)
     res = await session.change_first_name(message.text)
     if res:
-        await message.answer('Имя изменено')
-        await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
-                              'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                              'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
-                              parse_mode='HTML')
+        await message.answer('Имя изменено 👍')
+        await message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                             parse_mode='HTML')
     else:
         await message.answer('Произошла ошибка, попробуйте позже')
     await state.clear()
@@ -121,12 +118,9 @@ async def name_changed(message: Message, state: FSMContext):
     session = AuthTelethon(account)
     res = await session.change_last_name(message.text)
     if res:
-        await message.answer('Фамилия изменена')
-        await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
-                              'Здесь можно настроить инфо аккаунта, такое как:\n'
-                              '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                              'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
-                              parse_mode='HTML')
+        await message.answer('Фамилия изменена 👍')
+        await message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                             parse_mode='HTML')
     else:
         await message.answer('Произошла ошибка, попробуйте позже')
     await state.clear()
@@ -147,11 +141,8 @@ async def name_changed(message: Message, state: FSMContext):
     session = AuthTelethon(account)
     res = await session.change_bio(message.text)
     if res:
-        await message.answer('Био изменено')
-        await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
-                             'Здесь можно настроить инфо аккаунта, такое как:\n'
-                             '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                             'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
+        await message.answer('Био изменено 👍')
+        await message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                              parse_mode='HTML')
     else:
         await message.answer('Произошла ошибка, попробуйте позже')
@@ -211,12 +202,9 @@ async def process_photo(message: Message, state: FSMContext):
             photo.write(downloaded_file.read())
         res = await session.change_profile_photo(photo_name)
         if res:
-            await message.answer('Аватар изменен')
-            await message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
-                                  'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                                  'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
-                                  parse_mode='HTML')
+            await message.answer('Аватар изменен 👍')
+            await message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                                 parse_mode='HTML')
         else:
             await message.answer('Произошла ошибка, попробуйте позже')
         await state.clear()

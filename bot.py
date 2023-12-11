@@ -53,7 +53,6 @@ async def start_params() -> None:
     dp.include_router(get_history.router)
     dp.include_router(pop_up_commands.router)
     dp.include_router(help.router)
-
     dp.include_router(settings.router)
     dp.include_router(start.router)
 

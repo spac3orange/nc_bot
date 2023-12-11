@@ -18,6 +18,7 @@ from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRe
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputPhoto
 from telethon.tl.functions.users import GetFullUserRequest
+from telethon.errors import UsernameOccupiedError
 import mimetypes
 
 
@@ -181,7 +182,11 @@ class AuthTelethon:
             await self.client(UpdateUsernameRequest(username))
             logger.info(f'Changed username to {username}')
             await self.client.disconnect()
-            return True
+            return 'done'
+        except UsernameOccupiedError as e:
+            logger.error(f'Error changing username: {e}')
+            await self.client.disconnect()
+            return 'username_taken'
         except Exception as e:
             logger.error(f'Error changing username: {e}')
             await self.client.disconnect()
