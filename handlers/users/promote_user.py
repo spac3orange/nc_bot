@@ -57,11 +57,7 @@ async def name_for_promote(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer(f'Выбран пользователь <b>{user_name}</b>\n'
                                   f'Уровень подписки: <b>{user_status}</b>\n\n'
                                   f'Введите новый уровень подписки для пользователя:\n\n'
-                                  f'1. DEMO\n'
-                                  f'2. Серебряный\n'
-                                  f'3. Золотой\n'
-                                  f'4. VIP\n'
-                                  f'5. Admin', parse_mode='HTML')
+                                  f'1. DEMO (вернуть аккаунты)\n', parse_mode='HTML')
     await state.set_state(PromoteUser.input_promote)
 
 

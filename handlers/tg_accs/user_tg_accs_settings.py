@@ -34,8 +34,8 @@ async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n'
-                                  'Информация: /help_accs', reply_markup=kb_admin.users_tg_accs_btns(),
+                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n',
+                                  reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
 
 @router.callback_query(F.data == 'choose_acc_user')
@@ -219,7 +219,11 @@ async def process_photo(message: Message, state: FSMContext):
 @router.callback_query(F.data == 'back_to_users_accs')
 async def back_to_accs(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
-    await callback.message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.users_tg_accs_btns())
+    await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
+                                  'Здесь можно настроить инфо аккаунта, такое как:\n'
+                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n',
+                                  reply_markup=kb_admin.users_tg_accs_btns(),
+                                  parse_mode='HTML')
     await state.clear()
 
 @router.callback_query(F.data == 'user_tg_accs_settings')

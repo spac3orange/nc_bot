@@ -78,7 +78,7 @@ class IntervalOperations:
     async def start_scheduled_tasks(self):
         self.scheduler.add_job(db.clear_users_today, 'cron', hour=0, minute=0)
         self.scheduler.add_job(db.reset_comments_today, 'cron', hour=0, minute=10)
-        self.scheduler.add_job(check_users_subscription, 'interval', minutes=1)
+        self.scheduler.add_job(check_users_subscription, 'interval', minutes=60)
         self.scheduler.start()
         logger.info('users_today scheduler started')
         logger.info('comments_today scheduler started')

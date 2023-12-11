@@ -17,8 +17,7 @@ async def gpt_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     gpt_accs = await db.db_get_all_gpt_accounts()
     await callback.message.answer(f'<b>Настройки ChatGPT аккаунтов:</b>\n\n'
-                                  f'<b>API ключей в БД:</b> {str(len(gpt_accs))}\n\n'
-                                  'Информация: /help_gpt_accs',
+                                  f'<b>API ключей в БД:</b> {str(len(gpt_accs))}\n\n',
                                   reply_markup=kb_admin.gpt_accs_btns(),
                                   parse_mode='HTML')
 
