@@ -15,6 +15,10 @@ router.message.filter(
 
 license_applied = dict()
 
+
+
+
+
 @router.message(Command(commands='cancel'))
 async def process_cancel_command_state(message: Message, state: FSMContext):
     uid = message.from_user.id
@@ -40,7 +44,7 @@ async def get_monitor_status(message: Message):
     logger.info(f'User @{message.from_user.username} get contacts.')
 
 
-@router.message(CommandStart)
+@router.message(Command(commands='start'))
 async def process_license(message: Message, state: FSMContext):
     await state.clear()
     uid = message.from_user.id
@@ -117,3 +121,8 @@ async def back_to_main(callback: CallbackQuery):
                              f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
+
+
+@router.message()
+async def unknown_message(message: Message):
+    await message.answer('Я не знаю такой команды😬')
