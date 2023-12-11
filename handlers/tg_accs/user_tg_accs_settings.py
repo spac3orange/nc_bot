@@ -1,3 +1,5 @@
+import asyncio
+
 from aiogram.types import Message, CallbackQuery, ContentType
 from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
@@ -22,6 +24,7 @@ async def get_info(accounts: list) -> List[Tuple[str]]:
     accs_info = []
     for session in accounts:
         try:
+            await asyncio.sleep(1)
             sess = TelethonConnect(session)
             accs_info.append(await sess.get_info())
         except Exception as e:
