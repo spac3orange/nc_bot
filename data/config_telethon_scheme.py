@@ -364,7 +364,7 @@ class TelethonConnect:
                                 logger.error('No accounts with comments less than 7')
                                 continue
                         else:
-                            acc = random.choice(await db.get_phones_with_comments_today_less_than_7(f'accounts_{user_id}', 7))
+                            acc = random.choice(await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
                             if acc:
                                 session = TelethonSendMessages(acc)
                             else:
