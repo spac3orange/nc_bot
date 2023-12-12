@@ -325,7 +325,6 @@ class TelethonConnect:
                                 entity = await self.client.get_entity(channel_name)
                                 full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
                                 chats = full_channel.to_dict()
-                                pprint(chats)
                                 linked_chat_id = await extract_linked_chat_id(chats)
                                 print('linked chat id')
                                 print(linked_chat_id)
