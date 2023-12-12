@@ -15,7 +15,7 @@ from handlers.admin import admin_panel, shop, stats
 from handlers.payment import add_balance, ukassa
 from database import db
 from utils.scheduler import monitor, interval_operations
-
+from middlewares import AntiSpamMiddleware
 
 
 async def start_params() -> None:
@@ -55,6 +55,9 @@ async def start_params() -> None:
     dp.include_router(help.router)
     dp.include_router(settings.router)
     dp.include_router(start.router)
+
+    dp.message.middleware(AntiSpamMiddleware())
+    dp.callback_query.middleware(AntiSpamMiddleware())
 
     logger.info('Bot started')
 

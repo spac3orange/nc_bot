@@ -3,10 +3,10 @@ import random
 from telethon import TelegramClient, errors
 from environs import Env
 from telethon.tl.functions.messages import SendMessageRequest
-from telethon.tl.types import InputPeerChannel
+from telethon.tl.types import InputPeerChannel, InputPeerChat
 from data.logger import logger
 from database import db
-from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
 import datetime
 from telethon.tl.functions.messages import GetHistoryRequest
 from datetime import timedelta, datetime
@@ -19,8 +19,40 @@ from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.types import InputPhoto
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors import UsernameOccupiedError
+from telethon.tl.types import PeerUser, PeerChat, PeerChannel
+from telethon.tl.types.messages import ChatFull
+from pprint import pprint
 import mimetypes
 
+async def extract_linked_chat_id(data):
+    # Функция для рекурсивного обхода всех элементов словаря
+    async def traverse_dict(dictionary):
+        for key, value in dictionary.items():
+            if isinstance(value, dict):
+                result = await traverse_dict(value)
+                if result is not None:
+                    return result
+            elif isinstance(value, list):
+                result = await traverse_list(value)
+                if result is not None:
+                    return result
+            elif key == 'linked_chat_id':
+                print(value)
+                return value
+
+    # Функция для рекурсивного обхода всех элементов списка
+    async def traverse_list(lst):
+        for item in lst:
+            if isinstance(item, dict):
+                result = await traverse_dict(item)
+                if result is not None:
+                    return result
+            elif isinstance(item, list):
+                result = await traverse_list(item)
+                if result is not None:
+                    return result
+
+    return await traverse_dict(data)
 
 async def monitor_settings(session):
     current_time = datetime.now().time()
@@ -268,7 +300,7 @@ class TelethonConnect:
                     continue
 
             entity = await self.client.get_entity(group_link)
-
+            print(entity)
             await self.client(JoinChannelRequest(entity))
             logger.info('Joined group successfully')
             await self.client.disconnect()
@@ -293,6 +325,14 @@ class TelethonConnect:
                         for (channel_name, channel_id), keywords in channels.items():
                             try:
                                 entity = await self.client.get_entity(channel_name)
+                                full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
+                                chats = full_channel.to_dict()
+                                pprint(chats)
+                                linked_chat_id = await extract_linked_chat_id(chats)
+                                print('linked chat id')
+                                print(linked_chat_id)
+
+
                             except Exception as e:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
@@ -312,10 +352,10 @@ class TelethonConnect:
 
                             if keywords == 'Нет':
                                 for message in messages.messages:
+                                    print(message)
                                     if message.message and message.date > offset_date:
-                                        if len(message.message) > 300:
-                                            logger.info('Found post without triggers')
-                                            approved_messages.append((user_id, channel_name, message))
+                                        logger.info('Found post without triggers')
+                                        approved_messages.append((user_id, channel_name, message, linked_chat_id))
 
                             else:
                                 for message in messages.messages:
@@ -329,9 +369,10 @@ class TelethonConnect:
                                                 #})
                                                 logger.info('Found post with triggers')
 
-                                                approved_messages.append((user_id, channel_name, message))
+                                                approved_messages.append((user_id, channel_name, message, linked_chat_id))
 
                 await self.client.disconnect()
+                print(approved_messages)
                 if approved_messages:
                     gpt_accs = await db.db_get_all_gpt_accounts()
                     all_promts = await db.db_get_all_promts()
@@ -344,7 +385,7 @@ class TelethonConnect:
                     tasks = []
                     for msg in approved_messages:
                         basic = False
-                        user_id, channel, message = msg
+                        user_id, channel, message, group_id = msg
                         if user_id in all_basic_users:
                             if await db.get_comments_sent(user_id) < 1:
                                 acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
@@ -371,6 +412,8 @@ class TelethonConnect:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                 continue
                         acc_in_group = await session.join_group(channel)
+                        acc_in_disc = await session.join_group_disc(int(group_id))
+                        print(f'acc in disc {acc_in_disc}')
 
                         if acc_in_group == 'already_in_group':
                             pass
@@ -381,6 +424,17 @@ class TelethonConnect:
                             print(f'{acc} banned')
                             await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                             continue
+
+                        if acc_in_disc == 'already_in_group':
+                            pass
+                            print(f'{acc} already in group_dicsc {channel}')
+                        elif acc_in_disc == 'joined':
+                            print(f'{acc} joined group {channel}')
+                        elif acc_in_disc == 'banned':
+                            print(f'{acc} banned')
+                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
+                            continue
+
 
                         message_text = message.message
                         promt = all_promts.get(channel)
@@ -495,6 +549,29 @@ class TelethonSendMessages:
 
             await self.client(JoinChannelRequest(entity))
             logger.info('Joined group successfully')
+            await self.client.disconnect()
+            return 'joined'
+
+        except errors.UserDeactivatedBanError as e:
+            logger.error(e)
+            return 'banned'
+        except Exception as e:
+            logger.error(f'Error joining group: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def join_group_disc(self, group_id):
+        try:
+            slp = random.randint(8, 15)
+            await asyncio.sleep(slp)
+            logger.info(f'Joining channel_disc id : {group_id}')
+            await self.client.connect()
+
+            logger.info(f'Joining channel: {group_id}')
+            await self.client.connect()
+            entity = await self.client.get_entity(group_id)
+            await self.client(JoinChannelRequest(entity))
+            logger.info('Joined group_disc successfully')
             await self.client.disconnect()
             return 'joined'
 
