@@ -2,7 +2,7 @@ import asyncio
 from typing import Any, Callable, Dict, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import TelegramObject, Message, CallbackQuery
-from config import logger
+from data import logger
 from cachetools import TTLCache
 
 class ThrottlingMiddleware(BaseMiddleware):
