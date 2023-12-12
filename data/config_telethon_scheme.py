@@ -69,9 +69,7 @@ async def monitor_settings(session):
         monitoring_list = []
         for u in active_users:
             user_settings = await db.get_user_groups_and_triggers(u)
-            print('user_settings', user_settings)
             monitoring_list.append(user_settings)
-        print('outp request\n', monitoring_list)
         await session.monitor_channels(monitoring_list)
     else:
         logger.warning('No users to monitor')
