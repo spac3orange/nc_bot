@@ -323,11 +323,10 @@ class TelethonConnect:
                         for (channel_name, channel_id), keywords in channels.items():
                             try:
                                 entity = await self.client.get_entity(channel_name)
-                                full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
-                                chats = full_channel.to_dict()
-                                linked_chat_id = await extract_linked_chat_id(chats)
-                                print('linked chat id')
-                                print(linked_chat_id)
+                                # full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
+                                # chats = full_channel.to_dict()
+                                # linked_chat_id = await extract_linked_chat_id(chats)
+                                # print(f'channel {channel_name} linked chat id {linked_chat_id}')
 
 
                             except Exception as e:
@@ -351,7 +350,7 @@ class TelethonConnect:
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
                                         logger.info('Found post without triggers')
-                                        approved_messages.append((user_id, channel_name, message, linked_chat_id))
+                                        approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
@@ -365,7 +364,7 @@ class TelethonConnect:
                                                 #})
                                                 logger.info('Found post with triggers')
 
-                                                approved_messages.append((user_id, channel_name, message, linked_chat_id))
+                                                approved_messages.append((user_id, channel_name, message))
 
                 await self.client.disconnect()
                 print(approved_messages)
@@ -378,10 +377,21 @@ class TelethonConnect:
                     #     user_id = m[0]
                     #     try:
                         
-                    tasks = []
+                    group_ids = []
+
+                    await self.client.connect()
                     for msg in approved_messages:
+                        user_id, channel, message = msg
+                        full_channel = await self.client(GetFullChannelRequest(channel=channel))
+                        chats = full_channel.to_dict()
+                        linked_chat_id = await extract_linked_chat_id(chats)
+                        print(f'channel {channel} linked chat id {linked_chat_id}')
+                        group_ids.append(linked_chat_id)
+                    await self.client.disconnect()
+
+                    for msg, linked_chat_id in zip(approved_messages, group_ids):
+                        user_id, channel, message = msg
                         basic = False
-                        user_id, channel, message, group_id = msg
                         if user_id in all_basic_users:
                             if await db.get_comments_sent(user_id) < 1:
                                 acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
@@ -408,7 +418,7 @@ class TelethonConnect:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                 continue
                         acc_in_group = await session.join_group(channel)
-                        acc_in_disc = await session.join_group_disc(int(group_id))
+                        acc_in_disc = await session.join_group_disc(int(linked_chat_id))
                         print(f'acc in disc {acc_in_disc}')
 
                         if acc_in_group == 'already_in_group':
