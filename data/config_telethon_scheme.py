@@ -349,7 +349,6 @@ class TelethonConnect:
 
                             if keywords == 'Нет':
                                 for message in messages.messages:
-                                    print(message)
                                     if message.message and message.date > offset_date:
                                         logger.info('Found post without triggers')
                                         approved_messages.append((user_id, channel_name, message, linked_chat_id))
