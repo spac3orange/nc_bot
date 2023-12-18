@@ -135,6 +135,7 @@ async def add_to_database(message: Message, state: FSMContext):
 
         await message.answer('Настройки телеграм каналов:', reply_markup=kb_admin.group_settings_btns())
         logger.info(f'Channel {channel_name} added to database')
+        await state.clear()
 
     else:
         await message.answer(f'Канал {channel_name} уже существует в базе данных.')
