@@ -43,7 +43,8 @@ async def help_gpt(message: Message):
 async def help_channels(message: Message):
     await message.answer('Добавить - добавить канал для мониторинга в базу данных.\n\n'
                          'Удалить - удалить канал из базы данных.\n\n'
-                         'Список каналов - получить список внесенных в базу данных каналов.')
+                         'Список каналов - получить список внесенных в базу данных каналов.'
+                         '\n\nВнимание! Если у канала или группы для дискуссий изменилась ссылка, необходимо удалить и внести канал заново.')
 
 @router.message(Command(commands='help_promts'))
 async def help_promts_triggers(message: Message):

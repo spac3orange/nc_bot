@@ -142,6 +142,7 @@ def gpt_accs_btns():
     kb_builder.button(text='Добавить', callback_data='gpt_accs_add')
     kb_builder.button(text='Удалить', callback_data='gpt_accs_del')
     kb_builder.button(text='Статус ключей', callback_data='gpt_accs_info')
+    kb_builder.button(text='Default prompt', callback_data='change_default_prompt')
     kb_builder.button(text='◀️Назад', callback_data='admin_panel')
 
     kb_builder.adjust(2)
@@ -277,6 +278,7 @@ def edit_acc_info(account):
     kb_builder.button(text='Username', callback_data=f'acc_edit_username_{account}')
     kb_builder.button(text='Bio', callback_data=f'acc_edit_bio_{account}')
     kb_builder.button(text='Аватар', callback_data=f'acc_edit_avatar_{account}')
+    kb_builder.button(text='Пол', callback_data=f'acc_edit_sex_{account}')
     kb_builder.button(text='◀️Назад', callback_data=f'user_tg_accs_settings')
 
     kb_builder.adjust(2)
@@ -314,5 +316,21 @@ def approve_sub_plan(plan):
     kb_builder.button(text='Подтвердить', callback_data=f'approve_sub_plan_{plan}')
     kb_builder.button(text='◀️Назад', callback_data=f'lk')
 
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def default_prompts():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Добавить', callback_data=f'def_prompt_add')
+    kb_builder.button(text='Удалить', callback_data=f'def_prompt_del')
+    kb_builder.button(text='◀️Назад', callback_data=f'gpt_accs')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def change_acc_sex(phone):
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Мужской', callback_data=f'change_sex_male_{phone}')
+    kb_builder.button(text='Женский', callback_data=f'change_sex_female_{phone}')
+    kb_builder.button(text='◀️Назад', callback_data=f'account_change_info_{phone}')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)

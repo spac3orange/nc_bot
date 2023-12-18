@@ -32,6 +32,16 @@ async def normalize_channel_link(link: str) -> str:
         return '@' + link.split('https://t.me/')[1]
     return link
 
+async def normalize_group_link(link: str) -> str:
+    if link.startswith('https://t.me/+'):
+        return link
+    if link.startswith('https://t.me/'):
+        return link
+    if link.lower() == 'нет':
+        return link.lower()
+    else:
+        return None
+
 async def all_accs_join_channel(message, group_link):
     accounts = await db.db_get_all_tg_accounts()
     monitor = await db.db_get_monitor_account()
@@ -67,17 +77,17 @@ async def all_accs_join_channel(message, group_link):
 
 
 @router.callback_query(F.data == 'groups_add', KnownUser())
-async def input_group(callback: CallbackQuery, state: FSMContext):
+async def input_channel(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите ссылку на канал в поддерживаемом формате:\n\n'
                                   'Пример:\n@channel_name\nhttps://t.me/channel_name',
                                   reply_markup=kb_admin.groups_back())
-    await state.set_state(AddGroup.input_group)
+    await state.set_state(AddGroup.input_channel)
     print(await state.get_state())
 
 
-@router.message(AddGroup.input_group)
-async def add_group(message: Message, state: FSMContext):
+@router.message(AddGroup.input_channel)
+async def add_channel(message: Message, state: FSMContext):
     try:
         uid = message.from_user.id
         group_name = await normalize_channel_link(message.text)
@@ -86,17 +96,52 @@ async def add_group(message: Message, state: FSMContext):
         else:
             group_id = await get_channel_id(group_name)
         print(group_id)
-        if not await group_in_table(group_id):
-            await db.db_add_telegram_group(uid, group_name, group_id)
-            await message.answer('Канал добавлен в базу данных.')
-            await message.answer('Настройки телеграм каналов:', reply_markup=kb_admin.group_settings_btns())
-            logger.info(f'Group {group_name} added to database')
+        await state.update_data(group_name=group_name, group_id=group_id)
+        await message.answer('Введите ссылку на группу для обсуждений, привязанную к каналу: '
+                             '\n\nЕсли группа для обсуждений не приватная, у нее должна быть ссылка <b>"Invite Link"</b> в описании группы'
+                             '\nЕсли группа приватная, то комментинг в такую группу <b>не доступен</b>.'
+                             '\n\nПример: https://t.me/group_name', parse_mode='HTML')
 
-        else:
-            await message.answer(f'Канал {group_name} уже существует в базе данных.')
-            await message.answer('Настройки телеграм каналов:', reply_markup=kb_admin.group_settings_btns())
-            logger.info(f'Group {group_name} already exists in database')
-        await state.clear()
+        await state.set_state(AddGroup.input_discussion)
+
     except Exception as e:
         logger.error(e)
-        await message.answer('Канал не найден')
+        await message.answer('Канал не найден'
+                             '\n\nОтменить /cancel')
+
+
+
+
+
+
+@router.message(AddGroup.input_discussion)
+async def add_to_database(message: Message, state: FSMContext):
+    discussion_link = await normalize_group_link(message.text)
+    if not discussion_link:
+        await message.answer('Ссылка на группу введена не верно.\n'
+                             'Пожалуйста, попробуйте еще раз'
+                             '\n\nОтменить /cancel')
+        return
+
+    uid = message.from_user.id
+    state_data = await state.get_data()
+    channel_name = state_data['group_name']
+    channel_id = state_data['group_id']
+
+    if not await group_in_table(channel_id):
+        await db.db_add_telegram_group(uid, channel_name, channel_id, discussion_link)
+        await message.answer(f'Канал {channel_name} добавлен.'
+                             f'\nГруппа для комментариев: {discussion_link}')
+
+        await message.answer('Настройки телеграм каналов:', reply_markup=kb_admin.group_settings_btns())
+        logger.info(f'Channel {channel_name} added to database')
+
+    else:
+        await message.answer(f'Канал {channel_name} уже существует в базе данных.')
+        await message.answer('Настройки телеграм каналов:', reply_markup=kb_admin.group_settings_btns())
+        logger.info(f'Group {channel_name} already exists in database')
+        await state.clear()
+
+
+
+

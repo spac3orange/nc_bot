@@ -20,13 +20,13 @@ router.message.filter(
 )
 
 
-async def get_info(accounts: list) -> List[Tuple[str]]:
+async def get_info(accounts: list, uid=False) -> List[Tuple[str]]:
     accs_info = []
     for session in accounts:
         try:
             await asyncio.sleep(1)
             sess = TelethonConnect(session)
-            accs_info.append(await sess.get_info())
+            accs_info.append(await sess.get_info(uid))
         except Exception as e:
             print(e)
     return accs_info
@@ -37,7 +37,7 @@ async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n',
+                                  '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n',
                                   reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
 
@@ -160,16 +160,17 @@ async def user_accs_get_info(callback: CallbackQuery):
         accounts = await db.get_user_accounts(uid)
         displayed_accounts = '\n'.join(accounts)
         if accounts:
-            accs_info = await get_info(accounts)
+            accs_info = await get_info(accounts, uid)
             accounts_formatted = '\n\n'.join([
                 f'<b>Тел:</b> {phone}'
                 f'\n<b>ID:</b> {id}'
                 f'\n<b>Имя:</b> {name}'
                 f'\n<b>Фамилия:</b> {surname}'
+                f'\n<b>Пол:</b> {sex}'
                 f'\n<b>Ник:</b> @{username}'
                 f'\n<b>Био:</b> {about}'
                 f'\n<b>Ограничения:</b> {restricted}'
-                for phone, id, name, surname, username, restricted, about in accs_info])
+                for phone, id, name, surname, username, restricted, about, sex in accs_info])
 
             await callback.message.answer(text=f'<b>Аккануты:</b>\n{displayed_accounts}\n\n<b>Инфо:</b>\n'
                                                f'{accounts_formatted}', parse_mode='HTML')
@@ -224,7 +225,7 @@ async def back_to_accs(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Bio, Аватар, Username</b>\n\n',
+                                  '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n',
                                   reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
     await state.clear()
@@ -234,3 +235,28 @@ async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('Извините, этот раздел не доступен для пользователей с бесплатной подпиской')
 
+@router.callback_query(F.data.startswith('acc_edit_sex_'))
+async def process_acc_edit_sex(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    acc_sex = await db.get_sex_by_phone(account, uid)
+    await callback.message.answer(f'<b>Текущий пол</b>: {acc_sex}', parse_mode='HTML')
+    await callback.message.answer('Выберите новый пол: ', reply_markup=kb_admin.change_acc_sex(account))
+
+@router.callback_query(F.data.startswith('change_sex_male_'))
+async def change_sex_to_male(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    await db.update_user_account_sex(uid, account, 'Мужской')
+    await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Мужской</b>', parse_mode='HTML')
+    await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                                  parse_mode='HTML')
+
+@router.callback_query(F.data.startswith('change_sex_female_'))
+async def change_sex_to_female(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    await db.update_user_account_sex(uid, account, 'Женский')
+    await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Женский</b>', parse_mode='HTML')
+    await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                                  parse_mode='HTML')

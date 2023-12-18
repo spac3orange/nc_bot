@@ -9,17 +9,21 @@ router.message.filter(
 
 
 @router.callback_query(F.data == 'groups_info', KnownUser())
-async def get_all_groups(callback: CallbackQuery):
+async def get_all_user_channel_info(callback: CallbackQuery):
     uid = callback.from_user.id
-    groups = await db.db_get_all_telegram_channels(uid)
-    group_ids = await db.db_get_all_telegram_ids(uid)
+    channels = await db.db_get_all_telegram_channels(uid)
+    channels_ids = await db.db_get_all_telegram_ids(uid)
+    group_links = await db.db_get_all_telegram_groups(uid)
     data = []
-    for g, i in zip(groups, group_ids):
+    for g, i, d in zip(channels, channels_ids, group_links):
         data.append(g)
         data.append('<b>ID:</b> ' + str(i)[4:])
+        data.append(f'<b>Группа</b>: {d}')
+        if data:
+            await callback.message.answer('\n'.join(data), parse_mode='HTML')
+            data = []
+        else:
+            await callback.message.answer('Каналы не найдены')
 
-    if data:
-        await callback.message.answer('\n'.join(data), parse_mode='HTML')
-    else:
-        await callback.message.answer('Каналы не найдены.')
+
 

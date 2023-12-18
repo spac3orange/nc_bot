@@ -28,13 +28,13 @@ async def process_lk(callback: CallbackQuery):
         accounts = '1 (демо)'
         commentaries = '1'
     elif user_data['sub_type'] == 'Подписка на 1 день':
-        accounts = '1'
+        accounts = len(await db.get_user_accounts(uid))
         commentaries = '7'
     elif user_data['sub_type'] == 'Подписка на 7 дней':
-        accounts = '3'
+        accounts = len(await db.get_user_accounts(uid))
         commentaries = '147'
     elif user_data['sub_type'] == 'Подписка на 30 дней':
-        accounts = '5'
+        accounts = len(await db.get_user_accounts(uid))
         commentaries = '1050'
     sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
     sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_end_date']

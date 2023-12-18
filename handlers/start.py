@@ -107,10 +107,10 @@ async def process_start(callback: CallbackQuery):
 
 
 @router.callback_query(F.data == 'back_to_main')
-async def back_to_main(callback: CallbackQuery):
+async def back_to_main(callback: CallbackQuery, state: FSMContext):
     uid = callback.from_user.id
     user_monitoring_status = await db.get_monitoring_status(uid)
-
+    await state.clear()
     if str(callback.from_user.id) in config_aiogram.admin_id:
         await callback.message.answer(
                              f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
@@ -121,6 +121,7 @@ async def back_to_main(callback: CallbackQuery):
                              f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
                              reply_markup=kb_admin.start_btns(),
                              parse_mode='HTML')
+
 
 
 @router.message()

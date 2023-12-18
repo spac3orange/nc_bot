@@ -13,7 +13,8 @@ class DelTgAccState(StatesGroup):
 
 
 class AddGroup(StatesGroup):
-    input_group = State()
+    input_channel = State()
+    input_discussion = State()
 
 
 class DelGroup(StatesGroup):
@@ -59,3 +60,7 @@ class AddSubscription(StatesGroup):
 
 class UserSendPhoto(StatesGroup):
     input_photo = State()
+
+class ChangeDefPromt(StatesGroup):
+    add_promt = State()
+    del_promt = State()

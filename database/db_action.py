@@ -74,9 +74,9 @@ class Database:
             await self.create_pool()
             await self.execute_query(
                 "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
-                "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет', PRIMARY KEY (user_id, channel_id))")
+                "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет', group_link TEXT, PRIMARY KEY (user_id, channel_id))")
 
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0)")
+            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0, sex TEXT)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT PRIMARY KEY)")
 
@@ -98,6 +98,8 @@ class Database:
                         """)
             await self.execute_query("CREATE TABLE IF NOT EXISTS users_today(user_id BIGINT PRIMARY KEY,"
                                      "user_name TEXT)")
+
+            await self.execute_query("CREATE TABLE IF NOT EXISTS default_prompts(prompt_text TEXT PRIMARY KEY)")
 
             logger.info('connected to database')
 
@@ -246,14 +248,14 @@ class Database:
             return {}
         
 
-    async def db_add_tg_account(self, phone_number: str) -> None:
+    async def db_add_tg_account(self, phone_number: str, sex='Мужской') -> None:
         """
         Adds a Telegram account to the database.
         """
         try:
             
-            query = "INSERT INTO telegram_accounts(phone) VALUES ($1)"
-            await self.execute_query(query, phone_number)
+            query = "INSERT INTO telegram_accounts(phone, sex) VALUES ($1, $2)"
+            await self.execute_query(query, phone_number, sex)
             logger.info(f"Telegram account {phone_number} added to the database")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error adding Telegram account to the database: {error}")
@@ -316,15 +318,15 @@ class Database:
             return []
         
 
-    async def db_add_telegram_group(self, uid, group_link: str, group_id: int) -> None:
+    async def db_add_telegram_group(self, uid, channel_link: str, channel_id: int, group_link: str) -> None:
         """
         Adds a Telegram group to the database with group_link and group_id.
         """
         try:
             
-            query = "INSERT INTO telegram_channels(user_id, channel_name, channel_id) VALUES ($1, $2, $3)"
-            await self.execute_query(query, uid, group_link, group_id)
-            logger.info(f"Telegram group {group_link} (ID: {group_id}) added to the database")
+            query = "INSERT INTO telegram_channels(user_id, channel_name, channel_id, group_link) VALUES ($1, $2, $3, $4)"
+            await self.execute_query(query, uid, channel_link, channel_id, group_link)
+            logger.info(f"Telegram channel {channel_link} (ID: {channel_id}) discussion_group: {group_link} added to the database")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error adding Telegram group to the database: {error}")
         
@@ -356,7 +358,39 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving Telegram channels from the database for user_id: {user_id}: {error}")
             return []
-        
+
+    async def db_get_all_telegram_groups(self, user_id: int) -> List[str]:
+        """
+        Retrieves a list of all Telegram group links from the database for a given user_id.
+        """
+        try:
+            query = "SELECT group_link FROM telegram_channels WHERE user_id = $1"
+            channels = await self.fetch_all(query, user_id)
+            channel_list = [channel[0] for channel in channels]
+            logger.info(f"Retrieved all Telegram group links from the database for user_id: {user_id}")
+            return channel_list
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving Telegram group links from the database for user_id: {user_id}: {error}")
+            return []
+
+    async def db_get_group_link_by_channel_name(self, channel_name: int) -> str:
+        """
+        Retrieves the group_link from the database based on the channel_id.
+        """
+        try:
+            query = "SELECT group_link FROM telegram_channels WHERE channel_name = $1"
+            result = await self.fetch_row(query, channel_name)
+            if result:
+                group_link = result[0]
+                logger.info(f"Retrieved group_link from the database for channel_name: {channel_name}")
+                return group_link
+            else:
+                logger.warning(f"No group_link found in the database for channel_name: {channel_name}")
+                return ""
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error retrieving group_link from the database for channel_name: {channel_name}: {error}")
+            return ""
+
 
     async def db_get_all_telegram_ids(self, user_id: int) -> List[str]:
         """
@@ -698,7 +732,8 @@ class Database:
                 CREATE TABLE IF NOT EXISTS {table_name} (
                     phone TEXT PRIMARY KEY,
                     comments INTEGER DEFAULT 0,
-                    comments_today INTEGER DEFAULT 0
+                    comments_today INTEGER DEFAULT 0,
+                    sex TEXT
                 )
             """
             await self.execute_query(query)
@@ -722,6 +757,7 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while retrieving phone records from tables", error)
             return {}
+
     async def get_user_accounts(self, user_id: int) -> List[str]:
         """
         Retrieves all phone numbers from the specified user's accounts table.
@@ -841,15 +877,32 @@ class Database:
     # accounts
     async def move_accounts(self, user_id: int, num_accounts: int) -> None:
         try:
+            # Проверить существование таблицы accounts_{user_id}
+            query_check_table = f"SELECT EXISTS (SELECT FROM pg_tables WHERE tablename = 'accounts_{user_id}')"
+            table_exists = await self.execute_query_return(query_check_table)
+            if not table_exists[0][0]:
+                # Создать таблицу accounts_{user_id}, если она не существует
+                table_name = f"accounts_{user_id}"
+                query = f"""
+                                CREATE TABLE IF NOT EXISTS {table_name} (
+                                    phone TEXT PRIMARY KEY,
+                                    comments INTEGER DEFAULT 0,
+                                    comments_today INTEGER DEFAULT 0,
+                                    sex TEXT
+                                )
+                            """
+                await self.execute_query(query)
+
             # Получить список аккаунтов для перемещения
-            query_select = "SELECT phone FROM telegram_accounts LIMIT $1"
-            print(query_select)
+            query_select = "SELECT phone, sex FROM telegram_accounts LIMIT $1"
             accounts_to_move = await self.execute_query_return(query_select, num_accounts)
 
             # Переместить аккаунты в таблицу accounts_{user_id}
-            query_insert = f"INSERT INTO accounts_{user_id} (phone) VALUES ($1)"
+            query_insert = f"INSERT INTO accounts_{user_id} (phone, sex) VALUES ($1, $2)"
             for account in accounts_to_move:
-                await self.execute_query(query_insert, account["phone"])
+                phone = account["phone"]
+                sex = account["sex"]
+                await self.execute_query(query_insert, phone, sex)
 
             # Удалить перемещенные аккаунты из таблицы telegram_accounts
             query_delete = "DELETE FROM telegram_accounts WHERE phone IN (SELECT phone FROM telegram_accounts LIMIT $1)"
@@ -861,11 +914,12 @@ class Database:
 
     async def return_accounts(self, user_id):
         try:
-            accounts = await self.fetch_all(f"SELECT phone FROM accounts_{user_id}")
+            accounts = await self.fetch_all(f"SELECT phone, sex FROM accounts_{user_id}")
             if accounts:
                 for account in accounts:
                     phone = account['phone']
-                    await self.execute_query("INSERT INTO telegram_accounts (phone) VALUES ($1)", phone)
+                    sex = account['sex']
+                    await self.execute_query("INSERT INTO telegram_accounts (phone, sex) VALUES ($1, $2)", phone, sex)
                 await self.execute_query(f"DROP TABLE IF EXISTS accounts_{user_id}")
                 logger.info(f"All accounts from accounts_{user_id} table transferred to telegram_accounts table")
             else:
@@ -885,9 +939,9 @@ class Database:
 
             # Retrieve information from the "telegram_accounts" table
             if free_accs:
-                query = "SELECT phone, comments FROM telegram_accounts"
+                query = "SELECT phone, comments, sex FROM telegram_accounts"
                 rows = await self.fetch_all(query)
-                accounts = [{"phone": row[0], "comments": row[1]} for row in rows]
+                accounts = [{"phone": row[0], "comments": row[1], "sex": row[2]} for row in rows]
                 result["telegram_accounts"] = accounts
 
             # Retrieve information from tables starting with "accounts_"
@@ -896,11 +950,11 @@ class Database:
             table_names = [row[0] for row in rows]
             if table_names:
                 for table_name in table_names:
-                    query = f"SELECT phone, comments FROM {table_name}"
+                    query = f"SELECT phone, comments, sex FROM {table_name}"
                     rows = await self.fetch_all(query)
                     if not rows:  # Skip the table if it's empty
                         continue
-                    accounts = [{"phone": row[0], "comments": row[1]} for row in rows]
+                    accounts = [{"phone": row[0], "comments": row[1], "sex": row[2]} for row in rows]
                     result[table_name] = accounts
 
             return result
@@ -948,6 +1002,42 @@ class Database:
             logger.info("Reset comments_today in telegram_accounts and accounts_ tables")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error resetting comments_today: {error}")
+
+    #sex options
+
+    async def get_sex_by_phone(self, phone: str, uid=False) -> str:
+        """
+        Retrieves the value from the 'sex' column for the given phone number from the 'telegram_accounts' table.
+        Returns the value of 'sex' column as a string.
+        """
+        try:
+            if uid:
+                result = await self.execute_query_return(f"SELECT sex FROM accounts_{uid} WHERE phone = $1", phone)
+            else:
+                result = await self.execute_query_return("SELECT sex FROM telegram_accounts WHERE phone = $1", phone)
+            if result:
+                sex = result[0][0]
+                return sex
+            else:
+                logger.info('Phone number not found in the table')
+                return None
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error("Error while retrieving sex from the table", error)
+            return None
+
+    async def update_user_account_sex(self, user_id: int, phone: str, sex: str) -> None:
+        try:
+            table_name = f"accounts_{user_id}"
+            query = f"""
+                UPDATE {table_name}
+                SET sex = $1
+                WHERE phone = $2
+            """
+            await self.execute_query(query, sex, phone)
+            logger.info(f"Updated sex for account {phone} in table {table_name}")
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error while updating sex for account {phone} in table {table_name}: {error}")
+
 
 
 db = Database()

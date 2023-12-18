@@ -20,6 +20,7 @@ from middlewares import AntiSpamMiddleware
 
 async def start_params() -> None:
     dp = Dispatcher(storage=MemoryStorage())
+
     dp.include_router(tg_accs_settings.router)
     dp.include_router(user_tg_accs_settings.router)
     dp.include_router(promote_user.router)
@@ -41,6 +42,7 @@ async def start_params() -> None:
     dp.include_router(add_gpt_acc.router)
     dp.include_router(del_gpt_acc.router)
     dp.include_router(get_gpt_accs.router)
+    dp.include_router(default_prompt.router)
     dp.include_router(users_handlers.router)
     dp.include_router(lk.router)
     dp.include_router(add_balance.router)

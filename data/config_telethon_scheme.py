@@ -3,9 +3,9 @@ import random
 from telethon import TelegramClient, errors
 from environs import Env
 from telethon.tl.functions.messages import SendMessageRequest
-from telethon.tl.types import InputPeerChannel, InputPeerChat
+from telethon.tl.types import InputPeerChannel
 from data.logger import logger
-from database import db
+from database import db, default_prompts_action
 from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
 import datetime
 from telethon.tl.functions.messages import GetHistoryRequest
@@ -16,13 +16,8 @@ import re
 from data.config_aiogram import aiogram_bot
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
-from telethon.tl.types import InputPhoto
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors import UsernameOccupiedError
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
-from telethon.tl.types.messages import ChatFull
-from pprint import pprint
-import mimetypes
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -64,7 +59,7 @@ async def monitor_settings(session):
         logger.warning('Schedule skipped because send_comments is running')
         return
     active_users = await db.get_monitoring_user_ids()
-    print('active_users\n', active_users)
+    print('users with monitoring on:\n', active_users)
     if active_users:
         monitoring_list = []
         for u in active_users:
@@ -77,7 +72,6 @@ async def monitor_settings(session):
 async def check_send_comments_running():
     tasks = asyncio.all_tasks()
     for task in tasks:
-        print(task.get_coro().__qualname__)
         if task.get_coro().__qualname__ == 'TelethonSendMessages.send_comments':
             return True
     return False
@@ -259,7 +253,7 @@ class TelethonConnect:
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
 
-    async def get_info(self):
+    async def get_info(self, uid=None):
         logger.info(f'Getting info about account {self.session_name}...')
         await self.client.connect()
         me = await self.client.get_me()
@@ -267,14 +261,23 @@ class TelethonConnect:
         full_me = await self.client(GetFullUserRequest(me.username))
         about = full_me.full_user.about or 'Не установлено'
         print(about)
+
+        await self.client.disconnect()
+        phone = self.session_name.split('/')[-1].rstrip('.session')
+        print(phone)
+        if uid:
+            sex = await db.get_sex_by_phone(phone, uid)
+        else:
+            sex = await db.get_sex_by_phone(phone)
         print(f'Тел: {me.phone}\n'
               f'ID: {me.id}\n'
               f'Ник: {me.username}\n'
+              f'Пол: {sex}\n'
               f'Биография: {about}\n'
               f'Ограничения: {me.restricted}\n'
               f'Причина ограничений: {me.restriction_reason}\n')
-        await self.client.disconnect()
-        return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about
+
+        return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about, sex
         # full = await self.client(GetFullUserRequest('username'))
 
     async def join_group(self, group_link):
@@ -333,7 +336,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=3)
+                            offset_date = utc_now - timedelta(minutes=2)
 
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
@@ -377,24 +380,33 @@ class TelethonConnect:
                     #     user_id = m[0]
                     #     try:
                         
-                    group_ids = []
+                    group_links = []
 
-                    await self.client.connect()
                     for msg in approved_messages:
                         user_id, channel, message = msg
-                        full_channel = await self.client(GetFullChannelRequest(channel=channel))
-                        chats = full_channel.to_dict()
-                        linked_chat_id = await extract_linked_chat_id(chats)
-                        print(f'channel {channel} linked chat id {linked_chat_id}')
-                        group_ids.append(linked_chat_id)
-                    await self.client.disconnect()
+                        # full_channel = await self.client(GetFullChannelRequest(channel=channel))
+                        # chats = full_channel.to_dict()
+                        # print(f'''
+                        # FullChannelReq {channel}
+                        # {chats}
+                        # ''')
 
-                    for msg, linked_chat_id in zip(approved_messages, group_ids):
+
+                        # linked_chat_id = await extract_linked_chat_id(chats)
+                        # print(f'channel {channel} linked chat id {linked_chat_id}')
+                        # group_ids.append(linked_chat_id)
+
+                    for msg in approved_messages:
                         user_id, channel, message = msg
                         basic = False
+                        linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
+                        print(linked_chat)
+                        if linked_chat is None:
+                            linked_chat = 'нет'
                         if user_id in all_basic_users:
                             if await db.get_comments_sent(user_id) < 1:
                                 acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
+                                acc_sex = await db.get_sex_by_phone(acc)
                             else:
                                 try:
                                     await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
@@ -412,15 +424,14 @@ class TelethonConnect:
                                 continue
                         else:
                             acc = random.choice(await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
+                            acc_sex = await db.get_sex_by_phone(acc, uid=user_id)
                             if acc:
                                 session = TelethonSendMessages(acc)
                             else:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                 continue
-                        acc_in_group = await session.join_group(channel)
-                        acc_in_disc = await session.join_group_disc(int(linked_chat_id))
-                        print(f'acc in disc {acc_in_disc}')
 
+                        acc_in_group = await session.join_group(channel)
                         if acc_in_group == 'already_in_group':
                             pass
                             print(f'{acc} already in group {channel}')
@@ -431,22 +442,31 @@ class TelethonConnect:
                             await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                             continue
 
-                        if acc_in_disc == 'already_in_group':
-                            pass
-                            print(f'{acc} already in group_dicsc {channel}')
-                        elif acc_in_disc == 'joined':
-                            print(f'{acc} joined group {channel}')
-                        elif acc_in_disc == 'banned':
-                            print(f'{acc} banned')
-                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
-                            continue
+                        if linked_chat != 'нет':
+                            acc_in_disc = await session.join_group_disc(linked_chat)
+                            print(f'acc in disc {acc_in_disc}')
+                            if acc_in_disc == 'already_in_group':
+                                pass
+                                print(f'{acc} already in group_dicsc {channel}')
+                            elif acc_in_disc == 'joined':
+                                print(f'{acc} joined group {channel}')
+                            elif acc_in_disc == 'banned':
+                                print(f'{acc} banned')
+                                await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
+                                continue
 
 
                         message_text = message.message
                         promt = all_promts.get(channel)
+
+                        promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
                         if promt == 'Нет':
-                            promt = 'Напиши короткий комментарий от первого лица размером в одно предложение. Веди ' \
-                                    'себя как реальный человек, не используй шаблонных фраз и будь на позитиве.'
+                            default_prompts = await default_prompts_action.get_all_default_prompts()
+                            promt = random.choice(default_prompts) + f' {promt_sex}'
+                        else:
+                            promt = promt + f' {promt_sex}'
+
+
                         gpt_api = random.choice(gpt_accs)
                         gpt = AuthOpenAI(gpt_api)
                         gpt_question = message_text + '.' + f'{promt}'
@@ -462,7 +482,7 @@ class TelethonConnect:
 
                             await db.update_comments_sent(user_id, 1)
                             asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                      acc, comment, notif))
+                                                                      acc, comment, notif, promt))
 
                         else:
                             print('Комментарий не сгенерирован')
@@ -489,7 +509,7 @@ class TelethonSendMessages:
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
 
-    async def send_comments(self, user_id, channel_name, message, acc, comment, notif):
+    async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
         try:
             await asyncio.sleep(random.randint(0, 40))
@@ -512,9 +532,10 @@ class TelethonSendMessages:
                 with open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
                     timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                     file.write(f'\n|{timestamp}:'
-                               f'\nАккаунт: {acc}'
-                               f'\nКанал: {channel_name}'
-                               f'\nКомментарий: \n{comment}\n\n')
+                               f'\n<b>Аккаунт</b>: {acc}'
+                               f'\n<b>Канал</b>: {channel_name}'
+                               f'\n<b>Промт</b>: \n{promt}'
+                               f'\n<b>Комментарий</b>: \n{comment}\n\n')
             else:
                 raise Exception('Comment not found')
 
@@ -524,7 +545,7 @@ class TelethonSendMessages:
             await self.client.disconnect()
 
             # Запись ошибки в файл
-            with open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
+            with open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 file.write(f'\n|{timestamp}'
                            f'\nАккаунт: {acc}'
@@ -566,18 +587,33 @@ class TelethonSendMessages:
             await self.client.disconnect()
             return False
 
-    async def join_group_disc(self, group_id):
+    async def join_group_disc(self, linked_chat):
         try:
             slp = random.randint(8, 15)
             await asyncio.sleep(slp)
-            logger.info(f'Joining channel_disc id : {group_id}')
+            logger.info(f'Joining channel_disc: {linked_chat}')
             await self.client.connect()
 
-            logger.info(f'Joining channel: {group_id}')
-            await self.client.connect()
-            entity = await self.client.get_entity(group_id)
-            await self.client(JoinChannelRequest(entity))
+            dialogs = await self.client.get_dialogs()
+            groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
+            for dialog in groups_and_channels:
+                dialog = await self.client.get_entity(dialog)
+                dialog_username = dialog.username
+                print(linked_chat.split('/')[-1])
+                try:
+                    if dialog_username == linked_chat.split('/')[-1]:
+                        self.client.disconnect()
+                        print('already_in_group')
+                        return 'already_in_group'
+                except Exception as e:
+                    logger.error(e)
+                    continue
+
+            logger.info(f'Joining channel: {linked_chat}')
+            entity = await self.client.get_entity(linked_chat)
+            await self.client(JoinChannelRequest(linked_chat))
             logger.info('Joined group_disc successfully')
+
             await self.client.disconnect()
             return 'joined'
 
