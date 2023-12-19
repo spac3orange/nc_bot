@@ -279,6 +279,7 @@ def edit_acc_info(account):
     kb_builder.button(text='Bio', callback_data=f'acc_edit_bio_{account}')
     kb_builder.button(text='Аватар', callback_data=f'acc_edit_avatar_{account}')
     kb_builder.button(text='Пол', callback_data=f'acc_edit_sex_{account}')
+    kb_builder.button(text='Очистить аватары', callback_data=f'acc_clear_avatars_{account}')
     kb_builder.button(text='◀️Назад', callback_data=f'user_tg_accs_settings')
 
     kb_builder.adjust(2)

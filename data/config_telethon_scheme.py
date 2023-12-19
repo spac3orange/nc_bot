@@ -18,6 +18,8 @@ from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRe
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors import UsernameOccupiedError
+from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
+from telethon.tl.types import InputPhoto
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -175,6 +177,24 @@ class AuthTelethon:
             logger.error(f'Error joining group: {e}')
             await self.client.disconnect()
             return False
+
+    async def delete_all_profile_photos(self):
+        await self.client.connect()
+        try:
+            p = await self.client.get_profile_photos('me')
+            print(p)
+            for photo in p:
+                await self.client(DeletePhotosRequest(
+                    id=[InputPhoto(
+                        id=photo.id,
+                        access_hash=photo.access_hash,
+                        file_reference=photo.file_reference
+                    )]
+                ))
+            logger.info(f'avatars deleted for account {self.session_file.split("/")[-1]}"')
+
+        finally:
+            await self.client.disconnect()
 
     async def change_first_name(self, first_name: str):
         try:

@@ -159,21 +159,21 @@ async def user_accs_get_info(callback: CallbackQuery):
     try:
         accounts = await db.get_user_accounts(uid)
         displayed_accounts = '\n'.join(accounts)
+        await callback.message.answer(f'<b>Аккануты:</b>\n{displayed_accounts}', parse_mode='HTML')
         if accounts:
             accs_info = await get_info(accounts, uid)
-            accounts_formatted = '\n\n'.join([
-                f'<b>Тел:</b> {phone}'
-                f'\n<b>ID:</b> {id}'
-                f'\n<b>Имя:</b> {name}'
-                f'\n<b>Фамилия:</b> {surname}'
-                f'\n<b>Пол:</b> {sex}'
-                f'\n<b>Ник:</b> @{username}'
-                f'\n<b>Био:</b> {about}'
-                f'\n<b>Ограничения:</b> {restricted}'
-                for phone, id, name, surname, username, restricted, about, sex in accs_info])
-
-            await callback.message.answer(text=f'<b>Аккануты:</b>\n{displayed_accounts}\n\n<b>Инфо:</b>\n'
-                                               f'{accounts_formatted}', parse_mode='HTML')
+            for phone, id, name, surname, username, restricted, about, sex in accs_info:
+                string = ''
+                string += (
+                    f'<b>Тел:</b> {phone}'
+                    f'\n<b>ID:</b> {id}'
+                    f'\n<b>Имя:</b> {name}'
+                    f'\n<b>Фамилия:</b> {surname}'
+                    f'\n<b>Пол:</b> {sex}'
+                    f'\n<b>Ник:</b> @{username}'
+                    f'\n<b>Био:</b> {about}'
+                    f'\n<b>Ограничения:</b> {restricted}')
+                await callback.message.answer(text=string, parse_mode='HTML')
 
         else:
             await callback.message.answer('Нет подключенных аккаунтов.')
@@ -258,5 +258,14 @@ async def change_sex_to_female(callback: CallbackQuery):
     account = callback.data.split('_')[-1]
     await db.update_user_account_sex(uid, account, 'Женский')
     await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Женский</b>', parse_mode='HTML')
+    await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
+                                  parse_mode='HTML')
+
+@router.callback_query(F.data.startswith('acc_clear_avatars_'))
+async def process_clear_avatars(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    session = AuthTelethon(account)
+    await session.delete_all_profile_photos()
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
