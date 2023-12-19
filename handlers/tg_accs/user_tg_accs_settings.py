@@ -267,5 +267,6 @@ async def process_clear_avatars(callback: CallbackQuery):
     account = callback.data.split('_')[-1]
     session = AuthTelethon(account)
     await session.delete_all_profile_photos()
+    await callback.message.answer('Аватары очищены.')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
