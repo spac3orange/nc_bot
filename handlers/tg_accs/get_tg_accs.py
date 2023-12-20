@@ -1,4 +1,5 @@
 import asyncio
+import random
 
 from aiogram.types import CallbackQuery
 from aiogram import Router, F
@@ -16,7 +17,8 @@ async def get_info(accounts: list, uid=None) -> List[Tuple[str]]:
     accs_info = []
     for session in accounts:
         try:
-            await asyncio.sleep(1)
+            slp = random.randint(3, 5)
+            await asyncio.sleep(slp)
             sess = TelethonConnect(session)
             accs_info.append(await sess.get_info(uid=uid))
         except Exception as e:
@@ -29,7 +31,7 @@ async def get_info(accounts: list, uid=None) -> List[Tuple[str]]:
 async def get_acc_info(callback: CallbackQuery, state: FSMContext):
     uid = callback.from_user.id
     logger.info('getting info about TG accounts')
-    await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...')
+    await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     try:
         accounts = await db.db_get_all_tg_accounts_with_comments()
         print(accounts)

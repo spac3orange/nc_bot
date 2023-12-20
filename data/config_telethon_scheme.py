@@ -279,9 +279,9 @@ class TelethonConnect:
         logger.info(f'Getting info about account {self.session_name}...')
         slp = random.randint(1, 3)
         await asyncio.sleep(slp)
+
         await self.client.connect()
         me = await self.client.get_me()
-
         full_me = await self.client(GetFullUserRequest(me.username))
         about = full_me.full_user.about or 'Не установлено'
         print(about)
@@ -289,6 +289,7 @@ class TelethonConnect:
         await self.client.disconnect()
         phone = self.session_name.split('/')[-1].rstrip('.session')
         print(phone)
+        await asyncio.sleep(slp)
         if uid:
             sex = await db.get_sex_by_phone(phone, uid)
         else:

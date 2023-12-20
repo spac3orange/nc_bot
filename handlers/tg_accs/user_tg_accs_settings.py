@@ -24,7 +24,8 @@ async def get_info(accounts: list, uid=False) -> List[Tuple[str]]:
     accs_info = []
     for session in accounts:
         try:
-            await asyncio.sleep(1)
+            slp = random.randint(3, 5)
+            await asyncio.sleep(slp)
             sess = TelethonConnect(session)
             accs_info.append(await sess.get_info(uid))
         except Exception as e:
@@ -154,14 +155,14 @@ async def name_changed(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'users_accs_get_info')
 async def user_accs_get_info(callback: CallbackQuery):
-    await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...')
+    await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     uid = callback.from_user.id
     try:
         accounts = await db.get_user_accounts(uid)
         displayed_accounts = '\n'.join(accounts)
-        await callback.message.answer(f'<b>Аккануты:</b>\n{displayed_accounts}', parse_mode='HTML')
         if accounts:
             accs_info = await get_info(accounts, uid)
+            await callback.message.answer(f'<b>Аккануты:</b>\n{displayed_accounts}', parse_mode='HTML')
             for phone, id, name, surname, username, restricted, about, sex in accs_info:
                 string = ''
                 string += (
@@ -174,7 +175,7 @@ async def user_accs_get_info(callback: CallbackQuery):
                     f'\n<b>Био:</b> {about}'
                     f'\n<b>Ограничения:</b> {restricted}')
                 await callback.message.answer(text=string, parse_mode='HTML')
-
+            await tg_accs_settings(callback)
         else:
             await callback.message.answer('Нет подключенных аккаунтов.')
     except Exception as e:
@@ -266,8 +267,8 @@ async def process_clear_avatars(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     session = AuthTelethon(account)
-    mess = await callback.message.answer('Очищаю аватары...')
+    mess = await callback.message.answer('Очищаю аватары...⏳')
     await session.delete_all_profile_photos()
-    await mess.edit_text('Аватары удалены.')
+    await mess.edit_text('Аватары удалены 👍')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
