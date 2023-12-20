@@ -194,7 +194,8 @@ class AuthTelethon:
                 slp = random.randint(2, 4)
                 await asyncio.sleep(slp)
             logger.info(f'avatars deleted for account {self.session_file.split("/")[-1]}"')
-
+        except Exception as e:
+            logger.error(f'Error deleting all avatars {e}')
         finally:
             await self.client.disconnect()
 
