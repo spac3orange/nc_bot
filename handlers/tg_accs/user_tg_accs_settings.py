@@ -27,7 +27,15 @@ async def get_info(accounts: list, uid=False) -> List[Tuple[str]]:
             slp = random.randint(3, 5)
             await asyncio.sleep(slp)
             sess = TelethonConnect(session)
-            accs_info.append(await sess.get_info(uid))
+            info = await sess.get_info(uid)
+            if info:
+                accs_info.append(info)
+            else:
+                try:
+                    await aiogram_bot.send_message(int(uid), f'Аккаунт {session} заблокирован.')
+                    continue
+                except Exception as e:
+                    logger.error(e)
         except Exception as e:
             print(e)
     return accs_info
@@ -154,7 +162,7 @@ async def name_changed(message: Message, state: FSMContext):
 
 
 @router.callback_query(F.data == 'users_accs_get_info')
-async def user_accs_get_info(callback: CallbackQuery):
+async def user_accs_get_info(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     uid = callback.from_user.id
     try:
@@ -175,7 +183,7 @@ async def user_accs_get_info(callback: CallbackQuery):
                     f'\n<b>Био:</b> {about}'
                     f'\n<b>Ограничения:</b> {restricted}')
                 await callback.message.answer(text=string, parse_mode='HTML')
-            await tg_accs_settings(callback)
+            await back_to_accs(callback, state)
         else:
             await callback.message.answer('Нет подключенных аккаунтов.')
     except Exception as e:

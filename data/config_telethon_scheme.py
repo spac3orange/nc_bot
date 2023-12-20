@@ -282,29 +282,33 @@ class TelethonConnect:
         await asyncio.sleep(slp)
 
         await self.client.connect()
-        me = await self.client.get_me()
-        full_me = await self.client(GetFullUserRequest(me.username))
-        about = full_me.full_user.about or 'Не установлено'
-        print(about)
+        if await self.client.is_user_authorized():
+            me = await self.client.get_me()
+            full_me = await self.client(GetFullUserRequest(me.username))
+            about = full_me.full_user.about or 'Не установлено'
+            print(about)
 
-        await self.client.disconnect()
-        phone = self.session_name.split('/')[-1].rstrip('.session')
-        print(phone)
-        await asyncio.sleep(slp)
-        if uid:
-            sex = await db.get_sex_by_phone(phone, uid)
+            await self.client.disconnect()
+            phone = self.session_name.split('/')[-1].rstrip('.session')
+            print(phone)
+            await asyncio.sleep(slp)
+            if uid:
+                sex = await db.get_sex_by_phone(phone, uid)
+            else:
+                sex = await db.get_sex_by_phone(phone)
+            print(f'Тел: {me.phone}\n'
+                  f'ID: {me.id}\n'
+                  f'Ник: {me.username}\n'
+                  f'Пол: {sex}\n'
+                  f'Биография: {about}\n'
+                  f'Ограничения: {me.restricted}\n'
+                  f'Причина ограничений: {me.restriction_reason}\n')
+
+            return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about, sex
+            # full = await self.client(GetFullUserRequest('username'))
         else:
-            sex = await db.get_sex_by_phone(phone)
-        print(f'Тел: {me.phone}\n'
-              f'ID: {me.id}\n'
-              f'Ник: {me.username}\n'
-              f'Пол: {sex}\n'
-              f'Биография: {about}\n'
-              f'Ограничения: {me.restricted}\n'
-              f'Причина ограничений: {me.restriction_reason}\n')
-
-        return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about, sex
-        # full = await self.client(GetFullUserRequest('username'))
+            logger.error(f"Error connecting to account {self.session_name.split('/')[-1].rstrip('.session')}")
+            return False
 
     async def join_group(self, group_link):
         try:
