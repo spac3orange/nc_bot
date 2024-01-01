@@ -97,7 +97,8 @@ async def add_channel(message: Message, state: FSMContext):
             group_id = await get_channel_id(group_name)
         print(group_id)
         await state.update_data(group_name=group_name, group_id=group_id)
-        await message.answer('Введите ссылку на группу для обсуждений, привязанную к каналу: '
+        await message.answer('\nЕсли группа для комментариев <b>не приватная и не требует вступления</b>, чтобы оставить комментарий, введите <b>нет</b>'
+                             '\nЕсли группа для комментариев <b>требует вступления, введите ссылку на группу для обсуждений</b>, привязанную к каналу: '
                              '\n\nЕсли группа для обсуждений не приватная, у нее должна быть ссылка <b>"Invite Link"</b> в описании группы'
                              '\nЕсли группа приватная, то комментинг в такую группу <b>не доступен</b>.'
                              '\n\nПример: https://t.me/group_name', parse_mode='HTML')
