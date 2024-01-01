@@ -461,19 +461,15 @@ class TelethonConnect:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                 continue
 
-                        if not basic:
-                            uid = user_id
-                        else:
-                            uid = None
-                        acc_in_group = await session.join_group(channel, acc, uid)
+                        acc_in_group = await session.join_group(channel)
                         if acc_in_group == 'already_in_group':
                             pass
                             print(f'{acc} already in group {channel}')
                         elif acc_in_group == 'joined':
                             print(f'{acc} joined group {channel}')
                         elif acc_in_group == 'banned':
-                            print(f'{acc} banned in channel {channel}')
-                            # await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
+                            print(f'{acc} banned')
+                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                             continue
 
                         if linked_chat != 'нет':
@@ -481,12 +477,12 @@ class TelethonConnect:
                             print(f'acc in disc {acc_in_disc}')
                             if acc_in_disc == 'already_in_group':
                                 pass
-                                print(f'{acc} already in group_dicsc {linked_chat}')
+                                print(f'{acc} already in group_dicsc {channel}')
                             elif acc_in_disc == 'joined':
-                                print(f'{acc} joined group {linked_chat}')
+                                print(f'{acc} joined group {channel}')
                             elif acc_in_disc == 'banned':
-                                print(f'{acc} banned in group_disc {linked_chat}')
-                                # await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
+                                print(f'{acc} banned')
+                                await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                                 continue
 
 
@@ -586,7 +582,7 @@ class TelethonSendMessages:
                            f'\nКанал: {channel_name}'
                            f'\nОшибка: \n{e}\n\n')
 
-    async def join_group(self, group_link, account, uid=None):
+    async def join_group(self, group_link):
         try:
             logger.info(f'Joining channel: {group_link}')
             await self.client.connect()
@@ -614,15 +610,8 @@ class TelethonSendMessages:
             return 'joined'
 
         except errors.UserDeactivatedBanError as e:
-            if not uid:
-                logger.error(e)
-                await db.ban_phone(account)
-                return 'banned'
-            else:
-                logger.error(e)
-                await db.ban_phone(account, uid)
-                return 'banned'
-
+            logger.error(e)
+            return 'banned'
         except Exception as e:
             logger.error(f'Error joining group: {e}')
             await self.client.disconnect()

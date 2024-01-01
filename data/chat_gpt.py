@@ -11,8 +11,8 @@ class AuthOpenAI:
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
-        self.username = 'customer-rtutu'
-        self.password = 'd8BsmJb6G2T42DroWGocL'
+        self.username = 'customer-derivu'
+        self.password = 'dc09yqux40tn81pt17qmcU'
         self.proxy = f"http://{self.username}:{self.password}@cz-pr.oxylabs.io:18001"
 
     @retry(stop=stop_after_attempt(3))

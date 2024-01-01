@@ -76,7 +76,7 @@ class Database:
                 "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
                 "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет', group_link TEXT, PRIMARY KEY (user_id, channel_id))")
 
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0, sex TEXT, status TEXT DEFAULT 'Active')")
+            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0, sex TEXT)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
             await self.execute_query("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT PRIMARY KEY)")
 
@@ -733,8 +733,7 @@ class Database:
                     phone TEXT PRIMARY KEY,
                     comments INTEGER DEFAULT 0,
                     comments_today INTEGER DEFAULT 0,
-                    sex TEXT,
-                    status TEXT DEFAULT 'Active'
+                    sex TEXT
                 )
             """
             await self.execute_query(query)
@@ -889,8 +888,7 @@ class Database:
                                     phone TEXT PRIMARY KEY,
                                     comments INTEGER DEFAULT 0,
                                     comments_today INTEGER DEFAULT 0,
-                                    sex TEXT,
-                                    status TEXT DEFAULT 'Active'
+                                    sex TEXT
                                 )
                             """
                 await self.execute_query(query)
@@ -973,7 +971,7 @@ class Database:
 
     async def get_phones_with_comments_today_less_than(self, table_name: str, max_comments: int) -> List[str]:
         try:
-            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1 AND status != 'Banned'"
+            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1"
             rows = await self.execute_query_return(query, max_comments)
             phones = [row[0] for row in rows]
             return phones
@@ -1039,16 +1037,6 @@ class Database:
             logger.info(f"Updated sex for account {phone} in table {table_name}")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error while updating sex for account {phone} in table {table_name}: {error}")
-
-    async def ban_phone(self, phone: str, uid: int = None):
-        try:
-            table_name = f"accounts_{uid}" if uid else "telegram_accounts"
-            query = f"UPDATE {table_name} SET status = 'Banned' WHERE phone = $1"
-            await self.execute_query(query, phone)
-        except (Exception, asyncpg.PostgresError) as e:
-            logger.error(e)
-
-
 
 
 

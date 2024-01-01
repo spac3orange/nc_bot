@@ -53,8 +53,7 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
                                           f'\n<b>Био:</b> {about}' \
                                           f'\n<b>Ограничения:</b> {restricted}' \
                                           f'\n<b>Комментарии:</b> {acc["comments"]}'
-                            await callback.message.answer(acc_string, parse_mode='HTML')
-                            acc_string = ''
+                        await callback.message.answer(acc_string, parse_mode='HTML')
                 elif table.startswith('accounts_'):
                     user_id = table.split('_')[-1]
                     await callback.message.answer(f'<b>Аккаунты пользователя {table.split("_")[-1]}:</b>', parse_mode='HTML')
@@ -71,8 +70,7 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
                                           f'\n<b>Био:</b> {about}' \
                                           f'\n<b>Ограничения:</b> {restricted}' \
                                           f'\n<b>Комментарии:</b> {acc["comments"]}'
-                            await callback.message.answer(acc_string, parse_mode='HTML')
-                            acc_string = ''
+                        await callback.message.answer(acc_string, parse_mode='HTML')
         else:
             await callback.message.answer('Нет подключенных аккаунтов.')
 
