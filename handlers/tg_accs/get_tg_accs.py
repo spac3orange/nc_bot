@@ -55,6 +55,7 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
                                           f'\n<b>Комментарии:</b> {acc["comments"]}'
                             await callback.message.answer(acc_string, parse_mode='HTML')
                             acc_string = ''
+                            #hm
                 elif table.startswith('accounts_'):
                     user_id = table.split('_')[-1]
                     await callback.message.answer(f'<b>Аккаунты пользователя {table.split("_")[-1]}:</b>', parse_mode='HTML')
