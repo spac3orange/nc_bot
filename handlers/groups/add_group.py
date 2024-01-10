@@ -159,9 +159,13 @@ async def process_add_few_channels(message: Message, state: FSMContext):
     channel_list = message.text.split('\n')
     print(channel_list)
     for channel in channel_list:
-        channel = await normalize_channel_link(channel)
-        channel_id = await get_channel_id(channel)
-        await db.db_add_telegram_group(uid, channel, channel_id, 'нет')
-        await message.answer(f'Канал {channel} добавлен')
-        await asyncio.sleep(0.1)
+        try:
+            channel = await normalize_channel_link(channel)
+            channel_id = await get_channel_id(channel)
+            await db.db_add_telegram_group(uid, channel, channel_id, 'нет')
+            await message.answer(f'Канал {channel} добавлен')
+            await asyncio.sleep(1)
+        except Exception as e:
+            logger.error(e)
+            continue
     await state.clear()
