@@ -24,7 +24,8 @@ class Database:
                 host=self.host,
                 database=self.db_name,
                 port=self.db_port,
-                max_size=50,
+                min_size=20,
+                max_size=100,
             )
 
         except (Exception, asyncpg.PostgresError) as error:

@@ -1,9 +1,12 @@
+import asyncio
+
 from aiogram.types import Message, CallbackQuery
+from aiogram.filters import Command
 from data.logger import logger
 from aiogram import Router, F
 from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
-from states.states import AddGroup
+from states.states import AddGroup, AddFewChannels
 from database import db
 from data.config_telethon_scheme import TelethonConnect
 from data.config_aiogram import aiogram_bot
@@ -145,4 +148,20 @@ async def add_to_database(message: Message, state: FSMContext):
 
 
 
+@router.message(Command(commands='add_few_channels'))
+async def add_few_channels(message: Message, state: FSMContext):
+    await message.answer('Введите список каналов:')
+    await state.set_state(AddFewChannels.input_list)
 
+@router.message(AddFewChannels.input_list)
+async def process_add_few_channels(message: Message, state: FSMContext):
+    uid = message.from_user.id
+    channel_list = message.text.split('\n')
+    print(channel_list)
+    for channel in channel_list:
+        channel = await normalize_channel_link(channel)
+        channel_id = await get_channel_id(channel)
+        await db.db_add_telegram_group(uid, channel, channel_id, 'нет')
+        await message.answer(f'Канал {channel} добавлен')
+        await asyncio.sleep(0.1)
+    await state.clear()

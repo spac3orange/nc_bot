@@ -1,6 +1,5 @@
 import asyncio
 import random
-
 from aiogram.types import CallbackQuery
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
@@ -9,7 +8,6 @@ from data.config_telethon_scheme import TelethonConnect
 from database import db
 from typing import List, Tuple
 from filters.known_user import KnownUser
-from pprint import pprint
 router = Router()
 
 
@@ -47,7 +45,7 @@ async def send_acc_info(acc, callback, user_id=None) -> None:
                 acc_string = ''
         else:
             acc_string = ''
-            acc_info = await get_info([acc['phone']], user_id)
+            acc_info = await get_info([acc['phone']], user_id)  
             for phone, id, name, surname, username, restricted, about, sex in acc_info:
                 acc_string += f'<b>Тел:</b> {phone}' \
                               f'\n<b>ID:</b> {id}' \

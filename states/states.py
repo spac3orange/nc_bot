@@ -64,3 +64,6 @@ class UserSendPhoto(StatesGroup):
 class ChangeDefPromt(StatesGroup):
     add_promt = State()
     del_promt = State()
+
+class AddFewChannels(StatesGroup):
+    input_list = State()

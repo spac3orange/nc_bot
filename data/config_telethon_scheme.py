@@ -21,6 +21,7 @@ from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
 from telethon.tl.types import InputPhoto
 
+
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
     async def traverse_dict(dictionary):
@@ -511,7 +512,7 @@ class TelethonConnect:
                                 await db.increment_comments(f'accounts_{user_id}', acc)
 
                             await db.update_comments_sent(user_id, 1)
-                            asyncio.create_task(session.send_comments(user_id, channel, message,
+                            task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                       acc, comment, notif, promt))
 
                         else:
