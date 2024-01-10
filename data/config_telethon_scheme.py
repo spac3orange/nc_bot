@@ -383,8 +383,9 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        logger.info('Found post without triggers')
-                                        approved_messages.append((user_id, channel_name, message))
+                                        if len(message.message) >= 300:
+                                            logger.info('Found post without triggers')
+                                            approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
