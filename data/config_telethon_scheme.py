@@ -384,8 +384,9 @@ class TelethonConnect:
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
                                         if len(message.message) >= 300:
-                                            logger.info('Found post without triggers')
-                                            approved_messages.append((user_id, channel_name, message))
+                                            if random.random() < 0.7:
+                                                logger.info('Found post without triggers')
+                                                approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
