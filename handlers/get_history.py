@@ -5,11 +5,19 @@ from keyboards import kb_admin
 from filters.is_admin import IsAdmin
 from data.logger import logger
 from filters.known_user import KnownUser
+from aiogram.types import FSInputFile
+import os
 router = Router()
 router.message.filter(
     KnownUser()
 )
 
+async def get_full_history(uid):
+    path = f'history/history_{uid}.txt'
+    if os.path.exists(path):
+        file = FSInputFile(path)
+        return file
+    return False
 
 @router.callback_query(F.data == 'get_history', KnownUser())
 async def get_history(callback: CallbackQuery):
@@ -31,4 +39,10 @@ async def get_history(callback: CallbackQuery):
         logger.error(e)
         await callback.message.answer('История не найдена.')
 
-
+@router.message(Command('full_history'))
+async def send_full_history(message: Message):
+    file = await get_full_history('462813109')
+    if file:
+        await message.answer_document(file, caption='Полная история отправленных комментариев')
+    else:
+        await message.answer('Файл истории не найден')
