@@ -15,6 +15,7 @@ from handlers.admin import admin_panel, shop, stats
 from handlers.payment import add_balance, ukassa
 from database import db
 from utils.scheduler import monitor, interval_operations
+from utils import lock_bot
 from middlewares import AntiSpamMiddleware
 
 
