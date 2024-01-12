@@ -40,7 +40,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 @router.message(Command(commands='support'))
 async def get_monitor_status(message: Message):
-    await message.answer(f'<b>Тех. Поддержка</b>: @mrmagic24\n', parse_mode='HTML')
+    await message.answer(f'<b>Тех. Поддержка</b>: @ykoroi\n', parse_mode='HTML')
     logger.info(f'User @{message.from_user.username} get support.')
 
 
@@ -71,8 +71,8 @@ async def process_license(message: Message, state: FSMContext):
                                  parse_mode='HTML')
         else:
             await message.answer(
-                                 f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
-                                 reply_markup=kb_admin.start_btns(),
+                                 f'Статус: <b>{" Работает 🟢"}</b>',
+                                 reply_markup=kb_admin.get_history_user(),
                                  parse_mode='HTML')
 
 
@@ -101,9 +101,9 @@ async def process_start(callback: CallbackQuery):
     else:
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
-                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
-                             reply_markup=kb_admin.start_btns(),
-                             parse_mode='HTML')
+                                      f'Статус: <b>{" Работает 🟢"}</b>',
+                                      reply_markup=kb_admin.get_history_user(),
+                                      parse_mode='HTML')
 
 
 @router.callback_query(F.data == 'back_to_main')

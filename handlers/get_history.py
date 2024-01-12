@@ -14,7 +14,7 @@ router.message.filter(
 @router.callback_query(F.data == 'get_history', KnownUser())
 async def get_history(callback: CallbackQuery):
     uid = callback.from_user.id
-    history_path = f'history/history_{uid}.txt'
+    history_path = f'history/history_462813109.txt'
     try:
         with open(history_path, encoding='utf-8') as file:
             history = file.read()
