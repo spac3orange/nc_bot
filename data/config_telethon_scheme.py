@@ -538,8 +538,8 @@ class TelethonSendMessages:
         if proxy:
             self.username = 'customer-rtutu'
             self.password = 'd8BsmJb6G2T42DroWGocL'
-            self.proxy_addr = 'th-pr.oxylabs.io:20001'
-            self.proxy = (socks.SOCKS5, self.proxy_addr, 7000, True, self.username, self.password)
+            self.proxy_addr = 'th-pr.oxylabs.io'
+            self.proxy = (socks.SOCKS5, self.proxy_addr, 20001, True, self.username, self.password)
             self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=self.proxy)
         else:
             self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
