@@ -20,7 +20,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
 from telethon.tl.types import InputPhoto
-
+import socks
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -531,11 +531,15 @@ class TelethonConnect:
 
 
 class TelethonSendMessages:
-    def __init__(self, session_name, proxy='customer-rtutu:d8BsmJb6G2T42DroWGocL@th-pr.oxylabs.io:20001'):
+    def __init__(self, session_name, proxy=True):
         self.get_env()
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
+
         if proxy:
-            self.proxy = self.parse_proxy(proxy)
+            self.username = 'customer-rtutu'
+            self.password = 'd8BsmJb6G2T42DroWGocL'
+            self.proxy_addr = 'th-pr.oxylabs.io:20001'
+            self.proxy = (socks.SOCKS5, self.proxy_addr, 7000, True, self.username, self.password)
             self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=self.proxy)
         else:
             self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
@@ -545,13 +549,6 @@ class TelethonSendMessages:
         env.read_env()
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
-
-    def parse_proxy(self, proxy_str: str) -> tuple:
-        proxy_parts = proxy_str.split('@')
-        user_pass, address = proxy_parts[0], proxy_parts[1]
-        user, password = user_pass.split(':')
-        proxy = ('socks5', *address.split(':'), user, password)
-        return proxy
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
