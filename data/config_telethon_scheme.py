@@ -389,7 +389,7 @@ class TelethonConnect:
                                             logger.warning('Message skipped: restricted words found')
                                             continue
                                         logger.info(f'Post found: {channel_name}')
-                                        self.msg_query.append((user_id, channel_name, message))
+                                        TelethonConnect.msg_query.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
@@ -465,9 +465,10 @@ class TelethonSendMessages:
         self.api_hash = env('API_HASH')
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
-        print('incoming request:\n', user_id, channel_name, message, acc)
         try:
-            await asyncio.sleep(random.randint(0, 40))
+            slp = random.randint(180, 600)
+            logger.info(f'preparing {acc}. sleep for {slp} seconds')
+            await asyncio.sleep(slp)
             if comment:
                 comment = comment.strip('"')
                 await self.client.connect()
