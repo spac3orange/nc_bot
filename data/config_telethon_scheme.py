@@ -417,7 +417,7 @@ class TelethonConnect:
                     for msg in self.msg_query:
                         user_id, channel, message = msg
                         all_accs = await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 20)
-                        rand_num = random.randint(1, 4)
+                        rand_num = random.randint(4, 10)
                         accs_working = random.sample(all_accs, rand_num)
                         print(f'chosen accs: {accs_working}')
                         for acc in accs_working:
