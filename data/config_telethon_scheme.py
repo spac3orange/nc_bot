@@ -21,6 +21,7 @@ from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
 from telethon.tl.types import InputPhoto
 import socks
+from .restrcited_words import words_in_post, words_in_generated_message
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -265,7 +266,10 @@ class AuthTelethon:
             await self.client.disconnect()
             return False
 
+
 class TelethonConnect:
+    msg_query = []
+
     def __init__(self, session_name):
         self.get_env()
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
@@ -361,8 +365,6 @@ class TelethonConnect:
                                 # chats = full_channel.to_dict()
                                 # linked_chat_id = await extract_linked_chat_id(chats)
                                 # print(f'channel {channel_name} linked chat id {linked_chat_id}')
-
-
                             except Exception as e:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
@@ -383,146 +385,58 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        if len(message.message) >= 300:
-                                            if random.random() < 0.7:
-                                                logger.info('Found post without triggers')
-                                                approved_messages.append((user_id, channel_name, message))
+                                        if any([x.lower() in message.message for x in words_in_post]):
+                                            logger.warning('Message skipped: restricted words found')
+                                            continue
+                                        logger.info(f'Post found: {channel_name}')
+                                        self.msg_query.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
                                         for keyword in keywords.split(','):
                                             if keyword.strip() in message.message:
+                                                if any([x.lower() in message.message for x in words_in_post]):
+                                                    logger.warning('Message skipped: restricted words found')
+                                                    continue
                                                 #pprint({
                                                 #   'channel': channel,
                                                 #   'message_id': message.id,
                                                 #    'text': message.message
                                                 #})
-                                                logger.info('Found post with triggers')
-
+                                                logger.info(f'Found post with triggers: {channel_name}')
                                                 approved_messages.append((user_id, channel_name, message))
 
                 await self.client.disconnect()
-                print(approved_messages)
-                if approved_messages:
+                if self.msg_query:
+                    logger.info(f'msg query: {self.msg_query}')
+                    tasks = []
                     gpt_accs = await db.db_get_all_gpt_accounts()
                     all_promts = await db.db_get_all_promts()
                     all_users_with_notif = await db.get_users_with_notifications()
-                    all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
-                    # for m in approved_messages:
-                    #     user_id = m[0]
-                    #     try:
-                        
-                    group_links = []
-
-                    for msg in approved_messages:
+                    for msg in self.msg_query:
                         user_id, channel, message = msg
-                        # full_channel = await self.client(GetFullChannelRequest(channel=channel))
-                        # chats = full_channel.to_dict()
-                        # print(f'''
-                        # FullChannelReq {channel}
-                        # {chats}
-                        # ''')
-
-
-                        # linked_chat_id = await extract_linked_chat_id(chats)
-                        # print(f'channel {channel} linked chat id {linked_chat_id}')
-                        # group_ids.append(linked_chat_id)
-
-                    for msg in approved_messages:
-                        user_id, channel, message = msg
-                        basic = False
-                        linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
-                        print(linked_chat)
-                        if linked_chat is None:
-                            linked_chat = 'нет'
-                        if user_id in all_basic_users:
-                            if await db.get_comments_sent(user_id) < 1:
-                                acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
-                                acc_sex = await db.get_sex_by_phone(acc)
-                            else:
-                                try:
-                                    await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
-                                                                            '\n\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
-                                                                   parse_mode='HTML')
-                                    continue
-                                except Exception as e:
-                                    logger.error(e)
-                                    continue
-                            if acc:
-                                session = TelethonSendMessages(acc)
-                                basic = True
-                            else:
-                                logger.error('No accounts with comments less than 7')
-                                continue
-                        else:
-                            acc = random.choice(await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
-                            acc_sex = await db.get_sex_by_phone(acc, uid=user_id)
-                            if acc:
-                                session = TelethonSendMessages(acc)
-                            else:
-                                logger.error(f'No accounts with comments less than 7 for user {user_id}')
-                                continue
-
-                        acc_in_group = await session.join_group(channel)
-                        if acc_in_group == 'already_in_group':
-                            pass
-                            print(f'{acc} already in group {channel}')
-                        elif acc_in_group == 'joined':
-                            print(f'{acc} joined group {channel}')
-                        elif acc_in_group == 'banned':
-                            print(f'{acc} banned')
-                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
-                            continue
-
-                        if linked_chat != 'нет':
-                            acc_in_disc = await session.join_group_disc(linked_chat)
-                            print(f'acc in disc {acc_in_disc}')
-                            if acc_in_disc == 'already_in_group':
-                                pass
-                                print(f'{acc} already in group_dicsc {channel}')
-                            elif acc_in_disc == 'joined':
-                                print(f'{acc} joined group {channel}')
-                            elif acc_in_disc == 'banned':
-                                print(f'{acc} banned')
-                                await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
-                                continue
-
-
-                        message_text = message.message
-                        promt = all_promts.get(channel)
-
-                        promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
-                        if promt == 'Нет':
-                            default_prompts = await default_prompts_action.get_all_default_prompts()
-                            promt = random.choice(default_prompts) + f' {promt_sex}'
-                        else:
-                            promt = promt + f' {promt_sex}'
-
-
-                        gpt_api = random.choice(gpt_accs)
-                        gpt = AuthOpenAI(gpt_api)
-                        gpt_question = message_text + '.' + f'{promt}'
-                        comment = await gpt.process_question(gpt_question)
-                        notif = None
-                        if user_id in all_users_with_notif:
-                            notif = True
-                        if comment:
-                            if basic:
-                                await db.increment_comments('telegram_accounts', acc)
-                            else:
-                                await db.increment_comments(f'accounts_{user_id}', acc)
-
-                            await db.update_comments_sent(user_id, 1)
-                            task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                      acc, comment, notif, promt))
-
-                        else:
-                            print('Комментарий не сгенерирован')
-
-            else:
-                logger.warning('No channels to monitor')
-
+                        all_accs = await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 20)
+                        rand_num = random.randint(1, 4)
+                        accs_working = random.sample(all_accs, rand_num)
+                        print(f'chosen accs: {accs_working}')
+                        for acc in accs_working:
+                            acc_sex = 'Мужской'
+                            promt = all_promts.get(channel)
+                            promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
+                            if promt == 'Нет':
+                                default_prompts = await default_prompts_action.get_all_default_prompts()
+                                promt = random.choice(default_prompts) + f' {promt_sex}'
+                            gpt_api = random.choice(gpt_accs)
+                            gpt = AuthOpenAI(gpt_api)
+                            gpt_question = message.message + '.' + f'{promt}'
+                            comment = await gpt.process_question(gpt_question)
+                            sess = TelethonSendMessages(acc)
+                            commenting_task = asyncio.create_task(sess.send_comments(user_id, channel, message,
+                                                                                     acc, comment, True, promt))
+                            tasks.append(commenting_task)
+                        await asyncio.gather(*tasks)
+                        TelethonConnect.msg_query.remove(msg)
 
         except Exception as e:
             logger.error(f'Error monitoring channels: {e}')
