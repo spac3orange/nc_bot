@@ -24,8 +24,8 @@ async def input_monitor(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     logger.info('awaiting acc to set monitor')
     accounts = await db.db_get_all_tg_accounts()
-    cur_monitor = ''.join(await db.db_get_monitor_account()) or 'Нет'
-    await callback.message.answer(f'Текущий аккаунт для мониторинга: {cur_monitor}\n'
+    cur_monitor = '\n'.join(await db.db_get_monitor_account()) or 'Нет'
+    await callback.message.answer(f'Аккаунты для мониторинга: \n{cur_monitor}\n'
                                   'Выберите аккаунт, который будет мониторить каналы:',
                                   reply_markup=kb_admin.generate_accs_keyboard(accounts, 'monitor'))
     # #await callback.message.delete()
