@@ -1017,7 +1017,7 @@ class Database:
 
     async def get_phones_with_comments_today_less_than(self, table_name: str, max_comments: int) -> List[str]:
         try:
-            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1 AND in_work = False"
+            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1 AND in_work = False AND status = 'Active'"
             rows = await self.execute_query_return(query, max_comments)
             phones = [row[0] for row in rows]
             return phones
@@ -1091,6 +1091,14 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             action = "True" if not stop_work else "False"
             logger.error(f"Error setting in_work={action} for phone {phone} in table {table_name}: {error}")
+
+    async def change_acc_status(self, phone, status, table_name):
+        try:
+            query = f"UPDATE {table_name} SET status = {status} WHERE phone = $1"
+            await self.execute_query(query, phone)
+        except (Exception, asyncpg.PostgresError) as error:
+            logger.error(f"Error setting status={status} for phone {phone} in table {table_name}: {error}")
+
 
 
 

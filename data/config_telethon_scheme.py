@@ -196,38 +196,45 @@ class TelethonConnect:
         self.api_hash = env('API_HASH')
 
     async def get_info(self, uid=None):
-        logger.info(f'Getting info about account {self.session_name}...')
-        slp = random.randint(1, 3)
-        await asyncio.sleep(slp)
-
-        await self.client.connect()
-        if await self.client.is_user_authorized():
-            me = await self.client.get_me()
-            full_me = await self.client(GetFullUserRequest(me.username))
-            about = full_me.full_user.about or 'Не установлено'
-            print(about)
-
-            await self.client.disconnect()
-            phone = self.session_name.split('/')[-1].rstrip('.session')
-            print(phone)
+        table_name = 'telegram_accounts' if not uid else f'accounts_{uid}'
+        phone = self.session_name.split('/')[-1].rstrip('.session')
+        try:
+            logger.info(f'Getting info about account {self.session_name}...')
+            slp = random.randint(1, 3)
             await asyncio.sleep(slp)
-            if uid:
-                sex = await db.get_sex_by_phone(phone, uid)
-            else:
-                sex = await db.get_sex_by_phone(phone)
-            print(f'Тел: {me.phone}\n'
-                  f'ID: {me.id}\n'
-                  f'Ник: {me.username}\n'
-                  f'Пол: {sex}\n'
-                  f'Биография: {about}\n'
-                  f'Ограничения: {me.restricted}\n'
-                  f'Причина ограничений: {me.restriction_reason}\n')
 
-            return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about, sex
-            # full = await self.client(GetFullUserRequest('username'))
-        else:
-            logger.error(f"Error connecting to account {self.session_name.split('/')[-1].rstrip('.session')}")
+            await self.client.connect()
+            if await self.client.is_user_authorized():
+                me = await self.client.get_me()
+                full_me = await self.client(GetFullUserRequest(me.username))
+                about = full_me.full_user.about or 'Не установлено'
+                print(about)
+
+                await self.client.disconnect()
+                print(phone)
+                await asyncio.sleep(slp)
+                if uid:
+                    sex = await db.get_sex_by_phone(phone, uid)
+                else:
+                    sex = await db.get_sex_by_phone(phone)
+                print(f'Тел: {me.phone}\n'
+                      f'ID: {me.id}\n'
+                      f'Ник: {me.username}\n'
+                      f'Пол: {sex}\n'
+                      f'Биография: {about}\n'
+                      f'Ограничения: {me.restricted}\n'
+                      f'Причина ограничений: {me.restriction_reason}\n')
+
+                return me.phone, me.id, me.first_name, me.last_name, me.username, me.restricted, about, sex
+                # full = await self.client(GetFullUserRequest('username'))
+            else:
+                logger.error(f"Error connecting to account {self.session_name.split('/')[-1].rstrip('.session')}")
+                return False
+        except errors.UserDeactivatedBanError as e:
+            logger.error(f'account {self.session_name} is banned: {e}')
+            update_status = asyncio.create_task(db.change_acc_status(phone, table_name, 'Banned'))
             return False
+
 
     async def join_group(self, group_link):
         try:

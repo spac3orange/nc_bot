@@ -4,16 +4,14 @@ import aiohttp
 from aiohttp_retry import RetryClient, ExponentialRetry
 from data.logger import logger
 from tenacity import retry, stop_after_attempt, wait_fixed
-
+from .proxy_config import proxy_username, proxy_pass, proxy_ip, proxy_port
 
 class AuthOpenAI:
     def __init__(self, api_key):
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
-        self.username = 'customer-rtutu'
-        self.password = 'd8BsmJb6G2T42DroWGocL'
-        self.proxy = f"http://{self.username}:{self.password}@cz-pr.oxylabs.io:18001"
+        self.proxy = f"http://{proxy_username}:{proxy_pass}@{proxy_ip}:{proxy_port}"
 
     @retry(stop=stop_after_attempt(3))
     async def process_question(self, question):
