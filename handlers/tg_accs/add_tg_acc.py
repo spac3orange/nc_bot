@@ -130,11 +130,14 @@ async def add_tg_acc(message: Message, state: FSMContext):
     except errors.SessionPasswordNeededError as e:
         try:
             logger.error(e)
-            await data['tg_client'].login_process_code(password=password)
-            await message.answer('Аккаунт успешно подключен и добавлен в базу данных.')
-            await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
-            await db.db_add_tg_account(data['phone'])
-            logger.info('telegram account successfully added to db')
+            login = await data['tg_client'].login_process_code(password=password)
+            if login:
+                await message.answer('Аккаунт успешно подключен и добавлен в базу данных.')
+                await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
+                await db.db_add_tg_account(data['phone'])
+                logger.info('telegram account successfully added to db')
+            else:
+                await message.answer('Ошибка логина. Попробуйте еще раз.')
         except Exception as e:
             logger.error(e)
             await message.answer('Ошибка логина. Пожалуйста, попробуйте еще раз.')

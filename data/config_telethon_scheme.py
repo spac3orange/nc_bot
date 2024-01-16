@@ -117,24 +117,28 @@ class AuthTelethon:
 
     async def login_process_code(self, code=None, password=None):
         logger.info('Attempting to sign in...')
-        if code:
-            if password:
-                print(1)
-                print(password)
-                await self.client.sign_in(phone=self.phone, code=code, password=password)
+        try:
+            if code:
+                if password:
+                    print(1)
+                    print(password)
+                    await self.client.sign_in(phone=self.phone, code=code, password=password)
+                else:
+                    print(2)
+                    await self.client.sign_in(phone=self.phone, code=code)
+
             else:
-                print(2)
-                await self.client.sign_in(phone=self.phone, code=code)
+                await self.client.sign_in(password=password)
 
-        else:
-            await self.client.sign_in(password=password)
+            if await self.client.is_user_authorized():
+                logger.info(f'Signed in in {self.phone}')
+                await self.client.disconnect()
+                return True
 
-        if await self.client.is_user_authorized():
-            logger.info(f'Signed in in {self.phone}')
-            await self.client.disconnect()
             return True
-
-        return True
+        except Exception as e:
+            logger.error(e)
+            return False
 
     async def send_message(self, client, message, username):
         try:
