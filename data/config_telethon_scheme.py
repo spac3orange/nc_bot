@@ -174,7 +174,7 @@ class AuthTelethon:
             await self.client.disconnect()
             return 'joined'
 
-        except errors.UserDeactivatedBanError as e:
+        except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(e)
             return 'banned'
         except Exception as e:
@@ -230,7 +230,7 @@ class TelethonConnect:
             else:
                 logger.error(f"Error connecting to account {self.session_name.split('/')[-1].rstrip('.session')}")
                 return False
-        except errors.UserDeactivatedBanError as e:
+        except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(f'account {self.session_name} is banned: {e}')
             update_status = asyncio.create_task(db.change_acc_status(phone, table_name, 'Banned'))
             return False
@@ -263,7 +263,7 @@ class TelethonConnect:
             await self.client.disconnect()
             return 'joined'
 
-        except errors.UserDeactivatedBanError as e:
+        except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(e)
             return 'banned'
         except Exception as e:
@@ -526,7 +526,7 @@ class TelethonSendMessages:
             await self.client.disconnect()
             return 'joined'
 
-        except errors.UserDeactivatedBanError as e:
+        except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(e)
             return 'banned'
         except Exception as e:
@@ -564,7 +564,7 @@ class TelethonSendMessages:
             await self.client.disconnect()
             return 'joined'
 
-        except errors.UserDeactivatedBanError as e:
+        except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(e)
             return 'banned'
         except Exception as e:
