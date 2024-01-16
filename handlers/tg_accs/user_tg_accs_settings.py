@@ -1,18 +1,13 @@
 import asyncio
-
 from aiogram.types import Message, CallbackQuery, ContentType
-from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
 from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from filters.known_user import KnownUser
 from filters.sub_types import BasicSub
 from aiogram.fsm.context import FSMContext
 from states.states import EditAccInfo, UserSendPhoto
-from data.config_telethon_scheme import AuthTelethon
+from data.config_telethon_scheme import TelethonConnect, TelethonSendMessages
 from database import db
 from typing import List, Tuple
-from data.config_telethon_scheme import TelethonConnect
 from data import logger, aiogram_bot
 import random
 router = Router()
@@ -20,7 +15,7 @@ router.message.filter(
 )
 
 
-async def get_info(accounts: list, uid=False) -> List[Tuple[str]]:
+async def get_info(accounts: list, uid=None) -> List[Tuple[str]]:
     accs_info = []
     for session in accounts:
         try:
@@ -46,7 +41,9 @@ async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
-                                  '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n',
+                                  '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n'
+                                  'ВНИМАНИЕ! Мы настоятельно НЕ рекомендуем злоупотреблять данной функцией и изменять инфорамцию аккаунта чаще одного раза в день!\n'
+                                  'С высокой вероятностью это может привести к блокировке вашего аккаунта.',
                                   reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
 
@@ -79,7 +76,7 @@ async def acc_change_username(callback: CallbackQuery, state: FSMContext):
 @router.message(EditAccInfo.change_username)
 async def name_changed(message: Message, state: FSMContext):
     account = (await state.get_data())['account']
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     res = await session.change_username(message.text)
     if res == 'username_taken':
         await message.answer('Username занят, попробуйте еще раз')
@@ -104,7 +101,7 @@ async def acc_change_name(callback: CallbackQuery, state: FSMContext):
 @router.message(EditAccInfo.change_name)
 async def name_changed(message: Message, state: FSMContext):
     account = (await state.get_data())['account']
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     res = await session.change_first_name(message.text)
     if res:
         await message.answer('Имя изменено 👍')
@@ -127,7 +124,7 @@ async def acc_edit_surname(callback: CallbackQuery, state: FSMContext):
 @router.message(EditAccInfo.change_surname)
 async def name_changed(message: Message, state: FSMContext):
     account = (await state.get_data())['account']
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     res = await session.change_last_name(message.text)
     if res:
         await message.answer('Фамилия изменена 👍')
@@ -150,7 +147,7 @@ async def acc_edit_bio(callback: CallbackQuery, state: FSMContext):
 @router.message(EditAccInfo.change_bio)
 async def name_changed(message: Message, state: FSMContext):
     account = (await state.get_data())['account']
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     res = await session.change_bio(message.text)
     if res:
         await message.answer('Био изменено 👍')
@@ -205,7 +202,7 @@ async def process_photo(message: Message, state: FSMContext):
     state_data = await state.get_data()
     print(state_data)
     account = state_data['account']
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     try:
         randint = random.randint(1000, 9999)
         photo_name = f'{uid}_{randint}_avatar.jpg'
@@ -274,7 +271,7 @@ async def change_sex_to_female(callback: CallbackQuery):
 async def process_clear_avatars(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    session = AuthTelethon(account)
+    session = TelethonSendMessages(account)
     mess = await callback.message.answer('Очищаю аватары...⏳')
     await session.delete_all_profile_photos()
     await mess.edit_text('Аватары удалены 👍')

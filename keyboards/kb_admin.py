@@ -335,3 +335,9 @@ def change_acc_sex(phone):
     kb_builder.button(text='◀️Назад', callback_data=f'account_change_info_{phone}')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
+def delete_comment(channel_name, msg_obj):
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Удалить', callback_data=f'change_se')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)

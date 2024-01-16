@@ -1,27 +1,75 @@
-import random
 import asyncio
+import os
 from aiogram.types import Message, CallbackQuery
 from data.logger import logger
+from data import aiogram_bot
 from aiogram import Router, F
-from aiogram.filters import StateFilter
+from aiogram.filters import StateFilter, Command
 from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
-from states.states import AddTgAccState
+from states.states import AddTgAccState, AddAccsArchive
 from data.config_telethon_scheme import AuthTelethon
 from database import db
 from telethon import errors
 from filters.known_user import KnownUser
 from filters.is_admin import IsAdmin
+from utils import check_session
+import zipfile
+import rarfile
+
 router = Router()
 router.message.filter(
     IsAdmin(F)
 )
+
 
 async def acc_in_table(phone):
     accounts = await db.db_get_all_tg_accounts()
     if phone in accounts:
         return True
     return False
+
+
+async def extract_archive(archive_path, extract_path='data/sessions_new'):
+    try:
+        if archive_path.endswith('.zip'):
+            with zipfile.ZipFile(archive_path, 'r') as zip_ref:
+                zip_ref.extractall(extract_path)
+            print(f'Zip-архив {archive_path.split("/")[-1]} распакован')
+        elif archive_path.endswith('.rar'):
+            with rarfile.RarFile(archive_path, 'r') as rar_ref:
+                rar_ref.extractall(extract_path)
+            print(f'Rar-архив {archive_path.split("/")[-1]} распакован')
+        else:
+            print(f'Не поддерживаемый формат архива: {archive_path}')
+            return False
+
+        return True
+    except Exception as e:
+        print(f"Ошибка при распаковке архива: {e}")
+        return False
+    finally:
+        await upload_accs_to_db()
+
+
+async def upload_accs_to_db(path='data/sessions_new'):
+    try:
+        sessions = []
+        accounts = await db.db_get_all_tg_accounts()
+        for filename in os.listdir(path):
+            if filename.endswith('.session') and filename not in accounts:
+                sessions.append(filename.rstrip('.session'))
+
+        for sess in sessions:
+            if await check_session(sess):
+                await db.db_add_tg_account(sess)
+                await aiogram_bot.send_message(462813109, f'Аккаунт {sess} загружен в базу данных')
+            else:
+                await aiogram_bot.send_message(462813109, f'Ошибка авторизации {sess}. Аккаунт не загружен.')
+    except Exception as e:
+        logger.error(e)
+        await aiogram_bot.send_message(462813109, f'Ошибка при загрузке аккаунтов')
+
 
 
 @router.callback_query(F.data == 'tg_accs_add', KnownUser())
@@ -93,3 +141,24 @@ async def add_tg_acc(message: Message, state: FSMContext):
             return
 
     await state.clear()
+
+
+@router.message(Command('upload_archive'), IsAdmin(F))
+async def process_upload_archive(message: Message, state: FSMContext):
+    await message.answer('Ожидаю архив с аккаунтами: ')
+    await state.set_state(AddAccsArchive.input_archive)
+
+@router.message(AddAccsArchive.input_archive)
+async def proceed_archive(message: Message, state: FSMContext):
+    file_id = message.document.file_id
+    file_name = message.document.file_name
+    print(file_name)
+    file = await aiogram_bot.get_file(file_id)
+    file_path = file.file_path
+
+    archive_path = f'archives/{file_name}'
+    await aiogram_bot.download_file(file_path, archive_path)
+    await message.answer(f'Архив {file_name} загружен.')
+    await state.clear()
+    await asyncio.sleep(5)
+    await extract_archive(archive_path)

@@ -51,8 +51,9 @@ class ThrottlingMiddleware(BaseMiddleware):
             await asyncio.sleep(0.5)
             print('sleep')
 
+
 class AntiSpamMiddleware(BaseMiddleware):
-    def __init__(self, time_linit: int = 1) -> None:
+    def __init__(self, time_linit: float = 0.5) -> None:
         self.processed_messages = set()
         self.limit = TTLCache(maxsize=10_000, ttl=time_linit)
 

@@ -1,5 +1,9 @@
 import asyncio
+import aiofiles
 import random
+import datetime
+import pytz
+import re
 from telethon import TelegramClient, errors
 from environs import Env
 from telethon.tl.functions.messages import SendMessageRequest
@@ -7,12 +11,9 @@ from telethon.tl.types import InputPeerChannel
 from data.logger import logger
 from database import db, default_prompts_action
 from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
-import datetime
 from telethon.tl.functions.messages import GetHistoryRequest
 from datetime import timedelta, datetime
-import pytz
 from .chat_gpt import AuthOpenAI
-import re
 from data.config_aiogram import aiogram_bot
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
@@ -20,6 +21,8 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
 from telethon.tl.types import InputPhoto
+from .proxy_config import proxy
+
 
 
 async def extract_linked_chat_id(data):
@@ -179,97 +182,12 @@ class AuthTelethon:
             await self.client.disconnect()
             return False
 
-    async def delete_all_profile_photos(self):
-        await self.client.connect()
-        try:
-            p = await self.client.get_profile_photos('me')
-            print(p)
-            for photo in p:
-                await self.client(DeletePhotosRequest(
-                    id=[InputPhoto(
-                        id=photo.id,
-                        access_hash=photo.access_hash,
-                        file_reference=photo.file_reference
-                    )]
-                ))
-                slp = random.randint(2, 4)
-                await asyncio.sleep(slp)
-            logger.info(f'avatars deleted for account {self.session_file.split("/")[-1]}"')
-        except Exception as e:
-            logger.error(f'Error deleting all avatars {e}')
-        finally:
-            await self.client.disconnect()
-
-    async def change_first_name(self, first_name: str):
-        try:
-            await self.client.connect()
-            await self.client(UpdateProfileRequest(first_name=first_name))
-            logger.info(f'Changed first name to {first_name}')
-            await self.client.disconnect()
-            return True
-        except Exception as e:
-            logger.error(f'Error changing first name: {e}')
-            await self.client.disconnect()
-            return False
-
-    async def change_last_name(self, last_name: str):
-        try:
-            await self.client.connect()
-            await self.client(UpdateProfileRequest(last_name=last_name))
-            logger.info(f'Changed last name to {last_name}')
-            await self.client.disconnect()
-            return True
-        except Exception as e:
-            logger.error(f'Error changing last name: {e}')
-            await self.client.disconnect()
-            return False
-
-    async def change_username(self, username: str):
-        try:
-            await self.client.connect()
-            await self.client(UpdateUsernameRequest(username))
-            logger.info(f'Changed username to {username}')
-            await self.client.disconnect()
-            return 'done'
-        except UsernameOccupiedError as e:
-            logger.error(f'Error changing username: {e}')
-            await self.client.disconnect()
-            return 'username_taken'
-        except Exception as e:
-            logger.error(f'Error changing username: {e}')
-            await self.client.disconnect()
-            return False
-
-    async def change_bio(self, bio: str):
-        try:
-            await self.client.connect()
-            await self.client(UpdateProfileRequest(about=bio))
-            logger.info('Changed bio')
-            await self.client.disconnect()
-            return True
-        except Exception as e:
-            logger.error(f'Error changing bio: {e}')
-            await self.client.disconnect()
-            return False
-
-    async def change_profile_photo(self, photo_path: str):
-        try:
-            await self.client.connect()
-            await self.client(UploadProfilePhotoRequest(
-                file=await self.client.upload_file(photo_path)
-            ))
-            logger.info('Changed profile photo')
-            return True
-        except Exception as e:
-            logger.error(f'Error changing profile photo: {e}')
-            await self.client.disconnect()
-            return False
 
 class TelethonConnect:
     def __init__(self, session_name):
         self.get_env()
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
     def get_env(self):
         env = Env()
@@ -401,7 +319,6 @@ class TelethonConnect:
                                                 logger.info('Found post with triggers')
 
                                                 approved_messages.append((user_id, channel_name, message))
-
                 await self.client.disconnect()
                 print(approved_messages)
                 if approved_messages:
@@ -409,26 +326,6 @@ class TelethonConnect:
                     all_promts = await db.db_get_all_promts()
                     all_users_with_notif = await db.get_users_with_notifications()
                     all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
-                    # for m in approved_messages:
-                    #     user_id = m[0]
-                    #     try:
-                        
-                    group_links = []
-
-                    for msg in approved_messages:
-                        user_id, channel, message = msg
-                        # full_channel = await self.client(GetFullChannelRequest(channel=channel))
-                        # chats = full_channel.to_dict()
-                        # print(f'''
-                        # FullChannelReq {channel}
-                        # {chats}
-                        # ''')
-
-
-                        # linked_chat_id = await extract_linked_chat_id(chats)
-                        # print(f'channel {channel} linked chat id {linked_chat_id}')
-                        # group_ids.append(linked_chat_id)
-
                     for msg in approved_messages:
                         user_id, channel, message = msg
                         basic = False
@@ -450,6 +347,7 @@ class TelethonConnect:
                                     logger.error(e)
                                     continue
                             if acc:
+                                await db.set_in_work('telegram_accounts', acc)
                                 session = TelethonSendMessages(acc)
                                 basic = True
                             else:
@@ -459,11 +357,11 @@ class TelethonConnect:
                             acc = random.choice(await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
                             acc_sex = await db.get_sex_by_phone(acc, uid=user_id)
                             if acc:
+                                await db.set_in_work(f'accounts_{user_id}', acc)
                                 session = TelethonSendMessages(acc)
                             else:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                 continue
-
                         acc_in_group = await session.join_group(channel)
                         if acc_in_group == 'already_in_group':
                             pass
@@ -474,7 +372,6 @@ class TelethonConnect:
                             print(f'{acc} banned')
                             await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                             continue
-
                         if linked_chat != 'нет':
                             acc_in_disc = await session.join_group_disc(linked_chat)
                             print(f'acc in disc {acc_in_disc}')
@@ -487,19 +384,14 @@ class TelethonConnect:
                                 print(f'{acc} banned')
                                 await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                                 continue
-
-
                         message_text = message.message
                         promt = all_promts.get(channel)
-
                         promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
                         if promt == 'Нет':
                             default_prompts = await default_prompts_action.get_all_default_prompts()
                             promt = random.choice(default_prompts) + f' {promt_sex}'
                         else:
                             promt = promt + f' {promt_sex}'
-
-
                         gpt_api = random.choice(gpt_accs)
                         gpt = AuthOpenAI(gpt_api)
                         gpt_question = message_text + '.' + f'{promt}'
@@ -508,21 +400,14 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
-                            if basic:
-                                await db.increment_comments('telegram_accounts', acc)
-                            else:
-                                await db.increment_comments(f'accounts_{user_id}', acc)
-
-                            await db.update_comments_sent(user_id, 1)
+                            update_comments = asyncio.create_task(db.update_comments_sent(user_id, 1))
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                       acc, comment, notif, promt))
-
                         else:
                             print('Комментарий не сгенерирован')
 
             else:
                 logger.warning('No channels to monitor')
-
 
         except Exception as e:
             logger.error(f'Error monitoring channels: {e}')
@@ -534,13 +419,21 @@ class TelethonSendMessages:
     def __init__(self, session_name):
         self.get_env()
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
     def get_env(self):
         env = Env()
         env.read_env()
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
+
+    async def delete_comment(self, channel_name, msg):
+        try:
+            await self.client.connect()
+            entity = await self.client.get_entity(channel_name)
+            await self.client.delete_messages(entity, msg)
+        except Exception as e:
+            logger.error(e)
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
@@ -552,7 +445,7 @@ class TelethonSendMessages:
                 entity = await self.client.get_entity(channel_name)
 
                 if message:
-                    await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
+                    sent_msg = await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
@@ -560,15 +453,7 @@ class TelethonSendMessages:
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
-
-                # Запись отправленного комментария в файл
-                with open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
-                    timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
-                    file.write(f'\n|{timestamp}:'
-                               f'\n<b>Аккаунт</b>: {acc}'
-                               f'\n<b>Канал</b>: {channel_name}'
-                               f'\n<b>Промт</b>: \n{promt}'
-                               f'\n<b>Комментарий</b>: \n{comment}\n\n')
+                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment))
             else:
                 raise Exception('Comment not found')
 
@@ -576,14 +461,36 @@ class TelethonSendMessages:
             logger.error(f'Error sending comments: {e}')
             print(e)
             await self.client.disconnect()
+            write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
 
-            # Запись ошибки в файл
-            with open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
+    @staticmethod
+    async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None):
+        all_accs = await db.db_get_all_tg_accounts()
+        basic_acc = acc in all_accs
+        table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
+        release_acc = asyncio.create_task(db.set_in_work(table_name, acc, stop_work=True))
+        if error:
+            async with aiofiles.open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
-                file.write(f'\n|{timestamp}'
-                           f'\nАккаунт: {acc}'
-                           f'\nКанал: {channel_name}'
-                           f'\nОшибка: \n{e}\n\n')
+                await file.write(f'\n|{timestamp}'
+                                 f'\nАккаунт: {acc}'
+                                 f'\nКанал: {channel_name}'
+                                 f'\nОшибка: \n{error}\n\n')
+        else:
+            if basic_acc:
+                upd_comments = asyncio.create_task(db.increment_comments('telegram_accounts', acc))
+            else:
+                upd_comments = asyncio.create_task(db.increment_comments(f'accounts_{user_id}', acc))
+            async with aiofiles.open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
+                timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+                await file.write(f'\n|{timestamp}:'
+                                 f'\n<b>Аккаунт</b>: {acc}'
+                                 f'\n<b>Канал</b>: {channel_name}'
+                                 f'\n<b>Id</b>: {sent_msg}'
+                                 f'\n<b>Промт</b>: \n{promt}'
+                                 f'\n<b>Комментарий</b>: \n{comment}\n\n')
+
+
 
     async def join_group(self, group_link):
         try:
@@ -658,3 +565,88 @@ class TelethonSendMessages:
             await self.client.disconnect()
             return False
 
+    async def delete_all_profile_photos(self):
+        await self.client.connect()
+        try:
+            p = await self.client.get_profile_photos('me')
+            print(p)
+            for photo in p:
+                await self.client(DeletePhotosRequest(
+                    id=[InputPhoto(
+                        id=photo.id,
+                        access_hash=photo.access_hash,
+                        file_reference=photo.file_reference
+                    )]
+                ))
+                slp = random.randint(2, 4)
+                await asyncio.sleep(slp)
+            logger.info(f'avatars deleted for account {self.session_name.split("/")[-1]}"')
+        except Exception as e:
+            logger.error(f'Error deleting all avatars {e}')
+        finally:
+            await self.client.disconnect()
+
+    async def change_first_name(self, first_name: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(first_name=first_name))
+            logger.info(f'Changed first name to {first_name}')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing first name: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_last_name(self, last_name: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(last_name=last_name))
+            logger.info(f'Changed last name to {last_name}')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing last name: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_username(self, username: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateUsernameRequest(username))
+            logger.info(f'Changed username to {username}')
+            await self.client.disconnect()
+            return 'done'
+        except UsernameOccupiedError as e:
+            logger.error(f'Error changing username: {e}')
+            await self.client.disconnect()
+            return 'username_taken'
+        except Exception as e:
+            logger.error(f'Error changing username: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_bio(self, bio: str):
+        try:
+            await self.client.connect()
+            await self.client(UpdateProfileRequest(about=bio))
+            logger.info('Changed bio')
+            await self.client.disconnect()
+            return True
+        except Exception as e:
+            logger.error(f'Error changing bio: {e}')
+            await self.client.disconnect()
+            return False
+
+    async def change_profile_photo(self, photo_path: str):
+        try:
+            await self.client.connect()
+            await self.client(UploadProfilePhotoRequest(
+                file=await self.client.upload_file(photo_path)
+            ))
+            logger.info('Changed profile photo')
+            return True
+        except Exception as e:
+            logger.error(f'Error changing profile photo: {e}')
+            await self.client.disconnect()
+            return False

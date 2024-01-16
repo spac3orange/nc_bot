@@ -71,42 +71,83 @@ class Database:
         Initializes the connection to the database and creates the tables if they do not exist.
         """
         try:
-            
             await self.create_pool()
-            await self.execute_query(
-                "CREATE TABLE IF NOT EXISTS telegram_channels(user_id BIGINT, channel_name TEXT,"
-                "channel_id BIGINT, promts TEXT DEFAULT 'Нет', triggers TEXT DEFAULT 'Нет', group_link TEXT, PRIMARY KEY (user_id, channel_id))")
-
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_accounts(phone TEXT PRIMARY KEY, comments INTEGER DEFAULT 0, comments_today INTEGER DEFAULT 0, sex TEXT)")
-            await self.execute_query("CREATE TABLE IF NOT EXISTS telegram_monitor_account(phone TEXT PRIMARY KEY)")
-            await self.execute_query("CREATE TABLE IF NOT EXISTS gpt_accounts(api_key TEXT PRIMARY KEY)")
-
-            # tables updated on start
-            await self.execute_query("CREATE TABLE IF NOT EXISTS users(user_id BIGINT PRIMARY KEY,"
-                                     "user_name TEXT, monitoring_status BOOLEAN DEFAULT FALSE,"
-                                     "notifications BOOLEAN DEFAULT TRUE)")
 
             await self.execute_query("""
-                            CREATE TABLE IF NOT EXISTS subscriptions (
-                                user_id BIGINT PRIMARY KEY,
-                                sub_start_date TEXT,
-                                sub_end_date TEXT,
-                                sub_type TEXT DEFAULT 'DEMO',
-                                sub_status BOOLEAN DEFAULT FALSE,
-                                balance INTEGER DEFAULT 0,
-                                comments_sent INTEGER DEFAULT 0
-                            )
-                        """)
-            await self.execute_query("CREATE TABLE IF NOT EXISTS users_today(user_id BIGINT PRIMARY KEY,"
-                                     "user_name TEXT)")
+                CREATE TABLE IF NOT EXISTS telegram_channels (
+                    user_id BIGINT,
+                    channel_name TEXT,
+                    channel_id BIGINT,
+                    promts TEXT DEFAULT 'Нет',
+                    triggers TEXT DEFAULT 'Нет',
+                    group_link TEXT,
+                    PRIMARY KEY (user_id, channel_id)
+                )
+            """)
 
-            await self.execute_query("CREATE TABLE IF NOT EXISTS default_prompts(prompt_text TEXT PRIMARY KEY)")
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS telegram_accounts (
+                    phone TEXT PRIMARY KEY,
+                    comments INTEGER DEFAULT 0,
+                    comments_today INTEGER DEFAULT 0,
+                    sex TEXT,
+                    status TEXT DEFAULT 'Active',
+                    in_work BOOLEAN DEFAULT FALSE
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS telegram_monitor_account (
+                    phone TEXT PRIMARY KEY
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS gpt_accounts (
+                    api_key TEXT PRIMARY KEY
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS users (
+                    user_id BIGINT PRIMARY KEY,
+                    user_name TEXT,
+                    monitoring_status BOOLEAN DEFAULT FALSE,
+                    notifications BOOLEAN DEFAULT TRUE
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS subscriptions (
+                    user_id BIGINT PRIMARY KEY,
+                    sub_start_date TEXT,
+                    sub_end_date TEXT,
+                    sub_type TEXT DEFAULT 'DEMO',
+                    sub_status BOOLEAN DEFAULT FALSE,
+                    balance INTEGER DEFAULT 0,
+                    comments_sent INTEGER DEFAULT 0
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS users_today (
+                    user_id BIGINT PRIMARY KEY,
+                    user_name TEXT
+                )
+            """)
+
+            await self.execute_query("""
+                CREATE TABLE IF NOT EXISTS default_prompts (
+                    prompt_text TEXT PRIMARY KEY
+                )
+            """)
 
             logger.info('connected to database')
 
         except (Exception, asyncpg.PostgresError) as error:
             logger.error("Error while connecting to DB", error)
-        
+
+
 
     async def add_user_to_subscriptions(self, user_id: int) -> None:
         """
@@ -734,7 +775,9 @@ class Database:
                     phone TEXT PRIMARY KEY,
                     comments INTEGER DEFAULT 0,
                     comments_today INTEGER DEFAULT 0,
-                    sex TEXT
+                    sex TEXT,
+                    status TEXT DEFAULT 'Active',
+                    in_work BOOLEAN DEFAULT FALSE
                 )
             """
             await self.execute_query(query)
@@ -889,7 +932,9 @@ class Database:
                                     phone TEXT PRIMARY KEY,
                                     comments INTEGER DEFAULT 0,
                                     comments_today INTEGER DEFAULT 0,
-                                    sex TEXT
+                                    sex TEXT,
+                                    status TEXT DEFAULT 'Active',
+                                    in_work BOOLEAN DEFAULT False
                                 )
                             """
                 await self.execute_query(query)
@@ -972,7 +1017,7 @@ class Database:
 
     async def get_phones_with_comments_today_less_than(self, table_name: str, max_comments: int) -> List[str]:
         try:
-            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1"
+            query = f"SELECT phone FROM {table_name} WHERE comments_today < $1 AND in_work = False"
             rows = await self.execute_query_return(query, max_comments)
             phones = [row[0] for row in rows]
             return phones
@@ -1005,7 +1050,6 @@ class Database:
             logger.error(f"Error resetting comments_today: {error}")
 
     #sex options
-
     async def get_sex_by_phone(self, phone: str, uid=False) -> str:
         """
         Retrieves the value from the 'sex' column for the given phone number from the 'telegram_accounts' table.
@@ -1038,6 +1082,19 @@ class Database:
             logger.info(f"Updated sex for account {phone} in table {table_name}")
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error while updating sex for account {phone} in table {table_name}: {error}")
+
+    async def set_in_work(self, table_name: str, phone: str, stop_work: bool = False) -> None:
+        try:
+            value = "True" if not stop_work else "False"
+            query = f"UPDATE {table_name} SET in_work = {value} WHERE phone = $1"
+            await self.execute_query(query, phone)
+        except (Exception, asyncpg.PostgresError) as error:
+            action = "True" if not stop_work else "False"
+            logger.error(f"Error setting in_work={action} for phone {phone} in table {table_name}: {error}")
+
+
+
+
 
 
 

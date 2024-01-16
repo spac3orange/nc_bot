@@ -67,3 +67,7 @@ class ChangeDefPromt(StatesGroup):
 
 class AddFewChannels(StatesGroup):
     input_list = State()
+
+class AddAccsArchive(StatesGroup):
+    input_archive = State()
+
