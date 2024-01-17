@@ -91,7 +91,7 @@ class Database:
                     phone TEXT PRIMARY KEY,
                     comments INTEGER DEFAULT 0,
                     comments_today INTEGER DEFAULT 0,
-                    sex TEXT DEFAULT 'Мужской,
+                    sex TEXT DEFAULT 'Мужской',
                     status TEXT DEFAULT 'Active',
                     in_work BOOLEAN DEFAULT FALSE
                 )

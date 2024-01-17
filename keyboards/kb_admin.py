@@ -313,6 +313,7 @@ def choose_sub_plan():
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def approve_sub_plan(plan):
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Подтвердить', callback_data=f'approve_sub_plan_{plan}')
@@ -320,6 +321,7 @@ def approve_sub_plan(plan):
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
 
 def default_prompts():
     kb_builder = InlineKeyboardBuilder()
@@ -329,6 +331,7 @@ def default_prompts():
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def change_acc_sex(phone):
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Мужской', callback_data=f'change_sex_male_{phone}')
@@ -337,11 +340,13 @@ def change_acc_sex(phone):
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def delete_comment(channel_name, msg_obj):
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Удалить', callback_data=f'change_se')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
 
 def confirm_buy_accs(accs_amount):
     kb_builder = InlineKeyboardBuilder()
@@ -350,3 +355,9 @@ def confirm_buy_accs(accs_amount):
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+def accs_shop():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Пополнить', callback_data=f'refill_shop')
+    kb_builder.button(text='Назад', callback_data=f'admin_panel')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
