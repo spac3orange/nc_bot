@@ -92,6 +92,13 @@ async def remove_links(text):
     return filtered_text
 
 
+async def get_channel_name_by_id(channel_id):
+    chat = await aiogram_bot.get_chat(channel_id)
+    username = chat.username
+    if username:
+        return f"@{username}"
+
+
 class AuthTelethon:
     def __init__(self, phone: str):
         self.phone = phone
@@ -283,10 +290,13 @@ class TelethonConnect:
                 logger.info('Monitoring channels for new posts...')
                 pprint(channel_keywords)
                 await self.client.connect()
+                if self.client.is_connected():
+                    print('Monitor logged in')
                 approved_messages = []
                 for item in channel_keywords:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
+                            channel_name = await get_channel_name_by_id(channel_id)
                             try:
                                 entity = await self.client.get_entity(channel_name)
                                 # full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
