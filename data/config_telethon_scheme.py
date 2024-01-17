@@ -298,7 +298,6 @@ class TelethonConnect:
                 for item in channel_keywords:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
-                            channel_name = await get_channel_name_by_id(int(channel_id))
                             try:
                                 entity = await self.client.get_entity(channel_name)
                                 # full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
@@ -309,7 +308,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=2)
+                            offset_date = utc_now - timedelta(minutes=1)
                             logger.info(f'Checking channel: {channel_name}...')
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
