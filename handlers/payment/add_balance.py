@@ -1,11 +1,11 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import CommandStart, Command
 from aiogram import Router, F
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from data import logger
+from aiogram.types import Message, CallbackQuery
+
 from keyboards import kb_admin
-from database import db
 from states.states import UkassaPayment
+
 router = Router()
 
 

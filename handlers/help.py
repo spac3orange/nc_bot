@@ -1,8 +1,7 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
-from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
+from aiogram import Router
+from aiogram.filters import Command
+from aiogram.types import Message
+
 router = Router()
 
 

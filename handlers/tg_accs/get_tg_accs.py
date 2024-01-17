@@ -5,7 +5,7 @@ from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect
-from database import db
+from database import db, accs_action
 from typing import List, Tuple
 from filters.known_user import KnownUser
 router = Router()
@@ -69,7 +69,7 @@ async def get_acc_info(callback: CallbackQuery, state: FSMContext):
     logger.info('getting info about TG accounts')
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     try:
-        accounts = await db.db_get_all_tg_accounts_with_comments()
+        accounts = await accs_action.db_get_all_tg_accounts_with_comments()
         print(accounts)
         if accounts:
             for table, value in accounts.items():

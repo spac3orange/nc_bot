@@ -1,11 +1,11 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
-from data import logger
 from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from utils.scheduler import monitor
+from aiogram.types import CallbackQuery
+
 from database import db
+from filters.is_admin import IsAdmin
+from keyboards import kb_admin
+from utils.scheduler import monitor
+
 router = Router()
 router.message.filter(
     IsAdmin(F)

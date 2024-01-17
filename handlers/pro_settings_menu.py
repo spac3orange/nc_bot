@@ -1,12 +1,11 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from filters.sub_types import BasicSub
-from database.db_action import db
-from filters.known_user import KnownUser
 from aiogram.fsm.context import FSMContext
+from aiogram.types import CallbackQuery
+
+from database.db_action import db
+from filters.sub_types import BasicSub
+from keyboards import kb_admin
+
 router = Router()
 router.message.filter(
 )

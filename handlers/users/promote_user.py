@@ -1,14 +1,13 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command
 from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from database import db
-from pprint import pprint
-from states.states import UsersAddState
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
-from data.logger import logger
+from aiogram.types import Message, CallbackQuery
+
+from database import db, accs_action
+from filters.is_admin import IsAdmin
+from keyboards import kb_admin
 from states.states import PromoteUser
+
 router = Router()
 router.message.filter(
     IsAdmin(F)
@@ -81,13 +80,13 @@ async def apply_promote(message: Message, state: FSMContext):
 
     if user_status:
         if user_status == 'DEMO':
-            await db.return_accounts(state_data['user_id'])
+            await accs_action.return_accounts(state_data['user_id'])
             await db.update_subscription_type(state_data['user_id'], user_status)
             await message.answer(
                 f'Пользователь {state_data["user_name"]} успешно повышен до уровня: <b>{user_status}</b>',
                 reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')
         else:
-            await db.create_user_accounts_table(state_data['user_id'])
+            await accs_action.create_user_accounts_table(state_data['user_id'])
             await db.update_subscription_type(state_data['user_id'], user_status)
             await message.answer(f'Пользователь {state_data["user_name"]} успешно повышен до уровня: <b>{user_status}</b>',
                                  reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')

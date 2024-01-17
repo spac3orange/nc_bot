@@ -6,7 +6,7 @@ from filters.sub_types import BasicSub
 from aiogram.fsm.context import FSMContext
 from states.states import EditAccInfo, UserSendPhoto
 from data.config_telethon_scheme import TelethonConnect, TelethonSendMessages
-from database import db
+from database import db, accs_action
 from typing import List, Tuple
 from data import logger, aiogram_bot
 import random
@@ -51,7 +51,7 @@ async def tg_accs_settings(callback: CallbackQuery):
 async def choose_acc_user(callback: CallbackQuery, state: FSMContext):
     uid = callback.from_user.id
     operation = 'change_info'
-    accounts = await db.get_user_accounts(uid)
+    accounts = await accs_action.get_user_accounts(uid)
     await callback.message.answer('<b>Выберите аккаунт:</b>',
                                   reply_markup=kb_admin.generate_accs_keyboard_users(accounts, operation),
                                   parse_mode='HTML')
@@ -163,7 +163,7 @@ async def user_accs_get_info(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     uid = callback.from_user.id
     try:
-        accounts = await db.get_user_accounts(uid)
+        accounts = await accs_action.get_user_accounts(uid)
         displayed_accounts = '\n'.join(accounts)
         if accounts:
             accs_info = await get_info(accounts, uid)
@@ -245,7 +245,7 @@ async def tg_accs_settings(callback: CallbackQuery):
 async def process_acc_edit_sex(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    acc_sex = await db.get_sex_by_phone(account, uid)
+    acc_sex = await accs_action.get_sex_by_phone(account, uid)
     await callback.message.answer(f'<b>Текущий пол</b>: {acc_sex}', parse_mode='HTML')
     await callback.message.answer('Выберите новый пол: ', reply_markup=kb_admin.change_acc_sex(account))
 
@@ -253,7 +253,7 @@ async def process_acc_edit_sex(callback: CallbackQuery):
 async def change_sex_to_male(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    await db.update_user_account_sex(uid, account, 'Мужской')
+    await accs_action.update_user_account_sex(uid, account, 'Мужской')
     await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Мужской</b>', parse_mode='HTML')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
@@ -262,7 +262,7 @@ async def change_sex_to_male(callback: CallbackQuery):
 async def change_sex_to_female(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    await db.update_user_account_sex(uid, account, 'Женский')
+    await accs_action.update_user_account_sex(uid, account, 'Женский')
     await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Женский</b>', parse_mode='HTML')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')

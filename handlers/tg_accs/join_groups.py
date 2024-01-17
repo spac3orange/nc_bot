@@ -5,7 +5,7 @@ from aiogram.types import CallbackQuery
 from aiogram import Router, F
 from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect
-from database import db
+from database import db, accs_action
 from keyboards import kb_admin
 router = Router()
 
@@ -13,9 +13,9 @@ router = Router()
 
 @router.callback_query(F.data == 'tg_accs_join_groups')
 async def accs_join_groups(callback: CallbackQuery):
-    #await callback.message.delete()
-    accounts = await db.db_get_all_tg_accounts()
-    monitor = await db.db_get_monitor_account()
+    uid = callback.from_user.id
+    accounts = await accs_action.db_get_all_tg_accounts()
+    monitor = await accs_action.db_get_monitor_account()
     accounts.extend(monitor)
     groups = await db.db_get_all_telegram_channels(uid)
     if accounts and groups:

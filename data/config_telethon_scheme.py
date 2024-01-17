@@ -1,28 +1,29 @@
 import asyncio
-import aiofiles
-import random
 import datetime
-import pytz
+import random
 import re
-from telethon import TelegramClient, errors
-from environs import Env
-from telethon.tl.functions.messages import SendMessageRequest
-from telethon.tl.types import InputPeerChannel
-from data.logger import logger
-from database import db, default_prompts_action
-from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
-from telethon.tl.functions.messages import GetHistoryRequest
 from datetime import timedelta, datetime
-from .chat_gpt import AuthOpenAI
-from data.config_aiogram import aiogram_bot
+
+import aiofiles
+import pytz
+from environs import Env
+from telethon import TelegramClient, errors
+from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
+from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.tl.functions.messages import GetHistoryRequest
+from telethon.tl.functions.messages import SendMessageRequest
+from telethon.tl.functions.photos import DeletePhotosRequest
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.errors import UsernameOccupiedError
-from telethon.tl.functions.photos import GetUserPhotosRequest, DeletePhotosRequest
+from telethon.tl.types import InputPeerChannel
 from telethon.tl.types import InputPhoto
-from .proxy_config import proxy
 
+from data.config_aiogram import aiogram_bot
+from data.logger import logger
+from database import db, default_prompts_action, accs_action
+from .chat_gpt import AuthOpenAI
+from .proxy_config import proxy
 
 
 async def extract_linked_chat_id(data):
@@ -218,9 +219,9 @@ class TelethonConnect:
                 print(phone)
                 await asyncio.sleep(slp)
                 if uid:
-                    sex = await db.get_sex_by_phone(phone, uid)
+                    sex = await accs_action.get_sex_by_phone(phone, uid)
                 else:
-                    sex = await db.get_sex_by_phone(phone)
+                    sex = await accs_action.get_sex_by_phone(phone)
                 print(f'Тел: {me.phone}\n'
                       f'ID: {me.id}\n'
                       f'Ник: {me.username}\n'
@@ -236,7 +237,7 @@ class TelethonConnect:
                 return False
         except (errors.UserDeactivatedBanError, errors.UserDeletedError) as e:
             logger.error(f'account {self.session_name} is banned: {e}')
-            update_status = asyncio.create_task(db.change_acc_status(phone, table_name, 'Banned'))
+            update_status = asyncio.create_task(accs_action.change_acc_status(phone, table_name, 'Banned'))
             return False
 
 
@@ -346,8 +347,8 @@ class TelethonConnect:
                             linked_chat = 'нет'
                         if user_id in all_basic_users:
                             if await db.get_comments_sent(user_id) < 1:
-                                acc = random.choice(await db.get_phones_with_comments_today_less_than('telegram_accounts', 7))
-                                acc_sex = await db.get_sex_by_phone(acc)
+                                acc = random.choice(await accs_action.get_phones_with_comments_today_less_than('telegram_accounts', 7))
+                                acc_sex = await accs_action.get_sex_by_phone(acc)
                             else:
                                 try:
                                     await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
@@ -358,17 +359,17 @@ class TelethonConnect:
                                     logger.error(e)
                                     continue
                             if acc:
-                                await db.set_in_work('telegram_accounts', acc)
+                                await accs_action.set_in_work('telegram_accounts', acc)
                                 session = TelethonSendMessages(acc)
                                 basic = True
                             else:
                                 logger.error('No accounts with comments less than 7')
                                 continue
                         else:
-                            acc = random.choice(await db.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
-                            acc_sex = await db.get_sex_by_phone(acc, uid=user_id)
+                            acc = random.choice(await accs_action.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
+                            acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
                             if acc:
-                                await db.set_in_work(f'accounts_{user_id}', acc)
+                                await accs_action.set_in_work(f'accounts_{user_id}', acc)
                                 session = TelethonSendMessages(acc)
                             else:
                                 logger.error(f'No accounts with comments less than 7 for user {user_id}')
@@ -476,10 +477,10 @@ class TelethonSendMessages:
 
     @staticmethod
     async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None):
-        all_accs = await db.db_get_all_tg_accounts()
+        all_accs = await accs_action.db_get_all_tg_accounts()
         basic_acc = acc in all_accs
         table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
-        release_acc = asyncio.create_task(db.set_in_work(table_name, acc, stop_work=True))
+        release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
         if error:
             async with aiofiles.open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
@@ -489,9 +490,9 @@ class TelethonSendMessages:
                                  f'\nОшибка: \n{error}\n\n')
         else:
             if basic_acc:
-                upd_comments = asyncio.create_task(db.increment_comments('telegram_accounts', acc))
+                upd_comments = asyncio.create_task(accs_action.increment_comments('telegram_accounts', acc))
             else:
-                upd_comments = asyncio.create_task(db.increment_comments(f'accounts_{user_id}', acc))
+                upd_comments = asyncio.create_task(accs_action.increment_comments(f'accounts_{user_id}', acc))
             async with aiofiles.open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 await file.write(f'\n|{timestamp}:'

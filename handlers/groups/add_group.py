@@ -7,7 +7,7 @@ from aiogram import Router, F
 from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
 from states.states import AddGroup, AddFewChannels
-from database import db
+from database import db, accs_action
 from data.config_telethon_scheme import TelethonConnect
 from data.config_aiogram import aiogram_bot
 from filters.known_user import KnownUser
@@ -46,8 +46,8 @@ async def normalize_group_link(link: str) -> str:
         return None
 
 async def all_accs_join_channel(message, group_link):
-    accounts = await db.db_get_all_tg_accounts()
-    monitor = await db.db_get_monitor_account()
+    accounts = await accs_action.db_get_all_tg_accounts()
+    monitor = await accs_action.db_get_monitor_account()
     if accounts:
         for acc in accounts:
             session = TelethonConnect(acc)

@@ -9,7 +9,7 @@ from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
 from states.states import AddTgAccState, AddAccsArchive
 from data.config_telethon_scheme import AuthTelethon
-from database import db
+from database import db, accs_action
 from telethon import errors
 from filters.known_user import KnownUser
 from filters.is_admin import IsAdmin
@@ -24,7 +24,7 @@ router.message.filter(
 
 
 async def acc_in_table(phone):
-    accounts = await db.db_get_all_tg_accounts()
+    accounts = await accs_action.db_get_all_tg_accounts()
     if phone in accounts:
         return True
     return False
@@ -55,14 +55,14 @@ async def extract_archive(archive_path, extract_path='data/sessions_new'):
 async def upload_accs_to_db(path='data/sessions_new'):
     try:
         sessions = []
-        accounts = await db.db_get_all_tg_accounts()
+        accounts = await accs_action.db_get_all_tg_accounts()
         for filename in os.listdir(path):
             if filename.endswith('.session') and filename not in accounts:
                 sessions.append(filename.rstrip('.session'))
 
         for sess in sessions:
             if await check_session(sess):
-                await db.db_add_tg_account(sess)
+                await accs_action.add_tg_account(sess)
                 await aiogram_bot.send_message(462813109, f'Аккаунт {sess} загружен в базу данных')
             else:
                 await aiogram_bot.send_message(462813109, f'Ошибка авторизации {sess}. Аккаунт не загружен.')
@@ -124,7 +124,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
         await data['tg_client'].login_process_code(message.text)
         await message.answer('Аккаунт успешно подключен и добавлен в базу данных.')
         await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
-        await db.db_add_tg_account(data['phone'])
+        await accs_action.add_tg_account(data['phone'])
         logger.info('telegram account successfully added to db')
 
     except errors.SessionPasswordNeededError as e:
@@ -134,7 +134,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
             if login:
                 await message.answer('Аккаунт успешно подключен и добавлен в базу данных.')
                 await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
-                await db.db_add_tg_account(data['phone'])
+                await accs_action.add_tg_account(data['phone'])
                 logger.info('telegram account successfully added to db')
             else:
                 await message.answer('Ошибка логина. Попробуйте еще раз.')

@@ -4,7 +4,7 @@ from data.logger import logger
 from aiogram import Router, F
 from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
-from database import db
+from database import db, accs_action
 from data.chat_gpt import AuthOpenAI
 from filters.is_admin import IsAdmin
 router = Router()
@@ -14,7 +14,7 @@ router.message.filter(
 
 
 async def gpt_acc_in_table(phone):
-    accounts = await db.db_get_all_tg_accounts()
+    accounts = await accs_action.db_get_all_tg_accounts()
     if phone in accounts:
         return True
     return False

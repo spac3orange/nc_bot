@@ -3,7 +3,7 @@ import random
 from data.logger import logger
 from data.config_telethon_scheme import TelethonConnect, monitor_settings
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from database import db
+from database import db, accs_action
 from .check_subscription import check_users_subscription
 
 scheduler = AsyncIOScheduler()
@@ -23,7 +23,7 @@ class ChatMonitor:
             if self.monitoring_enabled:
                 return
 
-            accounts = await db.db_get_monitor_account()
+            accounts = await accs_action.db_get_monitor_account()
             if not accounts:
                 raise Exception('В таблице нет аккаунтов для мониторинга.')
 
@@ -77,7 +77,7 @@ class IntervalOperations:
 
     async def start_scheduled_tasks(self):
         self.scheduler.add_job(db.clear_users_today, 'cron', hour=0, minute=0)
-        self.scheduler.add_job(db.reset_comments_today, 'cron', hour=0, minute=10)
+        self.scheduler.add_job(accs_action.reset_comments_today, 'cron', hour=0, minute=10)
         self.scheduler.add_job(check_users_subscription, 'interval', minutes=60)
         self.scheduler.start()
         logger.info('users_today scheduler started')

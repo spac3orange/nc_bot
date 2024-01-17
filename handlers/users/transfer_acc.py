@@ -1,14 +1,12 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command
 from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from database import db
-from pprint import pprint
-from states.states import UsersAddState
 from aiogram.fsm.context import FSMContext
-from data.logger import logger
+from aiogram.types import Message, CallbackQuery
+
+from database import db, accs_action
+from filters.is_admin import IsAdmin
+from keyboards import kb_admin
 from states.states import TranferAcc
+
 router = Router()
 router.message.filter(
     IsAdmin(F)
@@ -32,7 +30,7 @@ async def choose_accs_to_transfer(callback: CallbackQuery, state: FSMContext):
     user_id = await db.get_user_id_by_username(user_name)
     user_info = await db.get_user_info(user_id)
     user_status = user_info['sub_type']
-    accounts = len(await db.db_get_all_tg_accounts())
+    accounts = len(await accs_action.db_get_all_tg_accounts())
     await state.update_data(user_name=user_name, user_id=user_id)
     await callback.message.answer(f'Выбран пользователь <b>{user_name}</b>\n'
                                   f'Уровень подписки: <b>{user_status}</b>\n\n'
@@ -44,7 +42,7 @@ async def choose_accs_to_transfer(callback: CallbackQuery, state: FSMContext):
 async def accs_transfered(message: Message, state: FSMContext):
     state_data = await state.get_data()
     acc_count = int(message.text)
-    await db.move_accounts(state_data['user_id'], acc_count)
+    await accs_action.move_accounts(state_data['user_id'], acc_count)
     await message.answer(f'<b>{acc_count}</b> аккаунтов успешно передано пользователю'
                          f' <b>{state_data["user_name"]}</b>.',
                          reply_markup=kb_admin.users_settings_btns(), parse_mode='HTML')

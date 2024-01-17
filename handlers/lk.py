@@ -1,14 +1,12 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
-from data import logger
-from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
-from filters.known_user import KnownUser
 from pprint import pprint
-from database import db, payment_action
-from states.states import AddSubscription, BuyAccs
+
+from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
+from aiogram.types import Message, CallbackQuery
+
+from database import db, payment_action, accs_shop_action, accs_action
+from keyboards import kb_admin
+from states.states import BuyAccs
 
 router = Router()
 router.message.filter(
@@ -28,13 +26,13 @@ async def process_lk(callback: CallbackQuery):
         accounts = '1 (демо)'
         commentaries = '1'
     elif user_data['sub_type'] == 'Подписка на 1 день':
-        accounts = len(await db.get_user_accounts(uid))
+        accounts = len(await accs_action.get_user_accounts(uid))
         commentaries = '7'
     elif user_data['sub_type'] == 'Подписка на 7 дней':
-        accounts = len(await db.get_user_accounts(uid))
+        accounts = len(await accs_action.get_user_accounts(uid))
         commentaries = '147'
     elif user_data['sub_type'] == 'Подписка на 30 дней':
-        accounts = len(await db.get_user_accounts(uid))
+        accounts = len(await accs_action.get_user_accounts(uid))
         commentaries = '1050'
     sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
     sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_end_date']
@@ -110,7 +108,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
         comments = 1050
     if user_data:
         if user_data['balance'] >= sub_price:
-            accs_available = await db.db_get_all_tg_accounts(True)
+            accs_available = await accs_action.db_get_all_tg_accounts(True)
             if len(accs_available) >= accounts:
                 days = 'день' if plan == '1' else 'дней'
                 await callback.message.answer('<b>Спасибо за покупку!</b>'
@@ -121,8 +119,8 @@ async def process_approve_sub_plan(callback: CallbackQuery):
                                               f' перейдите в раздел <b>Настройки</b> /settings', parse_mode='HTML')
 
                 await payment_action.update_subscription_info(callback.from_user.id, int(plan))
-                await db.create_user_accounts_table(uid)
-                await db.move_accounts(uid, accounts)
+                await accs_action.create_user_accounts_table(uid)
+                await accs_action.move_accounts(uid, accounts)
 
             else:
                 await callback.message.answer('К сожалению, аккаунтов на данный момент нет в наличии.\n'
@@ -141,9 +139,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'users_buy_accs')
 async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
-    accs_amount = 0
-    uid = callback.from_user.id
-    user_balance = (await db.get_user_info(uid))['balance']
+    accs_amount = len(await accs_shop_action.db_get_shop_accs())
     await callback.message.answer('1 Telegram аккаунт - <b>200 рублей</b>\n'
                                   f'Доступно аккаунтов для покупки: <b>{accs_amount}</b>\n'
                                   '<b>Сколько аккаунтов вы хотели бы приобрести?</b>\n\n'
@@ -153,7 +149,6 @@ async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
 
 @router.message(BuyAccs.input_amount)
 async def confirm_buy_accs(message: Message, state: FSMContext):
-    uid = message.from_user.id
     if message.text.isdigit():
         accs_amount = int(message.text)
         total_price = accs_amount * 200
@@ -170,3 +165,7 @@ async def update_additional_accs(callback: CallbackQuery):
     if user_balance < amount * 200:
         await callback.message.answer('На вашем балансе не достаточно средств для покупки. Пожалуйста, пополните баланс и попробуйте еще раз.')
         return
+    transfer_success = await accs_shop_action.transfer_sold_accounts(uid, amount)
+    if transfer_success:
+        await callback.message.answer(f'Вы успешно приобрели <b>{amount}</b> дополнительных аккаунтов.')
+        await process_lk(callback)

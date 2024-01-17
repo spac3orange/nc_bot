@@ -1,14 +1,15 @@
 import asyncio
 
-from aiogram.types import Message, CallbackQuery, PreCheckoutQuery, LabeledPrice
-from aiogram.filters import CommandStart, Command
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
-from keyboards import kb_admin
-from data import aiogram_bot, payment_config
+from aiogram.types import Message, PreCheckoutQuery, LabeledPrice
 from aiogram.types.message import ContentType
-from states.states import UkassaPayment
+
+from data import aiogram_bot, payment_config
 from database import payment_action, db
+from keyboards import kb_admin
+from states.states import UkassaPayment
+
 router = Router()
 
 #prices = {'1_month': 250*100, '3_month': 450*100, '6_month': 750*100, '12_month': 1140*100}

@@ -1,5 +1,3 @@
-import asyncio
-from pprint import pprint
 import aiohttp
 
 

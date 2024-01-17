@@ -5,7 +5,7 @@ from aiogram import Router, F
 from keyboards import kb_admin
 from aiogram.fsm.context import FSMContext
 from states.states import AddGPTAccState
-from database import db
+from database import db, accs_action
 from filters.is_admin import IsAdmin
 router = Router()
 router.message.filter(
@@ -34,7 +34,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 
 async def gpt_acc_in_table(phone):
-    accounts = await db.db_get_all_tg_accounts()
+    accounts = await accs_action.db_get_all_tg_accounts()
     if phone in accounts:
         return True
     return False

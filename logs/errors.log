@@ -2217,3 +2217,4 @@ sqlite3.ProgrammingError: Cannot operate on a closed database.
 2023-11-17 01:24:57.202 | ERROR    | handlers.get_history:get_history:30 - [Errno 2] No such file or directory: 'history/history_6505935002.txt'
 2023-11-17 02:35:20.873 | ERROR    | data.config_telethon_scheme:send_comments:391 - Error sending comments: database is locked
 2023-11-17 02:35:35.276 | ERROR    | data.config_telethon_scheme:monitor_channels:343 - Error monitoring channels: database is locked
+2024-01-15 09:47:45.572 | ERROR    | handlers.tg_accs.add_tg_acc:upload_accs_to_db:70 - [Errno 2] No such file or directory: 'sessions/+998887420739.json'

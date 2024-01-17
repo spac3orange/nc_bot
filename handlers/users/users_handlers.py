@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram import Router, F
 from keyboards import kb_admin
 from filters.is_admin import IsAdmin
-from database import db
+from database import db, accs_action
 from pprint import pprint
 from states.states import UsersAddState
 from aiogram.fsm.context import FSMContext
@@ -40,7 +40,7 @@ async def process_users_settings(callback: CallbackQuery):
         user = []
         user_data = await db.get_user_info(uid)
         print(user_data)
-        accounts = len(await db.get_user_accounts(uid)) or '0'
+        accounts = len(await accs_action.get_user_accounts(uid)) or '0'
         channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'
                           f'<b>ID:</b> {uid}\n'
@@ -70,7 +70,7 @@ async def back_to_users_settings(callback: CallbackQuery):
     for uid, name, mon, notif in users:
         user = []
         user_data = await db.get_user_info(uid)
-        accounts = len(await db.get_user_accounts(uid)) or '0'
+        accounts = len(await accs_action.get_user_accounts(uid)) or '0'
         channels = '\n'.join(await db.db_get_all_telegram_channels(uid))
         user.append(f'\n<b>Ник</b>: @{name}\n'
                     f'<b>ID:</b> {uid}\n'

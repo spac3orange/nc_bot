@@ -1,10 +1,12 @@
 import asyncio
 from pprint import pprint
+
 import aiohttp
-from aiohttp_retry import RetryClient, ExponentialRetry
-from data.logger import logger
 from tenacity import retry, stop_after_attempt, wait_fixed
+
+from data.logger import logger
 from .proxy_config import proxy_username, proxy_pass, proxy_ip, proxy_port
+
 
 class AuthOpenAI:
     def __init__(self, api_key):

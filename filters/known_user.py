@@ -1,7 +1,7 @@
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
+
 from database import db
-from data.logger import logger
 
 
 class KnownUser(BaseFilter):

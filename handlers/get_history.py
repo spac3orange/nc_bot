@@ -1,10 +1,9 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
-from keyboards import kb_admin
-from filters.is_admin import IsAdmin
+from aiogram.types import CallbackQuery
+
 from data.logger import logger
 from filters.known_user import KnownUser
+
 router = Router()
 router.message.filter(
     KnownUser()

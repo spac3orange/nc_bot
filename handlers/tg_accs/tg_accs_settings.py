@@ -1,11 +1,12 @@
-from aiogram.types import Message, CallbackQuery
-from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
-from keyboards import kb_admin
+from aiogram.fsm.context import FSMContext
+from aiogram.types import CallbackQuery
+
+from database import db, accs_action
 from filters.is_admin import IsAdmin
 from filters.known_user import KnownUser
-from aiogram.fsm.context import FSMContext
-from database import db
+from keyboards import kb_admin
+
 router = Router()
 router.message.filter(
     IsAdmin(F)
@@ -15,8 +16,8 @@ router.message.filter(
 @router.callback_query(F.data == 'tg_accs', KnownUser())
 async def tg_accs_settings(callback: CallbackQuery):
     #await callback.message.delete()
-    accounts_free = await db.db_get_all_tg_accounts()
-    accounts_paid = await db.get_all_paid_accounts()
+    accounts_free = await accs_action.db_get_all_tg_accounts()
+    accounts_paid = await accs_action.get_all_paid_accounts()
     paid_string = ''
     if accounts_paid:
         for k, v in accounts_paid.items():
@@ -32,8 +33,8 @@ async def tg_accs_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_accs')
 async def back_to_accs(callback: CallbackQuery, state: FSMContext):
-    accounts_free = await db.db_get_all_tg_accounts()
-    accounts_paid = await db.get_all_paid_accounts()
+    accounts_free = await accs_action.db_get_all_tg_accounts()
+    accounts_paid = await accs_action.get_all_paid_accounts()
     await callback.message.answer('<b>Настройки телеграм аккаунтов:</b>\n\n'
                                   f'<b>Аккаунты пользователей с подпиской:</b> {len(accounts_paid)}\n\n'
                                   f'<b>Доступно бесплатных аккаунтов:</b> {len(accounts_free)}\n\n'
