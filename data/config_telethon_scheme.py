@@ -3,6 +3,7 @@ import datetime
 import random
 import re
 from datetime import timedelta, datetime
+from pprint import pprint
 
 import aiofiles
 import pytz
@@ -280,6 +281,7 @@ class TelethonConnect:
         try:
             if channel_keywords:
                 logger.info('Monitoring channels for new posts...')
+                pprint(channel_keywords)
                 await self.client.connect()
                 approved_messages = []
                 for item in channel_keywords:
