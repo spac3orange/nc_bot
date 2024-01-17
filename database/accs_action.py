@@ -86,7 +86,7 @@ async def move_accounts(user_id: int, num_accounts: int) -> None:
                                 phone TEXT PRIMARY KEY,
                                 comments INTEGER DEFAULT 0,
                                 comments_today INTEGER DEFAULT 0,
-                                sex TEXT DEFAULT 'Мужской,
+                                sex TEXT DEFAULT 'Мужской',
                                 status TEXT DEFAULT 'Active',
                                 in_work BOOLEAN DEFAULT False
                             )
@@ -130,6 +130,8 @@ async def return_accounts(user_id):
 
 # ___________________________________________________
     # user_accs_table
+
+
 async def create_user_accounts_table(user_id: int) -> None:
     """
     Creates a new table in the database with the name "settings_{user_id}" and the specified columns.

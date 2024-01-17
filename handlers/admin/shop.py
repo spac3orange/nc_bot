@@ -54,7 +54,7 @@ async def confirm_refill_amount(message: Message, state: FSMContext):
             await state.clear()
         else:
             await message.answer('Введено не корректное количество аккаунтов. Пожалуйста, попробуйте еще раз.'
-                                 '\nОтменить /cancel')
+                                 '\n\nОтменить /cancel')
             return
     except Exception as e:
         logger.error(e)
