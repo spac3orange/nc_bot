@@ -144,9 +144,8 @@ async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
     accs_amount = 0
     uid = callback.from_user.id
     user_balance = (await db.get_user_info(uid))['balance']
-    await callback.message.answer('Стоимость 1 Telegram аккаунта для нейрокомментинга - <b>200 рублей</b>\n\n'
-                                  f'Доступно Telegram аккаунтов - <b>{accs_amount}</b>\n\n'
-                                  f'Баланс - <b>{user_balance} рублей</b>'
+    await callback.message.answer('1 Telegram аккаунт для нейрокомментинга: <b>200 рублей</b>\n'
+                                  f'Доступно аккаунтов для покупки: <b>{accs_amount}</b>\n'
                                   '<b>Сколько аккаунтов вы хотели бы приобрести?</b>\n\n'
                                   'Отменить /cancel', parse_mode='HTML')
     await state.set_state(BuyAccs.input_amount)
