@@ -143,7 +143,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
 async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
     accs_amount = 0
     uid = callback.from_user.id
-    user_balance = await db.get_user_info(uid)['balance']
+    user_balance = (await db.get_user_info(uid))['balance']
     await callback.message.answer('Стоимость 1 Telegram аккаунта для нейрокомментинга - <b>200 рублей</b>\n\n'
                                   f'Доступно Telegram аккаунтов - <b>{accs_amount}</b>\n\n'
                                   f'Баланс - <b>{user_balance} рублей</b>'
@@ -166,7 +166,7 @@ async def confirm_buy_accs(message: Message, state: FSMContext):
 @router.callback_query(F.data.startswith('confirm_buy_accs'))
 async def update_additional_accs(callback: CallbackQuery):
     uid = callback.from_user.id
-    user_balance = await db.get_user_info(uid)['balance']
+    user_balance = (await db.get_user_info(uid))['balance']
     amount = int(callback.data.split('_')[-1])
     if user_balance < amount * 200:
         await callback.message.answer('На вашем балансе не достаточно средств для покупки. Пожалуйста, пополните баланс и попробуйте еще раз.')
