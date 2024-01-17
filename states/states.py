@@ -71,3 +71,6 @@ class AddFewChannels(StatesGroup):
 class AddAccsArchive(StatesGroup):
     input_archive = State()
 
+class BuyAccs(StatesGroup):
+    input_amount = State()
+    confirm_amount = State()

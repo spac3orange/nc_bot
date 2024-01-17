@@ -71,6 +71,7 @@ def lk_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Купить подписку', callback_data='subscribe')
     kb_builder.button(text='Пополнить баланс', callback_data='add_balance')
+    kb_builder.button(text='Купить аккаунты', callback_data='users_buy_accs')
     kb_builder.button(text='◀️Назад', callback_data='back_to_main')
 
     kb_builder.adjust(2)
@@ -341,3 +342,11 @@ def delete_comment(channel_name, msg_obj):
     kb_builder.button(text='Удалить', callback_data=f'change_se')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
+def confirm_buy_accs(accs_amount):
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Подтвердить', callback_data=f'confirm_buy_accs_{accs_amount}')
+    kb_builder.button(text='Назад', callback_data=f'lk')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+

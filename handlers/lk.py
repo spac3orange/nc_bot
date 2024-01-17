@@ -7,7 +7,7 @@ from filters.is_admin import IsAdmin
 from filters.known_user import KnownUser
 from pprint import pprint
 from database import db, payment_action
-from states.states import AddSubscription
+from states.states import AddSubscription, BuyAccs
 from aiogram.fsm.context import FSMContext
 
 router = Router()
@@ -138,6 +138,36 @@ async def process_approve_sub_plan(callback: CallbackQuery):
                                       reply_markup=kb_admin.lk_btns(),
                                       parse_mode='HTML')
 
-@router.callback_query(F.data == 'subscribe_prolong')
-async def process_sub_prolong(callback: CallbackQuery):
-    await callback.message.answer('В разработке.')
+
+@router.callback_query(F.data == 'users_buy_accs')
+async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
+    accs_amount = 0
+    uid = callback.from_user.id
+    user_balance = await db.get_user_info(uid)['balance']
+    await callback.message.answer('Стоимость 1 Telegram аккаунта для нейрокомментинга - <b>200 рублей</b>\n\n'
+                                  f'Доступно Telegram аккаунтов - <b>{accs_amount}</b>\n\n'
+                                  f'Баланс - <b>{user_balance} рублей</b>'
+                                  '<b>Сколько аккаунтов вы хотели бы приобрести?</b>\n\n'
+                                  'Отменить /cancel', parse_mode='HTML')
+    await state.set_state(BuyAccs.input_amount)
+
+
+@router.message(BuyAccs.input_amount)
+async def confirm_buy_accs(message: Message, state: FSMContext):
+    uid = message.from_user.id
+    if message.text.isdigit():
+        accs_amount = int(message.text)
+        total_price = accs_amount * 200
+        await message.answer(f'Покупка <b>{accs_amount}</b> Telegram аккаунтов за <b>{total_price}</b> рублей', parse_mode='HTML',
+                             reply_markup=kb_admin.confirm_buy_accs(accs_amount))
+        await state.clear()
+
+
+@router.callback_query(F.data.startswith('confirm_buy_accs'))
+async def update_additional_accs(callback: CallbackQuery):
+    uid = callback.from_user.id
+    user_balance = await db.get_user_info(uid)['balance']
+    amount = int(callback.data.split('_')[-1])
+    if user_balance < amount * 200:
+        await callback.message.answer('На вашем балансе не достаточно средств для покупки. Пожалуйста, пополните баланс и попробуйте еще раз.')
+        return

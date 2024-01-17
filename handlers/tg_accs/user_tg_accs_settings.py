@@ -277,3 +277,4 @@ async def process_clear_avatars(callback: CallbackQuery):
     await mess.edit_text('Аватары удалены 👍')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
+
