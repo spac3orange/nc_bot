@@ -157,7 +157,7 @@ async def confirm_buy_accs(message: Message, state: FSMContext):
     if message.text.isdigit():
         accs_amount = int(message.text)
         total_price = accs_amount * 200
-        await message.answer(f'Покупка <b>{accs_amount}</b> Telegram аккаунтов за <b>{total_price}</b> рублей', parse_mode='HTML',
+        await message.answer(f'Покупка <b>{accs_amount}</b> дополнительных Telegram аккаунтов за <b>{total_price}</b> рублей', parse_mode='HTML',
                              reply_markup=kb_admin.confirm_buy_accs(accs_amount))
         await state.clear()
 
