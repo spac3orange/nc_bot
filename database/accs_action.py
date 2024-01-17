@@ -317,3 +317,15 @@ async def change_acc_status(phone, status, table_name):
         await db.execute_query(query, phone)
     except (Exception, asyncpg.PostgresError) as error:
         logger.error(f"Error setting status={status} for phone {phone} in table {table_name}: {error}")
+
+
+async def get_extra_accounts(user_id: int) -> List[str]:
+    try:
+        async with db.pool.acquire() as conn:
+            query = f"SELECT phone FROM extra_accounts_{user_id}"
+            rows = await conn.fetch(query)
+            phone_numbers = [row['phone'] for row in rows]
+            return phone_numbers
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error retrieving extra accounts for user {user_id}: {error}")
+        return []

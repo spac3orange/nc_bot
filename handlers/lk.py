@@ -20,19 +20,20 @@ async def process_lk(callback: CallbackQuery):
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
     ref_link = f'https://t.me/MagicComment24_bot?start=ref{uid}'
-    accounts = ''
+    accounts = len(await accs_action.get_user_accounts(uid))
+    extra_accounts = len(await accs_action.get_extra_accounts(uid))
     commentaries = ''
     if user_data['sub_type'] == 'DEMO':
         accounts = '1 (демо)'
         commentaries = '1'
     elif user_data['sub_type'] == 'Подписка на 1 день':
-        accounts = len(await accs_action.get_user_accounts(uid))
+        accounts = accounts + extra_accounts
         commentaries = '7'
     elif user_data['sub_type'] == 'Подписка на 7 дней':
-        accounts = len(await accs_action.get_user_accounts(uid))
+        accounts = accounts + extra_accounts
         commentaries = '147'
     elif user_data['sub_type'] == 'Подписка на 30 дней':
-        accounts = len(await accs_action.get_user_accounts(uid))
+        accounts = accounts + extra_accounts
         commentaries = '1050'
     sub_start = 'Не активна' if user_data['sub_start_date'] is None else user_data['sub_start_date']
     sub_end = 'Не активна' if user_data['sub_end_date'] is None else user_data['sub_end_date']
