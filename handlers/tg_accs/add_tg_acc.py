@@ -127,6 +127,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
         await accs_action.db_add_tg_account(data['phone'])
         logger.info('telegram account successfully added to db')
         print(1234567)
+        print(123)
 
     except errors.SessionPasswordNeededError as e:
         try:
@@ -138,6 +139,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
                 await accs_action.db_add_tg_account(data['phone'])
                 logger.info('telegram account successfully added to db')
                 print(0000000)
+                print(000)
             else:
                 await message.answer('Ошибка логина. Попробуйте еще раз.')
         except Exception as e:
