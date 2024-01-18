@@ -293,6 +293,7 @@ class TelethonConnect:
                 await self.client.connect()
                 if self.client.is_connected():
                     print('Monitor logged in')
+                    pprint(await self.client.get_me())
                 approved_messages = []
                 for item in channel_keywords:
                     for user_id, channels in item.items():
