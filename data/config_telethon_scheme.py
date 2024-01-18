@@ -26,7 +26,7 @@ from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 
-api_id = 22728769
+api_id = '22728769'
 api_hash = 'c9594e4b2d8f0259f967c2ee395dcd89'
 
 
