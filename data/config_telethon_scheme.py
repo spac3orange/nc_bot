@@ -26,6 +26,11 @@ from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 
+env = Env()
+env.read_env()
+api_id = env.int('API_ID')
+api_hash = env.str('API_HASH')
+
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -104,10 +109,8 @@ async def get_channel_name_by_id(channel_id):
 class AuthTelethon:
     def __init__(self, phone: str):
         self.phone = phone
-        env = Env()
-        env.read_env()
-        self.api_id = env('API_ID')
-        self.api_hash = env('API_HASH')
+        self.api_id = api_id
+        self.api_hash = api_hash
         self.session_file = 'data/telethon_sessions/{}.session'.format(self.phone)
         print(self.api_id, self.api_hash, self.phone, type(self.phone))
         self.client = TelegramClient(self.session_file, self.api_id, self.api_hash)
@@ -200,10 +203,8 @@ class AuthTelethon:
 
 class TelethonConnect:
     def __init__(self, session_name):
-        env = Env()
-        env.read_env()
-        self.api_id = env('API_ID')
-        self.api_hash = env('API_HASH')
+        self.api_id = api_id
+        self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
         print(f'api id: {self.api_id} | api hash: {self.api_hash}')
@@ -442,10 +443,8 @@ class TelethonConnect:
 
 class TelethonSendMessages:
     def __init__(self, session_name):
-        env = Env()
-        env.read_env()
-        self.api_id = env('API_ID')
-        self.api_hash = env('API_HASH')
+        self.api_id = api_id
+        self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
