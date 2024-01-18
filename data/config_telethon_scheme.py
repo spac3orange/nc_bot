@@ -26,10 +26,8 @@ from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 
-env = Env()
-env.read_env()
-api_id = env.int('API_ID')
-api_hash = env.str('API_HASH')
+api_id = 22728769
+api_hash = 'c9594e4b2d8f0259f967c2ee395dcd89'
 
 
 async def extract_linked_chat_id(data):
