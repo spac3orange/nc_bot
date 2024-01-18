@@ -133,11 +133,8 @@ class AuthTelethon:
         logger.info('Attempting to sign in...')
         if code:
             if password:
-                print(1)
-                print(password)
                 await self.client.sign_in(phone=self.phone, code=code, password=password)
             else:
-                print(2)
                 await self.client.sign_in(phone=self.phone, code=code)
         else:
             await self.client.sign_in(password=password)

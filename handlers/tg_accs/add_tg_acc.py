@@ -78,7 +78,6 @@ async def input_phone(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите номер телефона: ', reply_markup=kb_admin.tg_back())
     await state.set_state(AddTgAccState.input_2fa)
-    print(await state.get_state())
 
 
 @router.message(AddTgAccState.input_2fa)
@@ -95,7 +94,6 @@ async def input_code(message: Message, state: FSMContext):
 
     data = await state.get_data()
     phone = data['phone']
-    print(phone)
     if not await acc_in_table(phone):
         logger.info('awaiting for auth code in telegram')
         await message.answer('Запрашиваю код подтверждения...')
@@ -118,16 +116,12 @@ async def input_code(message: Message, state: FSMContext):
 async def add_tg_acc(message: Message, state: FSMContext):
     try:
         data = await state.get_data()
-        print(data)
         password = data['password']
-        print(password)
         await data['tg_client'].login_process_code(message.text)
         await message.answer('Аккаунт успешно подключен и добавлен в базу данных.')
         await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
         await accs_action.db_add_tg_account(data['phone'])
         logger.info('telegram account successfully added to db')
-        print(1234567)
-        print(123)
 
     except errors.SessionPasswordNeededError as e:
         try:
@@ -138,8 +132,6 @@ async def add_tg_acc(message: Message, state: FSMContext):
                 await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
                 await accs_action.db_add_tg_account(data['phone'])
                 logger.info('telegram account successfully added to db')
-                print(0000000)
-                print(000)
             else:
                 await message.answer('Ошибка логина. Попробуйте еще раз.')
         except Exception as e:
