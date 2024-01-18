@@ -126,6 +126,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
         await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
         await accs_action.db_add_tg_account(data['phone'])
         logger.info('telegram account successfully added to db')
+        print(1234567)
 
     except errors.SessionPasswordNeededError as e:
         try:
@@ -136,6 +137,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
                 await message.answer('Настройки телеграм аккаунтов:', reply_markup=kb_admin.tg_accs_btns())
                 await accs_action.db_add_tg_account(data['phone'])
                 logger.info('telegram account successfully added to db')
+                print(0000000)
             else:
                 await message.answer('Ошибка логина. Попробуйте еще раз.')
         except Exception as e:
@@ -150,6 +152,7 @@ async def add_tg_acc(message: Message, state: FSMContext):
 async def process_upload_archive(message: Message, state: FSMContext):
     await message.answer('Ожидаю архив с аккаунтами: ')
     await state.set_state(AddAccsArchive.input_archive)
+
 
 @router.message(AddAccsArchive.input_archive)
 async def proceed_archive(message: Message, state: FSMContext):
