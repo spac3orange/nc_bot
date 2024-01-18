@@ -200,15 +200,14 @@ class AuthTelethon:
 
 class TelethonConnect:
     def __init__(self, session_name):
-        self.get_env()
-        self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
-
-    def get_env(self):
         env = Env()
         env.read_env()
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
+        self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+        print(f'api id: {self.api_id} | api hash: {self.api_hash}')
+
 
     async def get_info(self, uid=None):
         table_name = 'telegram_accounts' if not uid else f'accounts_{uid}'
@@ -442,15 +441,13 @@ class TelethonConnect:
 
 class TelethonSendMessages:
     def __init__(self, session_name):
-        self.get_env()
-        self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
-
-    def get_env(self):
         env = Env()
         env.read_env()
         self.api_id = env('API_ID')
         self.api_hash = env('API_HASH')
+        self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+
 
     async def delete_comment(self, channel_name, msg):
         try:
