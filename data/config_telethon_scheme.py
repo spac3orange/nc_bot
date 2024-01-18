@@ -304,7 +304,8 @@ class TelethonConnect:
                                 # chats = full_channel.to_dict()
                                 # linked_chat_id = await extract_linked_chat_id(chats)
                                 # print(f'channel {channel_name} linked chat id {linked_chat_id}')
-                            except Exception:
+                            except Exception as e:
+                                logger.error(e)
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
