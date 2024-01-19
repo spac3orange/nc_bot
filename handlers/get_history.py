@@ -25,6 +25,7 @@ async def get_history(callback: CallbackQuery):
             for i in history:
                 if len(i) > 1 and i != '\n' and i != ' ' and i != '':
                     detailed = i.split('\n')
+                    print(detailed)
                     channel_name = i[2].split(':')[-1].strip()
                     acc = i[1].split(':')[-1].strip()
                     comment_id = i[4].split(':')[-1].strip()
