@@ -438,11 +438,12 @@ class TelethonSendMessages:
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
 
-    async def delete_comment(self, channel_name, msg):
+    async def delete_comment(self, channel_name, comment_id, user_id):
         try:
             await self.client.connect()
             entity = await self.client.get_entity(channel_name)
-            await self.client.delete_messages(entity, msg)
+            await self.client.delete_messages(entity, comment_id)
+            await aiogram_bot.send_message(user_id, 'Комментарий удален.')
         except Exception as e:
             logger.error(e)
 
@@ -499,7 +500,7 @@ class TelethonSendMessages:
                                  f'\n<b>Аккаунт</b>: {acc}'
                                  f'\n<b>Канал</b>: {channel_name}'
                                  f'\n<b>Пост</b>: https://t.me/{channel_name.lstrip("@")}/{message.id}'
-                                 f'\n<b>Id комментария</b>: {sent_msg.id}'
+                                 f'\n<b>ID комментария</b>: {sent_msg.id}'
                                  f'\n<b>Промт</b>: \n{promt}'
                                  f'\n<b>Комментарий</b>: \n{comment}\n\n')
 

@@ -3,6 +3,7 @@ from aiogram.types import CallbackQuery
 
 from data.logger import logger
 from filters.known_user import KnownUser
+from keyboards import kb_admin
 
 router = Router()
 router.message.filter(
@@ -23,7 +24,11 @@ async def get_history(callback: CallbackQuery):
         if history:
             for i in history:
                 if len(i) > 1 and i != '\n' and i != ' ' and i != '':
-                    await callback.message.answer(i, parse_mode='HTML')
+                    detailed = i.split('\n')
+                    channel_name = i[2].split(':')[-1].strip()
+                    acc = i[1].split(':')[-1].strip()
+                    comment_id = i[4].split(':')[-1].strip()
+                    await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id))
         else:
             await callback.message.answer('История не найдена.')
     except Exception as e:
@@ -31,3 +36,7 @@ async def get_history(callback: CallbackQuery):
         await callback.message.answer('История не найдена.')
 
 
+@router.callback_query(F.data.startswith('delete_comment'))
+async def process_comm_del(callback: CallbackQuery):
+    print(callback.data)
+    channel_name, acc, comment_id = callback.data.split()[2:]

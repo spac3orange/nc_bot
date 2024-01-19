@@ -331,3 +331,22 @@ async def get_extra_accounts(user_id: int) -> List[str]:
     except (Exception, asyncpg.PostgresError) as error:
         logger.error(f"Error retrieving extra accounts for user {user_id}: {error}")
         return []
+
+
+async def get_in_work_status(phone: str, table_name: str) -> bool:
+    try:
+        query = f"""
+            SELECT in_work
+            FROM {table_name}
+            WHERE phone = $1
+        """
+        result = await db.execute_query(query, phone)
+        if result:
+            logger.info(f"Retrieved in_work status for phone {phone} in table {table_name}")
+            return result[0]['in_work']
+        else:
+            logger.warning(f"No in_work status found for phone {phone} in table {table_name}")
+            return False
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error while retrieving in_work status for phone {phone} in table {table_name}: {error}")
+        return False
