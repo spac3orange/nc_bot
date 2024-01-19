@@ -18,7 +18,7 @@ async def del_input_group(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Выберите канал: ', reply_markup=kb_admin.generate_group_keyboard(groups, 'delete'))
 
 
-@router.callback_query(F.data.startswith('delete'))
+@router.callback_query(F.data.startswith('delete[['))
 async def group_triggers(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
     group = callback.data.split('[[')[-1]

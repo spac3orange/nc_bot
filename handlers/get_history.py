@@ -36,7 +36,7 @@ async def get_history(callback: CallbackQuery):
         await callback.message.answer('История не найдена.')
 
 
-@router.callback_query(F.data.startswith('delete_comment'))
+@router.callback_query(F.data.startswith('delete_comment_'))
 async def process_comm_del(callback: CallbackQuery):
     print(callback.data)
     channel_name, acc, comment_id = callback.data.split()[2:]
