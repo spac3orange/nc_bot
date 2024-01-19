@@ -450,6 +450,7 @@ class TelethonSendMessages:
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
+        sent_msg = 'Нет'
         try:
             await asyncio.sleep(random.randint(0, 40))
             if comment:
@@ -459,14 +460,15 @@ class TelethonSendMessages:
 
                 if message:
                     sent_msg = await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
+                    print(sent_msg.id)
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
-                    await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
+                    sent_msg = await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
-                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment))
+                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, message=message))
             else:
                 raise Exception('Comment not found')
 
@@ -477,7 +479,7 @@ class TelethonSendMessages:
             write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
 
     @staticmethod
-    async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None):
+    async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
         all_accs = await accs_action.db_get_all_tg_accounts()
         basic_acc = acc in all_accs
         table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
@@ -499,7 +501,8 @@ class TelethonSendMessages:
                 await file.write(f'\n|{timestamp}:'
                                  f'\n<b>Аккаунт</b>: {acc}'
                                  f'\n<b>Канал</b>: {channel_name}'
-                                 f'\n<b>Id</b>: {sent_msg}'
+                                 f'\n<b>Пост</b>: {message.id}'
+                                 f'\n<b>Id комментария</b>: {sent_msg.id}'
                                  f'\n<b>Промт</b>: \n{promt}'
                                  f'\n<b>Комментарий</b>: \n{comment}\n\n')
 
