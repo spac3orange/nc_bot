@@ -313,8 +313,6 @@ class TelethonConnect:
                                 add_offset=0,
                                 hash=0
                             ))
-                            for message in messages.messages:
-                                print(message.message)
 
                             if keywords == 'Нет':
                                 for message in messages.messages:
