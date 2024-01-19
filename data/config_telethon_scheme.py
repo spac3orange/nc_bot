@@ -458,8 +458,6 @@ class TelethonSendMessages:
 
                 if message:
                     sent_msg = await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
-                    await asyncio.sleep(5)
-                    await self.client.delete_messages(entity, message_ids=[sent_msg.id])
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
@@ -500,8 +498,8 @@ class TelethonSendMessages:
                 await file.write(f'\n|{timestamp}:'
                                  f'\n<b>Аккаунт</b>: {acc}'
                                  f'\n<b>Канал</b>: {channel_name}'
-                                 f'\n<b>Пост</b>: {message.id}'
-                                 f'\n<b>Id комментария</b>: {sent_msg}'
+                                 f'\n<b>Пост</b>: https://t.me/{channel_name.lstrip("@")}/{message.id}'
+                                 f'\n<b>Id комментария</b>: {sent_msg.id}'
                                  f'\n<b>Промт</b>: \n{promt}'
                                  f'\n<b>Комментарий</b>: \n{comment}\n\n')
 
