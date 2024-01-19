@@ -26,10 +26,10 @@ async def get_history(callback: CallbackQuery):
                 if len(i) > 1 and i != '\n' and i != ' ' and i != '':
                     detailed = i.split('\n')
                     print(detailed)
-                    channel_name = i[2].split(':')[-1]
-                    acc = i[1].split(':')[-1]
-                    comment_id = i[4].split(':')[-1]
-                    print(channel_name, acc, comment_id)
+                    channel_name = detailed[2].split(':')[-1]
+                    acc = detailed[1].split(':')[-1]
+                    comment_id = detailed[4].split(':')[-1]
+                    print([channel_name, acc, comment_id])
                     await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id))
         else:
             await callback.message.answer('История не найдена.')
