@@ -30,7 +30,8 @@ async def get_history(callback: CallbackQuery):
                     acc = detailed[1].split(':')[-1].strip()
                     comment_id = detailed[4].split(':')[-1].strip()
                     print([channel_name, acc, comment_id])
-                    await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id))
+                    await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id),
+                                                  disable_web_page_preview=True)
         else:
             await callback.message.answer('История не найдена.')
     except Exception as e:
@@ -41,4 +42,4 @@ async def get_history(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('delete_comment_'))
 async def process_comm_del(callback: CallbackQuery):
     print(callback.data)
-    channel_name, acc, comment_id = callback.data.split()[2:]
+    channel_name, acc, comment_id = callback.data.split()[1:]
