@@ -460,7 +460,7 @@ class TelethonSendMessages:
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
-                    sent_msg = await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
+                    await aiogram_bot.send_message(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
