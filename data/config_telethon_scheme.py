@@ -448,7 +448,6 @@ class TelethonSendMessages:
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
-        sent_msg = 'Нет'
         try:
             await asyncio.sleep(random.randint(0, 40))
             if comment:
@@ -465,6 +464,7 @@ class TelethonSendMessages:
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
+                await asyncio.sleep(10)
                 write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, message=message))
             else:
                 raise Exception('Comment not found')
