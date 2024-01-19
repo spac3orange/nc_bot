@@ -28,6 +28,7 @@ async def get_history(callback: CallbackQuery):
                     channel_name = i[2].split(':')[-1].strip()
                     acc = i[1].split(':')[-1].strip()
                     comment_id = i[4].split(':')[-1].strip()
+                    print(channel_name, acc, comment_id)
                     await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id))
         else:
             await callback.message.answer('История не найдена.')
