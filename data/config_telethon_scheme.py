@@ -459,8 +459,7 @@ class TelethonSendMessages:
                 if message:
                     sent_msg = await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     await asyncio.sleep(5)
-
-                    print(sent_msg.id)
+                    await self.client.delete_messages(entity, sent_msg)
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
                 if notif:
