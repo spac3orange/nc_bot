@@ -51,6 +51,7 @@ async def process_comm_del(callback: CallbackQuery):
         table = f'accounts_{uid}'
     acc_status = await accs_action.get_in_work_status(acc, table)
     if not acc_status:
+        print(f'acc {acc}')
         session = TelethonSendMessages(acc)
         await session.delete_comment(channel_name, comment_id, uid)
     else:
