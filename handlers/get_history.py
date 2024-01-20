@@ -42,8 +42,8 @@ async def get_history(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('delete_comment_'))
 async def process_comm_del(callback: CallbackQuery):
-    print(callback.data)
-    channel_name, acc, comment_id = callback.data.split('_')
+    print(callback.data.split('__'))
+    channel_name, acc, comment_id = callback.data.split('__')[1:]
     all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
     uid = callback.from_user.id
     if uid in all_basic_users:

@@ -343,7 +343,7 @@ def change_acc_sex(phone):
 
 def delete_comment(channel_name, acc, comment_id):
     kb_builder = InlineKeyboardBuilder()
-    kb_builder.button(text='Удалить', callback_data=f'delete_comment_{channel_name}_{acc}_{comment_id}')
+    kb_builder.button(text='Удалить', callback_data=f'delete_comment__{channel_name}__{acc}__{comment_id}')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
