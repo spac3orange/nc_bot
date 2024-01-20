@@ -29,7 +29,7 @@ async def get_history(callback: CallbackQuery):
                     print(detailed)
                     group_id = detailed[4].split(':')[-1].strip().split(',')[-1].strip()
                     acc = detailed[1].split(':')[-1].strip()
-                    comment_id = detailed[4].split(':')[-1].strip()
+                    comment_id = detailed[4].split(':')[-1].strip().split(',')[0].strip()
                     print([group_id, acc, comment_id])
                     await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(group_id, acc, comment_id),
                                                   disable_web_page_preview=True)
