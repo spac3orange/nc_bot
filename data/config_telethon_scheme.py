@@ -438,14 +438,12 @@ class TelethonSendMessages:
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
 
-    async def delete_comment(self, channel_name, comment_id, user_id):
+    async def delete_comment(self, group_id, comment_id, user_id):
         try:
             connection = self.client.is_connected()
             if not connection:
                 await self.client.connect()
-            me = await self.client.get_me()
-            entity = InputPeerUser(user_id=me.id, access_hash=me.access_hash)
-            await self.client.delete_messages(entity, [comment_id])
+            await self.client.delete_messages(group_id, [comment_id])
             await aiogram_bot.send_message(user_id, 'Комментарий удален.')
             logger.info('comment deleted')
         except Exception as e:
@@ -485,7 +483,8 @@ class TelethonSendMessages:
     @staticmethod
     async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
         all_accs = await accs_action.db_get_all_tg_accounts()
-        pprint('group id:' + sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
+        pprint(sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
+        group_id = sent_msg.to_dict().get('peer_id', None).get('channel_id', None)
         basic_acc = acc in all_accs
         table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
         release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
@@ -507,7 +506,7 @@ class TelethonSendMessages:
                                  f'\n<b>Аккаунт</b>: {acc}'
                                  f'\n<b>Канал</b>: {channel_name}'
                                  f'\n<b>Пост</b>: https://t.me/{channel_name.lstrip("@")}/{message.id}'
-                                 f'\n<b>ID комментария</b>: {sent_msg.id}'
+                                 f'\n<b>ID комментария</b>: {sent_msg.id}, {group_id}'
                                  f'\n<b>Промт</b>: \n{promt}'
                                  f'\n<b>Комментарий</b>: \n{comment}\n\n')
 

@@ -27,11 +27,11 @@ async def get_history(callback: CallbackQuery):
                 if len(i) > 1 and i != '\n' and i != ' ' and i != '':
                     detailed = i.split('\n')
                     print(detailed)
-                    channel_name = detailed[2].split(':')[-1].strip()
+                    group_id = detailed[4].split(':')[-1].strip().split(',')[-1].strip()
                     acc = detailed[1].split(':')[-1].strip()
                     comment_id = detailed[4].split(':')[-1].strip()
-                    print([channel_name, acc, comment_id])
-                    await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(channel_name, acc, comment_id),
+                    print([group_id, acc, comment_id])
+                    await callback.message.answer(i, parse_mode='HTML', reply_markup=kb_admin.delete_comment(group_id, acc, comment_id),
                                                   disable_web_page_preview=True)
         else:
             await callback.message.answer('История не найдена.')
@@ -44,7 +44,7 @@ async def get_history(callback: CallbackQuery):
 async def process_comm_del(callback: CallbackQuery):
     print(callback.data.split('///'))
     data = callback.data.split('///')
-    channel_name, acc, comment_id = data[1], data[2], data[3]
+    group_id, acc, comment_id = data[1], data[2], data[3]
     all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
     uid = callback.from_user.id
     if uid in all_basic_users:
@@ -55,7 +55,7 @@ async def process_comm_del(callback: CallbackQuery):
     if not acc_status:
         print(f'acc {acc}')
         session = TelethonSendMessages(acc)
-        await session.delete_comment(channel_name, comment_id, uid)
+        await session.delete_comment(group_id, comment_id, uid)
     else:
         await callback.message.answer('Аккаунт в работе. Пожалуйста, попробуйте еще раз через 30 секунд.')
 
