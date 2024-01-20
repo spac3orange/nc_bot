@@ -485,7 +485,7 @@ class TelethonSendMessages:
     @staticmethod
     async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
         all_accs = await accs_action.db_get_all_tg_accounts()
-        pprint(sent_msg.to_dict())
+        pprint('group id:' + sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
         basic_acc = acc in all_accs
         table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
         release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
