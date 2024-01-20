@@ -445,7 +445,7 @@ class TelethonSendMessages:
                 await self.client.connect()
             me = await self.client.get_me()
             entity = InputPeerUser(user_id=me.id, access_hash=me.access_hash)
-            await self.client.delete_messages(entity, comment_id)
+            await self.client.delete_messages(entity, [comment_id])
             await aiogram_bot.send_message(user_id, 'Комментарий удален.')
             logger.info('comment deleted')
         except Exception as e:
