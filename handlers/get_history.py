@@ -55,7 +55,7 @@ async def process_comm_del(callback: CallbackQuery):
     if not acc_status:
         print(f'acc {acc}')
         session = TelethonSendMessages(acc)
-        await session.delete_comment(group_id, comment_id, uid)
+        await session.delete_comment(int(group_id), comment_id, uid)
     else:
         await callback.message.answer('Аккаунт в работе. Пожалуйста, попробуйте еще раз через 30 секунд.')
 
