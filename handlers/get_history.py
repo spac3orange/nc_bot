@@ -2,9 +2,10 @@ from aiogram import Router, F
 from aiogram.types import CallbackQuery
 
 from data.logger import logger
+from data.config_telethon_scheme import TelethonSendMessages
 from filters.known_user import KnownUser
 from keyboards import kb_admin
-
+from database import accs_action, db
 router = Router()
 router.message.filter(
     KnownUser()
@@ -41,5 +42,18 @@ async def get_history(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('delete_comment_'))
 async def process_comm_del(callback: CallbackQuery):
-    print(callback.data)
     channel_name, acc, comment_id = callback.data.split()[1:]
+    all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
+    uid = callback.from_user.id
+    if uid in all_basic_users:
+        table = 'telegram_accounts'
+    else:
+        table = f'accounts_{uid}'
+    acc_status = await accs_action.get_in_work_status(acc, table)
+    if not acc_status:
+        session = TelethonSendMessages(acc)
+        await session.delete_comment(channel_name, comment_id, uid)
+    else:
+        await callback.message.answer('Аккаунт в работе. Пожалуйста, попробуйте еще раз через 30 секунд.')
+
+
