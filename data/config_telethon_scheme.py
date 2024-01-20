@@ -440,12 +440,16 @@ class TelethonSendMessages:
 
     async def delete_comment(self, channel_name, comment_id, user_id):
         try:
-            await self.client.connect()
+            connection = self.client.is_connected()
+            if not connection:
+                await self.client.connect()
             entity = await self.client.get_entity(channel_name)
             await self.client.delete_messages(entity, comment_id)
             await aiogram_bot.send_message(user_id, 'Комментарий удален.')
         except Exception as e:
             logger.error(e)
+        finally:
+            await self.client.disconnect()
 
     async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
         print('incoming request:\n', user_id, channel_name, message, acc)
