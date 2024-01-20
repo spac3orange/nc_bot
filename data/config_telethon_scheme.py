@@ -17,7 +17,7 @@ from telethon.tl.functions.messages import SendMessageRequest
 from telethon.tl.functions.photos import DeletePhotosRequest
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 from telethon.tl.functions.users import GetFullUserRequest
-from telethon.tl.types import InputPeerChannel
+from telethon.tl.types import InputPeerChannel, InputPeerUser
 from telethon.tl.types import InputPhoto
 
 from data.config_aiogram import aiogram_bot
@@ -443,9 +443,11 @@ class TelethonSendMessages:
             connection = self.client.is_connected()
             if not connection:
                 await self.client.connect()
-            entity = await self.client.get_entity(channel_name)
+            me = await self.client.get_me()
+            entity = InputPeerUser(user_id=me.id, access_hash=me.access_hash)
             await self.client.delete_messages(entity, comment_id)
             await aiogram_bot.send_message(user_id, 'Комментарий удален.')
+            logger.info('comment deleted')
         except Exception as e:
             logger.error(e)
         finally:
