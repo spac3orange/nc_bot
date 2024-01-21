@@ -8,6 +8,7 @@ from data import logger
 from database import db
 from keyboards import kb_admin
 from utils import user_license
+from filters.known_user import KnownUser
 
 router = Router()
 router.message.filter(
@@ -34,7 +35,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
                              f'Статус: <b>{status}</b>',
-                             reply_markup=kb_admin.start_btns(),
+                             reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
     await state.clear()
 
@@ -72,7 +73,7 @@ async def process_license(message: Message, state: FSMContext):
         else:
             await message.answer(
                                  f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
-                                 reply_markup=kb_admin.start_btns(),
+                                 reply_markup=kb_admin.get_history_user(),
                                  parse_mode='HTML')
 
 
@@ -102,7 +103,7 @@ async def process_start(callback: CallbackQuery):
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
                              f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
-                             reply_markup=kb_admin.start_btns(),
+                             reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
 
 
@@ -119,7 +120,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
     else:
         await callback.message.answer(
                              f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
-                             reply_markup=kb_admin.start_btns(),
+                             reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
 
 

@@ -24,6 +24,13 @@ def start_btns_admin():
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+def get_history_user():
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='История', callback_data='get_history')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+
 
 def admin_panel():
     kb_builder = InlineKeyboardBuilder()
