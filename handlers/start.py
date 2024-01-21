@@ -34,7 +34,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
     else:
         await message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await message.answer('Добро пожаловать!\n\n'
-                             f'Статус: <b>{status}</b>',
+                             f'Статус: <b>{"Работает 🟢"}</b>',
                              reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
     await state.clear()
@@ -72,7 +72,7 @@ async def process_license(message: Message, state: FSMContext):
                                  parse_mode='HTML')
         else:
             await message.answer(
-                                 f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
+                                 f'Статус: <b>{" Работает 🟢"}</b>',
                                  reply_markup=kb_admin.get_history_user(),
                                  parse_mode='HTML')
 
@@ -102,7 +102,7 @@ async def process_start(callback: CallbackQuery):
     else:
         await callback.message.answer_sticker('CAACAgIAAxkBAAJSTWU8mx-ZLZXfU8_ETl0tyrr6s1LtAAJUAANBtVYMarf4xwiNAfowBA')
         await callback.message.answer('Добро пожаловать!\n\n'
-                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢"}</b>',
                              reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
 
@@ -119,7 +119,7 @@ async def back_to_main(callback: CallbackQuery, state: FSMContext):
                              parse_mode='HTML')
     else:
         await callback.message.answer(
-                             f'Статус: <b>{" Работает 🟢" if user_monitoring_status else "Выключен 🔴"}</b>',
+                             f'Статус: <b>{" Работает 🟢"}</b>',
                              reply_markup=kb_admin.get_history_user(),
                              parse_mode='HTML')
 
