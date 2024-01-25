@@ -25,6 +25,7 @@ from data.logger import logger
 from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
+from .restrcited_words import words_in_post, words_in_generated_message
 
 env = Env()
 env.read_env()
@@ -319,6 +320,9 @@ class TelethonConnect:
                                     if message.message and message.date > offset_date:
                                         if len(message.message) >= 300:
                                             if random.random() < 0.7:
+                                                if any([x.lower() in message.message.lower() for x in words_in_post]):
+                                                    logger.warning('Message skipped: restricted words found')
+                                                    continue
                                                 logger.info('Found post without triggers')
                                                 approved_messages.append((user_id, channel_name, message))
 
@@ -415,7 +419,9 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
-                            update_comments = asyncio.create_task(db.update_comments_sent(user_id, 1))
+                            if any([x.lower() in comment.lower() for x in words_in_generated_message]):
+                                logger.warning('Comment skipped: restricted words found')
+                                continue
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                       acc, comment, notif, promt))
                         else:
@@ -470,6 +476,7 @@ class TelethonSendMessages:
                     logger.error('Message not found')
                 await self.client.disconnect()
                 await asyncio.sleep(10)
+                update_comments = asyncio.create_task(db.update_comments_sent(user_id, 1))
                 write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, message=message))
             else:
                 raise Exception('Comment not found')
@@ -501,6 +508,15 @@ class TelethonSendMessages:
             else:
                 upd_comments = asyncio.create_task(accs_action.increment_comments(f'accounts_{user_id}', acc))
             async with aiofiles.open(f'history/history_{user_id}.txt', 'a', encoding='utf-8') as file:
+                timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+                await file.write(f'\n|{timestamp}:'
+                                 f'\n<b>Аккаунт</b>: {acc}'
+                                 f'\n<b>Канал</b>: {channel_name}'
+                                 f'\n<b>Пост</b>: https://t.me/{channel_name.lstrip("@")}/{message.id}'
+                                 f'\n<b>ID комментария</b>: {sent_msg.id}, {group_id}'
+                                 f'\n<b>Комментарий</b>: \n{comment}\n\n')
+
+            async with aiofiles.open(f'history/adm_history_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
                 await file.write(f'\n|{timestamp}:'
                                  f'\n<b>Аккаунт</b>: {acc}'

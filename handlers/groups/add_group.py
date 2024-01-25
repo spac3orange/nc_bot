@@ -29,8 +29,8 @@ async def get_channel_id(link: str) -> int:
     return chat.id
 
 async def normalize_channel_link(link: str) -> str:
-    if link.startswith('https://t.me/+'):
-        return link
+    if link.startswith('https://t.me/joinchat'):
+        return link.split('/')[-1]
     if link.startswith('https://t.me/'):
         return '@' + link.split('https://t.me/')[1]
     return link
@@ -94,7 +94,7 @@ async def add_channel(message: Message, state: FSMContext):
     try:
         uid = message.from_user.id
         group_name = await normalize_channel_link(message.text)
-        if group_name.startswith('https://t.me/+'):
+        if group_name.startswith('https://t.me/joinchat'):
             group_id = 999999999
         else:
             group_id = await get_channel_id(group_name)

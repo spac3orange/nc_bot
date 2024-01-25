@@ -278,3 +278,23 @@ async def process_clear_avatars(callback: CallbackQuery):
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
 
+
+@router.callback_query(F.data == 'user_del_acc')
+async def prep_user_del_acc(callback: CallbackQuery):
+    uid = callback.from_user.id
+    operation = 'usrdel_acc'
+    accounts = await accs_action.get_user_accounts(uid)
+    await callback.message.answer('<b>Выберите аккаунт:</b>',
+                                  reply_markup=kb_admin.generate_accs_keyboard_users(accounts, operation),
+                                  parse_mode='HTML')
+
+
+@router.callback_query(F.data.startswith('usrdel_acc_'))
+async def proc_user_del_acc(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    await accs_action.db_remove_user_tg_account(account, uid)
+    await callback.message.answer(f'Аккаунт {account} удален.')
+    await tg_accs_settings(callback)
+
+

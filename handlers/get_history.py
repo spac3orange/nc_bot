@@ -1,16 +1,27 @@
+import os
+
 from aiogram import Router, F
-from aiogram.types import CallbackQuery
+from aiogram.types import CallbackQuery, Message
+from aiogram.filters import Command
 
 from data.logger import logger
 from data.config_telethon_scheme import TelethonSendMessages
 from filters.known_user import KnownUser
 from keyboards import kb_admin
 from database import accs_action, db
+from aiogram.types import FSInputFile
+
 router = Router()
 router.message.filter(
     KnownUser()
 )
 
+async def get_full_history(uid):
+    path = f'history/history_{uid}.txt'
+    if os.path.exists(path):
+        file = FSInputFile(path)
+        return file
+    return False
 
 @router.callback_query(F.data == 'get_history', KnownUser())
 async def get_history(callback: CallbackQuery):
@@ -60,3 +71,10 @@ async def process_comm_del(callback: CallbackQuery):
         await callback.message.answer('Аккаунт в работе. Пожалуйста, попробуйте еще раз через 30 секунд.')
 
 
+@router.message(Command('full_history'))
+async def send_full_history(message: Message):
+    file = await get_full_history('462813109')
+    if file:
+        await message.answer_document(file, caption='Полная история отправленных комментариев')
+    else:
+        await message.answer('Файл истории не найден')
