@@ -224,6 +224,32 @@ async def db_get_all_tg_accounts_with_comments(free_accs=True) -> dict:
         return {}
 
 
+async def db_remove_user_tg_account(phone_number: str, uid: int) -> None:
+    """
+    Removes a Telegram account from the database.
+    """
+    try:
+
+        query = f"DELETE FROM accounts_{uid} WHERE phone = $1"
+        await db.execute_query(query, phone_number)
+        logger.info(f"Telegram account {phone_number} removed from the accounts_{uid}")
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error removing Telegram account from the from the accounts_{uid}: {error}")
+
+
+async def db_remove_user_extra_tg_account(phone_number: str, uid: int) -> None:
+    """
+    Removes a Telegram account from the database.
+    """
+    try:
+
+        query = f"DELETE FROM accounts_{uid} WHERE phone = $1"
+        await db.execute_query(query, phone_number)
+        logger.info(f"Telegram account {phone_number} removed from the accounts_{uid}")
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error removing Telegram account from the from the accounts_{uid}: {error}")
+
+
 async def increment_comments(table_name: str, phone: str) -> None:
     try:
         query = f"UPDATE {table_name} SET comments = comments + 1, comments_today = comments_today + 1 WHERE phone = $1"
@@ -268,7 +294,7 @@ async def reset_comments_today() -> None:
         logger.error(f"Error resetting comments_today: {error}")
 
 
-async def get_sex_by_phone(phone: str, uid=False) -> str:
+async def get_sex_by_phone(phone: str, uid=False, extra_trigger=False) -> str:
     """
     Retrieves the value from the 'sex' column for the given phone number from the 'telegram_accounts' table.
     Returns the value of 'sex' column as a string.
@@ -276,6 +302,8 @@ async def get_sex_by_phone(phone: str, uid=False) -> str:
     try:
         if uid:
             result = await db.execute_query_return(f"SELECT sex FROM accounts_{uid} WHERE phone = $1", phone)
+        elif extra_trigger and uid:
+            result = await db.execute_query_return(f"SELECT sex FROM extra_accounts_{uid} WHERE phone = $1", phone)
         else:
             result = await db.execute_query_return("SELECT sex FROM telegram_accounts WHERE phone = $1", phone)
         if result:
@@ -291,6 +319,19 @@ async def get_sex_by_phone(phone: str, uid=False) -> str:
 
 async def update_user_account_sex(user_id: int, phone: str, sex: str) -> None:
     table_name = f"accounts_{user_id}"
+    try:
+        query = f"""
+            UPDATE {table_name}
+            SET sex = $1
+            WHERE phone = $2
+        """
+        await db.execute_query(query, sex, phone)
+        logger.info(f"Updated sex for account {phone} in table {table_name}")
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error while updating sex for account {phone} in table {table_name}: {error}")
+
+async def update_extra_user_account_sex(user_id: int, phone: str, sex: str) -> None:
+    table_name = f"extra_accounts_{user_id}"
     try:
         query = f"""
             UPDATE {table_name}
@@ -324,7 +365,7 @@ async def change_acc_status(phone, status, table_name):
 async def get_extra_accounts(user_id: int) -> List[str]:
     try:
         async with db.pool.acquire() as conn:
-            query = f"SELECT phone FROM extra_accounts_{user_id}"
+            query = f"SELECT phone FROM extra_accounts_{user_id} WHERE in_work = False"
             rows = await conn.fetch(query)
             phone_numbers = [row['phone'] for row in rows]
             return phone_numbers

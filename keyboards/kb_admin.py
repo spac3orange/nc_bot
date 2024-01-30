@@ -77,6 +77,7 @@ def lk_btns():
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def users_settings_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Добавить', callback_data='users_add')
@@ -87,6 +88,7 @@ def users_settings_btns():
 
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
 
 def users_names_btns(users):
     kb_builder = InlineKeyboardBuilder()
@@ -112,10 +114,12 @@ def tg_accs_btns():
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def users_tg_accs_btns():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Выбрать аккаунт', callback_data='choose_acc_user')
     kb_builder.button(text='Мои аккаунты', callback_data='users_accs_get_info')
+    kb_builder.button(text='Удалить аккаунт', callback_data='user_del_acc')
     kb_builder.button(text='◀️Назад', callback_data='back_to_settings')
 
     kb_builder.adjust(2)

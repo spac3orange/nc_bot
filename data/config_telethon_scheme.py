@@ -22,7 +22,7 @@ from telethon.tl.types import InputPhoto
 
 from data.config_aiogram import aiogram_bot
 from data.logger import logger
-from database import db, default_prompts_action, accs_action
+from database import db, default_prompts_action, accs_action, accs_shop_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 
@@ -344,6 +344,7 @@ class TelethonConnect:
                     for msg in approved_messages:
                         user_id, channel, message = msg
                         basic = False
+                        extra_trigger = False
                         linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
                         print(linked_chat)
                         if linked_chat is None:
@@ -370,13 +371,20 @@ class TelethonConnect:
                                 continue
                         else:
                             acc = random.choice(await accs_action.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 7))
-                            acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
                             if acc:
+                                acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
                                 await accs_action.set_in_work(f'accounts_{user_id}', acc)
                                 session = TelethonSendMessages(acc)
                             else:
-                                logger.error(f'No accounts with comments less than 7 for user {user_id}')
-                                continue
+                                extra_acc = random.choice(await accs_action.get_extra_accounts(user_id))
+                                if extra_acc:
+                                    await accs_action.set_in_work(f'extra_accounts_{user_id}', acc)
+                                    session = TelethonSendMessages(extra_acc)
+                                    extra_trigger = True
+                                    acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id, extra_trigger=True)
+                                else:
+                                    logger.warning(f'No accounts with comments less than 7 for user {user_id}')
+                                    continue
                         acc_in_group = await session.join_group(channel)
                         if acc_in_group == 'already_in_group':
                             pass
@@ -417,7 +425,7 @@ class TelethonConnect:
                         if comment:
                             update_comments = asyncio.create_task(db.update_comments_sent(user_id, 1))
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                      acc, comment, notif, promt))
+                                                                      acc, comment, notif, promt, extra_acc))
                         else:
                             print('Комментарий не сгенерирован')
 
@@ -451,7 +459,7 @@ class TelethonSendMessages:
         finally:
             await self.client.disconnect()
 
-    async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt):
+    async def send_comments(self, user_id, channel_name, message, acc, comment, notif, promt, extra_acc):
         print('incoming request:\n', user_id, channel_name, message, acc)
         try:
             await asyncio.sleep(random.randint(0, 40))
@@ -461,6 +469,16 @@ class TelethonSendMessages:
                 entity = await self.client.get_entity(channel_name)
 
                 if message:
+                    if extra_acc:
+                        cm_price = 3
+                        balance_upd = await accs_shop_action.subtract_from_balance(user_id, cm_price)
+                        if not balance_upd:
+                            await aiogram_bot.send_message(user_id, 'Недостаточно средств для использования дополнительного аккаунта. Комментарий не отправлен.'
+                                                                    '\nДля использования дополнительных аккаунтов, пожалуйста пополните баланс.')
+                            logger.warning(f'user id {user_id} not enough funds to use extra acc')
+                            return
+                        logger.info(f'extra acc used. {cm_price} rubles substracted from balance user {user_id}')
+
                     sent_msg = await self.client.send_message(entity=entity, message=comment, comment_to=message.id)
                     logger.info('Comment sent')
                     print(user_id, f'Комментарий в канал {channel_name} отправлен.')
@@ -470,7 +488,7 @@ class TelethonSendMessages:
                     logger.error('Message not found')
                 await self.client.disconnect()
                 await asyncio.sleep(10)
-                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, message=message))
+                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, extra_acc, message=message))
             else:
                 raise Exception('Comment not found')
 
@@ -481,12 +499,14 @@ class TelethonSendMessages:
             write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
 
     @staticmethod
-    async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
+    async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, extra_trigger=False, error=None, message=None):
         all_accs = await accs_action.db_get_all_tg_accounts()
         pprint(sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
         group_id = sent_msg.to_dict().get('peer_id', None).get('channel_id', None)
         basic_acc = acc in all_accs
         table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
+        if extra_trigger:
+            table_name = f'extra_accounts_{user_id}'
         release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
         if error:
             async with aiofiles.open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:

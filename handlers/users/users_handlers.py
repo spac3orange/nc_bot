@@ -121,6 +121,7 @@ async def process_users_del(callback: CallbackQuery, state: FSMContext):
     await callback.message.answer('Выберите пользователя для удаления: ',
                                   reply_markup=kb_admin.users_names_btns(users_list))
 
+
 @router.callback_query(F.data.startswith('users_del_'))
 async def delete_from_db(callback: CallbackQuery):
     user_name = callback.data.split('_')[-1].strip()
@@ -128,3 +129,5 @@ async def delete_from_db(callback: CallbackQuery):
     await db.db_delete_user(user_name)
     await callback.message.answer(f'Пользователь <b>{user_name}</b> удален из базы данных.', parse_mode='HTML',
                                   reply_markup=kb_admin.users_settings_btns())
+
+

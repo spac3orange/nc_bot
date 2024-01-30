@@ -42,7 +42,7 @@ async def tg_accs_settings(callback: CallbackQuery):
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
                                   '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n'
-                                  'ВНИМАНИЕ! Мы настоятельно НЕ рекомендуем злоупотреблять данной функцией и изменять инфорамцию аккаунта чаще одного раза в день!\n'
+                                  'ВНИМАНИЕ! Мы настоятельно НЕ рекомендуем злоупотреблять данной функцией и изменять информацию аккаунта чаще одного раза в день!\n'
                                   'С высокой вероятностью это может привести к блокировке вашего аккаунта.',
                                   reply_markup=kb_admin.users_tg_accs_btns(),
                                   parse_mode='HTML')
@@ -52,6 +52,9 @@ async def choose_acc_user(callback: CallbackQuery, state: FSMContext):
     uid = callback.from_user.id
     operation = 'change_info'
     accounts = await accs_action.get_user_accounts(uid)
+    extra_accounts = await accs_action.get_extra_accounts(uid)
+    if extra_accounts:
+        accounts.extend(extra_accounts)
     await callback.message.answer('<b>Выберите аккаунт:</b>',
                                   reply_markup=kb_admin.generate_accs_keyboard_users(accounts, operation),
                                   parse_mode='HTML')
@@ -245,7 +248,10 @@ async def tg_accs_settings(callback: CallbackQuery):
 async def process_acc_edit_sex(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    acc_sex = await accs_action.get_sex_by_phone(account, uid)
+    try:
+        acc_sex = await accs_action.get_sex_by_phone(account, uid)
+    except:
+        acc_sex = await accs_action.get_sex_by_phone(account, uid, extra_trigger=True)
     await callback.message.answer(f'<b>Текущий пол</b>: {acc_sex}', parse_mode='HTML')
     await callback.message.answer('Выберите новый пол: ', reply_markup=kb_admin.change_acc_sex(account))
 
@@ -253,19 +259,27 @@ async def process_acc_edit_sex(callback: CallbackQuery):
 async def change_sex_to_male(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    await accs_action.update_user_account_sex(uid, account, 'Мужской')
+    try:
+        await accs_action.update_user_account_sex(uid, account, 'Мужской')
+    except:
+        await accs_action.update_extra_user_account_sex(uid, account, 'Мужской')
     await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Мужской</b>', parse_mode='HTML')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
+
 
 @router.callback_query(F.data.startswith('change_sex_female_'))
 async def change_sex_to_female(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
-    await accs_action.update_user_account_sex(uid, account, 'Женский')
+    try:
+        await accs_action.update_user_account_sex(uid, account, 'Женский')
+    except:
+        await accs_action.update_extra_user_account_sex(uid, account, 'Женский')
     await callback.message.answer(f'Пол аккаунта {account} изменен на <b>Женский</b>', parse_mode='HTML')
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
+
 
 @router.callback_query(F.data.startswith('acc_clear_avatars_'))
 async def process_clear_avatars(callback: CallbackQuery):
@@ -278,3 +292,27 @@ async def process_clear_avatars(callback: CallbackQuery):
     await callback.message.answer('<b>Что вы хотите изменить?</b>', reply_markup=kb_admin.edit_acc_info(account),
                                   parse_mode='HTML')
 
+
+@router.callback_query(F.data == 'user_del_acc')
+async def prep_user_del_acc(callback: CallbackQuery):
+    uid = callback.from_user.id
+    operation = 'usrdel_acc'
+    accounts = await accs_action.get_user_accounts(uid)
+    extra_accounts = await accs_action.get_extra_accounts(uid)
+    if extra_accounts:
+        accounts.extend(extra_accounts)
+    await callback.message.answer('<b>Выберите аккаунт:</b>',
+                                  reply_markup=kb_admin.generate_accs_keyboard_users(accounts, operation),
+                                  parse_mode='HTML')
+
+
+@router.callback_query(F.data.startswith('usrdel_acc_'))
+async def proc_user_del_acc(callback: CallbackQuery):
+    uid = callback.from_user.id
+    account = callback.data.split('_')[-1]
+    try:
+        await accs_action.db_remove_user_tg_account(account, uid)
+    except:
+        await accs_action.db_remove_user_extra_tg_account(account, uid)
+    await callback.message.answer(f'Аккаунт {account} удален.')
+    await tg_accs_settings(callback)

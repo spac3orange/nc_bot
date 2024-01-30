@@ -142,7 +142,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
 async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
     accs_amount = len(await accs_shop_action.db_get_shop_accs())
     await callback.message.answer('1 Telegram аккаунт - <b>200 рублей</b>\n'
-                                  f'Доступно аккаунтов для покупки: <b>{accs_amount}</b>\n'
+                                  f'Доступно аккаунтов для покупки: <b>{accs_amount}</b>\n\n'
                                   '<b>Сколько аккаунтов вы хотели бы приобрести?</b>\n\n'
                                   'Отменить /cancel', parse_mode='HTML')
     await state.set_state(BuyAccs.input_amount)

@@ -88,3 +88,18 @@ async def transfer_sold_accounts(user_id: int, amount: int):
     except (Exception, asyncpg.PostgresError) as error:
         print("Error while moving accounts", error)
         return False
+
+
+async def subtract_from_balance(user_id: int, amount: int) -> bool:
+    try:
+        query = """
+            UPDATE subscriptions
+            SET balance = balance - $1
+            WHERE user_id = $2
+                AND balance >= $1
+        """
+        await db.execute_query(query, amount, user_id)
+        return True
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error("Error while subtracting from balance", error)
+        return False
