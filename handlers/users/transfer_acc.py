@@ -29,7 +29,7 @@ async def choose_accs_to_transfer(callback: CallbackQuery, state: FSMContext):
     user_name = callback.data.split('_')[-1]
     user_id = await db.get_user_id_by_username(user_name)
     user_info = await db.get_user_info(user_id)
-    user_status = user_info['sub_type'] or None
+    user_status = user_info.get('sub_type', None)
     accounts = len(await accs_action.db_get_all_tg_accounts())
     await state.update_data(user_name=user_name, user_id=user_id)
     await callback.message.answer(f'Выбран пользователь <b>{user_name}</b>\n'
