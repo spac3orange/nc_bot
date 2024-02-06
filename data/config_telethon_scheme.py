@@ -350,7 +350,7 @@ class TelethonConnect:
                         basic = False
                         linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
                         print(linked_chat)
-                        if linked_chat is None:
+                        if linked_chat == '':
                             linked_chat = 'нет'
                         if user_id in all_basic_users:
                             if await db.get_comments_sent(user_id) < 1:
@@ -374,8 +374,8 @@ class TelethonConnect:
                                 continue
                         else:
                             acc = random.choice(await accs_action.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 10))
-                            acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
                             if acc:
+                                acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
                                 await accs_action.set_in_work(f'accounts_{user_id}', acc)
                                 session = TelethonSendMessages(acc)
                             else:
@@ -403,6 +403,8 @@ class TelethonConnect:
                                 print(f'{acc} banned')
                                 await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                                 continue
+                        else:
+                            pass
                         message_text = message.message
                         promt = all_promts.get(channel)
                         promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
