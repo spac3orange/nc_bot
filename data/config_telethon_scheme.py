@@ -303,7 +303,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=2)
+                            offset_date = utc_now - timedelta(minutes=5)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
@@ -318,7 +318,7 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        if len(message.message) >= 300:
+                                        if len(message.message) >= 150:
                                             if random.random() < 0.7:
                                                 if any([x.lower() in message.message.lower() for x in words_in_post]):
                                                     logger.warning('Message skipped: restricted words found')
