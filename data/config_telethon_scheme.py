@@ -475,9 +475,9 @@ class TelethonSendMessages:
                 else:
                     logger.error('Message not found')
                 await self.client.disconnect()
-                await asyncio.sleep(10)
+                await asyncio.sleep(15)
                 update_comments = asyncio.create_task(db.update_comments_sent(user_id, 1))
-                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg, promt, comment, message=message))
+                write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg=sent_msg, promt=promt, comment=comment, message=message))
             else:
                 raise Exception('Comment not found')
 
