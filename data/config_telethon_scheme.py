@@ -320,7 +320,7 @@ class TelethonConnect:
                                     if message.message and message.date > offset_date:
                                         if len(message.message) >= 150:
                                             if random.random() < 0.7:
-                                                if any([x.lower() in message.message.lower() for x in words_in_post]):
+                                                if any([x.lower() in message.message.lower().split() for x in words_in_post]):
                                                     logger.warning('Message skipped: restricted words found')
                                                     continue
                                                 logger.info('Found post without triggers')
@@ -419,7 +419,7 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
-                            if any([x.lower() in comment.lower() for x in words_in_generated_message]):
+                            if any([x.lower() in comment.lower().split() for x in words_in_generated_message]):
                                 logger.warning('Comment skipped: restricted words found')
                                 continue
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
