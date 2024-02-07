@@ -319,12 +319,11 @@ class TelethonConnect:
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
                                         if len(message.message) >= 150:
-                                            if random.random() < 0.7:
-                                                if any([x.lower() in message.message.lower().split() for x in words_in_post]):
-                                                    logger.warning('Message skipped: restricted words found')
-                                                    continue
-                                                logger.info('Found post without triggers')
-                                                approved_messages.append((user_id, channel_name, message))
+                                            if any([x.lower() in message.message.lower().split() for x in words_in_post]):
+                                                logger.warning('Message skipped: restricted words found')
+                                                continue
+                                            logger.info('Found post without triggers')
+                                            approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
