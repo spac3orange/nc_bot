@@ -488,6 +488,12 @@ class TelethonSendMessages:
             print(e)
             await self.client.disconnect()
             write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
+        finally:
+            all_accs = await accs_action.db_get_all_tg_accounts()
+            basic_acc = acc in all_accs
+            table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
+            release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
+
 
     @staticmethod
     async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
@@ -495,8 +501,6 @@ class TelethonSendMessages:
         pprint(sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
         group_id = sent_msg.to_dict().get('peer_id', None).get('channel_id', None)
         basic_acc = acc in all_accs
-        table_name = 'telegram_accounts' if basic_acc else f'accounts_{user_id}'
-        release_acc = asyncio.create_task(accs_action.set_in_work(table_name, acc, stop_work=True))
         if error:
             async with aiofiles.open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
                 timestamp = datetime.now().strftime('%d-%m-%Y %H:%M:%S')
