@@ -7,6 +7,7 @@ from pprint import pprint
 
 import aiofiles
 import pytz
+import math
 from environs import Env
 from telethon import TelegramClient, errors
 from telethon.errors import UsernameOccupiedError
@@ -28,19 +29,21 @@ from .proxy_config import proxy
 from .restrcited_words import words_in_post, words_in_generated_message
 from typing import Tuple, Dict
 
+
 env = Env()
 env.read_env()
 api_id = env.int('API_ID')
 api_hash = env.str('API_HASH')
 
 
-async def split_user_groups_triggers(user_id: int) -> Tuple[Dict[Tuple[str, str], str], Dict[Tuple[str, str], str]]:
+async def split_user_groups_triggers(user_id: int):
     user_groups_triggers_dict = await db.get_user_groups_and_triggers(user_id)
     dict_items = list(user_groups_triggers_dict.items())
-    split_index = len(dict_items) // 2
-
-    dict1 = dict(dict_items[:split_index])
-    dict2 = dict(dict_items[split_index:])
+    split_index = math.ceil(len(dict_items) / 2)
+    l1 = []
+    l2 = []
+    dict1 = l1.append(dict(dict_items[:split_index]))
+    dict2 = l2.append(dict(dict_items[split_index:]))
 
     return dict1, dict2
 
