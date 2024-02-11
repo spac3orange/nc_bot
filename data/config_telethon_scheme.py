@@ -358,11 +358,13 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        if len(message.message) >= 150:
                                             if any([x.lower() in message.message.lower().split() for x in words_in_post]):
                                                 logger.warning('Message skipped: restricted words found')
                                                 continue
                                             logger.info('Found post without triggers')
+                                            if len(message.message) <= 20:
+                                                message.message = 'Я обожаю тусоваться зарабатывать деньги и хорошо проводить время. Моя мечта - стать очень богатой и я точно знаю как этого добиться.'
+                                                logger.warning('message is too small. inserting default message.')
                                             approved_messages.append((user_id, channel_name, message))
 
                             else:
