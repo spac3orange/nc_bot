@@ -343,7 +343,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=10)
+                            offset_date = utc_now - timedelta(minutes=5)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
