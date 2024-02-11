@@ -524,7 +524,8 @@ class TelethonSendMessages:
                 msg = await conv.get_response()
                 print('spam bot\n' + msg.text)
             if 'now limited until' in msg.text:
-                return 'Временный спам-блок'
+                date_unlock = msg.text.split('.')[0].lstrip('Your account will be automatically released on ')
+                return f'Временный спам-блок. Разблокируется {date_unlock}'
             elif 'blocked' in msg.text:
                 return 'Постоянный спам-блок'
         except Exception as e:
