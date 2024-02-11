@@ -364,3 +364,30 @@ async def get_in_work_status(phone: str, table_name: str) -> bool:
     except (Exception, asyncpg.PostgresError) as error:
         logger.error(f"Error while retrieving in_work status for phone {phone} in table {table_name}: {error}")
         return False
+
+
+async def add_spam_account(user_id: int, phone: str, date: str) -> None:
+    """
+    Adds a spam account to the database.
+    """
+    try:
+        table_name = f"spam_accounts_{user_id}"
+        # Проверяем существование таблицы
+        query_check_table = f"SELECT EXISTS (SELECT FROM pg_tables WHERE tablename = '{table_name}')"
+        table_exists = await db.execute_query_return(query_check_table)
+        if not table_exists[0][0]:
+            # Создаем таблицу, если она не существует
+            query_create_table = f"""
+                CREATE TABLE {table_name} (
+                    phone TEXT PRIMARY KEY,
+                    spam_until TEXT
+                )
+            """
+            await db.execute_query(query_create_table)
+            logger.info(f"Created table {table_name} in the database")
+        # Вносим запись в таблицу
+        query_insert = f"INSERT INTO {table_name} (phone, comments, comments_today, sex, status, in_work, spam_until) VALUES ($1, 0, 0, 'Мужской', 'Active', False, $2)"
+        await db.execute_query(query_insert, phone, date)
+        logger.info(f"Added spam account {phone} to table {table_name}")
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error(f"Error adding spam account to the database: {error}")

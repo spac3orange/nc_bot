@@ -149,6 +149,8 @@ class Database:
                 )
             """)
 
+
+
             logger.info('connected to database')
 
         except (Exception, asyncpg.PostgresError) as error:

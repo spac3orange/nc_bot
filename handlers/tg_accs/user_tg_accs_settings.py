@@ -42,17 +42,22 @@ async def process_check_spam(message: Message):
     uid = message.from_user.id
     accounts = await accs_action.get_user_accounts(uid)
     tasks = []
-    msg = await message.answer(f'Всего аккаунтов: {accounts}\nЗапускаю проверку на спам-блок...')
+    msg = await message.answer(f'Всего аккаунтов: {len(accounts)}\nЗапускаю проверку на спам-блок...')
     for acc in accounts:
         sess = TelethonSendMessages(acc)
         task = sess.check_spamblock_status()
         tasks.append(task)
     all_statuses = await asyncio.gather(*tasks)
     reply_string = ''
+    c = 0
     for a, s in zip(accounts, all_statuses):
         reply_string += f'{a}: {s}\n'
+        if s == 'Нет ограничений':
+            continue
+        await accs_action.change_acc_status(a, s, f'accounts_{uid}')
+        c += 1
     await msg.edit_text(reply_string)
-
+    await message.answer(f'Новых спам блоков: {c}')
 
 @router.callback_query(F.data == 'user_tg_accs_settings', ~BasicSub())
 async def tg_accs_settings(callback: CallbackQuery):
