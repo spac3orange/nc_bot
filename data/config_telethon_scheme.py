@@ -98,14 +98,18 @@ async def monitor_settings(session):
                         split_index = len(monitoring_list) // 2
                     else:
                         split_index = len(monitoring_list) // 2 + 1
-                    monitoring_list_p1 = monitoring_list[:split_index]
-                    monitoring_list_p2 = monitoring_list[split_index:]
+
+                    monitoring_list_p1 = dict(list(user_settings.items())[:split_index])
+                    monitoring_list_p2 = dict(list(user_settings.items())[split_index:])
+                    print(monitoring_list_p1, 'лист1')
+                    print(monitoring_list_p2, 'лист2')
+
                     task1 = asyncio.create_task(session.monitor_channels(monitoring_list_p1))
                     task2 = asyncio.create_task(session2.monitor_channels(monitoring_list_p2))
                     tasks.append(task1)
                     tasks.append(task2)
                 await asyncio.gather(*tasks)
-                logger.info('monitoring completed')
+                logger.info('monitoring completed with 2 sessions')
             else:
                 logger.error('No users to monitor')
                 logger.error('No accounts to monitor')
@@ -120,6 +124,7 @@ async def monitor_settings(session):
                 user_settings = await db.get_user_groups_and_triggers(u)
                 monitoring_list.append(user_settings)
             await session.monitor_channels(monitoring_list)
+            logger.info('monitoring completed with 1 session')
         else:
             logger.warning('No users to monitor')
 
