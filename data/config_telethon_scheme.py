@@ -26,12 +26,23 @@ from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 from .restrcited_words import words_in_post, words_in_generated_message
+from typing import Tuple, Dict
 
 env = Env()
 env.read_env()
 api_id = env.int('API_ID')
 api_hash = env.str('API_HASH')
 
+
+async def split_user_groups_triggers(user_id: int) -> Tuple[Dict[Tuple[str, str], str], Dict[Tuple[str, str], str]]:
+    user_groups_triggers_dict = await db.get_user_groups_and_triggers(user_id)
+    dict_items = list(user_groups_triggers_dict.items())
+    split_index = len(dict_items) // 2
+
+    dict1 = dict(dict_items[:split_index])
+    dict2 = dict(dict_items[split_index:])
+
+    return dict1, dict2
 
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
@@ -91,23 +102,14 @@ async def monitor_settings(session):
                 monitoring_list = []
                 tasks = []
                 for u in active_users:
-                    user_settings = await db.get_user_groups_and_triggers(u)
-                    monitoring_list.append(user_settings)
-
-                    if len(monitoring_list) % 2 == 0:
-                        split_index = len(monitoring_list) // 2
-                    else:
-                        split_index = len(monitoring_list) // 2 + 1
-
-                    monitoring_list_p1 = dict(list(user_settings.items())[:split_index])
-                    monitoring_list_p2 = dict(list(user_settings.items())[split_index:])
+                    monitoring_list_p1, monitoring_list_p2 = await split_user_groups_triggers(u)
                     print(monitoring_list_p1, 'лист1')
                     print(monitoring_list_p2, 'лист2')
-
                     task1 = asyncio.create_task(session.monitor_channels(monitoring_list_p1))
                     task2 = asyncio.create_task(session2.monitor_channels(monitoring_list_p2))
                     tasks.append(task1)
                     tasks.append(task2)
+
                 await asyncio.gather(*tasks)
                 logger.info('monitoring completed with 2 sessions')
             else:
@@ -348,7 +350,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=5)
+                            offset_date = utc_now - timedelta(minutes=2)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
