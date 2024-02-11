@@ -524,31 +524,42 @@ class Database:
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error removing triggers for Telegram group from the database: {error}")
             return False
-        
 
-    async def get_user_groups_and_triggers(self, user_id: int) -> Dict[int, Dict[Tuple[str, str], str]]:
+    async def get_user_groups_and_triggers(self, user_id: int) -> Tuple[Dict[int, Dict[Tuple[str, str], str]], Dict[int, Dict[Tuple[str, str], str]]]:
         """
         Retrieves all groups and their triggers from the database for a given user_id.
-        Returns a dictionary where keys are user ids, and values are dictionaries where keys are tuples of channel_name and channel_id, and values are triggers.
+        Returns a tuple of two dictionaries where keys are user ids, and values are dictionaries where keys are tuples of channel_name and channel_id, and values are triggers.
         """
         try:
-            
             query = "SELECT channel_name, channel_id, triggers FROM telegram_channels WHERE user_id = $1"
             rows = await self.fetch_all(query, user_id)
-            user_groups_triggers_dict = {}
-            for row in rows:
+            user_groups_triggers_dict_1 = {}
+            user_groups_triggers_dict_2 = {}
+
+            # Split the rows into two equal parts
+            rows_part1, rows_part2 = rows[:len(rows) // 2], rows[len(rows) // 2:]
+
+            for row in rows_part1:
                 channel_name, channel_id, triggers = row
                 triggers_str = triggers.replace("\n", ", ")  # Заменяем переносы строк на запятые
                 channel_tuple = (channel_name, channel_id)
-                if user_id not in user_groups_triggers_dict:
-                    user_groups_triggers_dict[user_id] = {}
-                user_groups_triggers_dict[user_id][channel_tuple] = triggers_str
+                if user_id not in user_groups_triggers_dict_1:
+                    user_groups_triggers_dict_1[user_id] = {}
+                user_groups_triggers_dict_1[user_id][channel_tuple] = triggers_str
+
+            for row in rows_part2:
+                channel_name, channel_id, triggers = row
+                triggers_str = triggers.replace("\n", ", ")  # Заменяем переносы строк на запятые
+                channel_tuple = (channel_name, channel_id)
+                if user_id not in user_groups_triggers_dict_2:
+                    user_groups_triggers_dict_2[user_id] = {}
+                user_groups_triggers_dict_2[user_id][channel_tuple] = triggers_str
+
             logger.info(f"Retrieved all channels and triggers from the database for user_id: {user_id}")
-            return user_groups_triggers_dict
+            return user_groups_triggers_dict_1, user_groups_triggers_dict_2
         except (Exception, asyncpg.PostgresError) as error:
             logger.error(f"Error retrieving channels and triggers from the database for user_id: {user_id}: {error}")
-            return {}
-        
+            return {}, {}
 
     async def db_add_gpt_account(self, api_key: str) -> None:
         """

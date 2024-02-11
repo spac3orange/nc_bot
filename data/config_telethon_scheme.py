@@ -105,11 +105,13 @@ async def monitor_settings(session):
                 monitoring_list = []
                 tasks = []
                 for u in active_users:
-                    monitoring_list_p1, monitoring_list_p2 = await split_user_groups_triggers(u)
+                    l1, l2 = [], []
+                    monitoring_list_p1, monitoring_list_p2 = await db.get_user_groups_and_triggers(u)
+                    l1.append(monitoring_list_p1), l2.append(monitoring_list_p2)
                     print(monitoring_list_p1, 'лист1')
                     print(monitoring_list_p2, 'лист2')
-                    task1 = asyncio.create_task(session.monitor_channels(monitoring_list_p1))
-                    task2 = asyncio.create_task(session2.monitor_channels(monitoring_list_p2))
+                    task1 = asyncio.create_task(session.monitor_channels(l1))
+                    task2 = asyncio.create_task(session2.monitor_channels(l2))
                     tasks.append(task1)
                     tasks.append(task2)
 
@@ -353,7 +355,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=2)
+                            offset_date = utc_now - timedelta(minutes=1)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
