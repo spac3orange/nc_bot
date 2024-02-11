@@ -54,7 +54,7 @@ async def process_check_spam(message: Message):
         reply_string += f'{a}: {s}\n'
         if s == 'Нет ограничений':
             continue
-        await accs_action.change_acc_status(a, s, f'accounts_{uid}')
+        await accs_action.change_acc_status(a, s.split('.')[-1].lstrip('Разблокируется '), f'accounts_{uid}')
         c += 1
     await msg.edit_text(reply_string)
     await message.answer(f'Новых спам блоков: {c}')
