@@ -83,6 +83,7 @@ async def monitor_settings(session):
             for account in accounts:
                 if account != session:
                     session2 = TelethonConnect(account)
+                    logger.info('session2 sucessfully set')
                     break
             print('users with monitoring on:\n', active_users)
 
