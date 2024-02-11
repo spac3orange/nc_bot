@@ -111,6 +111,7 @@ async def monitor_settings(session):
                     print(monitoring_list_p1, 'лист1')
                     print(monitoring_list_p2, 'лист2')
                     task1 = asyncio.create_task(session.monitor_channels(l1))
+                    await asyncio.sleep(5)
                     task2 = asyncio.create_task(session2.monitor_channels(l2))
                     tasks.append(task1)
                     tasks.append(task2)
@@ -344,7 +345,7 @@ class TelethonConnect:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
                             try:
-                                logger.info(f'Checking channel: {channel_name}...')
+                                logger.info(f'{self.session_name.split("/")[-1]} Checking channel: {channel_name}...')
                                 entity = await self.client.get_entity(channel_name)
                                 # full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
                                 # chats = full_channel.to_dict()
