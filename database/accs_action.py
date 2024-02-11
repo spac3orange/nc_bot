@@ -321,6 +321,7 @@ async def set_in_work(table_name: str, phone: str, stop_work: bool = False) -> N
         value = "True" if not stop_work else "False"
         query = f"UPDATE {table_name} SET in_work = {value} WHERE phone = $1"
         await db.execute_query(query, phone)
+        logger.warning(f'acc {phone} from table {table_name} in_work set to {value}')
     except (Exception, asyncpg.PostgresError) as error:
         action = "True" if not stop_work else "False"
         logger.error(f"Error setting in_work={action} for phone {phone} in table {table_name}: {error}")

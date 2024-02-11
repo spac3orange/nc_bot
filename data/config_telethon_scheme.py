@@ -72,16 +72,56 @@ async def monitor_settings(session):
     if await check_send_comments_running():
         logger.warning('Schedule skipped because send_comments is running')
         return
+
     active_users = await db.get_monitoring_user_ids()
-    print('users with monitoring on:\n', active_users)
-    if active_users:
-        monitoring_list = []
-        for u in active_users:
-            user_settings = await db.get_user_groups_and_triggers(u)
-            monitoring_list.append(user_settings)
-        await session.monitor_channels(monitoring_list)
+    accounts = await accs_action.db_get_monitor_account()
+
+    if len(accounts) > 2:
+        try:
+            session2 = None
+            for account in accounts:
+                if account != session:
+                    session2 = TelethonConnect(account)
+                    break
+            print('users with monitoring on:\n', active_users)
+
+            if active_users and session2:
+                monitoring_list = []
+                tasks = []
+                for u in active_users:
+                    user_settings = await db.get_user_groups_and_triggers(u)
+                    monitoring_list.append(user_settings)
+
+                    if len(monitoring_list) % 2 == 0:
+                        split_index = len(monitoring_list) // 2
+                    else:
+                        split_index = len(monitoring_list) // 2 + 1
+                    monitoring_list_p1 = monitoring_list[:split_index]
+                    monitoring_list_p2 = monitoring_list[split_index:]
+                    task1 = asyncio.create_task(session.monitor_channels(monitoring_list_p1))
+                    task2 = asyncio.create_task(session2.monitor_channels(monitoring_list_p2))
+                    tasks.append(task1)
+                    tasks.append(task2)
+                await asyncio.gather(*tasks)
+                logger.info('monitoring completed')
+            else:
+                logger.error('No users to monitor')
+                logger.error('No accounts to monitor')
+        except Exception as e:
+            logger.error(e)
+            print(e)
+
+
     else:
-        logger.warning('No users to monitor')
+        print('users with monitoring on:\n', active_users)
+        if active_users:
+            monitoring_list = []
+            for u in active_users:
+                user_settings = await db.get_user_groups_and_triggers(u)
+                monitoring_list.append(user_settings)
+            await session.monitor_channels(monitoring_list)
+        else:
+            logger.warning('No users to monitor')
 
 async def check_send_comments_running():
     tasks = asyncio.all_tasks()
@@ -424,7 +464,7 @@ class TelethonConnect:
                                 logger.warning('Comment skipped: restricted words found')
                                 continue
                             task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                      acc, comment, notif, promt))
+                                                                             acc, comment, notif, promt))
                         else:
                             print('Комментарий не сгенерирован')
 
@@ -497,8 +537,11 @@ class TelethonSendMessages:
     @staticmethod
     async def write_history(user_id, acc, channel_name, sent_msg=None, promt=None, comment=None, error=None, message=None):
         all_accs = await accs_action.db_get_all_tg_accounts()
-        pprint(sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
-        group_id = sent_msg.to_dict().get('peer_id', None).get('channel_id', None)
+        if sent_msg:
+            pprint(sent_msg.to_dict().get('peer_id', None).get('channel_id', None))
+            group_id = sent_msg.to_dict().get('peer_id', None).get('channel_id', None)
+        else:
+            group_id = None
         basic_acc = acc in all_accs
         if error:
             async with aiofiles.open(f'history/history_errors_{user_id}.txt', 'a', encoding='utf-8') as file:
