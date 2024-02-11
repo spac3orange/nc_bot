@@ -329,7 +329,7 @@ async def set_in_work(table_name: str, phone: str, stop_work: bool = False) -> N
 
 async def change_acc_status(phone, status, table_name):
     try:
-        query = f"UPDATE {table_name} SET status = {status} WHERE phone = $1"
+        query = f"UPDATE {table_name} SET status = '{status}' WHERE phone = $1"
         await db.execute_query(query, phone)
     except (Exception, asyncpg.PostgresError) as error:
         logger.error(f"Error setting status={status} for phone {phone} in table {table_name}: {error}")
