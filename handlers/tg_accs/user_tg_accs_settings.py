@@ -1,5 +1,6 @@
 import asyncio
 from aiogram.types import Message, CallbackQuery, ContentType
+from aiogram.filters import Command
 from aiogram import Router, F
 from keyboards import kb_admin
 from filters.sub_types import BasicSub
@@ -34,6 +35,11 @@ async def get_info(accounts: list, uid=None) -> List[Tuple[str]]:
         except Exception as e:
             print(e)
     return accs_info
+
+
+@router.message(Command('check_spam'))
+async def process_check_spam():
+    pass
 
 
 @router.callback_query(F.data == 'user_tg_accs_settings', ~BasicSub())

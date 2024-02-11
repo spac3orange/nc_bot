@@ -110,6 +110,7 @@ async def monitor_settings(session):
                     l1.append(monitoring_list_p1), l2.append(monitoring_list_p2)
                     print(monitoring_list_p1, 'лист1')
                     print(monitoring_list_p2, 'лист2')
+                    print(f'monitor session 1: {session}, session2: {session2}')
                     task1 = asyncio.create_task(session.monitor_channels(l1))
                     await asyncio.sleep(5)
                     task2 = asyncio.create_task(session2.monitor_channels(l2))
@@ -595,21 +596,21 @@ class TelethonSendMessages:
         try:
             logger.info(f'Joining channel: {group_link}')
             await self.client.connect()
-            dialogs = await self.client.get_dialogs()
-            groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
-            for dialog in groups_and_channels:
-                dialog = await self.client.get_entity(dialog)
-                dialog_username = dialog.username
-                print(dialog_username)
-                print(group_link[1:])
-                try:
-                    if dialog_username == group_link[1:]:
-                        self.client.disconnect()
-                        print('already_in_group')
-                        return 'already_in_group'
-                except Exception as e:
-                    logger.error(e)
-                    continue
+            # dialogs = await self.client.get_dialogs()
+            # groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
+            # for dialog in groups_and_channels:
+            #     dialog = await self.client.get_entity(dialog)
+            #     dialog_username = dialog.username
+            #     print(dialog_username)
+            #     print(group_link[1:])
+            #     try:
+            #         if dialog_username == group_link[1:]:
+            #             self.client.disconnect()
+            #             print('already_in_group')
+            #             return 'already_in_group'
+            #     except Exception as e:
+            #         logger.error(e)
+            #         continue
 
             entity = await self.client.get_entity(group_link)
 
@@ -633,20 +634,20 @@ class TelethonSendMessages:
             logger.info(f'Joining channel_disc: {linked_chat}')
             await self.client.connect()
 
-            dialogs = await self.client.get_dialogs()
-            groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
-            for dialog in groups_and_channels:
-                dialog = await self.client.get_entity(dialog)
-                dialog_username = dialog.username
-                print(linked_chat.split('/')[-1])
-                try:
-                    if dialog_username == linked_chat.split('/')[-1]:
-                        self.client.disconnect()
-                        print('already_in_group')
-                        return 'already_in_group'
-                except Exception as e:
-                    logger.error(e)
-                    continue
+            # dialogs = await self.client.get_dialogs()
+            # groups_and_channels = [dialog for dialog in dialogs if dialog.is_group or dialog.is_channel]
+            # for dialog in groups_and_channels:
+            #     dialog = await self.client.get_entity(dialog)
+            #     dialog_username = dialog.username
+            #     print(linked_chat.split('/')[-1])
+            #     try:
+            #         if dialog_username == linked_chat.split('/')[-1]:
+            #             self.client.disconnect()
+            #             print('already_in_group')
+            #             return 'already_in_group'
+            #     except Exception as e:
+            #         logger.error(e)
+            #         continue
 
             logger.info(f'Joining channel: {linked_chat}')
             entity = await self.client.get_entity(linked_chat)
