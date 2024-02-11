@@ -9,7 +9,7 @@ import aiofiles
 import pytz
 import math
 from environs import Env
-from telethon import TelegramClient, errors
+from telethon import TelegramClient, errors, functions
 from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.channels import JoinChannelRequest
@@ -511,6 +511,27 @@ class TelethonSendMessages:
             logger.info('comment deleted')
         except Exception as e:
             logger.error(e)
+        finally:
+            await self.client.disconnect()
+
+    async def check_spamblock_status(self):
+        logger.info('Checking account spam block...')
+        try:
+            await self.client.connect()
+            await self.client(functions.contacts.UnblockRequest('@SpamBot'))
+            async with self.client.conversation('@SpamBot') as conv:
+                await conv.send_message('/start')
+                msg = await conv.get_response()
+                print('spam bot\n' + msg.text)
+            if 'now limited until' in msg.text:
+                return 'Временный спам-блок'
+            elif 'blocked' in msg.text:
+                return 'Постоянный спам-блок'
+        except Exception as e:
+            logger.error(e)
+            return 'Ошибка при выполнении запроса'
+        else:
+            return 'Нет ограничений'
         finally:
             await self.client.disconnect()
 
