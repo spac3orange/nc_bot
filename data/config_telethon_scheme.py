@@ -75,8 +75,9 @@ async def monitor_settings(session):
 
     active_users = await db.get_monitoring_user_ids()
     accounts = await accs_action.db_get_monitor_account()
+    print(f'мониторов - {len(accounts)}')
 
-    if len(accounts) > 2:
+    if len(accounts) > 1:
         try:
             session2 = None
             for account in accounts:
@@ -110,8 +111,6 @@ async def monitor_settings(session):
         except Exception as e:
             logger.error(e)
             print(e)
-
-
     else:
         print('users with monitoring on:\n', active_users)
         if active_users:
