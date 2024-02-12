@@ -62,7 +62,7 @@ async def process_check_spam(message: Message):
         await accs_action.change_acc_status(a, s, f'accounts_{uid}')
         c += 1
     await msg.edit_text(reply_string)
-    await message.answer(f'Новых спам блоков: {c}\n'
+    await message.answer(f'Cпам блоков: {c}\n'
                          f'Активных аккаунтов: {b}')
 
 @router.callback_query(F.data == 'user_tg_accs_settings', ~BasicSub())
