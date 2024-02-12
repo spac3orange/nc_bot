@@ -50,14 +50,20 @@ async def process_check_spam(message: Message):
     all_statuses = await asyncio.gather(*tasks)
     reply_string = ''
     c = 0
+    b = 0
     for a, s in zip(accounts, all_statuses):
         reply_string += f'{a}: {s}\n'
         if s == 'Нет ограничений':
+            s = 'Active'
+            await accs_action.change_acc_status(a, s, f'accounts_{uid}')
+            b += 1
             continue
-        await accs_action.change_acc_status(a, s.split('.')[-1].lstrip('Разблокируется '), f'accounts_{uid}')
+        s = s.split('.')[-1].lstrip('Разблокируется ')
+        await accs_action.change_acc_status(a, s, f'accounts_{uid}')
         c += 1
     await msg.edit_text(reply_string)
-    await message.answer(f'Новых спам блоков: {c}')
+    await message.answer(f'Новых спам блоков: {c}\n'
+                         f'Активных аккаунтов: {b}')
 
 @router.callback_query(F.data == 'user_tg_accs_settings', ~BasicSub())
 async def tg_accs_settings(callback: CallbackQuery):
