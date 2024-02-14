@@ -157,6 +157,7 @@ async def input_balance_update_amount(callback: CallbackQuery, state: FSMContext
     user_id = await db.get_user_id_by_username(user_name)
     await state.update_data(uid=user_id, user_name=user_name)
     await callback.message.answer('Введите сумму пополнения: ')
+    print(1111)
     await state.set_state(UsersAddBalance.input_amount)
 
 
@@ -198,7 +199,7 @@ async def process_substract(message: Message, state: FSMContext):
             uid = data.get('uid')
             uname = data.get('user_name')
             amount = int(message.text)
-            await accs_shop_action.update_balance(uid, 'substract', amount)
+            await accs_shop_action.update_balance(uid, 'subtract', amount)
             await message.answer(f'С баланса пользователя {uname} списано {amount} рублей.')
             await state.clear()
     except Exception as e:
