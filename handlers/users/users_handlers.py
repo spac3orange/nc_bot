@@ -182,7 +182,7 @@ async def process_add_balance(message: Message, state: FSMContext):
 @router.callback_query(F.data.startswith('user_substract_balance_'))
 async def input_substract_update_amount(callback: CallbackQuery, state: FSMContext):
     user_name = callback.data.split('_')[-1]
-    user_id = await db.get_user_id_by_username()
+    user_id = await db.get_user_id_by_username(user_name)
     await state.update_data(uid=user_id, user_name=user_name)
     await callback.message.answer('Введите сумму списания: ')
     await state.set_state(UserSubstrBalance.input_amount)
