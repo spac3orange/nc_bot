@@ -154,7 +154,7 @@ async def select_balance_operation(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('user_add_balance_'))
 async def input_balance_update_amount(callback: CallbackQuery, state: FSMContext):
     user_name = callback.data.split('_')[-1]
-    user_id = await db.get_user_id_by_username()
+    user_id = await db.get_user_id_by_username(user_name)
     await state.update_data(uid=user_id, user_name=user_name)
     await callback.message.answer('Введите сумму пополнения: ')
     await state.set_state(UsersAddBalance.input_amount)

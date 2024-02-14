@@ -371,12 +371,14 @@ def confirm_buy_accs(accs_amount):
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
 
+
 def accs_shop():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Пополнить', callback_data=f'refill_shop')
     kb_builder.button(text='Назад', callback_data=f'admin_panel')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
+
 
 def balance_ops_btns(user_name):
     kb_builder = InlineKeyboardBuilder()
