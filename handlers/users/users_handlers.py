@@ -3,11 +3,12 @@ from aiogram.filters import Command
 from aiogram import Router, F
 from keyboards import kb_admin
 from filters.is_admin import IsAdmin
-from database import db, accs_action
+from database import db, accs_action, accs_shop_action
 from pprint import pprint
-from states.states import UsersAddState
+from states.states import UsersAddState, UsersAddBalance, UserSubstrBalance
 from aiogram.fsm.context import FSMContext
 from data.logger import logger
+
 router = Router()
 router.message.filter(
     IsAdmin(F)
@@ -129,5 +130,83 @@ async def delete_from_db(callback: CallbackQuery):
     await db.db_delete_user(user_name)
     await callback.message.answer(f'Пользователь <b>{user_name}</b> удален из базы данных.', parse_mode='HTML',
                                   reply_markup=kb_admin.users_settings_btns())
+
+
+@router.callback_query(F.data == 'update_user_balance')
+async def select_user_balance_ops(callback: CallbackQuery):
+    all_users = await db.db_get_users()
+    users_list = []
+    for user in all_users:
+        name = user[1]
+        users_list.append(name)
+    await callback.message.answer('Выберите пользователя: ',
+                                  reply_markup=kb_admin.users_names_update_balance_btns(users_list))
+
+
+@router.callback_query(F.data.startswith('users_update_balance_'))
+async def select_balance_operation(callback: CallbackQuery):
+    selected_user = callback.data.split('_')[-1]
+    await callback.message.answer(f'Выбран пользователь: {selected_user}'
+                                  f'\nВыберите операцию:', kb_admin.balance_ops_btns(selected_user))
+
+
+@router.callback_query(F.data.startswith('user_add_balance_'))
+async def input_balance_update_amount(callback: CallbackQuery, state: FSMContext):
+    user_name = callback.data.split('_')[-1]
+    user_id = await db.get_user_id_by_username()
+    await state.update_data(uid=user_id, user_name=user_name)
+    await callback.message.answer('Введите сумму пополнения: ')
+    await state.set_state(UsersAddBalance.input_amount)
+
+
+@router.message(UsersAddBalance.input_amount)
+async def process_add_balance(message: Message, state: FSMContext):
+    try:
+        if not message.text.isdigit():
+            await message.answer('Введите число')
+        else:
+            data = await state.get_data()
+            uid = data.get('uid')
+            uname = data.get('user_name')
+            amount = int(message.text)
+            await accs_shop_action.update_balance(uid, 'summ', amount)
+            await message.answer(f'Баланс пользователя {uname} пополнен на {amount} рублей.')
+            await state.clear()
+    except Exception as e:
+        logger.error(e)
+        await message.answer('Ошибка при пополнении баланса.')
+        await state.clear()
+
+
+@router.callback_query(F.data.startswith('user_substract_balance_'))
+async def input_substract_update_amount(callback: CallbackQuery, state: FSMContext):
+    user_name = callback.data.split('_')[-1]
+    user_id = await db.get_user_id_by_username()
+    await state.update_data(uid=user_id, user_name=user_name)
+    await callback.message.answer('Введите сумму списания: ')
+    await state.set_state(UserSubstrBalance.input_amount)
+
+
+@router.message(UserSubstrBalance.input_amount)
+async def process_substract(message: Message, state: FSMContext):
+    try:
+        if not message.text.isdigit():
+            await message.answer('Введите число')
+        else:
+            data = await state.get_data()
+            uid = data.get('uid')
+            uname = data.get('user_name')
+            amount = int(message.text)
+            await accs_shop_action.update_balance(uid, 'substract', amount)
+            await message.answer(f'С баланса пользователя {uname} списано {amount} рублей.')
+            await state.clear()
+    except Exception as e:
+        logger.error(e)
+        await message.answer('Ошибка при обновлении баланса.')
+        await state.clear()
+
+
+
+
 
 

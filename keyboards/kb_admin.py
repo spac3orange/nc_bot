@@ -84,6 +84,7 @@ def users_settings_btns():
     kb_builder.button(text='Удалить', callback_data='users_del')
     kb_builder.button(text='Изменить статус', callback_data='promote_user')
     kb_builder.button(text='Передать аккаунты', callback_data='transfer_acc')
+    kb_builder.button(text='Balance operations', callback_data='update_user_balance')
     kb_builder.button(text='◀️Назад', callback_data='admin_panel')
 
     kb_builder.adjust(2)
@@ -95,6 +96,17 @@ def users_names_btns(users):
 
     for user_name in users:
         kb_builder.button(text=user_name, callback_data=f'users_del_{user_name}')
+    kb_builder.button(text='◀️Назад', callback_data='back_to_users_settings')
+
+    kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
+
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def users_names_update_balance_btns(users):
+    kb_builder = InlineKeyboardBuilder()
+
+    for user_name in users:
+        kb_builder.button(text=user_name, callback_data=f'users_update_balance_{user_name}')
     kb_builder.button(text='◀️Назад', callback_data='back_to_users_settings')
 
     kb_builder.adjust(1)  # Расположение кнопок в несколько столбцов
@@ -363,5 +375,12 @@ def accs_shop():
     kb_builder = InlineKeyboardBuilder()
     kb_builder.button(text='Пополнить', callback_data=f'refill_shop')
     kb_builder.button(text='Назад', callback_data=f'admin_panel')
+    kb_builder.adjust(2)
+    return kb_builder.as_markup(resize_keyboard=True)
+
+def balance_ops_btns(user_name):
+    kb_builder = InlineKeyboardBuilder()
+    kb_builder.button(text='Пополнить', callback_data=f'user_add_balance_{user_name}')
+    kb_builder.button(text='Списать', callback_data=f'user_substract_balance_{user_name}')
     kb_builder.adjust(2)
     return kb_builder.as_markup(resize_keyboard=True)
