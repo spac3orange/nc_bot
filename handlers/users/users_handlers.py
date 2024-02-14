@@ -146,6 +146,7 @@ async def select_user_balance_ops(callback: CallbackQuery):
 @router.callback_query(F.data.startswith('users_update_balance_'))
 async def select_balance_operation(callback: CallbackQuery):
     selected_user = callback.data.split('_')[-1]
+    print(selected_user)
     await callback.message.answer(f'Выбран пользователь: {selected_user}'
                                   f'\nВыберите операцию:', kb_admin.balance_ops_btns(selected_user))
 
