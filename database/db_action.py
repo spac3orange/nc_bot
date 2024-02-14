@@ -195,6 +195,9 @@ class Database:
             logger.error("Error while retrieving users from DB", error)
             return []
 
+    async def user_add_balance(self, user_id: str, amount: int):
+        query = "UPDATE subscriptions SET balance = $2 where user_name = $1"
+
     async def db_add_user_today(self, user_id: int, user_name: str) -> None:
         """
         Adds a new user to the 'users' table if the user_id doesn't already exist.

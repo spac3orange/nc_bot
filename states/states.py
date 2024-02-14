@@ -93,3 +93,11 @@ class BuyAccs(StatesGroup):
 
 class TopAccsShop(StatesGroup):
     input_amount = State()
+
+
+class UsersAddBalance(StatesGroup):
+    input_amount = State()
+
+
+class UserSubstrBalance(StatesGroup):
+    input_amount = State()

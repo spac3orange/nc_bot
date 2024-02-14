@@ -62,6 +62,7 @@ async def extract_linked_chat_id(data):
 
     return await traverse_dict(data)
 
+
 async def monitor_settings(session):
     current_time = datetime.now().time()
     if current_time.hour == 0 and current_time.minute in [9, 10, 11]:
@@ -81,6 +82,7 @@ async def monitor_settings(session):
         await session.monitor_channels(monitoring_list)
     else:
         logger.warning('No users to monitor')
+
 
 async def check_send_comments_running():
     tasks = asyncio.all_tasks()

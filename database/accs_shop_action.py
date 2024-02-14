@@ -103,3 +103,28 @@ async def subtract_from_balance(user_id: int, amount: int) -> bool:
     except (Exception, asyncpg.PostgresError) as error:
         logger.error("Error while subtracting from balance", error)
         return False
+
+
+async def update_balance(user_id: int, operation: str, amount: int) -> None:
+    """
+    Updates the balance in the subscriptions table for the specified user_id.
+    The operation can be either 'subtract' or 'multiply'.
+    """
+    try:
+        if operation == 'subtract':
+            await db.execute_query("""
+                UPDATE subscriptions
+                SET balance = balance - $1
+                WHERE user_id = $2
+            """, amount, user_id)
+        elif operation == 'summ':
+            await db.execute_query("""
+                UPDATE subscriptions
+                SET balance = balance + $1
+                WHERE user_id = $2
+            """, amount, user_id)
+        else:
+            raise ValueError("Invalid operation. Operation must be 'subtract' or 'summ'")
+        logger.info(f"Balance updated for user_id: {user_id}")
+    except (Exception, asyncpg.PostgresError) as error:
+        logger.error("Error while updating balance", error)
