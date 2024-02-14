@@ -14798,3 +14798,170 @@ User Jisiehrk is KnownUser: True
 2024-01-16 07:43:11.670 | INFO     | database.db_action:get_user_ids_by_sub_type:830 - Retrieved user_ids with sub_type DEMO from the subscriptions table
 2024-01-16 07:43:13.053 | INFO     | database.db_action:get_monitoring_status:710 - Retrieved monitoring_status True for user_id: 462813109
 2024-01-16 07:43:53.954 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-02 03:04:47.818 | INFO     | __main__:start_params:64 - Bot started
+2024-01-02 03:04:47.825 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-02 03:04:47.825 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-02 03:04:47.825 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-02 03:04:48.916 | INFO     | database.db_action:db_start:104 - connected to database
+2024-01-02 03:05:40.980 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-02 03:05:43.819 | INFO     | __main__:start_params:64 - Bot started
+2024-01-02 03:05:43.826 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-02 03:05:43.827 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-02 03:05:43.827 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-02 03:05:44.828 | INFO     | database.db_action:db_start:104 - connected to database
+2024-01-02 03:05:52.971 | WARNING  | database.db_action:db_add_user:213 - User with user_id 462813109 already exists in the table.
+2024-01-02 03:05:52.974 | WARNING  | database.db_action:db_add_user_today:160 - User with user_id 462813109 already exists in the table users_today.
+2024-01-02 03:05:52.977 | WARNING  | database.db_action:add_user_to_subscriptions:119 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-02 03:05:52.978 | INFO     | handlers.start:process_start:90 - User @Jisiehrk connected. User id: 462813109
+2024-01-02 03:05:52.978 | INFO     | database.db_action:get_monitoring_status:668 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-02 03:05:57.276 | INFO     | database.db_action:get_monitoring_status:668 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-02 03:06:04.127 | WARNING  | database.db_action:db_add_user:213 - User with user_id 462813109 already exists in the table.
+2024-01-02 03:06:04.127 | WARNING  | database.db_action:db_add_user_today:160 - User with user_id 462813109 already exists in the table users_today.
+2024-01-02 03:06:04.128 | WARNING  | database.db_action:add_user_to_subscriptions:119 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-02 03:06:04.128 | INFO     | handlers.start:process_license:62 - User @Jisiehrk connected. User id: 462813109
+2024-01-02 03:06:04.129 | INFO     | database.db_action:get_monitoring_status:668 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-02 03:06:15.508 | INFO     | database.db_action:get_user_accounts:770 - Retrieved phone numbers from table accounts_462813109
+2024-01-02 03:06:15.511 | INFO     | database.db_action:db_get_all_telegram_channels:356 - Retrieved all Telegram channels from the database for user_id: 462813109
+2024-01-02 03:06:15.512 | INFO     | database.db_action:get_user_ids_by_sub_type:786 - Retrieved user_ids with sub_type DEMO from the subscriptions table
+2024-01-02 03:06:17.924 | INFO     | database.db_action:db_get_all_telegram_channels:356 - Retrieved all Telegram channels from the database for user_id: 462813109
+2024-01-02 03:06:20.284 | INFO     | database.db_action:db_get_all_telegram_channels:356 - Retrieved all Telegram channels from the database for user_id: 462813109
+2024-01-02 03:06:20.285 | INFO     | database.db_action:db_get_all_telegram_ids:404 - Retrieved all Telegram channel_ids from the database for user_id: 462813109
+2024-01-02 03:06:20.286 | INFO     | database.db_action:db_get_all_telegram_groups:370 - Retrieved all Telegram group links from the database for user_id: 462813109
+2024-01-02 03:06:23.660 | WARNING  | database.db_action:db_add_user:213 - User with user_id 462813109 already exists in the table.
+2024-01-02 03:06:23.661 | WARNING  | database.db_action:db_add_user_today:160 - User with user_id 462813109 already exists in the table users_today.
+2024-01-02 03:06:23.661 | WARNING  | database.db_action:add_user_to_subscriptions:119 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-02 03:06:23.661 | INFO     | handlers.start:process_license:62 - User @Jisiehrk connected. User id: 462813109
+2024-01-02 03:06:23.662 | INFO     | database.db_action:get_monitoring_status:668 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-02 03:06:27.886 | INFO     | database.db_action:get_username_by_user_id:834 - Retrieved username Jisiehrk for user_id 462813109
+2024-01-02 03:06:31.675 | INFO     | handlers.tg_accs.get_tg_accs:get_acc_info:69 - getting info about TG accounts
+2024-01-02 03:06:37.177 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 0257 6933.session...
+2024-01-02 03:06:48.859 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 0257 7100.session...
+2024-01-02 03:07:00.851 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 0246 7631.session...
+2024-01-02 03:07:09.683 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 0257 4772.session...
+2024-01-02 03:07:23.574 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 0257 5446.session...
+2024-01-02 03:07:35.422 | INFO     | data.config_telethon_scheme:get_info:280 - Getting info about account data/telethon_sessions/+66 8 1481 9110.session...
+2024-01-02 03:08:37.821 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-10 08:41:57.278 | INFO     | __main__:start_params:64 - Bot started
+2024-01-10 08:41:57.290 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-10 08:41:57.290 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-10 08:41:57.290 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-10 08:41:58.539 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-10 08:42:22.917 | WARNING  | database.db_action:db_add_user:214 - User with user_id 462813109 already exists in the table.
+2024-01-10 08:42:22.922 | WARNING  | database.db_action:db_add_user_today:161 - User with user_id 462813109 already exists in the table users_today.
+2024-01-10 08:42:22.927 | WARNING  | database.db_action:add_user_to_subscriptions:120 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-10 08:42:22.928 | INFO     | handlers.start:process_start:90 - User @Jisiehrk connected. User id: 462813109
+2024-01-10 08:42:22.929 | INFO     | database.db_action:get_monitoring_status:669 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-10 08:43:13.893 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-10 08:47:11.450 | INFO     | __main__:start_params:64 - Bot started
+2024-01-10 08:47:11.459 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-10 08:47:11.459 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-10 08:47:11.459 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-10 08:47:12.841 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-10 08:47:21.795 | INFO     | database.db_action:get_user_accounts:771 - Retrieved phone numbers from table accounts_462813109
+2024-01-10 08:47:21.797 | INFO     | database.db_action:db_get_all_telegram_channels:357 - Retrieved all Telegram channels from the database for user_id: 462813109
+2024-01-10 08:47:21.799 | INFO     | database.db_action:get_user_ids_by_sub_type:787 - Retrieved user_ids with sub_type DEMO from the subscriptions table
+2024-01-10 08:49:11.860 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-10 08:49:14.745 | INFO     | __main__:start_params:64 - Bot started
+2024-01-10 08:49:14.751 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-10 08:49:14.752 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-10 08:49:14.752 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-10 08:49:16.074 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-10 08:49:33.302 | INFO     | database.db_action:db_add_telegram_group:330 - Telegram channel @metasereja (ID: -1001305755380) discussion_group: нет added to the database
+2024-01-10 08:49:33.751 | INFO     | database.db_action:db_add_telegram_group:330 - Telegram channel @dukhovnoetime (ID: -1001662558321) discussion_group: нет added to the database
+2024-01-10 08:49:34.478 | INFO     | database.db_action:db_add_telegram_group:330 - Telegram channel @mestosilygolitsyn (ID: -1001568231733) discussion_group: нет added to the database
+2024-01-10 08:49:55.063 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:25:38.953 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:25:38.968 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:25:38.968 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:25:38.968 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:25:40.148 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:26:20.754 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:26:22.851 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:26:22.856 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:26:22.856 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:26:22.856 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:26:23.831 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:26:27.499 | WARNING  | database.db_action:db_add_user:214 - User with user_id 462813109 already exists in the table.
+2024-01-15 08:26:27.501 | WARNING  | database.db_action:db_add_user_today:161 - User with user_id 462813109 already exists in the table users_today.
+2024-01-15 08:26:27.505 | WARNING  | database.db_action:add_user_to_subscriptions:120 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-15 08:26:27.505 | INFO     | handlers.start:process_start:90 - User @Jisiehrk connected. User id: 462813109
+2024-01-15 08:26:27.506 | INFO     | database.db_action:get_monitoring_status:669 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-15 08:27:12.014 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:27:14.795 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:27:14.799 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:27:14.799 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:27:14.800 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:27:15.790 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:32:41.553 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:32:43.636 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:32:43.640 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:32:43.640 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:32:43.642 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:32:44.745 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:34:50.541 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:35:01.028 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:35:01.034 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:35:01.034 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:35:01.034 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:35:02.010 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:36:51.615 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:37:02.845 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:37:02.850 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:37:02.850 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:37:02.850 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:37:03.820 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:47:44.908 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:47:57.558 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:47:57.564 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:47:57.564 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:47:57.564 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:47:58.804 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 08:52:24.102 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 08:52:36.044 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 08:52:36.049 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 08:52:36.049 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 08:52:36.050 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 08:52:37.047 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 09:08:37.282 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 09:08:39.566 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 09:08:39.571 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 09:08:39.571 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 09:08:39.572 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 09:08:40.766 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 09:13:12.655 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 09:14:18.599 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 09:14:18.604 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 09:14:18.604 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 09:14:18.604 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 09:14:19.774 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 09:14:28.003 | INFO     | database.db_action:db_add_tg_account:260 - Telegram account +998887420739 added to the database
+2024-01-15 09:14:55.354 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 09:47:20.298 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 09:47:20.303 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 09:47:20.303 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 09:47:20.303 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 09:47:21.425 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 09:47:45.572 | ERROR    | handlers.tg_accs.add_tg_acc:upload_accs_to_db:70 - [Errno 2] No such file or directory: 'sessions/+998887420739.json'
+2024-01-15 09:47:53.468 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-15 09:49:01.560 | INFO     | __main__:start_params:64 - Bot started
+2024-01-15 09:49:01.565 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-15 09:49:01.565 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-15 09:49:01.565 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-15 09:49:02.544 | INFO     | database.db_action:db_start:105 - connected to database
+2024-01-15 10:39:44.935 | WARNING  | __main__:<module>:89 - Bot stopped
+2024-01-16 07:42:55.257 | INFO     | __main__:start_params:64 - Bot started
+2024-01-16 07:42:55.264 | INFO     | utils.scheduler:start_scheduled_tasks:83 - users_today scheduler started
+2024-01-16 07:42:55.265 | INFO     | utils.scheduler:start_scheduled_tasks:84 - comments_today scheduler started
+2024-01-16 07:42:55.265 | INFO     | utils.scheduler:start_scheduled_tasks:85 - check_users_subscription scheduler started
+2024-01-16 07:42:56.247 | INFO     | database.db_action:db_start:145 - connected to database
+2024-01-16 07:43:07.093 | WARNING  | database.db_action:db_add_user:255 - User with user_id 462813109 already exists in the table.
+2024-01-16 07:43:07.096 | WARNING  | database.db_action:db_add_user_today:202 - User with user_id 462813109 already exists in the table users_today.
+2024-01-16 07:43:07.100 | WARNING  | database.db_action:add_user_to_subscriptions:161 - User with user_id 462813109 already exists in the subscriptions table.
+2024-01-16 07:43:07.100 | INFO     | handlers.start:process_start:90 - User @Jisiehrk connected. User id: 462813109
+2024-01-16 07:43:07.101 | INFO     | database.db_action:get_monitoring_status:710 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-16 07:43:09.866 | INFO     | database.db_action:get_monitoring_status:710 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-16 07:43:11.666 | INFO     | database.db_action:get_user_accounts:814 - Retrieved phone numbers from table accounts_462813109
+2024-01-16 07:43:11.669 | INFO     | database.db_action:db_get_all_telegram_channels:398 - Retrieved all Telegram channels from the database for user_id: 462813109
+2024-01-16 07:43:11.670 | INFO     | database.db_action:get_user_ids_by_sub_type:830 - Retrieved user_ids with sub_type DEMO from the subscriptions table
+2024-01-16 07:43:13.053 | INFO     | database.db_action:get_monitoring_status:710 - Retrieved monitoring_status True for user_id: 462813109
+2024-01-16 07:43:53.954 | WARNING  | __main__:<module>:89 - Bot stopped
