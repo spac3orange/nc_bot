@@ -131,7 +131,7 @@ async def monitor_settings(session):
         if active_users:
             monitoring_list = []
             for u in active_users:
-                user_settings = await db.get_user_groups_and_triggers(u)
+                user_settings = await db.get_one_user_groups_and_triggers(u)
                 monitoring_list.append(user_settings)
             await session.monitor_channels(monitoring_list)
             logger.info('monitoring completed with 1 session')
