@@ -377,9 +377,10 @@ class TelethonConnect:
                                                 logger.warning('Message skipped: restricted words found')
                                                 continue
                                             logger.info('Found post without triggers')
-                                            if len(message.message) <= 20:
-                                                message.message = 'Я обожаю тусоваться зарабатывать деньги и хорошо проводить время. Моя мечта - стать очень богатой и я точно знаю как этого добиться.'
-                                                logger.warning('message is too small. inserting default message.')
+                                            if len(message.message) <= 300:
+                                                continue
+                                            if random.random() < 0.7:
+                                                continue
                                             approved_messages.append((user_id, channel_name, message))
 
                             else:
