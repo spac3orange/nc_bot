@@ -107,7 +107,8 @@ async def monitor_settings(session):
                 for u in active_users:
                     l1, l2 = [], []
                     monitoring_list_p1, monitoring_list_p2 = await db.get_user_groups_and_triggers(u)
-                    l1.append(monitoring_list_p1), l2.append(monitoring_list_p2)
+                    l1.append(monitoring_list_p1)
+                    l2.append(monitoring_list_p2)
                     print(monitoring_list_p1, 'лист1')
                     print(monitoring_list_p2, 'лист2')
                     print(f'monitor session 1: {session}, session2: {session2}')
@@ -357,7 +358,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=7)
+                            offset_date = utc_now - timedelta(minutes=5)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
