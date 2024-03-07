@@ -31,7 +31,7 @@ class ChatMonitor:
                 monitor_account = random.choice(accounts)
                 self.telethon_connect = TelethonConnect(monitor_account)
 
-            self.scheduler.add_job(monitor_settings, 'interval', minutes=5, args=(self.telethon_connect,),
+            self.scheduler.add_job(monitor_settings, 'interval', minutes=3, args=(self.telethon_connect,),
                                    max_instances=10)
 
             self.scheduler.start()

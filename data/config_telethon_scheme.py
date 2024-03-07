@@ -358,7 +358,7 @@ class TelethonConnect:
                                 continue
                             input_entity = InputPeerChannel(entity.id, entity.access_hash)
                             utc_now = datetime.now(pytz.utc)
-                            offset_date = utc_now - timedelta(minutes=5)
+                            offset_date = utc_now - timedelta(minutes=3)
                             messages = await self.client(GetHistoryRequest(
                                 peer=input_entity,
                                 limit=10,
@@ -373,15 +373,15 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                            if any([x.lower() in message.message.lower().split() for x in words_in_post]):
-                                                logger.warning('Message skipped: restricted words found')
-                                                continue
-                                            logger.info('Found post without triggers')
-                                            if len(message.message) <= 300:
-                                                continue
-                                            if random.random() < 0.7:
-                                                continue
-                                            approved_messages.append((user_id, channel_name, message))
+                                        if any([x.lower() in message.message.lower().split() for x in words_in_post]):
+                                            logger.warning('Message skipped: restricted words found')
+                                            continue
+                                        logger.info('Found post without triggers')
+                                        if len(message.message) <= 300:
+                                            continue
+                                        if random.random() < 0.7:
+                                            continue
+                                        approved_messages.append((user_id, channel_name, message))
 
                             else:
                                 for message in messages.messages:
@@ -543,7 +543,8 @@ class TelethonSendMessages:
         try:
             await asyncio.sleep(random.randint(0, 40))
             if comment:
-                comment = comment.strip('"')
+                comment = ''.join([c for c in comment if c != '"'])
+
                 await self.client.connect()
                 entity = await self.client.get_entity(channel_name)
 
