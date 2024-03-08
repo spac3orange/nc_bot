@@ -480,6 +480,8 @@ class TelethonConnect:
                         gpt = AuthOpenAI(gpt_api)
                         gpt_question = message_text + '.' + f'{promt}'
                         comment = await gpt.process_question(gpt_question)
+                        while len(comment) > 150:
+                            comment = await gpt.process_question(gpt_question)
                         notif = None
                         if user_id in all_users_with_notif:
                             notif = True
