@@ -298,7 +298,11 @@ async def prep_user_del_acc(callback: CallbackQuery):
     uid = callback.from_user.id
     operation = 'usrdel_acc'
     accounts = await accs_action.get_user_accounts(uid)
-    extra_accounts = await accs_action.get_extra_accounts(uid)
+    extra_accounts = None
+    try:
+        extra_accounts = await accs_action.get_extra_accounts(uid)
+    except Exception as e:
+        pass
     if extra_accounts:
         accounts.extend(extra_accounts)
     await callback.message.answer('<b>Выберите аккаунт:</b>',
