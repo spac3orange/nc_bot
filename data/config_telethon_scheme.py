@@ -357,7 +357,7 @@ class TelethonConnect:
         try:
             if channel_keywords:
                 logger.info('Monitoring channels for new posts...')
-                pprint(channel_keywords)
+                # pprint(channel_keywords)
                 await self.client.connect()
                 # if self.client.is_connected():
                 #     print('Monitor logged in')
