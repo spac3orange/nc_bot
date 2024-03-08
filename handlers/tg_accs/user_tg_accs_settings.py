@@ -304,7 +304,7 @@ async def prep_user_del_acc(callback: CallbackQuery):
                                   parse_mode='HTML')
 
 
-@router.callback_query(F.data.startswith('usrdel_acc_'))
+@router.callback_query(F.data.startswith('account_usrdel_acc_'))
 async def proc_user_del_acc(callback: CallbackQuery):
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
