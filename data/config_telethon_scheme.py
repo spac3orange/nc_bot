@@ -369,7 +369,7 @@ class TelethonConnect:
                             try:
                                 utc_now = datetime.now(pytz.utc)
                                 offset_date = utc_now - timedelta(minutes=3)
-                                messages = await asyncio.wait_for(self.check_channel(channel_name), timeout=4)
+                                messages = await asyncio.wait_for(self.check_channel(channel_name), timeout=6)
                             except asyncio.TimeoutError:
                                 logger.error(f'Error retrievieng channel history {channel_name}')
                                 continue
