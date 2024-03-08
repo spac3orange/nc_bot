@@ -313,4 +313,10 @@ async def proc_user_del_acc(callback: CallbackQuery):
     except:
         await accs_action.db_remove_user_extra_tg_account(account, uid)
     await callback.message.answer(f'Аккаунт {account} удален.')
-    await tg_accs_settings(callback)
+    await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
+                                  'Здесь можно настроить инфо аккаунта, такое как:\n'
+                                  '<b>Имя, Фамилия, Пол, Bio, Аватар, Username</b>\n\n'
+                                  'ВНИМАНИЕ! Мы настоятельно НЕ рекомендуем злоупотреблять данной функцией и изменять информацию аккаунта чаще одного раза в день!\n'
+                                  'С высокой вероятностью это может привести к блокировке вашего аккаунта.',
+                                  reply_markup=kb_admin.users_tg_accs_btns(),
+                                  parse_mode='HTML')
