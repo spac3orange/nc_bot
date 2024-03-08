@@ -333,6 +333,26 @@ class TelethonConnect:
             await self.client.disconnect()
             return False
 
+    async def check_channel(self, channel_name):
+        try:
+            logger.info(f'{self.session_name.split("/")[-1]} Checking channel: {channel_name}...')
+            entity = await self.client.get_entity(channel_name)
+            input_entity = InputPeerChannel(entity.id, entity.access_hash)
+            messages = await self.client(GetHistoryRequest(
+                peer=input_entity,
+                limit=10,
+                offset_date=None,
+                offset_id=0,
+                max_id=0,
+                min_id=0,
+                add_offset=0,
+                hash=0
+            ))
+            return messages
+        except Exception as e:
+            logger.error(e)
+
+
     async def monitor_channels(self, channel_keywords: dict = None):
         try:
             if channel_keywords:
@@ -347,27 +367,11 @@ class TelethonConnect:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
                             try:
-                                logger.info(f'{self.session_name.split("/")[-1]} Checking channel: {channel_name}...')
-                                entity = await self.client.get_entity(channel_name)
-                                # full_channel = await self.client(GetFullChannelRequest(channel=channel_name))
-                                # chats = full_channel.to_dict()
-                                # linked_chat_id = await extract_linked_chat_id(chats)
-                                # print(f'channel {channel_name} linked chat id {linked_chat_id}')
-                                input_entity = InputPeerChannel(entity.id, entity.access_hash)
                                 utc_now = datetime.now(pytz.utc)
                                 offset_date = utc_now - timedelta(minutes=3)
-                                messages = await self.client(GetHistoryRequest(
-                                    peer=input_entity,
-                                    limit=10,
-                                    offset_date=None,
-                                    offset_id=0,
-                                    max_id=0,
-                                    min_id=0,
-                                    add_offset=0,
-                                    hash=0
-                                ))
-                            except Exception as e:
-                                logger.error(e)
+                                messages = await asyncio.wait_for(self.check_channel(channel_name), timeout=4)
+                            except asyncio.TimeoutError:
+                                logger.error(f'Error retrievieng channel history {channel_name}')
                                 continue
 
                             if keywords == 'Нет':
@@ -377,9 +381,11 @@ class TelethonConnect:
                                             logger.warning('Message skipped: restricted words found')
                                             continue
                                         logger.info('Found post without triggers')
-                                        if len(message.message) <= 300:
+                                        if len(message.message) <= 100:
+                                            logger.warning('Message skipped: too short')
                                             continue
                                         if random.random() < 0.7:
+                                            logger.warning('Message skipped: random moment')
                                             continue
                                         approved_messages.append((user_id, channel_name, message))
 
