@@ -373,6 +373,10 @@ class TelethonConnect:
                             except asyncio.TimeoutError:
                                 logger.error(f'Error retrievieng channel history {channel_name}')
                                 continue
+                            except Exception as e:
+                                logger.error(e)
+                                continue
+
                             if not messages:
                                 logger.warning('No posts found. Channel skipped.')
                                 continue
