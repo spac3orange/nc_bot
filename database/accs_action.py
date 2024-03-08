@@ -232,6 +232,8 @@ async def db_remove_user_tg_account(phone_number: str, uid: int) -> None:
 
         query = f"DELETE FROM accounts_{uid} WHERE phone = $1"
         await db.execute_query(query, phone_number)
+        query = f"INSERT INTO deleted_accounts(phone) VALUES ($1)"
+        await db.execute_query(query, phone_number)
         logger.info(f"Telegram account {phone_number} removed from the accounts_{uid}")
     except (Exception, asyncpg.PostgresError) as error:
         logger.error(f"Error removing Telegram account from the from the accounts_{uid}: {error}")

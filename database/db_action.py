@@ -149,6 +149,12 @@ class Database:
                 )
             """)
 
+            await self.execute_query("""
+                            CREATE TABLE IF NOT EXISTS deleted_accounts (
+                                phone TEXT PRIMARY KEY
+                            )
+                        """)
+
             logger.info('connected to database')
 
         except (Exception, asyncpg.PostgresError) as error:
