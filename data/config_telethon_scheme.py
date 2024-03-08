@@ -373,6 +373,9 @@ class TelethonConnect:
                             except asyncio.TimeoutError:
                                 logger.error(f'Error retrievieng channel history {channel_name}')
                                 continue
+                            if not messages:
+                                logger.warning('No posts found. Channel skipped.')
+                                continue
 
                             if keywords == 'Нет':
                                 for message in messages.messages:
