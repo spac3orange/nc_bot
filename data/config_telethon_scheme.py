@@ -84,7 +84,7 @@ async def monitor_settings(session):
         return
 
     if await check_send_comments_running():
-        logger.warning('Schedule skipped because send_comments is running')
+        logger.warning('Schedule skipped because send_comments or monitor_channels is running')
         return
 
     active_users = await db.get_monitoring_user_ids()
@@ -142,6 +142,8 @@ async def check_send_comments_running():
     tasks = asyncio.all_tasks()
     for task in tasks:
         if task.get_coro().__qualname__ == 'TelethonSendMessages.send_comments':
+            return True
+        if task.get_coro().__qualname__ == 'TelethonConnect.monitor_channels':
             return True
     return False
 
