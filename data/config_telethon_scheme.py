@@ -354,16 +354,16 @@ class TelethonConnect:
         except Exception as e:
             logger.error(e)
 
-
     async def monitor_channels(self, channel_keywords: dict = None):
         try:
             if channel_keywords:
                 logger.info('Monitoring channels for new posts...')
                 # pprint(channel_keywords)
-                await self.client.connect()
-                # if self.client.is_connected():
-                #     print('Monitor logged in')
-                #     pprint(await self.client.get_me())
+                if self.client.is_connected():
+                    print('Monitor logged in')
+                else:
+                    await self.client.connect()
+
                 approved_messages = []
                 for item in channel_keywords:
                     for user_id, channels in item.items():
