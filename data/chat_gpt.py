@@ -13,7 +13,7 @@ class AuthOpenAI:
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
-        self.proxy = proxy
+        self.proxy = f"socks5://{proxy_username}:{proxy_pass}@{proxy_ip}:{proxy_port}"
 
     @retry(stop=stop_after_attempt(3))
     async def process_question(self, question):
