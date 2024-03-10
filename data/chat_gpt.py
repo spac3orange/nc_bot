@@ -5,7 +5,7 @@ import aiohttp
 from tenacity import retry, stop_after_attempt, wait_fixed
 
 from data.logger import logger
-from .proxy_config import proxy_username, proxy_pass, proxy_ip, proxy_port
+from .proxy_config import proxy_username, proxy_pass, proxy_ip, proxy_port, proxy
 
 
 class AuthOpenAI:
@@ -13,7 +13,7 @@ class AuthOpenAI:
         self.api_key = api_key
         self.request_url = "https://api.openai.com/v1/chat/completions"
         self.request_header = {"Authorization": f"Bearer {api_key}"}
-        self.proxy = f"socks5://{proxy_username}:{proxy_pass}@{proxy_ip}:{proxy_port}"
+        self.proxy = proxy
 
     @retry(stop=stop_after_attempt(3))
     async def process_question(self, question):
