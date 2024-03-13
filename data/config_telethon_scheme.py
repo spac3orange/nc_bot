@@ -433,103 +433,106 @@ class TelethonConnect:
                     all_users_with_notif = await db.get_users_with_notifications()
                     all_basic_users = await db.get_user_ids_by_sub_type('DEMO')
                     for msg in approved_messages:
-                        user_id, channel, message = msg
-                        basic = False
-                        linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
-                        print(linked_chat)
-                        if linked_chat == '':
-                            linked_chat = 'нет'
-                        if user_id in all_basic_users:
-                            if await db.get_comments_sent(user_id) < 1:
-                                acc = random.choice(await accs_action.get_phones_with_comments_today_less_than('telegram_accounts', 20))
-                                acc_sex = await accs_action.get_sex_by_phone(acc)
-                            else:
-                                try:
-                                    await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
-                                                                            '\n\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
-                                                                   parse_mode='HTML')
+                        try:
+                            user_id, channel, message = msg
+                            basic = False
+                            linked_chat = await db.db_get_group_link_by_channel_name(f'{channel}')
+                            print(linked_chat)
+                            if linked_chat == '':
+                                linked_chat = 'нет'
+                            if user_id in all_basic_users:
+                                if await db.get_comments_sent(user_id) < 1:
+                                    acc = random.choice(await accs_action.get_phones_with_comments_today_less_than('telegram_accounts', 20))
+                                    acc_sex = await accs_action.get_sex_by_phone(acc)
+                                else:
+                                    try:
+                                        await aiogram_bot.send_message(user_id, '<b>Демонстрационный период окончен.</b>'
+                                                                                '\n\nДля продолжения работы с ботом, пожалуйста оформите подписку в <b>Личном Кабинете</b>.',
+                                                                       parse_mode='HTML')
+                                        continue
+                                    except Exception as e:
+                                        logger.error(e)
+                                        continue
+                                if acc:
+                                    await accs_action.set_in_work('telegram_accounts', acc)
+                                    session = TelethonSendMessages(acc)
+                                    basic = True
+                                else:
+                                    logger.error('No accounts with comments less than 7')
                                     continue
-                                except Exception as e:
-                                    logger.error(e)
+                            else:
+                                acc = random.choice(await accs_action.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 20))
+                                if acc:
+                                    acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
+                                    await accs_action.set_in_work(f'accounts_{user_id}', acc)
+                                    session = TelethonSendMessages(acc)
+                                else:
+                                    logger.error(f'No accounts with comments less than 7 for user {user_id}')
                                     continue
-                            if acc:
-                                await accs_action.set_in_work('telegram_accounts', acc)
-                                session = TelethonSendMessages(acc)
-                                basic = True
-                            else:
-                                logger.error('No accounts with comments less than 7')
-                                continue
-                        else:
-                            acc = random.choice(await accs_action.get_phones_with_comments_today_less_than(f'accounts_{user_id}', 20))
-                            if acc:
-                                acc_sex = await accs_action.get_sex_by_phone(acc, uid=user_id)
-                                await accs_action.set_in_work(f'accounts_{user_id}', acc)
-                                session = TelethonSendMessages(acc)
-                            else:
-                                logger.error(f'No accounts with comments less than 7 for user {user_id}')
-                                continue
-                        acc_in_group = await session.join_group(channel)
-                        if acc_in_group == 'already_in_group':
-                            pass
-                            print(f'{acc} already in group {channel}')
-                        elif acc_in_group == 'joined':
-                            print(f'{acc} joined group {channel}')
-                        elif acc_in_group == 'banned':
-                            print(f'{acc} banned')
-                            await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
-                            continue
-                        if linked_chat != 'нет':
-                            acc_in_disc = await session.join_group_disc(linked_chat)
-                            print(f'acc in disc {acc_in_disc}')
-                            if acc_in_disc == 'already_in_group':
+                            acc_in_group = await session.join_group(channel)
+                            if acc_in_group == 'already_in_group':
                                 pass
-                                print(f'{acc} already in group_dicsc {channel}')
-                            elif acc_in_disc == 'joined':
+                                print(f'{acc} already in group {channel}')
+                            elif acc_in_group == 'joined':
                                 print(f'{acc} joined group {channel}')
-                            elif acc_in_disc == 'banned':
+                            elif acc_in_group == 'banned':
                                 print(f'{acc} banned')
                                 await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                                 continue
-                        else:
-                            pass
-                        message_text = message.message
-                        promt = all_promts.get(channel)
-                        promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
-                        if promt == 'Нет':
-                            default_prompts = await default_prompts_action.get_all_default_prompts()
-                            promt = random.choice(default_prompts) + f' {promt_sex}'
-                        else:
-                            promt = promt + f' {promt_sex}'
-                        gpt_api = random.choice(gpt_accs)
-                        gpt = AuthOpenAI(gpt_api)
-                        gpt_question = message_text + '.' + f'{promt}'
-                        comment = await gpt.process_question(gpt_question)
-                        notif = None
-                        if user_id in all_users_with_notif:
-                            notif = True
-                        if comment:
-                            attempts = 0
-                            while len(comment) > 150 or await check_words_in_message(words_in_generated_message, comment):
-                                try:
-                                    attempts += 1
-                                    if attempts > 3:
-                                        logger.warning('Reached maximum attempts. Continuing to the next iteration.')
-                                        comment = None
-                                        break
-                                    else:
-                                        logger.warning('Re-generating comment. Restrcited words found or len is too long.')
-                                        comment = await gpt.process_question(gpt_question)
-                                except Exception as e:
-                                    logger.error(e)
+                            if linked_chat != 'нет':
+                                acc_in_disc = await session.join_group_disc(linked_chat)
+                                print(f'acc in disc {acc_in_disc}')
+                                if acc_in_disc == 'already_in_group':
+                                    pass
+                                    print(f'{acc} already in group_dicsc {channel}')
+                                elif acc_in_disc == 'joined':
+                                    print(f'{acc} joined group {channel}')
+                                elif acc_in_disc == 'banned':
+                                    print(f'{acc} banned')
+                                    await aiogram_bot.send_message(user_id, f'Аккаунт {acc} заблокирован')
                                     continue
-                            if comment:
-                                task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                             acc, comment, notif, promt))
                             else:
-                                continue
-                        else:
-                            print('Комментарий не сгенерирован')
-
+                                pass
+                            message_text = message.message
+                            promt = all_promts.get(channel)
+                            promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
+                            if promt == 'Нет':
+                                default_prompts = await default_prompts_action.get_all_default_prompts()
+                                promt = random.choice(default_prompts) + f' {promt_sex}'
+                            else:
+                                promt = promt + f' {promt_sex}'
+                            gpt_api = random.choice(gpt_accs)
+                            gpt = AuthOpenAI(gpt_api)
+                            gpt_question = message_text + '.' + f'{promt}'
+                            comment = await gpt.process_question(gpt_question)
+                            notif = None
+                            if user_id in all_users_with_notif:
+                                notif = True
+                            if comment:
+                                attempts = 0
+                                while len(comment) > 150 or await check_words_in_message(words_in_generated_message, comment):
+                                    try:
+                                        attempts += 1
+                                        if attempts > 3:
+                                            logger.warning('Reached maximum attempts. Continuing to the next iteration.')
+                                            comment = None
+                                            break
+                                        else:
+                                            logger.warning('Re-generating comment. Restrcited words found or len is too long.')
+                                            comment = await gpt.process_question(gpt_question)
+                                    except Exception as e:
+                                        logger.error(e)
+                                        continue
+                                if comment:
+                                    task = asyncio.create_task(session.send_comments(user_id, channel, message,
+                                                                                 acc, comment, notif, promt))
+                                else:
+                                    continue
+                            else:
+                                print('Комментарий не сгенерирован')
+                        except Exception as e:
+                            logger.error(e)
+                            await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
             else:
                 logger.warning('No channels to monitor')
 
