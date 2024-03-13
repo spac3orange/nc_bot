@@ -511,14 +511,14 @@ class TelethonConnect:
                             notif = True
                         if comment:
                             attempts = 0
-                            while await check_words_in_message(words_in_generated_message, comment):
+                            while len(comment) > 150 or await check_words_in_message(words_in_generated_message, comment):
                                 attempts += 1
                                 if attempts > 3:
                                     logger.warning('Reached maximum attempts. Continuing to the next iteration.')
                                     comment = None
-                                    break  # Прерываем цикл, если количество попыток превысило 3
+                                    break
                                 else:
-                                    logger.warning('Re-generating comment. Restrcited words found.')
+                                    logger.warning('Re-generating comment. Restrcited words found or len is too long.')
                                     comment = await gpt.process_question(gpt_question)
 
                             if comment:
