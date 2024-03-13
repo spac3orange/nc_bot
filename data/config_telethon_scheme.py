@@ -510,15 +510,18 @@ class TelethonConnect:
                         if comment:
                             attempts = 0
                             while len(comment) > 150 or await check_words_in_message(words_in_generated_message, comment):
-                                attempts += 1
-                                if attempts > 3:
-                                    logger.warning('Reached maximum attempts. Continuing to the next iteration.')
-                                    comment = None
-                                    break
-                                else:
-                                    logger.warning('Re-generating comment. Restrcited words found or len is too long.')
-                                    comment = await gpt.process_question(gpt_question)
-
+                                try:
+                                    attempts += 1
+                                    if attempts > 3:
+                                        logger.warning('Reached maximum attempts. Continuing to the next iteration.')
+                                        comment = None
+                                        break
+                                    else:
+                                        logger.warning('Re-generating comment. Restrcited words found or len is too long.')
+                                        comment = await gpt.process_question(gpt_question)
+                                except Exception as e:
+                                    logger.error(e)
+                                    continue
                             if comment:
                                 task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                              acc, comment, notif, promt))
