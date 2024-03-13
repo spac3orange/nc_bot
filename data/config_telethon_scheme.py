@@ -77,6 +77,21 @@ async def extract_linked_chat_id(data):
 
     return await traverse_dict(data)
 
+
+async def check_words_in_message(words_list, message):
+    try:
+        # Нормализуем слова в сообщении
+        normalized_message = ' '.join(re.findall(r'\b\w+\b', message.lower()))
+        print(normalized_message)
+        for word in words_list:
+            if word.lower() in normalized_message:
+                return True
+        return False
+    except Exception as e:
+        logger.error(e)
+        return False
+
+
 async def monitor_settings(session):
     current_time = datetime.now().time()
     if current_time.hour == 0 and current_time.minute in [9, 10, 11]:
@@ -386,8 +401,8 @@ class TelethonConnect:
                             if keywords == 'Нет':
                                 for message in messages.messages:
                                     if message.message and message.date > offset_date:
-                                        if any([x.lower() in message.message.lower().split() for x in words_in_post]):
-                                            logger.warning('Message skipped: restricted words found')
+                                        if await check_words_in_message(words_in_post, message.message):
+                                            logger.warning('Post skipped: restricted words found')
                                             continue
                                         logger.info('Found post without triggers')
                                         if len(message.message) <= 100:
@@ -495,11 +510,22 @@ class TelethonConnect:
                         if user_id in all_users_with_notif:
                             notif = True
                         if comment:
-                            if any([x.lower() in comment.lower().split() for x in words_in_generated_message]):
-                                logger.warning('Comment skipped: restricted words found')
-                                continue
-                            task = asyncio.create_task(session.send_comments(user_id, channel, message,
+                            attempts = 0
+                            while await check_words_in_message(words_in_generated_message, comment):
+                                attempts += 1
+                                if attempts > 3:
+                                    logger.warning('Reached maximum attempts. Continuing to the next iteration.')
+                                    comment = None
+                                    break  # Прерываем цикл, если количество попыток превысило 3
+                                else:
+                                    logger.warning('Re-generating comment. Restrcited words found.')
+                                    comment = await gpt.process_question(gpt_question)
+
+                            if comment:
+                                task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                              acc, comment, notif, promt))
+                            else:
+                                continue
                         else:
                             print('Комментарий не сгенерирован')
 
