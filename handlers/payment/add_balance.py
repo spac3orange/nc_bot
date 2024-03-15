@@ -15,14 +15,17 @@ async def process_add_balance(message: Message):
 
 @router.callback_query(F.data == 'add_balance')
 async def process_add_balance(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('Выберите способ пополнения счета:', reply_markup=kb_admin.choose_payment_type())
 
 @router.callback_query(F.data == 'payment_cryptomus')
 async def process_payment_cryptomus(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('В разработке')
 
 @router.callback_query(F.data == 'payment_ukassa')
 async def process_payment_ukassa(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await callback.message.answer('Введите сумму пополнения:'
                                   '\nМинимальная сумма - <b>300</b> рублей', parse_mode='HTML')
     await state.set_state(UkassaPayment.input_sum)

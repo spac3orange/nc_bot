@@ -14,6 +14,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'admin_panel', IsAdmin(F))
 async def process_admin_panel(callback: CallbackQuery):
+    await callback.answer()
     status = await monitor.get_status()
     today_users = await db.db_get_users_today()
     await callback.message.answer(f'<b>Панель Администратора</b>\n\n'

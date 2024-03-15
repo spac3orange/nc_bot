@@ -67,6 +67,7 @@ async def process_check_spam(message: Message):
 
 @router.callback_query(F.data == 'user_tg_accs_settings', ~BasicSub())
 async def tg_accs_settings(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
@@ -78,6 +79,7 @@ async def tg_accs_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'choose_acc_user')
 async def choose_acc_user(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     uid = callback.from_user.id
     operation = 'change_info'
     accounts = await accs_action.get_user_accounts(uid)
@@ -87,6 +89,7 @@ async def choose_acc_user(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('account_change_info_'))
 async def change_info_menu(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     print(callback.data)
     account = callback.data.split('_')[-1]
     print(account)
@@ -97,6 +100,7 @@ async def change_info_menu(callback: CallbackQuery, state: FSMContext):
 # username
 @router.callback_query(F.data.startswith('acc_edit_username_'))
 async def acc_change_username(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     account = callback.data.split('_')[-1]
     await callback.message.answer('Введите новый Username:')
     await state.set_state(EditAccInfo.change_username)
@@ -122,6 +126,7 @@ async def name_changed(message: Message, state: FSMContext):
 # name
 @router.callback_query(F.data.startswith('acc_edit_name_'))
 async def acc_change_name(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     account = callback.data.split('_')[-1]
     await callback.message.answer('Введите новое имя:')
     await state.set_state(EditAccInfo.change_name)
@@ -144,6 +149,7 @@ async def name_changed(message: Message, state: FSMContext):
 # surname
 @router.callback_query(F.data.startswith('acc_edit_surname_'))
 async def acc_edit_surname(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     account = callback.data.split('_')[-1]
     await callback.message.answer('Введите новую фамилию:')
     await state.set_state(EditAccInfo.change_surname)
@@ -167,6 +173,7 @@ async def name_changed(message: Message, state: FSMContext):
 # bio
 @router.callback_query(F.data.startswith('acc_edit_bio_'))
 async def acc_edit_bio(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     account = callback.data.split('_')[-1]
     await callback.message.answer('Введите новую информацию для размещения в био:')
     await state.set_state(EditAccInfo.change_bio)
@@ -189,6 +196,7 @@ async def name_changed(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'users_accs_get_info')
 async def user_accs_get_info(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')
     uid = callback.from_user.id
     try:
@@ -218,6 +226,7 @@ async def user_accs_get_info(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('acc_edit_avatar_'))
 async def acc_edit_avatar(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await state.set_state(UserSendPhoto.input_photo)
     account = callback.data.split('_')[-1]
     await state.update_data(account=account)
@@ -257,6 +266,7 @@ async def process_photo(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'back_to_users_accs')
 async def back_to_accs(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     await callback.message.answer('<b>Настройки телеграм аккаунтов</b>\n\n'
                                   'Здесь можно настроить инфо аккаунта, такое как:\n'
@@ -267,11 +277,13 @@ async def back_to_accs(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == 'user_tg_accs_settings')
 async def tg_accs_settings(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     await callback.message.answer('Извините, этот раздел не доступен для пользователей с бесплатной подпиской')
 
 @router.callback_query(F.data.startswith('acc_edit_sex_'))
 async def process_acc_edit_sex(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     acc_sex = await accs_action.get_sex_by_phone(account, uid)
@@ -280,6 +292,7 @@ async def process_acc_edit_sex(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('change_sex_male_'))
 async def change_sex_to_male(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     await accs_action.update_user_account_sex(uid, account, 'Мужской')
@@ -289,6 +302,7 @@ async def change_sex_to_male(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('change_sex_female_'))
 async def change_sex_to_female(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     await accs_action.update_user_account_sex(uid, account, 'Женский')
@@ -298,6 +312,7 @@ async def change_sex_to_female(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('acc_clear_avatars_'))
 async def process_clear_avatars(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     session = TelethonSendMessages(account)
@@ -310,6 +325,7 @@ async def process_clear_avatars(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'user_del_acc')
 async def prep_user_del_acc(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     operation = 'usrdel_acc'
     accounts = await accs_action.get_user_accounts(uid)
@@ -320,6 +336,7 @@ async def prep_user_del_acc(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('usrdel_acc_'))
 async def proc_user_del_acc(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     account = callback.data.split('_')[-1]
     await accs_action.db_remove_user_tg_account(account, uid)

@@ -46,6 +46,7 @@ async def check_gpt_key(api_key):
 
 @router.callback_query(F.data == 'gpt_accs_add')
 async def input_gpt_acc(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     logger.info('awaiting api key for gpt account')
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите API ключ ChatGPT: ', reply_markup=kb_admin.gpt_back())

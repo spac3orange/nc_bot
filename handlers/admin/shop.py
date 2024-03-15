@@ -24,6 +24,7 @@ async def raise_process_admin_shop():
 
 @router.callback_query(F.data == 'admin_shop')
 async def process_admin_shop(callback: CallbackQuery):
+    await callback.answer()
     accs_in_shop = len(await accs_shop_action.db_get_shop_accs())
     basic_accs = len(await accs_action.db_get_all_tg_accounts())
     await callback.message.answer(f'Аккаунтов в магазине: <b>{accs_in_shop}</b>'
@@ -33,6 +34,7 @@ async def process_admin_shop(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'refill_shop')
 async def process_refill_shop(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await callback.message.answer('<b>Введите количество аккаунтов для пополнения магазина: </b>'
                                   '\n\nАккаунты будут перенесены из таблицы с беслпатными аккаунтами в таблицу магазина аккаунтов.'
                                   '\n\nОтменить /cancel', parse_mode='HTML')

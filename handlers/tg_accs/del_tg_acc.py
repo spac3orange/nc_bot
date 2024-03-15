@@ -15,6 +15,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'tg_accs_del', KnownUser())
 async def del_input_phone(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     logger.info('awaiting phone to delete telegram account')
     #await callback.message.delete()
     tg_accs = await accs_action.db_get_all_tg_accounts()
@@ -25,6 +26,7 @@ async def del_input_phone(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('account_delete'))
 async def acc_deleted(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     acc = callback.data.split('_')[-1]
     await accs_action.db_remove_tg_account(acc)
     logger.info('telegram account deleted from db')

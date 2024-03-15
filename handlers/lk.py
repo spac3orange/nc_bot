@@ -15,7 +15,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'lk')
 async def process_lk(callback: CallbackQuery):
-
+    await callback.answer()
     uid = callback.from_user.id
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
@@ -66,6 +66,7 @@ async def process_lk(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'subscribe')
 async def process_subscribe(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('<b>Пожалуйста, выберите тариф:</b>'
                                   '\n\n<b>Подписка на 1 день - 300р</b>'
                                   '\n<b>Аккаунты:</b> 1 шт.'
@@ -83,6 +84,7 @@ async def process_subscribe(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('sub_plan_'))
 async def process_sub_plan(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     plan = callback.data.split('_')[-1]
     days = 'день' if plan == '1' else 'дней'
     await callback.message.answer(f'Выбран тариф: <b>Подписка на {plan} {days}</b>', reply_markup=kb_admin.approve_sub_plan(plan),
@@ -91,6 +93,7 @@ async def process_sub_plan(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('approve_sub_plan_'))
 async def process_approve_sub_plan(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     uname = callback.from_user.username
     user_data = await db.get_user_info(uid)
@@ -140,6 +143,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'users_buy_accs')
 async def process_buy_accs(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     accs_amount = len(await accs_shop_action.db_get_shop_accs())
     await callback.message.answer('1 Telegram аккаунт - <b>200 рублей</b>\n'
                                   f'Доступно аккаунтов для покупки: <b>{accs_amount}</b>\n\n'
@@ -160,6 +164,7 @@ async def confirm_buy_accs(message: Message, state: FSMContext):
 
 @router.callback_query(F.data.startswith('confirm_buy_accs'))
 async def update_additional_accs(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     user_balance = (await db.get_user_info(uid))['balance']
     amount = int(callback.data.split('_')[-1])

@@ -15,6 +15,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'tg_accs', KnownUser())
 async def tg_accs_settings(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     accounts_free = await accs_action.db_get_all_tg_accounts()
     accounts_paid = await accs_action.get_all_paid_accounts()
@@ -33,6 +34,7 @@ async def tg_accs_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_accs')
 async def back_to_accs(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     accounts_free = await accs_action.db_get_all_tg_accounts()
     accounts_paid = await accs_action.get_all_paid_accounts()
     await callback.message.answer('<b>Настройки телеграм аккаунтов:</b>\n\n'

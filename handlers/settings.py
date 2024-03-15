@@ -34,6 +34,7 @@ async def process_settings(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'settings')
 async def process_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await state.clear()
     uid = callback.from_user.id
     accounts = len(await accs_action.get_user_accounts(uid)) or '0'
@@ -57,6 +58,7 @@ async def process_settings(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == 'back_to_settings')
 async def back_to_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await state.clear()
     uid = callback.from_user.id
     accounts = len(await accs_action.get_user_accounts(uid)) or '0'

@@ -74,6 +74,7 @@ async def upload_accs_to_db(path='data/sessions_new'):
 
 @router.callback_query(F.data == 'tg_accs_add', KnownUser())
 async def input_phone(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     logger.info('awaiting phone to add telegram account')
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите номер телефона: ', reply_markup=kb_admin.tg_back())

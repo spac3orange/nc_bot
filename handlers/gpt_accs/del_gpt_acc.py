@@ -16,6 +16,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'gpt_accs_del')
 async def del_gpt_acc(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     api_keys = await db.db_get_all_gpt_accounts()
     #await callback.message.delete()
     await callback.message.answer('Выберите ключ, который будет удален: ',
@@ -24,6 +25,7 @@ async def del_gpt_acc(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('gpt_del_'))
 async def gpt_acc_deleted(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     gpt_key = callback.data.split('_')[-1]
     await db.db_remove_gpt_account(gpt_key)
     #await message.delete()

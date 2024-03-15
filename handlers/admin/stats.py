@@ -10,4 +10,5 @@ router.message.filter(
 
 @router.callback_query(F.data == 'admin_stats')
 async def process_admin_stats(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer(f'В разработке.')

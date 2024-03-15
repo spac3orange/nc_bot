@@ -34,6 +34,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'users_settings', IsAdmin(F))
 async def process_users_settings(callback: CallbackQuery):
+    await callback.answer()
     users = await db.db_get_users()
     users_list = []
     for uid, name, mon, notif in users:
@@ -65,6 +66,7 @@ async def process_users_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_users_settings')
 async def back_to_users_settings(callback: CallbackQuery):
+    await callback.answer()
     users = await db.db_get_users()
     users_list = []
     for uid, name, mon, notif in users:
@@ -90,10 +92,12 @@ async def back_to_users_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'users_settings')
 async def inv_users_settings(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('Извините, функция доступна только администратору.')
 
 @router.callback_query(F.data == 'users_add')
 async def process_users_add(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await callback.message.answer('Введите id и ник пользователя без символа "@" через запятую: ')
     await state.set_state(UsersAddState.input_creds)
 
@@ -113,6 +117,7 @@ async def user_add_to_db(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'users_del')
 async def process_users_del(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     users = await db.db_get_users()
     users_list = []
     for user in users:
@@ -123,6 +128,7 @@ async def process_users_del(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('users_del_'))
 async def delete_from_db(callback: CallbackQuery):
+    await callback.answer()
     user_name = callback.data.split('_')[-1].strip()
 
     await db.db_delete_user(user_name)

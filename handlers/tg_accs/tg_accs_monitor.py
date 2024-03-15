@@ -21,6 +21,7 @@ async def acc_in_table(phone):
 
 @router.callback_query(F.data == 'tg_accs_monitor', KnownUser())
 async def input_monitor(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     logger.info('awaiting acc to set monitor')
     accounts = await accs_action.db_get_all_tg_accounts()
@@ -33,6 +34,7 @@ async def input_monitor(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('account_monitor'))
 async def set_monitor_acc(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     acc = callback.data.split('_')[-1]
     await accs_action.db_remove_tg_account(acc)

@@ -14,6 +14,7 @@ router.message.filter(
 @router.callback_query(F.data == 'groups_promts')
 async def promt_choose_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     uid = callback.from_user.id
     groups = await db.db_get_all_telegram_channels(uid)
     await callback.message.answer('Выберите канал: ', reply_markup=kb_admin.generate_group_keyboard_tp(groups,
@@ -23,6 +24,7 @@ async def promt_choose_group(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith('promts'))
 async def group_promts(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     group = callback.data.split('[[')[-1]
     await state.update_data(group_name=group)
     promt = await db.db_get_promts_for_group(group) or 'Нет'
@@ -35,6 +37,7 @@ async def group_promts(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == 'group_edit_promt', KnownUser())
 async def set_promt(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     await state.update_data(message_id=callback.message.message_id)
     data = await state.get_data()
     await callback.message.answer(f'Пожалуйста введите новый промт для группы: {data["group_name"]}',

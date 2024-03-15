@@ -65,6 +65,7 @@ async def send_acc_info(acc, callback, user_id=None) -> None:
 
 @router.callback_query(F.data == 'tg_accs_status', KnownUser())
 async def get_acc_info(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     uid = callback.from_user.id
     logger.info('getting info about TG accounts')
     await callback.message.answer('Запрашиваю информацию о подключенных аккаунтах...⏳')

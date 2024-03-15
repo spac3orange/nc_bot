@@ -25,6 +25,7 @@ async def get_full_history(uid):
 
 @router.callback_query(F.data == 'get_history', KnownUser())
 async def get_history(callback: CallbackQuery):
+    await callback.answer()
     uid = 462813109
     history_path = f'history/history_{uid}.txt'
     try:
@@ -53,6 +54,7 @@ async def get_history(callback: CallbackQuery):
 
 @router.callback_query(F.data.startswith('delete_comment///'))
 async def process_comm_del(callback: CallbackQuery):
+    await callback.answer()
     print(callback.data.split('///'))
     data = callback.data.split('///')
     group_id, acc, comment_id = data[1], data[2], data[3]

@@ -18,6 +18,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'monitor_settings')
 async def monitor_settings(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('<b>Глобальные настройки мониторинга</b>',
                                   reply_markup=kb_admin.monitoring_settings(),
                                   parse_mode='HTML')
@@ -25,6 +26,7 @@ async def monitor_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'monitoring_start', KnownUser())
 async def monitoring_start(callback: CallbackQuery):
+    await callback.answer()
     try:
         await callback.message.answer('Мониторинг запущен.')
         await monitor.start_monitoring()
@@ -36,6 +38,7 @@ async def monitoring_start(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'monitoring_stop', KnownUser())
 async def monitoring_stop(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('Мониторинг остановлен.')
     await monitor.stop_monitoring()
 

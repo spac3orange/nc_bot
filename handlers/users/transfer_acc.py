@@ -15,6 +15,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'transfer_acc')
 async def transfer_acc(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     users = await db.db_get_users()
     operation = 'transfer_acc'
     users_list = []
@@ -26,6 +27,7 @@ async def transfer_acc(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('users_transfer_acc_'))
 async def choose_accs_to_transfer(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     user_name = callback.data.split('_')[-1]
     user_id = await db.get_user_id_by_username(user_name)
     user_info = await db.get_user_info(user_id)

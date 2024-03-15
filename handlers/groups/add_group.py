@@ -81,6 +81,7 @@ async def all_accs_join_channel(message, group_link):
 
 @router.callback_query(F.data == 'groups_add', KnownUser())
 async def input_channel(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     await callback.message.answer('Пожалуйста, введите ссылку на канал в поддерживаемом формате:\n\n'
                                   'Пример:\n@channel_name\nhttps://t.me/channel_name',

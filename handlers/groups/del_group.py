@@ -12,6 +12,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'groups_del', KnownUser())
 async def del_input_group(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     uid = callback.from_user.id
     groups = await db.db_get_all_telegram_channels(uid)
@@ -20,6 +21,7 @@ async def del_input_group(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('delete[['))
 async def group_triggers(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     group = callback.data.split('[[')[-1]
     await db.db_remove_telegram_group(group)

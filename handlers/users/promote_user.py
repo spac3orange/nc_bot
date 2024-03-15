@@ -36,6 +36,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'promote_user')
 async def promote_user(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     users = await db.db_get_users()
     operation = 'promote'
     users_list = []
@@ -48,6 +49,7 @@ async def promote_user(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data.startswith('users_promote__'))
 async def name_for_promote(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     user_name = callback.data.split('__')[-1]
     user_id = await db.get_user_id_by_username(user_name)
     user_info = await db.get_user_info(user_id)

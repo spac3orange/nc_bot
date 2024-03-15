@@ -22,6 +22,7 @@ async def gpt_acc_in_table(phone):
 
 @router.callback_query(F.data == 'gpt_accs_info')
 async def get_info_gpt_accs(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     logger.info('awaiting info about gpt accs')
     #await callback.message.delete()
     await callback.message.answer('Запрашиваю информацию о API ключах...')

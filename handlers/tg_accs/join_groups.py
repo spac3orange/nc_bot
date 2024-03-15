@@ -13,6 +13,7 @@ router = Router()
 
 @router.callback_query(F.data == 'tg_accs_join_groups')
 async def accs_join_groups(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     accounts = await accs_action.db_get_all_tg_accounts()
     monitor = await accs_action.db_get_monitor_account()

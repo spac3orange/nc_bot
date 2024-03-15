@@ -16,6 +16,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'monitoring_start_users', KnownUser())
 async def monitoring_start(callback: CallbackQuery):
+    await callback.answer()
     try:
         uid = callback.from_user.id
         await db.toggle_monitoring_status(uid, True)
@@ -28,6 +29,7 @@ async def monitoring_start(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'monitoring_stop_users', KnownUser())
 async def monitoring_stop(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     await db.toggle_monitoring_status(uid, False)
     await callback.message.answer('Статус: <b>Выключен🔴</b>', parse_mode='HTML')

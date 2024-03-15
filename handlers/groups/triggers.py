@@ -14,6 +14,7 @@ router.message.filter(
 @router.callback_query(F.data == 'groups_triggers', KnownUser())
 async def trigger_choose_group(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     uid = callback.from_user.id
     groups = await db.db_get_all_telegram_channels(uid)
     await callback.message.answer('Выберите канал: ', reply_markup=kb_admin.generate_group_keyboard_tp(groups,
@@ -23,6 +24,7 @@ async def trigger_choose_group(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data.startswith('triggers'))
 async def group_triggers(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     group = callback.data.split('[[')[-1]
     await state.update_data(group_name=group)
     triggers = await db.db_get_triggers_for_group(group) or 'Нет'
@@ -35,6 +37,7 @@ async def group_triggers(callback: CallbackQuery, state: FSMContext):
 @router.callback_query(F.data == 'group_add_triggers')
 async def add_triggers(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     await callback.message.answer('Введите добавляемые триггеры через запятую:')
     await state.set_state(Triggers.add_trigger)
 
@@ -52,6 +55,7 @@ async def triggers_added(message: Message, state: FSMContext):
 @router.callback_query(F.data == 'group_del_triggers')
 async def del_triggers(callback: CallbackQuery, state: FSMContext):
     #await callback.message.delete()
+    await callback.answer()
     await callback.message.answer('Введите удаляемые триггеры через запятую:')
     await state.set_state(Triggers.del_trigger)
 

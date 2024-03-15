@@ -80,6 +80,7 @@ async def process_license(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'start_accept_license')
 async def process_start(callback: CallbackQuery):
+    await callback.answer()
     uid, uname = callback.from_user.id, callback.from_user.username
     license_applied[uid] = True
 
@@ -109,6 +110,7 @@ async def process_start(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_main')
 async def back_to_main(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     uid = callback.from_user.id
     user_monitoring_status = await db.get_monitoring_status(uid)
     await state.clear()

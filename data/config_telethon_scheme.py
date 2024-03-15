@@ -133,7 +133,8 @@ async def monitor_settings(session):
             for user in active_users:
                 full_list = await db.get_one_user_groups_and_triggers(user)
                 splitted_list = await split_user_groups_and_triggers(full_list, len(monitors))
-
+                print(f'FULL LIST\n{pprint(full_list)}')
+                print(f'SPLITTED LIST\n {pprint(splitted_list)}')
                 for mon, channels_dict in zip(monitors, splitted_list):
                     mon_session = TelethonConnect(mon)
                     task = asyncio.create_task(mon_session.monitor_channels(channels_dict))

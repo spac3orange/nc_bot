@@ -16,6 +16,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'pro_settings', ~BasicSub())
 async def process_pro_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await state.clear()
     uid = callback.from_user.id
     groups = await db.db_get_all_telegram_channels(uid)
@@ -38,4 +39,5 @@ async def process_pro_settings(callback: CallbackQuery, state: FSMContext):
 
 @router.callback_query(F.data == 'pro_settings')
 async def process_pro_settings_basic(callback: CallbackQuery):
+    await callback.answer()
     await callback.message.answer('Извините, этот раздел не доступен для пользователей с бесплатной подпиской')

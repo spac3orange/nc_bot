@@ -10,6 +10,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'groups_info', KnownUser())
 async def get_all_user_channel_info(callback: CallbackQuery):
+    await callback.answer()
     uid = callback.from_user.id
     channels = await db.db_get_all_telegram_channels(uid)
     channels_ids = await db.db_get_all_telegram_ids(uid)

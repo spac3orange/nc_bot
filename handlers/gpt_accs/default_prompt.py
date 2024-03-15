@@ -14,6 +14,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'change_default_prompt')
 async def process_default_promt(callback: CallbackQuery):
+    await callback.answer()
     default_promt = await default_prompts_action.get_all_default_prompts() or 'Нет'
 
     if default_promt == 'Нет':
@@ -28,6 +29,7 @@ async def process_default_promt(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'def_prompt_add')
 async def process_add_def_prompt(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await callback.message.answer('Введите новый промт: ')
     await state.set_state(states.ChangeDefPromt.add_promt)
 @router.message(states.ChangeDefPromt.add_promt)
@@ -50,6 +52,7 @@ async def def_promt_added(message: Message, state: FSMContext):
 
 @router.callback_query(F.data == 'def_prompt_del')
 async def process_del_def_prompt(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     await state.set_state(states.ChangeDefPromt.del_promt)
     await callback.message.answer('Введите номер промта для удаления: ')
 

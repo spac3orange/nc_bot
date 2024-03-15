@@ -14,6 +14,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'gpt_accs')
 async def gpt_accs_settings(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     gpt_accs = await db.db_get_all_gpt_accounts()
     await callback.message.answer(f'<b>Настройки ChatGPT аккаунтов:</b>\n\n'
@@ -24,6 +25,7 @@ async def gpt_accs_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_gpt')
 async def gpt_accs_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     #await callback.message.delete()
     gpt_accs = await db.db_get_all_gpt_accounts()
     await callback.message.answer(f'<b>Настройки ChatGPT аккаунтов:</b>\n\n'

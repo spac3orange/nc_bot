@@ -11,6 +11,7 @@ router.message.filter(
 
 @router.callback_query(F.data == 'groups_settings', KnownUser())
 async def groups_settings(callback: CallbackQuery):
+    await callback.answer()
     #await callback.message.delete()
     uid = callback.from_user.id
     groups = '\n'.join(await db.db_get_all_telegram_channels(uid))
@@ -25,6 +26,7 @@ async def groups_settings(callback: CallbackQuery):
 
 @router.callback_query(F.data == 'back_to_groups')
 async def back_groups_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
     # await callback.message.delete()
     uid = callback.from_user.id
     groups = '\n'.join(await db.db_get_all_telegram_channels(uid))
