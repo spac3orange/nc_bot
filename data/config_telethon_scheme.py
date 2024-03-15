@@ -126,9 +126,10 @@ async def monitor_settings(session):
                 splitted_list = await split_user_groups_triggers(full_list, len(monitors))
                 print(f'FULL LIST\n{full_list}')
                 print(f'SPLITTED LIST\n {splitted_list}')
-                for mon, channels_dict in zip(monitors, full_list):
+                for mon, (uid, channnels) in zip(monitors, full_list.items()):
                     print(f'mon - {mon}')
                     print(f'channels_dict - {channels_dict}')
+                    channels_dict = [{uid:channnels}]
                     continue
                     mon_session = TelethonConnect(mon)
                     task = asyncio.create_task(mon_session.monitor_channels(channels_dict))
