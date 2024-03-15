@@ -131,9 +131,8 @@ async def monitor_settings(session):
                 for mon, ch_dict in zip(monitors, splitted_list):
                     print(f'mon - {mon}')
                     print(f'channels_dict - {ch_dict.items()}')
-                    continue
                     mon_session = TelethonConnect(mon)
-                    task = asyncio.create_task(mon_session.monitor_channels(channels_dict))
+                    task = asyncio.create_task(mon_session.monitor_channels(**ch_dict))
                     logger.info(f'monitor {mon} successfully set')
                     await asyncio.sleep(5)
 
