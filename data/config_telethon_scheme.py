@@ -47,6 +47,26 @@ async def split_user_groups_triggers(user_id: int):
 
     return dict1, dict2
 
+async def split_user_groups_and_triggers(user_groups_triggers_dict: Dict[int, Dict[Tuple[str, str], str]], num_splits: int) -> list:
+    """
+    Splits the user_groups_triggers_dict into the specified number of dictionaries while maintaining the same structure.
+    """
+    total_users = len(user_groups_triggers_dict)
+    num_users_per_split = total_users // num_splits
+    remainder = total_users % num_splits
+
+    splits = []
+    start_index = 0
+    for i in range(num_splits):
+        num_users = num_users_per_split + (1 if i < remainder else 0)
+        end_index = start_index + num_users
+        split_dict = {user_id: user_groups_triggers_dict[user_id] for user_id in list(user_groups_triggers_dict.keys())[start_index:end_index]}
+        splits.append(split_dict)
+        start_index = end_index
+
+    return splits
+
+
 async def extract_linked_chat_id(data):
     # Функция для рекурсивного обхода всех элементов словаря
     async def traverse_dict(dictionary):
@@ -103,46 +123,57 @@ async def monitor_settings(session):
         return
 
     active_users = await db.get_monitoring_user_ids()
-    accounts = await accs_action.db_get_monitor_account()
-    print(f'мониторов - {len(accounts)}')
+    monitors = await accs_action.db_get_monitor_account()
 
-    if len(accounts) > 1:
+    print(f'мониторов - {len(monitors)}')
+
+    if len(monitors) > 1:
         try:
-            session2 = None
-            for account in accounts:
-                if account != session:
-                    session2 = TelethonConnect(account)
-                    logger.info('session2 sucessfully set')
-                    break
-            print('users with monitoring on:\n', active_users)
+            logger.info(f'users with monitoring on {active_users}')
+            for user in active_users:
+                full_list = await db.get_one_user_groups_and_triggers(user)
+                splitted_list = await split_user_groups_and_triggers(full_list, len(monitors))
 
-            if active_users and session2:
-                monitoring_list = []
-                tasks = []
-                for u in active_users:
-                    l1, l2 = [], []
-                    monitoring_list_p1, monitoring_list_p2 = await db.get_user_groups_and_triggers(u)
-                    l1.append(monitoring_list_p1)
-                    l2.append(monitoring_list_p2)
-                    print(monitoring_list_p1, 'лист1')
-                    print(monitoring_list_p2, 'лист2')
-                    print(f'monitor session 1: {session}, session2: {session2}')
-                    task1 = asyncio.create_task(session.monitor_channels(l1))
-                    await asyncio.sleep(5)
-                    task2 = asyncio.create_task(session2.monitor_channels(l2))
-                    tasks.append(task1)
-                    tasks.append(task2)
+                for mon, channels_dict in zip(monitors, splitted_list):
+                    mon_session = TelethonConnect(mon)
+                    task = asyncio.create_task(mon_session.monitor_channels(channels_dict))
+                    logger.info(f'monitor {mon} successfully set')
 
-                await asyncio.gather(*tasks)
-                logger.info('monitoring completed with 2 sessions')
-            else:
-                logger.error('No users to monitor')
-                logger.error('No accounts to monitor')
+
+            # for account in accounts:
+            #     if account != session:
+            #         session2 = TelethonConnect(account)
+            #         logger.info('session2 sucessfully set')
+            #         break
+            # print('users with monitoring on:\n', active_users)
+            #
+            # if active_users and session2:
+            #     monitoring_list = []
+            #     tasks = []
+            #     for u in active_users:
+            #         l1, l2 = [], []
+            #         monitoring_list_p1, monitoring_list_p2 = await db.get_user_groups_and_triggers(u)
+            #         l1.append(monitoring_list_p1)
+            #         l2.append(monitoring_list_p2)
+            #         print(monitoring_list_p1, 'лист1')
+            #         print(monitoring_list_p2, 'лист2')
+            #         print(f'monitor session 1: {session}, session2: {session2}')
+            #         task1 = asyncio.create_task(session.monitor_channels(l1))
+            #         await asyncio.sleep(5)
+            #         task2 = asyncio.create_task(session2.monitor_channels(l2))
+            #         tasks.append(task1)
+            #         tasks.append(task2)
+            #
+            #     await asyncio.gather(*tasks)
+            #     logger.info('monitoring completed with 2 sessions')
+            # else:
+            #     logger.error('No users to monitor')
+            #     logger.error('No accounts to monitor')
         except Exception as e:
             logger.error(e)
             print(e)
     else:
-        print('users with monitoring on:\n', active_users)
+        logger.info('users with monitoring on:\n', active_users)
         if active_users:
             monitoring_list = []
             for u in active_users:
