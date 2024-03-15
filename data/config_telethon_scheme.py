@@ -36,32 +36,23 @@ api_id = env.int('API_ID')
 api_hash = env.str('API_HASH')
 
 
-async def split_user_groups_triggers(user_id: int):
-    user_groups_triggers_dict = await db.get_user_groups_and_triggers(user_id)
-    dict_items = list(user_groups_triggers_dict.items())
-    split_index = math.ceil(len(dict_items) / 2)
-    l1 = []
-    l2 = []
-    dict1 = l1.append(dict(dict_items[:split_index]))
-    dict2 = l2.append(dict(dict_items[split_index:]))
+import math
 
-    return dict1, dict2
-
-async def split_user_groups_and_triggers(user_groups_triggers_dict: Dict[int, Dict[Tuple[str, str], str]], num_splits: int) -> list:
-    """
-    Splits the user_groups_triggers_dict into the specified number of dictionaries while maintaining the same structure.
-    """
-    total_users = len(user_groups_triggers_dict)
-    num_users_per_split = total_users // num_splits
-    remainder = total_users % num_splits
+async def split_user_groups_triggers(user_groups_triggers_dict: dict, num_splits: int):
+    user_id, inner_dict = next(iter(user_groups_triggers_dict.items()))  # Получаем user_id и вложенный словарь
+    dict_items = list(inner_dict.items())  # Получаем список кортежей ключ-значение из вложенного словаря
+    total_items = len(dict_items)
+    num_items_per_split = total_items // num_splits
+    remainder = total_items % num_splits
 
     splits = []
     start_index = 0
     for i in range(num_splits):
-        num_users = num_users_per_split + (1 if i < remainder else 0)
-        end_index = start_index + num_users
-        split_dict = {user_id: user_groups_triggers_dict[user_id] for user_id in list(user_groups_triggers_dict.keys())[start_index:end_index]}
-        splits.append(split_dict)
+        num_items = num_items_per_split + (1 if i < remainder else 0)
+        end_index = start_index + num_items
+        split_inner_dict = dict(dict_items[start_index:end_index])
+        split_user_groups_triggers_dict = {user_id: split_inner_dict}  # Формируем словарь с вложенным словарем и текущим user_id
+        splits.append(split_user_groups_triggers_dict)
         start_index = end_index
 
     return splits
@@ -132,7 +123,7 @@ async def monitor_settings(session):
             logger.info(f'users with monitoring on {active_users}')
             for user in active_users:
                 full_list = await db.get_one_user_groups_and_triggers(user)
-                splitted_list = await split_user_groups_and_triggers(full_list, len(monitors))
+                splitted_list = await split_user_groups_triggers(full_list, len(monitors))
                 print(f'FULL LIST\n{pprint(full_list)}')
                 print(f'SPLITTED LIST\n {pprint(splitted_list)}')
                 for mon, channels_dict in zip(monitors, splitted_list):
