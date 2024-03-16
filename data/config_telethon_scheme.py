@@ -431,8 +431,8 @@ class TelethonConnect:
                                         if len(message.message) <= 100:
                                             logger.warning('Message skipped: too short')
                                             continue
-                                        if random.random() < 0.3:
-                                            logger.warning('Message skipped: random moment')
+                                        if random.random() < 0.5:
+                                            logger.warning('Message skipped: random')
                                             continue
                                         approved_messages.append((user_id, channel_name, message))
 
