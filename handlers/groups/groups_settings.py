@@ -18,7 +18,7 @@ async def groups_settings(callback: CallbackQuery):
 
     await callback.message.answer('<b>Настройки телеграм каналов:</b>\n\n'
                                   f'Ваши каналы:\n'
-                                  f'{groups}\n\n'
+                                  f'{len(groups)}\n\n'
                                   'Информация: /help_channels',
                                   reply_markup=kb_admin.group_settings_btns(),
                                   parse_mode='HTML')
@@ -32,7 +32,7 @@ async def back_groups_settings(callback: CallbackQuery, state: FSMContext):
     groups = '\n'.join(await db.db_get_all_telegram_channels(uid))
     await callback.message.answer('<b>Настройки телеграм каналов:</b>\n\n'
                                   'Ваши каналы:\n'
-                                  f'{groups}\n\n'
+                                  f'{len(groups)}\n\n'
                                   'Информация: /help_channels',
                                   reply_markup=kb_admin.group_settings_btns(),
                                   parse_mode='HTML')
