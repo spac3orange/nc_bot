@@ -563,6 +563,7 @@ class TelethonConnect:
             logger.error(f'Error monitoring channels: {e}')
             print(e)
             await self.client.disconnect()
+            await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
 
 
 class TelethonSendMessages:
