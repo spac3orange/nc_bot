@@ -545,11 +545,13 @@ class TelethonConnect:
                                             comment = await gpt.process_question(gpt_question)
                                     except Exception as e:
                                         logger.error(e)
+                                        await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
                                         continue
                                 if comment:
                                     task = asyncio.create_task(session.send_comments(user_id, channel, message,
                                                                                  acc, comment, notif, promt))
                                 else:
+                                    await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
                                     continue
                             else:
                                 print('Комментарий не сгенерирован')
