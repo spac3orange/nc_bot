@@ -108,7 +108,7 @@ async def process_approve_sub_plan(callback: CallbackQuery):
         comments = 147
     elif plan == '30':
         sub_price = 5000
-        accounts = 5
+        accounts = 1
         comments = 1050
     if user_data:
         if user_data['balance'] >= sub_price:
