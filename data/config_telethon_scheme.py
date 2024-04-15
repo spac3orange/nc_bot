@@ -579,11 +579,13 @@ class TelethonSendMessages:
         try:
             await self.client.connect()
             for ch in channel_list:
+                print(ch)
                 try:
                     # Получение сущности канала
                     channel = await self.client.get_entity(ch)
                     # Запрашиваем полные данные о канале
                     full_channel_info = await self.client(GetFullChannelRequest(channel=channel))
+                    print(full_channel_info)
                     # Доступ к связанной группе, если она есть
                     linked_chat_id = full_channel_info.full_chat.linked_chat_id
                     if linked_chat_id:
