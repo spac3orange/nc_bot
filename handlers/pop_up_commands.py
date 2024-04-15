@@ -46,7 +46,7 @@ async def p_chann_list(message: Message, state: FSMContext):
         # Для примера просто отправим каждый подсписок обратно пользователю
         tasks = []
         for sublist, acc in zip(divided_lists, user_accounts):
-            pprint('sublist:', sublist)
+            print(sublist)
             sess = TelethonSendMessages(acc)
             task = asyncio.create_task(sess.get_channel_linkage(sublist))
             tasks.append(task)
