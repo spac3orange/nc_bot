@@ -12,7 +12,7 @@ from environs import Env
 from telethon import TelegramClient, errors, functions
 from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
-from telethon.tl.functions.channels import JoinChannelRequest
+from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
 from telethon.tl.functions.messages import GetHistoryRequest
 from telethon.tl.functions.messages import SendMessageRequest
 from telethon.tl.functions.photos import DeletePhotosRequest
@@ -27,7 +27,7 @@ from database import db, default_prompts_action, accs_action
 from .chat_gpt import AuthOpenAI
 from .proxy_config import proxy
 from .restrcited_words import words_in_post, words_in_generated_message
-from typing import Tuple, Dict
+from typing import Tuple, Dict, List
 
 
 env = Env()
@@ -574,6 +574,34 @@ class TelethonSendMessages:
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+
+    async def get_channel_linkage(self, channel_list: str):
+        try:
+            await self.client.connect()
+            for ch in channel_list:
+                try:
+                    # Получение сущности канала
+                    channel = await self.client.get_entity(ch)
+                    # Запрашиваем полные данные о канале
+                    full_channel_info = await self.client(GetFullChannelRequest(channel=channel))
+                    # Доступ к связанной группе, если она есть
+                    linked_chat_id = full_channel_info.full_chat.linked_chat_id
+                    if linked_chat_id:
+                        # Если существует ID связанной группы, получаем информацию о группе
+                        linked_chat = await self.client.get_entity(linked_chat_id)
+                        return f"Channel '{channel.title}' is linked with group '{linked_chat.title}'."
+                    else:
+                        return f"Channel '{channel.title}' is not linked with any group."
+                except Exception as e:
+                    logger.error(e)
+                    continue
+
+        except Exception as e:
+            return f"An error occurred: {str(e)}"
+        finally:
+            await self.client.disconnect()
+
+
 
 
     async def delete_comment(self, group_id, comment_id, user_id):

@@ -93,3 +93,7 @@ class BuyAccs(StatesGroup):
 
 class TopAccsShop(StatesGroup):
     input_amount = State()
+
+
+class CheckChannels(StatesGroup):
+    input_list = State()
