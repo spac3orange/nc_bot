@@ -575,8 +575,9 @@ class TelethonSendMessages:
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
-    async def get_channel_linkage(self, channel_list: str):
+    async def get_channel_linkage(self, channel_list: List):
         try:
+            ch_info = {}
             await self.client.connect()
             for ch in channel_list:
                 print(ch)
@@ -596,12 +597,15 @@ class TelethonSendMessages:
                     if linked_chat_id:
                         # Если существует ID связанной группы, получаем информацию о группе
                         linked_chat = await self.client.get_entity(linked_chat_id)
-                        return f"Channel '{channel.title}' is linked with group '{linked_chat.title}'."
+                        ch_info[channel.title] = linked_chat
                     else:
-                        return f"Channel '{channel.title}' is not linked with any group."
+                        ch_info[channel.title] = 'No chat'
+
                 except Exception as e:
                     logger.error(e)
                     continue
+
+            return ch_info
 
         except Exception as e:
             return f"An error occurred: {str(e)}"
