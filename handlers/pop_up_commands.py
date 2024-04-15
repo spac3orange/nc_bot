@@ -27,6 +27,7 @@ async def p_check_chann_list(message: Message, state: FSMContext):
 async def p_chann_list(message: Message, state: FSMContext):
     uid = message.from_user.id
     channels_list = message.text.split()
+    print(channels_list)
     user_accounts = await accs_action.get_user_accounts(uid)
 
     # Количество аккаунтов пользователя
