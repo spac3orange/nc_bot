@@ -8,6 +8,7 @@ from aiogram.fsm.context import FSMContext
 from utils import user_license
 from database import accs_action
 from data.config_telethon_scheme import TelethonConnect, TelethonSendMessages
+from pprint import pprint
 
 router = Router()
 
@@ -43,8 +44,12 @@ async def p_chann_list(message: Message, state: FSMContext):
         if len(channels_list) % num_accounts != 0:
             divided_lists[-1].extend(channels_list[size_of_each_list * num_accounts:])
         # Для примера просто отправим каждый подсписок обратно пользователю
+        tasks = []
         for sublist, acc in zip(divided_lists, user_accounts):
             sess = TelethonSendMessages(acc)
             task = asyncio.create_task(sess.get_channel_linkage(sublist))
+            tasks.append(task)
+        res = await asyncio.gather(tasks)
+        pprint(res)
     else:
         await message.answer('Недостаточно акаунтов.')
