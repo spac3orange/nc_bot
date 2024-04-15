@@ -585,7 +585,7 @@ class TelethonSendMessages:
                     channel = await self.client.get_entity(ch)
                     # Запрашиваем полные данные о канале
                     try:
-                        full_channel_info = await asyncio.wait_for(self.client(GetFullChannelRequest(channel=channel)))
+                        full_channel_info = await asyncio.wait_for(self.client(GetFullChannelRequest(channel=channel)), timeout=5)
                     except asyncio.TimeoutError:
                         logger.error(f'Error retrievieng channel history {ch}')
                         continue
