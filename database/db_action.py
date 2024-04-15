@@ -310,6 +310,7 @@ class Database:
             logger.error(f"Error adding Telegram group to the database: {error}")
         
 
+
     async def db_remove_telegram_group(self, group_name: str) -> None:
         """
         Removes a Telegram group from the database.
