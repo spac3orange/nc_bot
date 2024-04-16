@@ -674,21 +674,12 @@ class TelethonSendMessages:
                 write_history = asyncio.create_task(self.write_history(user_id, acc, channel_name, sent_msg=sent_msg, promt=promt, comment=comment, message=message))
             else:
                 raise Exception('Comment not found')
-
-        except errors.MessageIdInvalidError as e:
-            logger.error(e)
-            print(channel_name)
-            await db.db_remove_telegram_group(channel_name)
-            await self.client.disconnect()
-            write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
-        except errors.UserNotParticipantError as e:
-            logger.error(e)
-            await db.db_remove_telegram_group(channel_name)
-            await self.client.disconnect()
-            write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
         except Exception as e:
             logger.error(f'Error sending comments: {e}')
-            print(e)
+            error_message = str(e)
+            if 'message ID used in the peer was invalid' in error_message:
+                print(channel_name)
+                await db.db_remove_telegram_group(channel_name)
             await self.client.disconnect()
             write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
         finally:
