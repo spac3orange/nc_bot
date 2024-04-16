@@ -675,6 +675,12 @@ class TelethonSendMessages:
             else:
                 raise Exception('Comment not found')
 
+        except errors.MessageIdInvalidError as e:
+            logger.error(e)
+            print(channel_name)
+            await db.db_remove_telegram_group(channel_name)
+            await self.client.disconnect()
+            write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
         except errors.UserNotParticipantError as e:
             logger.error(e)
             await db.db_remove_telegram_group(channel_name)
