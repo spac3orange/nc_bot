@@ -36,7 +36,15 @@ api_id = env.int('API_ID')
 api_hash = env.str('API_HASH')
 
 
-import math
+async def write_to_file(filename, data):
+    with open(filename, 'a', encoding='utf-8') as file:
+        file.write(data + '\n')  # Записываем данные с новой строки
+
+
+# Пример использования функции:
+write_to_file('example.txt', 'Привет, мир!')
+write_to_file('example.txt', 'Это новая строка данных.')
+
 
 async def split_user_groups_triggers(user_groups_triggers_dict: dict, num_splits: int):
     user_id, inner_dict = next(iter(user_groups_triggers_dict.items()))  # Получаем user_id и вложенный словарь
@@ -680,6 +688,12 @@ class TelethonSendMessages:
             if 'message ID used in the peer was invalid' in error_message:
                 print(channel_name)
                 await db.db_remove_telegram_group(channel_name)
+                await write_to_file('deleted_channels.txt', channel_name)
+                print(f'channel {channel_name} removed from db')
+            elif 'You join the discussion group before commenting' in error_message:
+                print(channel_name)
+                await db.db_remove_telegram_group(channel_name)
+                await write_to_file('closed_comments.txt', channel_name)
             await self.client.disconnect()
             write_error = asyncio.create_task(self.write_history(user_id, acc, channel_name, error=e))
         finally:
