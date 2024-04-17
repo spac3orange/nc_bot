@@ -42,6 +42,6 @@ async def get_monitor_status(message: Message):
     if user_monitoring_status:
         await message.answer(f'Статус: <b>Работает🟢</b>', parse_mode='HTML')
     else:
-        await message.answer('Статус: <b>Выключен🔴</b>', parse_mode='HTML')
+        await message.answer('Статус: <b>Работает🟢</b>', parse_mode='HTML')
 
 
