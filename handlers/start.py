@@ -41,7 +41,7 @@ async def process_cancel_command_state(message: Message, state: FSMContext):
 
 @router.message(Command(commands='support'))
 async def get_monitor_status(message: Message):
-    await message.answer(f'<b>Тех. Поддержка</b>: @None\n', parse_mode='HTML')
+    await message.answer(f'<b>Тех. Поддержка</b>: @ykoroii\n', parse_mode='HTML')
     logger.info(f'User @{message.from_user.username} get support.')
 
 
