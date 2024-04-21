@@ -690,7 +690,7 @@ class TelethonSendMessages:
                 await db.db_remove_telegram_group(channel_name)
                 await write_to_file('deleted_channels.txt', channel_name)
                 print(f'channel {channel_name} removed from db')
-            elif 'You join the discussion group before commenting' in error_message:
+            if 'You join the discussion group before commenting' in error_message:
                 print(channel_name)
                 await db.db_remove_telegram_group(channel_name)
                 await write_to_file('closed_comments.txt', channel_name)
