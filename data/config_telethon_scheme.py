@@ -7,9 +7,8 @@ from pprint import pprint
 
 import aiofiles
 import pytz
-import math
 from environs import Env
-from telethon import TelegramClient, errors, functions
+from telethon import TelegramClient, errors, functions, types
 from telethon.errors import UsernameOccupiedError
 from telethon.tl.functions.account import UpdateProfileRequest, UpdateUsernameRequest
 from telethon.tl.functions.channels import JoinChannelRequest, GetFullChannelRequest
@@ -415,6 +414,7 @@ class TelethonConnect:
                     for user_id, channels in item.items():
                         for (channel_name, channel_id), keywords in channels.items():
                             try:
+                                await asyncio.sleep(0.2)
                                 utc_now = datetime.now(pytz.utc)
                                 offset_date = utc_now - timedelta(minutes=3)
                                 messages = await asyncio.wait_for(self.check_channel(channel_name), timeout=6)
@@ -436,10 +436,10 @@ class TelethonConnect:
                                             logger.warning('Post skipped: restricted words found')
                                             continue
                                         logger.info('Found post without triggers')
-                                        if len(message.message) <= 100:
+                                        if len(message.message) <= 200:
                                             logger.warning('Message skipped: too short')
                                             continue
-                                        if random.random() < 0.3:
+                                        if random.random() < 0.5:
                                             logger.warning('Message skipped: random')
                                             continue
                                         approved_messages.append((user_id, channel_name, message))
@@ -582,6 +582,25 @@ class TelethonSendMessages:
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
         self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+
+    #   TEST FUNC
+    async def send_story(self, username, file_path):
+        with self.client:
+            me = await self.client.get_me()
+            username = me.username  # Получаем username
+            file = await self.client.upload_file(file_path)
+            result = await self.client(functions.stories.SendStoryRequest(
+                peer=username,
+                media=types.InputMediaUploadedPhoto(
+                    file=file,
+                    spoiler=False  # Выключаем спойлер, так как хотим видимость для всех
+                ),
+                privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
+                pinned=True,
+                noforwards=False,  # Разрешаем пересылку
+                period=48
+            ))
+            print(result.stringify())  # Вывод результата для отладки
 
     async def get_channel_linkage(self, channel_list: List):
         try:
@@ -897,3 +916,5 @@ class TelethonSendMessages:
             logger.error(f'Error changing profile photo: {e}')
             await self.client.disconnect()
             return False
+
+
