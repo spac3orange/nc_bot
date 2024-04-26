@@ -22,3 +22,5 @@ async def p_post_stories(message: Message):
     for acc in accs:
         sess = TelethonSendMessages(acc)
         await sess.send_story()
+        print('completed')
+        break
