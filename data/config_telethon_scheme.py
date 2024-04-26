@@ -583,6 +583,7 @@ class TelethonSendMessages:
     #   TEST FUNC
     async def send_story(self, username, file_path):
         with self.client:
+            file_path = 'stories/1.JPG'
             me = await self.client.get_me()
             username = me.username  # Получаем username
             file = await self.client.upload_file(file_path)
