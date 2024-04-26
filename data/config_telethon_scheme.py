@@ -40,11 +40,6 @@ async def write_to_file(filename, data):
         file.write(data + '\n')  # Записываем данные с новой строки
 
 
-# Пример использования функции:
-write_to_file('example.txt', 'Привет, мир!')
-write_to_file('example.txt', 'Это новая строка данных.')
-
-
 async def split_user_groups_triggers(user_groups_triggers_dict: dict, num_splits: int):
     user_id, inner_dict = next(iter(user_groups_triggers_dict.items()))  # Получаем user_id и вложенный словарь
     dict_items = list(inner_dict.items())  # Получаем список кортежей ключ-значение из вложенного словаря
@@ -300,7 +295,8 @@ class TelethonConnect:
         self.api_id = api_id
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
         print(f'api id: {self.api_id} | api hash: {self.api_hash}')
 
 
@@ -581,7 +577,8 @@ class TelethonSendMessages:
         self.api_id = api_id
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
     #   TEST FUNC
     async def send_story(self, username, file_path):

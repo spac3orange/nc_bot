@@ -154,12 +154,14 @@ async def add_few_channels(message: Message, state: FSMContext):
     await message.answer('Введите список каналов:')
     await state.set_state(AddFewChannels.input_list)
 
+
 @router.message(AddFewChannels.input_list)
 async def process_add_few_channels(message: Message, state: FSMContext):
     uid = message.from_user.id
     channel_list = message.text.split('\n')
     print(channel_list)
     for channel in channel_list:
+        await asyncio.sleep(0.7)
         try:
             channel = await normalize_channel_link(channel)
             channel_id = await get_channel_id(channel)
