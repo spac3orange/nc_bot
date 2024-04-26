@@ -596,7 +596,6 @@ class TelethonSendMessages:
                 privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
                 pinned=True,
                 noforwards=False,  # Разрешаем пересылку
-                period=48
             ))
             print(result.stringify())  # Вывод результата для отладки
 
