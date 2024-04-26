@@ -295,8 +295,8 @@ class TelethonConnect:
         self.api_id = api_id
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
-        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
         print(f'api id: {self.api_id} | api hash: {self.api_hash}')
 
 
@@ -435,7 +435,7 @@ class TelethonConnect:
                                         if len(message.message) <= 200:
                                             logger.warning('Message skipped: too short')
                                             continue
-                                        if random.random() < 0.5:
+                                        if random.random() < 0.3:
                                             logger.warning('Message skipped: random')
                                             continue
                                         approved_messages.append((user_id, channel_name, message))
