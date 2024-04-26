@@ -581,7 +581,7 @@ class TelethonSendMessages:
         # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
     #   TEST FUNC
-    async def send_story(self, username, file_path):
+    async def send_story(self, username=None, file_path=None):
         with self.client:
             file_path = 'stories/1.JPG'
             me = await self.client.get_me()
