@@ -2,6 +2,7 @@ import asyncio
 import datetime
 import random
 import re
+import os
 from datetime import timedelta, datetime
 from pprint import pprint
 
@@ -583,21 +584,27 @@ class TelethonSendMessages:
     #   TEST FUNC
     async def send_story(self, username=None, file_path=None):
         async with self.client:
-            file_path = 'stories/1.JPG'
             me = await self.client.get_me()
             username = me.username  # Получаем username
-            file = await self.client.upload_file(file_path)
-            result = await self.client(functions.stories.SendStoryRequest(
-                peer=username,
-                media=types.InputMediaUploadedPhoto(
-                    file=file,
-                    spoiler=False  # Выключаем спойлер, так как хотим видимость для всех
-                ),
-                privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
-                pinned=True,
-                noforwards=False,  # Разрешаем пересылку
-            ))
-            print(result.stringify())  # Вывод результата для отладки
+            folder_path = 'stories'
+            files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+            print(f'files: {files}')
+            for file_name in files:
+                await asyncio.sleep(5)
+                file_path = os.path.join(folder_path, file_name)
+                file = await self.client.upload_file(file_path)
+                result = await self.client(functions.stories.SendStoryRequest(
+                    peer=username,
+                    media=types.InputMediaUploadedPhoto(
+                        file=file,
+                        spoiler=False  # Выключаем спойлер, так как хотим видимость для всех
+                    ),
+                    privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
+                    pinned=True,
+                    noforwards=False,  # Разрешаем пересылку
+                ))
+                print(result.stringify())  # Вывод результата для отладки
+                logger.warning(f'{username} story {file_name} uploaded')
 
     async def get_channel_linkage(self, channel_list: List):
         try:
