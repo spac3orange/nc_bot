@@ -12,6 +12,7 @@ from filters.known_user import KnownUser
 
 router = Router()
 router.message.filter(
+    KnownUser()
 )
 
 license_applied = dict()
