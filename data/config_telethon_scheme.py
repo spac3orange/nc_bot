@@ -179,6 +179,7 @@ async def monitor_settings(session):
         else:
             logger.warning('No users to monitor')
 
+
 async def check_send_comments_running():
     tasks = asyncio.all_tasks()
     for task in tasks:
