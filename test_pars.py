@@ -22,6 +22,7 @@ async def process_channels(session_files, channel_urls):
         for session_file in session_files:
             client = TelegramClient(session_file, api_id, api_hash)
             await client.connect()
+            print(client.is_connected())
             request_count = 0
             for url in channel_urls:
                 if request_count >= 200:  # Предотвращаем ошибку из-за ограничения в 200 запросов
@@ -237,7 +238,7 @@ channel_urls = [
     "https://t.me/likecentre_live"
 ]
 
-session_files = ['+7 993 624 1435.session', '+7 993 911 5398.session']  # Имена файлов сессий
+session_files = ['data/telethon_sessions/+7 993 624 1435.session', 'data/telethon_sessions/+7 993 911 5398.session']  # Имена файлов сессий
 
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
 env = Env()
