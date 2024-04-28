@@ -236,7 +236,7 @@ channel_urls = [
     "https://t.me/likecentre_live"
 ]
 
-session_files = ["session1.session", "session2.session", "session3.session"]  # Имена файлов сессий
+session_files = ['+7 993 624 1435.session', '+7 993 911 5398.session']  # Имена файлов сессий
 
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
 env = Env()
