@@ -10,6 +10,7 @@ async def fetch_channel_info(client, channel_url):
         full_channel = await client(GetFullChannelRequest(channel))
         # Проверяем, есть ли linked chat (это может быть supergroup, привязанная к каналу)
         has_linked_chat = hasattr(full_channel.full_chat, 'linked_chat_id') and full_channel.full_chat.linked_chat_id is not None
+        print(f'l chat: {has_linked_chat}')
         return has_linked_chat
     except Exception as e:
         print(f"Error fetching {channel_url}: {e}")
