@@ -241,8 +241,8 @@ session_files = ['+7 993 624 1435.session', '+7 993 911 5398.session']  # Име
 
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
 env = Env()
-api_id = env('API_ID')
-api_hash = env('API_HASH')
+api_id = 20068140
+api_hash = '3080f8e9847efa49bbb7033714b6f7d2'
 
 # Запуск асинхронной обработки
 asyncio.run(process_channels(session_files, channel_urls))
