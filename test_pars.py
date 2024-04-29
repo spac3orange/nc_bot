@@ -66,7 +66,7 @@ async def process_get_recs(session_files: List, channel_urls: List):
                 file_name = f"{channel_username}_recs.json"
 
                 # Сохранение данных в JSON файл
-                with open(file_name, 'w', encoding='utf-8') as json_file:
+                with open(f'recs/{file_name}', 'w', encoding='utf-8') as json_file:
                     json.dump(channels_info, json_file, ensure_ascii=False, indent=4)
                 print(f'recs saved to {file_name}')
         await client.disconnect()
