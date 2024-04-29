@@ -328,4 +328,4 @@ api_hash = env('API_HASH')
 # Запуск асинхронной обработки
 # asyncio.run(process_channels(session_files, channel_urls))
 table_name = input("Введите название для таблицы Excel: ")
-asyncio.run(process_get_recs(session_files, channel_urls))
+asyncio.run(process_get_recs(session_files, grecs_urls))
