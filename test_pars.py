@@ -1,7 +1,12 @@
 import asyncio
 from telethon import TelegramClient
 from telethon.tl.functions.channels import GetFullChannelRequest
-from environs import Env
+from telethon import functions
+from environs import Env, load_dotenv
+from typing import List
+import json
+env = Env()
+env.read_env(path="data/.env", recurse=False)
 
 
 async def fetch_channel_info(client, channel_url):
@@ -17,6 +22,46 @@ async def fetch_channel_info(client, channel_url):
         return False
 
 
+async def fetch_chann_recs(client, channel_url: str):
+    try:
+        channel = await client.get_entity(channel_url)
+        result = client(functions.channels.GetChannelRecommendationsRequest(
+            channel=channel
+        ))
+        print(result.stringify())
+        print(type(result))
+        return result
+    except Exception as e:
+        print(f"Error fetching {channel_url} recomendations: {e}")
+        return False
+
+
+async def process_get_recs(session_files: List, channel_urls: List):
+    for session_file in session_files:
+        client = TelegramClient(session_file, api_id, api_hash)
+        await client.connect()
+        for url in channel_urls:
+            recs = await fetch_chann_recs(client, url)
+            if recs:
+                # Преобразование результатов в словарь, если это возможно
+                if hasattr(recs, 'to_dict'):
+                    recs_dict = recs.to_dict()
+                else:
+                    recs_dict = {'data': str(recs)}
+
+                # Определение имени файла на основе URL или ID канала
+                channel_username = url.split('/')[-1] if '/' in url else url
+                file_name = f"{channel_username}_recs.json"
+
+                # Сохранение данных в JSON файл
+                with open(file_name, 'w', encoding='utf-8') as json_file:
+                    json.dump(recs_dict, json_file, ensure_ascii=False, indent=4)
+
+                print(f"Recommendations for {url} saved to {file_name}")
+                break
+        await client.disconnect()
+
+
 async def process_channels(session_files, channel_urls):
     with open('results.txt', 'w') as file:
         for session_file in session_files:
@@ -28,7 +73,7 @@ async def process_channels(session_files, channel_urls):
                 if request_count >= 200:  # Предотвращаем ошибку из-за ограничения в 200 запросов
                     break
                 has_link = await fetch_channel_info(client, url)
-                file.write(f"{has_link}\n")
+                file.write(f"{url},{has_link}\n")
                 request_count += 1
                 await asyncio.sleep(1)
             await client.disconnect()
@@ -36,6 +81,7 @@ async def process_channels(session_files, channel_urls):
                 continue
             else:
                 break
+
 
 # Список URL каналов и файлов сессий
 channel_urls = [
@@ -241,9 +287,9 @@ channel_urls = [
 session_files = ['data/telethon_sessions/+7 993 624 1435.session', 'data/telethon_sessions/+7 993 911 5398.session']  # Имена файлов сессий
 
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
-env = Env()
-api_id = 20068140
-api_hash = '3080f8e9847efa49bbb7033714b6f7d2'
+api_id = env('API_ID')
+api_hash = env('API_HASH')
 
 # Запуск асинхронной обработки
-asyncio.run(process_channels(session_files, channel_urls))
+# asyncio.run(process_channels(session_files, channel_urls))
+asyncio.run(process_get_recs(session_files, channel_urls))

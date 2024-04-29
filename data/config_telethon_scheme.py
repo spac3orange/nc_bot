@@ -591,22 +591,29 @@ class TelethonSendMessages:
             files = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
             files.sort(key=lambda x: int(x.split('.')[0]))
             print(f'files: {files}')
+            up_cnt = 0
             for file_name in files:
-                await asyncio.sleep(5)
-                file_path = os.path.join(folder_path, file_name)
-                file = await self.client.upload_file(file_path)
-                result = await self.client(functions.stories.SendStoryRequest(
-                    peer=username,
-                    media=types.InputMediaUploadedPhoto(
-                        file=file,
-                        spoiler=False  # Выключаем спойлер, так как хотим видимость для всех
-                    ),
-                    privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
-                    pinned=True,
-                    noforwards=False,  # Разрешаем пересылку
-                ))
-                print(result.stringify())  # Вывод результата для отладки
-                logger.warning(f'{username} story {file_name} uploaded')
+                try:
+                    await asyncio.sleep(5)
+                    file_path = os.path.join(folder_path, file_name)
+                    file = await self.client.upload_file(file_path)
+                    result = await self.client(functions.stories.SendStoryRequest(
+                        peer=username,
+                        media=types.InputMediaUploadedPhoto(
+                            file=file,
+                            spoiler=False  # Выключаем спойлер, так как хотим видимость для всех
+                        ),
+                        privacy_rules=[types.InputPrivacyValueAllowAll()],  # Сторис будет видна всем пользователям
+                        pinned=True,
+                        noforwards=False,  # Разрешаем пересылку
+                    ))
+                    # print(result.stringify())  # Вывод результата для отладки
+                    logger.warning(f'{username} story {file_name} uploaded')
+                    up_cnt += 1
+                    return up_cnt
+                except Exception as e:
+                    logger.error(e)
+
 
     async def get_channel_linkage(self, channel_list: List):
         try:

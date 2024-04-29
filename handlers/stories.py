@@ -22,6 +22,6 @@ async def p_post_stories(message: Message):
     accs = await accs_action.get_user_accounts(uid)
     for acc in accs:
         sess = TelethonSendMessages(acc)
-        await sess.send_story()
-        print('completed')
+        stories_sent = await sess.send_story()
+        print(f'{stories_sent} files uploaded')
     await message.answer('Сторис обновлены')
