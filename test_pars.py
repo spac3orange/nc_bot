@@ -42,12 +42,16 @@ async def process_get_recs(session_files: List, channel_urls: List):
         await client.connect()
         for url in channel_urls:
             recs = await fetch_chann_recs(client, url)
-            if recs:
-                # Преобразование результатов в словарь, если это возможно
-                if hasattr(recs, 'to_dict'):
-                    recs_dict = recs.to_dict()
-                else:
-                    recs_dict = {'data': str(recs)}
+            if recs and hasattr(recs, 'chats'):
+                channels_info = []
+                for chat in recs.chats:
+                    chat_info = {
+                        'id': chat.id,
+                        'username': getattr(chat, 'username', None),
+                        'title': getattr(chat, 'title', None),
+                        'participants_count': getattr(chat, 'participants_count', None)
+                    }
+                    channels_info.append(chat_info)
 
                 # Определение имени файла на основе URL или ID канала
                 channel_username = url.split('/')[-1] if '/' in url else url
@@ -55,12 +59,10 @@ async def process_get_recs(session_files: List, channel_urls: List):
 
                 # Сохранение данных в JSON файл
                 with open(file_name, 'w', encoding='utf-8') as json_file:
-                    json.dump(recs_dict, json_file, ensure_ascii=False, indent=4)
-
-                print(f"Recommendations for {url} saved to {file_name}")
-            break
+                    json.dump(channels_info, json_file, ensure_ascii=False, indent=4)
+                print(f'recs saved to {file_name}')
+                break
         await client.disconnect()
-
 
 async def process_channels(session_files, channel_urls):
     with open('results.txt', 'w') as file:
