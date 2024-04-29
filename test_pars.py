@@ -25,7 +25,7 @@ async def fetch_channel_info(client, channel_url):
 async def fetch_chann_recs(client, channel_url: str):
     try:
         channel = await client.get_entity(channel_url)
-        result = client(functions.channels.GetChannelRecommendationsRequest(
+        result = await client(functions.channels.GetChannelRecommendationsRequest(
             channel=channel
         ))
         print(result.stringify())
