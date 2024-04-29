@@ -58,7 +58,7 @@ async def process_get_recs(session_files: List, channel_urls: List):
                     json.dump(recs_dict, json_file, ensure_ascii=False, indent=4)
 
                 print(f"Recommendations for {url} saved to {file_name}")
-                break
+            break
         await client.disconnect()
 
 
