@@ -4,6 +4,7 @@ from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon import functions
 from environs import Env, load_dotenv
 from typing import List
+import openpyxl
 import json
 env = Env()
 env.read_env(path="data/.env", recurse=False)
@@ -37,21 +38,28 @@ async def fetch_chann_recs(client, channel_url: str):
 
 
 async def process_get_recs(session_files: List, channel_urls: List):
+    seen_ids = set()
+    all_channels_info = []
     for session_file in session_files:
         client = TelegramClient(session_file, api_id, api_hash)
         await client.connect()
         for url in channel_urls:
+            await asyncio.sleep(5)
             recs = await fetch_chann_recs(client, url)
             if recs and hasattr(recs, 'chats'):
                 channels_info = []
                 for chat in recs.chats:
-                    chat_info = {
-                        'id': chat.id,
-                        'username': getattr(chat, 'username', None),
-                        'title': getattr(chat, 'title', None),
-                        'participants_count': getattr(chat, 'participants_count', None)
-                    }
-                    channels_info.append(chat_info)
+                    if chat.id not in seen_ids:  # Проверка на уникальность ID
+                        seen_ids.add(chat.id)
+                        chat_info = {
+                            'id': chat.id,
+                            'username': getattr(chat, 'username', None),
+                            'title': getattr(chat, 'title', None),
+                            'participants_count': getattr(chat, 'participants_count', None),
+                            'has_link': getattr(chat, 'has_link', None)
+                        }
+                        channels_info.append(chat_info)
+                        all_channels_info.append(chat_info)
 
                 # Определение имени файла на основе URL или ID канала
                 channel_username = url.split('/')[-1] if '/' in url else url
@@ -61,8 +69,26 @@ async def process_get_recs(session_files: List, channel_urls: List):
                 with open(file_name, 'w', encoding='utf-8') as json_file:
                     json.dump(channels_info, json_file, ensure_ascii=False, indent=4)
                 print(f'recs saved to {file_name}')
-                break
         await client.disconnect()
+
+        # Спрашиваем название файла для сохранения таблицы
+        # Создание Excel файла с данными
+        workbook = openpyxl.Workbook()
+        sheet = workbook.active
+        sheet.title = table_name
+
+        # Заголовки столбцов
+        columns = ["ID", "username", "title", "participants Count", "has_link"]
+        sheet.append(columns)
+
+        # Добавление данных в таблицу
+        for channel in all_channels_info:
+            row = [channel['id'], channel['username'], channel['title'], channel['participants_count'], channel['has_link']]
+            sheet.append(row)
+
+        # Сохраняем таблицу
+        workbook.save(f"{table_name}.xlsx")
+        print(f"Все данные сохранены в {table_name}.xlsx")
 
 async def process_channels(session_files, channel_urls):
     with open('results.txt', 'w') as file:
@@ -287,6 +313,13 @@ channel_urls = [
 ]
 
 session_files = ['data/telethon_sessions/+7 993 624 1435.session', 'data/telethon_sessions/+7 993 911 5398.session']  # Имена файлов сессий
+grecs_urls = [
+    "https://t.me/maria_volshebnica1",
+    "https://t.me/likeisstrong",
+    "https://t.me/dmdobro",
+    "https://t.me/aschepkovpro",
+    "https://t.me/likecentre_live"
+]
 
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
 api_id = env('API_ID')
@@ -294,4 +327,5 @@ api_hash = env('API_HASH')
 
 # Запуск асинхронной обработки
 # asyncio.run(process_channels(session_files, channel_urls))
+table_name = input("Введите название для таблицы Excel: ")
 asyncio.run(process_get_recs(session_files, channel_urls))
