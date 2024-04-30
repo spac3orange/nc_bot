@@ -609,8 +609,6 @@ class TelethonSendMessages:
                     ))
                     # print(result.stringify())  # Вывод результата для отладки
                     logger.warning(f'{username} story {file_name} uploaded')
-                    up_cnt += 1
-                    return up_cnt
                 except Exception as e:
                     logger.error(e)
 
