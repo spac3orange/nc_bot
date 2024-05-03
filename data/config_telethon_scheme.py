@@ -24,7 +24,7 @@ from telethon.tl.types import InputPhoto
 from data.config_aiogram import aiogram_bot
 from data.logger import logger
 from database import db, default_prompts_action, accs_action
-from .chat_gpt import AuthOpenAI
+from .chat_gpt_new import get_req
 from .proxy_config import proxy
 from .restrcited_words import words_in_post, words_in_generated_message
 from typing import Tuple, Dict, List
@@ -225,7 +225,7 @@ class AuthTelethon:
             return True
 
         except Exception as e:
-            logger.error('Authorization error')
+            logger.error(f'Authorization error: {e}')
             return False
 
 
@@ -523,17 +523,16 @@ class TelethonConnect:
                             else:
                                 pass
                             message_text = message.message
-                            promt = all_promts.get(channel)
-                            promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
-                            if promt == 'Нет':
-                                default_prompts = await default_prompts_action.get_all_default_prompts()
-                                promt = random.choice(default_prompts) + f' {promt_sex}'
-                            else:
-                                promt = promt + f' {promt_sex}'
+                            # promt = all_promts.get(channel)
+                            # promt_sex = 'Прокомментируй от лица мужчины.' if acc_sex == 'Мужской' else 'Прокомментируй от лица женщины.'
+                            # if promt == 'Нет':
+                            #     default_prompts = await default_prompts_action.get_all_default_prompts()
+                            #     promt = random.choice(default_prompts) + f' {promt_sex}'
+                            # else:
+                            #     promt = promt + f' {promt_sex}'
                             gpt_api = random.choice(gpt_accs)
-                            gpt = AuthOpenAI(gpt_api)
-                            gpt_question = message_text + '.' + f'{promt}'
-                            comment = await gpt.process_question(gpt_question)
+                            gpt_question = message_text
+                            comment = await get_req(gpt_api, gpt_question)
                             notif = None
                             if user_id in all_users_with_notif:
                                 notif = True
@@ -548,14 +547,14 @@ class TelethonConnect:
                                             break
                                         else:
                                             logger.warning('Re-generating comment. Restrcited words found or len is too long.')
-                                            comment = await gpt.process_question(gpt_question)
+                                            comment = await get_req(gpt_api, gpt_question)
                                     except Exception as e:
                                         logger.error(e)
                                         await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
                                         continue
                                 if comment:
                                     task = asyncio.create_task(session.send_comments(user_id, channel, message,
-                                                                                 acc, comment, notif, promt))
+                                                                                 acc, comment, notif, promt='Нет'))
                                 else:
                                     await accs_action.set_in_work(f'accounts_{user_id}', acc, stop_work=True)
                                     continue
