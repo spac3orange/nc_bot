@@ -40,7 +40,8 @@ async def get_req(api_key, question):
     4. Дай экспертный комментарий от первого лица. Размер комментария должен быть равен шести словам. Веди себя реалистично и позитивно. Не делай оценочных суждений. Веди себя как эксперт в области наставничества и предпринимательства.
     '''
     full_req = question + prompt
-
+    print('FULL REQ')
+    print(full_req)
     payload = json.dumps({
         "messages": [
             {"content": "You are a helpful assistant.", "role": "system"},
@@ -67,6 +68,8 @@ async def get_req(api_key, question):
             resp = await response.json()
             resp_text = resp["choices"][0]["message"]["content"]
             form_text = await format_text(resp_text)
+            print('COMMENT')
+            print(form_text)
             return form_text
 
 
