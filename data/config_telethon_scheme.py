@@ -578,8 +578,8 @@ class TelethonSendMessages:
         self.api_id = api_id
         self.api_hash = api_hash
         self.session_name = 'data/telethon_sessions/{}.session'.format(session_name)
-        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
-        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
+        # self.client = TelegramClient(self.session_name, self.api_id, self.api_hash)
+        self.client = TelegramClient(self.session_name, self.api_id, self.api_hash, proxy=proxy)
 
     #   TEST FUNC
     async def send_story(self, username=None, file_path=None):

@@ -20,6 +20,5 @@ def load_config(path: str | None = None) -> Config:
 
 
 
-
 config_aiogram = load_config()
 aiogram_bot = Bot(token=config_aiogram.tg_bot.token)
