@@ -312,28 +312,24 @@ channel_urls = [
 session_files = ['data/telethon_sessions/+7 993 918 6176.session']  # Имена файлов сессий
 #'data/telethon_sessions/+7 993 624 1435.session', +7 993 918 6176.session, +7 993 911 5398.session
 grecs_urls = [
-    "https://t.me/whaIe_crypto",
-    "https://t.me/forklog",
-    "https://t.me/to_the_makemoney",
-    "https://t.me/joinchat/vpZpaIGsISlmODhi",
-    "https://t.me/cryptobullssw",
-    "https://t.me/miningcenter",
-    "https://t.me/cryptomiamix",
-    "https://t.me/gemhuntersd",
-    "https://t.me/trade_by_booba",
-    "https://t.me/crypto_barr",
-    "https://t.me/metaneftis",
-    "https://t.me/satoshibitkoinov",
-    "https://t.me/coinside_public",
-    "https://t.me/redandgreencrypto",
-    "https://t.me/evans_crypto",
-    "https://t.me/weton",
-    "https://t.me/crypto_builders_pro",
-    "https://t.me/cryptobosh",
-    "https://t.me/ghwnd",
-    "https://t.me/CRYPTUS_MEDIA"
+    "https://t.me/AlexRich2018",
+    "https://t.me/AlexTokar13",
+    "https://t.me/dumaydeystvuy",
+    "https://t.me/DK_Cryptonit",
+    "https://t.me/byshakirovTG",
+    "https://t.me/backintime",
+    "https://t.me/don_airdrops",
+    "https://t.me/latimurpikula",
+    "https://t.me/zarabarahorosho2017",
+    "https://t.me/aa_rusina_crypto",
+    "https://t.me/promining777",
+    "https://t.me/vrakhov",
+    "https://t.me/consultmoney",
+    "https://t.me/kolbanenko_crypto",
+    "https://t.me/richdi",
+    "https://t.me/traidingx",
+    "https://t.me/kriptomoneys"
 ]
-
 # Не забудьте заменить `api_id` и `api_hash` на актуальные значения
 api_id = env('API_ID')
 api_hash = env('API_HASH')
